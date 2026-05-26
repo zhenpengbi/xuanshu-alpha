@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head><title>玄枢Alpha Logo</title></head>
+<body style="background:#0d1117;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0;flex-direction:column;gap:40px;">
+<div style="width:300px;height:300px;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="300" height="300">
+  <defs>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f7d774"/>
+      <stop offset="50%" style="stop-color:#f0b90b"/>
+      <stop offset="100%" style="stop-color:#d4a017"/>
+    </linearGradient>
+    <radialGradient id="starGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#f0b90b;stop-opacity:0.8"/>
+      <stop offset="100%" style="stop-color:#f0b90b;stop-opacity:0"/>
+    </radialGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <circle cx="100" cy="100" r="92" fill="none" stroke="url(#goldGrad)" stroke-width="1.5" opacity="0.4"/>
+  <circle cx="100" cy="100" r="88" fill="none" stroke="url(#goldGrad)" stroke-width="0.5" opacity="0.2"/>
+  <rect x="85" y="85" width="30" height="30" rx="2" fill="none" stroke="url(#goldGrad)" stroke-width="1.2" opacity="0.25"/>
+  <polyline points="35,140 55,128 72,135 88,120 112,95 140,72 168,55" fill="none" stroke="url(#goldGrad)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)" opacity="0.85"/>
+  <circle cx="35" cy="140" r="5" fill="url(#starGlow)"/><circle cx="35" cy="140" r="2.5" fill="#f0b90b" filter="url(#glow)"/>
+  <circle cx="55" cy="128" r="4" fill="url(#starGlow)"/><circle cx="55" cy="128" r="2" fill="#f0b90b" filter="url(#glow)"/>
+  <circle cx="72" cy="135" r="4" fill="url(#starGlow)"/><circle cx="72" cy="135" r="2" fill="#f0b90b" filter="url(#glow)"/>
+  <circle cx="88" cy="120" r="4" fill="url(#starGlow)"/><circle cx="88" cy="120" r="2" fill="#f0b90b" filter="url(#glow)"/>
+  <circle cx="112" cy="95" r="4.5" fill="url(#starGlow)"/><circle cx="112" cy="95" r="2.2" fill="#f0b90b" filter="url(#glow)"/>
+  <circle cx="140" cy="72" r="4.5" fill="url(#starGlow)"/><circle cx="140" cy="72" r="2.2" fill="#f0b90b" filter="url(#glow)"/>
+  <circle cx="168" cy="55" r="6" fill="url(#starGlow)"/><circle cx="168" cy="55" r="3" fill="#f7d774" filter="url(#glow)"/>
+  <circle cx="35" cy="140" r="9" fill="none" stroke="#f0b90b" stroke-width="0.8" opacity="0.5">
+    <animate attributeName="r" values="9;12;9" dur="3s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.5;0.2;0.5" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  <text x="100" y="175" text-anchor="middle" font-family="Georgia, serif" font-size="14" font-weight="bold" fill="url(#goldGrad)" letter-spacing="3">玄枢 ALPHA</text>
+</svg>
+</div>
+<div style="color:#8b949e;font-family:sans-serif;text-align:center;max-width:500px;line-height:1.8;">
+<p style="color:#f0b90b;font-size:18px;margin-bottom:16px;">设计解读</p>
+<p>• 北斗七星连线 → 抽象为上升趋势线（K线隐喻）</p>
+<p>• 天枢星（左下）呼吸光环 → "玄枢"之名来源</p>
+<p>• 外圈 + 中央方孔 → 铜钱纹（天圆地方，聚财）</p>
+<p>• 金色渐变 → 财气、专业、高级感</p>
+</div>
+</body>
+</html>

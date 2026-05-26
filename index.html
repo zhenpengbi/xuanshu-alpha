@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>玄枢Alpha - AI-Powered Investment Intelligence</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+    <style>
+        /* ========== CSS Variables & Reset ========== */
+        :root {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-card: #1c2128;
+            --bg-hover: #21262d;
+            --border-color: #30363d;
+            --text-primary: #e6edf3;
+            --text-secondary: #8b949e;
+            --text-muted: #484f58;
+            --gold: #f0b90b;
+            --gold-dark: #c99a07;
+            --green: #3fb950;
+            --green-bg: rgba(63, 185, 80, 0.1);
+            --red: #f85149;
+            --red-bg: rgba(248, 81, 73, 0.1);
+            --blue: #58a6ff;
+            --purple: #bc8cff;
+            --radius: 12px;
+            --radius-sm: 8px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        .num {
+            font-variant-numeric: tabular-nums;
+            font-feature-settings: "tnum";
+            font-family: 'SF Mono', 'Fira Code', 'JetBrains Mono', monospace;
+        }
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 24px; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+
+        /* ========== Header ========== */
+        .header {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(12px);
+        }
+        .header-inner { display: flex; justify-content: space-between; align-items: center; }
+        .logo-area { display: flex; align-items: center; gap: 16px; }
+        .logo-svg { height: 36px; }
+        .subtitle { color: var(--text-secondary); font-size: 13px; letter-spacing: 0.5px; }
+        .header-stats { display: flex; align-items: center; gap: 32px; }
+        .header-stat { text-align: right; }
+        .header-stat-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+        .header-stat-value { font-size: 20px; font-weight: 700; }
+        .positive { color: var(--green); }
+        .negative { color: var(--red); }
+        .update-time { font-size: 11px; color: var(--text-muted); }
+
+        /* ========== Section ========== */
+        .section { padding: 32px 0; }
+        .section-title {
+            font-size: 18px; font-weight: 600; margin-bottom: 20px;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .section-title::before {
+            content: ''; width: 4px; height: 20px;
+            background: linear-gradient(180deg, var(--gold), var(--gold-dark));
+            border-radius: 2px;
+        }
+
+        /* ========== Cards ========== */
+        .card {
+            background: var(--bg-card); border: 1px solid var(--border-color);
+            border-radius: var(--radius); padding: 24px; transition: border-color 0.2s;
+        }
+        .card:hover { border-color: var(--gold); }
+        .metric-card {
+            background: var(--bg-card); border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm); padding: 20px; text-align: center;
+        }
+        .metric-card .label { font-size: 12px; color: var(--text-secondary); margin-bottom: 8px; }
+        .metric-card .value { font-size: 24px; font-weight: 700; }
+        .metric-card .sub { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+
+        /* ========== Table ========== */
+        .holdings-table { width: 100%; border-collapse: collapse; }
+        .holdings-table th {
+            text-align: left; padding: 12px 16px; font-size: 12px; color: var(--text-muted);
+            text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--border-color); font-weight: 500;
+        }
+        .holdings-table td { padding: 14px 16px; border-bottom: 1px solid var(--border-color); font-size: 14px; }
+        .holdings-table tr:hover { background: var(--bg-hover); }
+        .fund-name { font-weight: 500; }
+        .fund-code { color: var(--text-muted); font-size: 12px; }
+        .tag {
+            display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 500;
+        }
+        .tag-gold { background: rgba(240,185,11,0.15); color: var(--gold); }
+        .tag-tech { background: rgba(88,166,255,0.15); color: var(--blue); }
+        .tag-green { background: rgba(63,185,80,0.15); color: var(--green); }
+        .tag-metal { background: rgba(188,140,255,0.15); color: var(--purple); }
+        .tag-mfg { background: rgba(248,81,73,0.15); color: var(--red); }
+        .tag-cash { background: rgba(139,148,158,0.15); color: var(--text-secondary); }
+
+        /* ========== Signal ========== */
+        .signal-card {
+            background: var(--bg-card); border: 1px solid var(--border-color);
+            border-radius: var(--radius); padding: 20px; text-align: center;
+        }
+        .signal-card .signal-title { font-size: 14px; color: var(--text-secondary); margin-bottom: 12px; }
+        .vix-indicator { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 16px; }
+        .vix-dot { width: 16px; height: 16px; border-radius: 50%; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.5;} }
+
+        /* ========== Timeline ========== */
+        .timeline { position: relative; padding-left: 32px; }
+        .timeline::before {
+            content: ''; position: absolute; left: 8px; top: 0; bottom: 0;
+            width: 2px; background: var(--border-color);
+        }
+        .timeline-item {
+            position: relative; margin-bottom: 20px; padding: 16px 20px;
+            background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-sm);
+        }
+        .timeline-item::before {
+            content: ''; position: absolute; left: -28px; top: 20px;
+            width: 10px; height: 10px; border-radius: 50%; background: var(--gold); border: 2px solid var(--bg-primary);
+        }
+        .timeline-time { font-size: 11px; color: var(--text-muted); margin-bottom: 4px; }
+        .timeline-title { font-size: 14px; font-weight: 500; margin-bottom: 8px; }
+        .timeline-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+        .impact-tag { font-size: 11px; padding: 2px 8px; border-radius: 4px; font-weight: 500; }
+        .impact-up { background: var(--green-bg); color: var(--green); }
+        .impact-down { background: var(--red-bg); color: var(--red); }
+        .impact-neutral { background: rgba(139,148,158,0.1); color: var(--text-secondary); }
+
+        /* ========== Advice ========== */
+        .advice-card {
+            background: linear-gradient(135deg, var(--bg-card), rgba(240,185,11,0.05));
+            border: 1px solid var(--gold); border-radius: var(--radius); padding: 24px;
+        }
+        .advice-action { font-size: 20px; font-weight: 700; color: var(--gold); margin-bottom: 8px; }
+        .advice-reason { color: var(--text-secondary); font-size: 14px; line-height: 1.8; }
+        .advice-meta { margin-top: 16px; font-size: 11px; color: var(--text-muted); }
+
+        /* ========== Sparkline Canvas ========== */
+        .sparkline-canvas { width: 80px; height: 28px; }
+
+        /* ========== Responsive ========== */
+        @media (max-width: 1024px) {
+            .grid-2, .grid-3 { grid-template-columns: 1fr; }
+            .grid-4 { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .header-inner { flex-direction: column; gap: 12px; }
+            .header-stats { gap: 16px; }
+            .grid-4 { grid-template-columns: 1fr 1fr; }
+            .holdings-table th, .holdings-table td { padding: 10px 8px; font-size: 12px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ========== HEADER ========== -->
+<header class="header">
+    <div class="container header-inner">
+        <div class="logo-area">
+            <svg class="logo-svg" viewBox="0 0 220 40" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#f0b90b"/>
+                        <stop offset="50%" style="stop-color:#fcd535"/>
+                        <stop offset="100%" style="stop-color:#f0b90b"/>
+                    </linearGradient>
+                </defs>
+                <text x="0" y="30" font-family="'SF Mono', monospace" font-size="24" font-weight="700" fill="url(#goldGrad)">玄枢Alpha</text>
+            </svg>
+            <span class="subtitle">AI-Powered Investment Intelligence</span>
+        </div>
+        <div class="header-stats">
+            <div class="header-stat">
+                <div class="header-stat-label">总资产</div>
+                <div class="header-stat-value num" id="headerTotal">--</div>
+            </div>
+            <div class="header-stat">
+                <div class="header-stat-label">今日收益</div>
+                <div class="header-stat-value num" id="headerDailyReturn">--</div>
+            </div>
+            <div class="header-stat">
+                <div class="update-time" id="headerUpdateTime">--</div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- ========== MAIN CONTENT ========== -->
+<main class="container">
+
+    <!-- Section: 资产总览 -->
+    <section class="section">
+        <h2 class="section-title">资产总览</h2>
+        <div class="grid-2">
+            <div class="card"><div id="pieChart" style="width:100%;height:320px;"></div></div>
+            <div class="card"><div id="barChart" style="width:100%;height:320px;"></div></div>
+        </div>
+        <div class="grid-4" style="margin-top:20px;">
+            <div class="metric-card">
+                <div class="label">总资产</div>
+                <div class="value num" id="metricTotal">--</div>
+            </div>
+            <div class="metric-card">
+                <div class="label">今日收益</div>
+                <div class="value num" id="metricDaily">--</div>
+            </div>
+            <div class="metric-card">
+                <div class="label">持有收益</div>
+                <div class="value num" id="metricHolding">--</div>
+            </div>
+            <div class="metric-card">
+                <div class="label">最大持仓</div>
+                <div class="value" id="metricMax" style="font-size:16px;">--</div>
+                <div class="sub num" id="metricMaxRatio">--</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: 持仓明细 -->
+    <section class="section">
+        <h2 class="section-title">持仓明细</h2>
+        <div class="card" style="padding:0; overflow-x:auto;">
+            <table class="holdings-table">
+                <thead>
+                    <tr>
+                        <th>基金名称</th>
+                        <th>代码</th>
+                        <th>类别</th>
+                        <th style="text-align:right;">金额</th>
+                        <th style="text-align:right;">占比</th>
+                        <th style="text-align:right;">日收益</th>
+                        <th style="text-align:right;">持有收益率</th>
+                        <th>趋势</th>
+                    </tr>
+                </thead>
+                <tbody id="holdingsBody"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Section: 量化信号 -->
+    <section class="section">
+        <h2 class="section-title">量化信号</h2>
+        <div class="grid-3">
+            <div class="signal-card">
+                <div class="signal-title">🥇 黄金信号</div>
+                <div id="goldGauge" style="width:100%;height:200px;"></div>
+                <div style="color:var(--text-muted);font-size:12px;margin-top:8px;">综合评分 72/100 · 中性偏多</div>
+            </div>
+            <div class="signal-card">
+                <div class="signal-title">🇺🇸 美股信号</div>
+                <div id="usGauge" style="width:100%;height:200px;"></div>
+                <div style="color:var(--text-muted);font-size:12px;margin-top:8px;">综合评分 58/100 · 谨慎</div>
+            </div>
+            <div class="signal-card">
+                <div class="signal-title">📊 VIX 恐慌指数</div>
+                <div style="margin-top:40px;">
+                    <div class="vix-indicator">
+                        <div class="vix-dot" style="background:var(--green);box-shadow:0 0 12px var(--green);"></div>
+                        <span class="num" style="font-size:32px;font-weight:700;">18.2</span>
+                    </div>
+                    <div style="color:var(--text-muted);font-size:12px;margin-top:16px;">低波动 · 市场情绪稳定</div>
+                    <div style="margin-top:12px;font-size:11px;color:var(--text-muted);">
+                        <span style="color:var(--green);">● &lt;20 低恐慌</span>&nbsp;&nbsp;
+                        <span style="color:var(--gold);">● 20-30 中等</span>&nbsp;&nbsp;
+                        <span style="color:var(--red);">● &gt;30 高恐慌</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: 早晚报 Timeline -->
+    <section class="section">
+        <h2 class="section-title">市场早晚报</h2>
+        <div class="timeline" id="timeline"></div>
+    </section>
+
+    <!-- Section: AI 操作建议 -->
+    <section class="section">
+        <h2 class="section-title">AI 操作建议</h2>
+        <div class="grid-2">
+            <div class="advice-card">
+                <div class="advice-action">📌 持有观望</div>
+                <div class="advice-reason">
+                    黄金短期回调但长期趋势未破，当前持仓比例偏高（51.3% vs 目标24%），建议在下次反弹时逐步减仓至目标比例。AI/科技仓位严重不足（12.8% vs 目标38%），可分批建仓。
+                </div>
+                <div class="advice-meta">模型置信度: 78% · 更新时间: 2026-05-26 08:00</div>
+            </div>
+            <div class="advice-card">
+                <div class="advice-action">⚡ 操作清单</div>
+                <div class="advice-reason">
+                    <div style="margin-bottom:8px;">1. 黄金 ETF 超配 27.3%，建议减仓 ¥15,000 → 转入 AI/科技</div>
+                    <div style="margin-bottom:8px;">2. 纳指100 &amp; 标普500 目标配置 34% 但实际 0%，需新建持仓</div>
+                    <div style="margin-bottom:8px;">3. 光伏/新能源与高端制造非目标品类，观察后择机退出</div>
+                    <div>4. 有色金属实际 14.95% vs 目标 4%，超配严重</div>
+                </div>
+                <div class="advice-meta">基于目标配置偏离度分析 · 风险等级: 中等</div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer style="text-align:center;padding:40px 0;color:var(--text-muted);font-size:12px;border-top:1px solid var(--border-color);">
+    玄枢Alpha &copy; 2026 · AI-Powered Investment Intelligence · Data for reference only
+</footer>
+
+<script>
+// ========== Portfolio Data (inline, later switch to fetch) ==========
+const portfolioData = {
+    "updateTime": "2026-05-26",
+    "totalAsset": 56316.06,
+    "holdings": [
+        {"name":"易方达黄金ETF联接C","code":"002963","amount":20135.58,"ratio":35.75,"dailyReturn":96.99,"holdingReturn":-1064.42,"holdingReturnRate":-5.02,"totalReturn":2836.82,"category":"黄金"},
+        {"name":"易方达黄金ETF联接A","code":"159934","amount":8759.41,"ratio":15.55,"dailyReturn":42.52,"holdingReturn":-739.67,"holdingReturnRate":-7.79,"totalReturn":-739.67,"category":"黄金"},
+        {"name":"南方有色金属ETF联接E","code":"020882","amount":8417.12,"ratio":14.95,"dailyReturn":37.28,"holdingReturn":-619.61,"holdingReturnRate":-6.86,"totalReturn":-619.61,"category":"有色金属"},
+        {"name":"华夏中证光伏产业ETF联接A","code":"013301","amount":5679.89,"ratio":10.09,"dailyReturn":56.02,"holdingReturn":179.89,"holdingReturnRate":3.27,"totalReturn":179.89,"category":"光伏/新能源"},
+        {"name":"天弘中证人工智能主题指数C","code":"001631","amount":5189.88,"ratio":9.22,"dailyReturn":190.33,"holdingReturn":1542.41,"holdingReturnRate":42.29,"totalReturn":3267.38,"category":"AI/科技"},
+        {"name":"永赢高端装备智选混合C","code":"014658","amount":3970.70,"ratio":7.05,"dailyReturn":2.85,"holdingReturn":-29.30,"holdingReturnRate":-0.73,"totalReturn":-29.30,"category":"高端制造"},
+        {"name":"天弘中证机器人ETF联接C","code":"014880","amount":2031.17,"ratio":3.61,"dailyReturn":6.59,"holdingReturn":156.17,"holdingReturnRate":8.33,"totalReturn":-55.77,"category":"AI/科技"},
+        {"name":"平安高端装备混合C","code":"015897","amount":1999.72,"ratio":3.55,"dailyReturn":-2.28,"holdingReturn":-0.28,"holdingReturnRate":-0.01,"totalReturn":-0.28,"category":"高端制造"},
+        {"name":"余额宝","code":"000198","amount":132.59,"ratio":0.23,"dailyReturn":0,"holdingReturn":0,"holdingReturnRate":0,"totalReturn":308.85,"category":"货币基金"}
+    ],
+    "targetAllocation": {"黄金":24,"AI/科技":38,"纳指100":24,"标普500":10,"有色金属":4}
+};
+
+// Mock timeline
+const mockTimeline = [
+    {time:"08:30",title:"美联储6月维持利率不变概率升至92%，市场定价9月首次降息",tags:[{text:"黄金↑",type:"up"},{text:"美股→",type:"neutral"}]},
+    {time:"09:15",title:"A股三大指数集体高开，AI概念股领涨，机器人板块涨幅居前",tags:[{text:"A股↑",type:"up"},{text:"AI/科技↑",type:"up"}]},
+    {time:"10:00",title:"国际金价回落至$2,340/oz附近，短期均线形成死叉",tags:[{text:"黄金↓",type:"down"}]},
+    {time:"14:30",title:"英伟达Q1财报超预期，盘后涨超5%，AI算力需求持续强劲",tags:[{text:"美股↑",type:"up"},{text:"AI/科技↑",type:"up"}]},
+    {time:"16:00",title:"有色金属板块承压，铜价回落2.3%，需求预期走弱",tags:[{text:"有色金属↓",type:"down"}]}
+];
+
+// ========== Utility Functions ==========
+function fmt(val, decimals=2) {
+    return val.toLocaleString('zh-CN', {minimumFractionDigits:decimals, maximumFractionDigits:decimals});
+}
+function fmtMoney(val) { return '¥' + fmt(val); }
+function fmtReturn(val) { return (val>=0?'+':'') + fmt(val); }
+function fmtPct(val) { return (val>=0?'+':'') + val.toFixed(2) + '%'; }
+function retClass(val) { return val>0?'positive':val<0?'negative':''; }
+
+function getCategoryTagClass(cat) {
+    const m = {'黄金':'tag-gold','AI/科技':'tag-tech','光伏/新能源':'tag-green','有色金属':'tag-metal','高端制造':'tag-mfg','货币基金':'tag-cash'};
+    return m[cat]||'tag-cash';
+}
+
+// ========== Render Header ==========
+function renderHeader() {
+    const totalDaily = portfolioData.holdings.reduce((s,h)=>s+h.dailyReturn,0);
+    document.getElementById('headerTotal').textContent = fmtMoney(portfolioData.totalAsset);
+    const el = document.getElementById('headerDailyReturn');
+    el.textContent = fmtReturn(totalDaily);
+    el.className = 'header-stat-value num ' + retClass(totalDaily);
+    document.getElementById('headerUpdateTime').textContent = '更新: ' + portfolioData.updateTime;
+}
+
+// ========== Render Metrics ==========
+function renderMetrics() {
+    const totalDaily = portfolioData.holdings.reduce((s,h)=>s+h.dailyReturn,0);
+    const totalHolding = portfolioData.holdings.reduce((s,h)=>s+h.holdingReturn,0);
+    const maxH = portfolioData.holdings.reduce((a,b)=>a.amount>b.amount?a:b);
+    document.getElementById('metricTotal').textContent = fmtMoney(portfolioData.totalAsset);
+    const dEl = document.getElementById('metricDaily');
+    dEl.textContent = fmtReturn(totalDaily);
+    dEl.style.color = totalDaily>=0?'var(--green)':'var(--red)';
+    const hEl = document.getElementById('metricHolding');
+    hEl.textContent = fmtReturn(totalHolding);
+    hEl.style.color = totalHolding>=0?'var(--green)':'var(--red)';
+    document.getElementById('metricMax').textContent = maxH.name;
+    document.getElementById('metricMaxRatio').textContent = maxH.ratio + '%';
+}
+
+// ========== Render Pie Chart ==========
+function renderPieChart() {
+    const chart = echarts.init(document.getElementById('pieChart'));
+    const catMap = {};
+    portfolioData.holdings.forEach(h => { catMap[h.category] = (catMap[h.category]||0) + h.amount; });
+    const colorMap = {'黄金':'#f0b90b','AI/科技':'#58a6ff','光伏/新能源':'#3fb950','有色金属':'#bc8cff','高端制造':'#f85149','货币基金':'#8b949e'};
+    const data = Object.entries(catMap).map(([n,v])=>({name:n,value:+v.toFixed(2)}));
+    chart.setOption({
+        title:{text:'持仓分布',left:'center',top:10,textStyle:{color:'#e6edf3',fontSize:14,fontWeight:500}},
+        tooltip:{trigger:'item',formatter:'{b}: ¥{c} ({d}%)',backgroundColor:'#1c2128',borderColor:'#30363d',textStyle:{color:'#e6edf3'}},
+        series:[{
+            type:'pie',radius:['45%','72%'],center:['50%','55%'],
+            avoidLabelOverlap:true,
+            itemStyle:{borderRadius:6,borderColor:'#0d1117',borderWidth:3},
+            label:{show:true,color:'#8b949e',fontSize:12,formatter:'{b}\n{d}%'},
+            labelLine:{lineStyle:{color:'#30363d'}},
+            data: data.map(d=>({...d,itemStyle:{color:colorMap[d.name]||'#8b949e'}}))
+        }]
+    });
+    window.addEventListener('resize',()=>chart.resize());
+}
+
+// ========== Render Bar Chart (Target vs Actual) ==========
+function renderBarChart() {
+    const chart = echarts.init(document.getElementById('barChart'));
+    const catMap = {};
+    portfolioData.holdings.forEach(h => { catMap[h.category] = (catMap[h.category]||0) + h.ratio; });
+    // Merge all categories from target + actual
+    const allCats = [...new Set([...Object.keys(portfolioData.targetAllocation),...Object.keys(catMap)])];
+    const targetData = allCats.map(c => portfolioData.targetAllocation[c]||0);
+    const actualData = allCats.map(c => +(catMap[c]||0).toFixed(1));
+
+    chart.setOption({
+        title:{text:'目标 vs 实际配置',left:'center',top:10,textStyle:{color:'#e6edf3',fontSize:14,fontWeight:500}},
+        tooltip:{trigger:'axis',backgroundColor:'#1c2128',borderColor:'#30363d',textStyle:{color:'#e6edf3'},
+            formatter:function(p){return p[0].name+'<br/>'+p.map(i=>i.marker+i.seriesName+': '+i.value+'%').join('<br/>');}
+        },
+        legend:{bottom:0,textStyle:{color:'#8b949e'},data:['目标','实际']},
+        grid:{left:50,right:20,top:50,bottom:40},
+        xAxis:{type:'category',data:allCats,axisLabel:{color:'#8b949e',fontSize:11,rotate:15},axisLine:{lineStyle:{color:'#30363d'}}},
+        yAxis:{type:'value',axisLabel:{color:'#8b949e',formatter:'{value}%'},splitLine:{lineStyle:{color:'#21262d'}},axisLine:{lineStyle:{color:'#30363d'}}},
+        series:[
+            {name:'目标',type:'bar',barWidth:'30%',itemStyle:{color:'#f0b90b',borderRadius:[4,4,0,0]},data:targetData},
+            {name:'实际',type:'bar',barWidth:'30%',itemStyle:{color:'#58a6ff',borderRadius:[4,4,0,0]},data:actualData}
+        ]
+    });
+    window.addEventListener('resize',()=>chart.resize());
+}
+
+// ========== Render Holdings Table ==========
+function renderHoldings() {
+    const tbody = document.getElementById('holdingsBody');
+    tbody.innerHTML = portfolioData.holdings.map((h,i) => {
+        const dailyCls = retClass(h.dailyReturn);
+        const holdCls = retClass(h.holdingReturnRate);
+        const tagCls = getCategoryTagClass(h.category);
+        return `<tr>
+            <td><div class="fund-name">${h.name}</div></td>
+            <td><span class="fund-code num">${h.code}</span></td>
+            <td><span class="tag ${tagCls}">${h.category}</span></td>
+            <td style="text-align:right;" class="num">${fmtMoney(h.amount)}</td>
+            <td style="text-align:right;" class="num">${h.ratio}%</td>
+            <td style="text-align:right;" class="num ${dailyCls}">${fmtReturn(h.dailyReturn)}</td>
+            <td style="text-align:right;" class="num ${holdCls}">${fmtPct(h.holdingReturnRate)}</td>
+            <td><canvas class="sparkline-canvas" id="spark${i}"></canvas></td>
+        </tr>`;
+    }).join('');
+    // Draw sparklines (mock random data)
+    portfolioData.holdings.forEach((h,i) => {
+        drawSparkline(document.getElementById('spark'+i), h.holdingReturnRate >= 0);
+    });
+}
+
+function drawSparkline(canvas, isPositive) {
+    if(!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const w = canvas.width = 80;
+    const h = canvas.height = 28;
+    // Generate mock path
+    const points = [];
+    let y = h/2;
+    for(let x=0; x<w; x+=4) {
+        y += (Math.random()-0.48)*4;
+        y = Math.max(4, Math.min(h-4, y));
+        points.push([x, y]);
+    }
+    // Trend direction
+    if(isPositive) { points[points.length-1][1] = Math.min(points[0][1]-2, points[points.length-1][1]); }
+    else { points[points.length-1][1] = Math.max(points[0][1]+2, points[points.length-1][1]); }
+
+    ctx.beginPath();
+    ctx.moveTo(points[0][0], points[0][1]);
+    for(let i=1;i<points.length;i++) ctx.lineTo(points[i][0], points[i][1]);
+    ctx.strokeStyle = isPositive ? '#3fb950' : '#f85149';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+}
+
+// ========== Render Gauge Charts ==========
+function renderGauges() {
+    // Gold gauge
+    const goldChart = echarts.init(document.getElementById('goldGauge'));
+    goldChart.setOption(gaugeOption(72, '黄金'));
+    // US gauge
+    const usChart = echarts.init(document.getElementById('usGauge'));
+    usChart.setOption(gaugeOption(58, '美股'));
+    window.addEventListener('resize',()=>{goldChart.resize();usChart.resize();});
+}
+
+function gaugeOption(value, name) {
+    return {
+        series:[{
+            type:'gauge',
+            startAngle:200,endAngle:-20,
+            min:0,max:100,
+            splitNumber:10,
+            itemStyle:{color: value>=70?'#3fb950':value>=40?'#f0b90b':'#f85149'},
+            progress:{show:true,width:12},
+            pointer:{show:true,length:'60%',width:4,itemStyle:{color:'#e6edf3'}},
+            axisLine:{lineStyle:{width:12,color:[[0.3,'#f85149'],[0.7,'#f0b90b'],[1,'#3fb950']]}},
+            axisTick:{show:false},
+            splitLine:{length:8,lineStyle:{width:2,color:'#30363d'}},
+            axisLabel:{distance:16,color:'#484f58',fontSize:10},
+            title:{show:false},
+            detail:{valueAnimation:true,fontSize:28,fontWeight:700,color:'#e6edf3',offsetCenter:[0,'40%'],formatter:'{value}'},
+            data:[{value:value}]
+        }]
+    };
+}
+
+// ========== Render Timeline ==========
+function renderTimeline() {
+    const el = document.getElementById('timeline');
+    el.innerHTML = mockTimeline.map(item => `
+        <div class="timeline-item">
+            <div class="timeline-time">${item.time}</div>
+            <div class="timeline-title">${item.title}</div>
+            <div class="timeline-tags">
+                ${item.tags.map(t=>`<span class="impact-tag impact-${t.type}">${t.text}</span>`).join('')}
+            </div>
+        </div>
+    `).join('');
+}
+
+// ========== Initialize ==========
+document.addEventListener('DOMContentLoaded', function() {
+    renderHeader();
+    renderMetrics();
+    renderPieChart();
+    renderBarChart();
+    renderHoldings();
+    renderGauges();
+    renderTimeline();
+});
+</script>
+</body>
+</html>
