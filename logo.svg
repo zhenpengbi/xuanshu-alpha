@@ -1,86 +1,109 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
   <defs>
-    <!-- 金色渐变 -->
-    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#f7d774"/>
-      <stop offset="50%" style="stop-color:#f0b90b"/>
-      <stop offset="100%" style="stop-color:#d4a017"/>
+    <!-- 金色渐变（古铜→暖金） -->
+    <linearGradient id="gold1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#F2DFA7"/>
+      <stop offset="45%" style="stop-color:#D4A94B"/>
+      <stop offset="100%" style="stop-color:#8B6914"/>
     </linearGradient>
-    <!-- 星光发光效果 -->
-    <radialGradient id="starGlow" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" style="stop-color:#f0b90b;stop-opacity:0.8"/>
-      <stop offset="100%" style="stop-color:#f0b90b;stop-opacity:0"/>
+    <!-- 淡金描边 -->
+    <linearGradient id="gold2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F2DFA7;stop-opacity:0.8"/>
+      <stop offset="100%" style="stop-color:#B8860B;stop-opacity:0.5"/>
+    </linearGradient>
+    <!-- 暗底渐变 -->
+    <radialGradient id="bg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#15152B"/>
+      <stop offset="70%" style="stop-color:#0C0C18"/>
+      <stop offset="100%" style="stop-color:#060609"/>
     </radialGradient>
-    <!-- 铜钱基座渐变 -->
-    <linearGradient id="coinGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#d4a017;stop-opacity:0.3"/>
-      <stop offset="100%" style="stop-color:#f0b90b;stop-opacity:0.15"/>
-    </linearGradient>
-    <filter id="glow">
-      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
-      <feMerge>
-        <feMergeNode in="coloredBlur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
+    <!-- 中心光晕 -->
+    <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#D4A94B;stop-opacity:0.08"/>
+      <stop offset="100%" style="stop-color:#D4A94B;stop-opacity:0"/>
+    </radialGradient>
+    <filter id="glow1">
+      <feGaussianBlur stdDeviation="1.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow2">
+      <feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow3">
+      <feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
   </defs>
+
+  <!-- 背景 -->
+  <circle cx="200" cy="200" r="195" fill="url(#bg)"/>
   
-  <!-- 背景圆（铜钱外圈） -->
-  <circle cx="100" cy="100" r="92" fill="none" stroke="url(#goldGrad)" stroke-width="1.5" opacity="0.4"/>
-  <circle cx="100" cy="100" r="88" fill="none" stroke="url(#goldGrad)" stroke-width="0.5" opacity="0.2"/>
+  <!-- 外圈：双环（道教"天圆"意象） -->
+  <circle cx="200" cy="200" r="185" fill="none" stroke="url(#gold2)" stroke-width="1.2" opacity="0.4"/>
+  <circle cx="200" cy="200" r="180" fill="none" stroke="url(#gold2)" stroke-width="0.4" opacity="0.25"/>
+
+  <!-- 中心光晕 -->
+  <circle cx="200" cy="195" r="90" fill="url(#centerGlow)"/>
+
+  <!-- 太极阴阳鱼（道教核心，简约几何化） -->
+  <!-- 外圆 -->
+  <circle cx="200" cy="195" r="52" fill="none" stroke="url(#gold1)" stroke-width="1.6" opacity="0.75" filter="url(#glow1)"/>
+  <!-- S 曲线（阴阳分界） -->
+  <path d="M 200,143 C 200,143 226,169 200,195 C 174,221 200,247 200,247" 
+    fill="none" stroke="url(#gold1)" stroke-width="1.6" stroke-linecap="round" opacity="0.75" filter="url(#glow1)"/>
+  <!-- 阳鱼眼（实心金点） -->
+  <circle cx="200" cy="169" r="4" fill="#D4A94B" opacity="0.85" filter="url(#glow2)"/>
+  <!-- 阴鱼眼（空心环） -->
+  <circle cx="200" cy="221" r="4" fill="none" stroke="#D4A94B" stroke-width="1.2" opacity="0.7"/>
+
+  <!-- 八卦纹（简化为8个短线段环绕太极，代表八方/乾坤） -->
+  <!-- 乾（三连） -->
+  <g opacity="0.4" filter="url(#glow1)">
+    <line x1="200" y1="123" x2="200" y2="130" stroke="#D4A94B" stroke-width="1.5" stroke-linecap="round"/>
+    <!-- 坤（三断） -->
+    <line x1="246" y1="152" x2="251" y2="157" stroke="#D4A94B" stroke-width="1.5" stroke-linecap="round"/>
+    <!-- 离 -->
+    <line x1="255" y1="195" x2="262" y2="195" stroke="#D4A94B" stroke-width="1.5" stroke-linecap="round"/>
+    <!-- 坎 -->
+    <line x1="246" y1="238" x2="251" y2="233" stroke="#D4A94B" stroke-width="1.5" stroke-linecap="round"/>
+    <!-- 艮 -->
+    <line x1="200" y1="260" x2="200" y2="267" stroke="#D4A94B" stroke-width="1.5" stroke-linecap="round"/>
+    <!-- 兑 -->
+    <line x1="154" y1="238" x2="149" y2="233" stroke="#D4A94B" stroke-width="1.5" stroke-linecap="round"/>
+    <!-- 巽 -->
+    <line x1="138" y1="195" x2="145" y2="195" stroke="#D4A94B" stroke-width="1.5" stroke-linecap="round"/>
+    <!-- 震 -->
+    <line x1="154" y1="152" x2="149" y2="157" stroke="#D4A94B" stroke-width="1.5" stroke-linecap="round"/>
+  </g>
+
+  <!-- K线/趋势线（金融元素，从太极下方向右上突破） -->
+  <!-- 一根优雅的上升曲线，穿越太极右侧 -->
+  <path d="M 130,265 C 150,255 160,250 175,235 C 190,220 210,210 225,190 C 240,170 255,145 275,125 C 290,110 310,100 330,88" 
+    fill="none" stroke="#D4A94B" stroke-width="1.8" stroke-linecap="round" 
+    opacity="0.6" filter="url(#glow2)"
+    stroke-dasharray="none"/>
   
-  <!-- 铜钱方孔（内方外圆，道教天圆地方） -->
-  <rect x="85" y="85" width="30" height="30" rx="2" fill="none" stroke="url(#goldGrad)" stroke-width="1.2" opacity="0.25"/>
+  <!-- 趋势线上的关键节点（K线收盘价点位） -->
+  <circle cx="175" cy="235" r="2" fill="#F2DFA7" opacity="0.7" filter="url(#glow1)"/>
+  <circle cx="225" cy="190" r="2.5" fill="#F2DFA7" opacity="0.8" filter="url(#glow1)"/>
+  <circle cx="275" cy="125" r="2.5" fill="#F2DFA7" opacity="0.8" filter="url(#glow1)"/>
+  <circle cx="330" cy="88" r="3" fill="#F2DFA7" opacity="0.9" filter="url(#glow2)"/>
   
-  <!-- 北斗七星连线（抽象为上升趋势线） -->
-  <!-- 七星坐标：模拟北斗形状，整体呈上升趋势 -->
-  <!-- 天枢→天璇→天玑→天权（斗身）→ 玉衡→开阳→摇光（斗柄） -->
-  <polyline 
-    points="35,140 55,128 72,135 88,120 112,95 140,72 168,55" 
-    fill="none" 
-    stroke="url(#goldGrad)" 
-    stroke-width="1.8" 
-    stroke-linecap="round"
-    stroke-linejoin="round"
-    filter="url(#glow)"
-    opacity="0.85"
-  />
-  
-  <!-- 七颗星（从天枢到摇光） -->
-  <!-- 天枢（Dubhe）- 玄枢之名来源 -->
-  <circle cx="35" cy="140" r="5" fill="url(#starGlow)"/>
-  <circle cx="35" cy="140" r="2.5" fill="#f0b90b" filter="url(#glow)"/>
-  
-  <!-- 天璇（Merak） -->
-  <circle cx="55" cy="128" r="4" fill="url(#starGlow)"/>
-  <circle cx="55" cy="128" r="2" fill="#f0b90b" filter="url(#glow)"/>
-  
-  <!-- 天玑（Phecda） -->
-  <circle cx="72" cy="135" r="4" fill="url(#starGlow)"/>
-  <circle cx="72" cy="135" r="2" fill="#f0b90b" filter="url(#glow)"/>
-  
-  <!-- 天权（Megrez） -->
-  <circle cx="88" cy="120" r="4" fill="url(#starGlow)"/>
-  <circle cx="88" cy="120" r="2" fill="#f0b90b" filter="url(#glow)"/>
-  
-  <!-- 玉衡（Alioth） -->
-  <circle cx="112" cy="95" r="4.5" fill="url(#starGlow)"/>
-  <circle cx="112" cy="95" r="2.2" fill="#f0b90b" filter="url(#glow)"/>
-  
-  <!-- 开阳（Mizar） -->
-  <circle cx="140" cy="72" r="4.5" fill="url(#starGlow)"/>
-  <circle cx="140" cy="72" r="2.2" fill="#f0b90b" filter="url(#glow)"/>
-  
-  <!-- 摇光（Alkaid）- 斗柄末端，最亮 -->
-  <circle cx="168" cy="55" r="6" fill="url(#starGlow)"/>
-  <circle cx="168" cy="55" r="3" fill="#f7d774" filter="url(#glow)"/>
-  
-  <!-- 天枢星额外高亮标记（代表"玄枢"） -->
-  <circle cx="35" cy="140" r="9" fill="none" stroke="#f0b90b" stroke-width="0.8" opacity="0.5">
-    <animate attributeName="r" values="9;12;9" dur="3s" repeatCount="indefinite"/>
-    <animate attributeName="opacity" values="0.5;0.2;0.5" dur="3s" repeatCount="indefinite"/>
-  </circle>
-  
-  <!-- 底部文字 -->
-  <text x="100" y="175" text-anchor="middle" font-family="Georgia, serif" font-size="14" font-weight="bold" fill="url(#goldGrad)" letter-spacing="3">玄枢 ALPHA</text>
+  <!-- 趋势线终点：上升箭头暗示 -->
+  <path d="M 325,93 L 330,88 L 325,83" fill="none" stroke="#F2DFA7" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+
+  <!-- 北斗七星（微小点缀在左上背景，暗示天枢） -->
+  <circle cx="88" cy="88" r="1.5" fill="#F2DFA7" opacity="0.35" filter="url(#glow1)"/>
+  <circle cx="100" cy="80" r="1.2" fill="#F2DFA7" opacity="0.3"/>
+  <circle cx="108" cy="92" r="1.2" fill="#F2DFA7" opacity="0.3"/>
+  <circle cx="96" cy="97" r="1.2" fill="#F2DFA7" opacity="0.3"/>
+  <circle cx="118" cy="78" r="1" fill="#F2DFA7" opacity="0.25"/>
+  <circle cx="130" cy="70" r="1" fill="#F2DFA7" opacity="0.25"/>
+  <circle cx="142" cy="62" r="1.3" fill="#F2DFA7" opacity="0.3"/>
+
+  <!-- 品牌文字 -->
+  <text x="200" y="330" text-anchor="middle" 
+    font-family="'Noto Serif SC', 'Source Han Serif SC', 'SimSun', Georgia, serif" 
+    font-size="30" font-weight="600" fill="url(#gold1)" letter-spacing="4" opacity="0.92">玄枢</text>
+  <text x="200" y="358" text-anchor="middle" 
+    font-family="'Cormorant Garamond', Georgia, 'Times New Roman', serif" 
+    font-size="13" font-weight="300" fill="#C9A96E" letter-spacing="6" opacity="0.55">A L P H A</text>
 </svg>
