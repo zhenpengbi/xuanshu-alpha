@@ -1,0 +1,37 @@
+{
+  "date": "2026-06-02 15:07",
+  "score": 55,
+  "signal": "中性观望",
+  "emoji": "⚪",
+  "tech": 19,
+  "macro": 20,
+  "senti": 16,
+  "tech_max": 38,
+  "macro_max": 35,
+  "senti_max": 27,
+  "price": null,
+  "price_unit": "美元/磅",
+  "pct_1w": null,
+  "pct_1m": null,
+  "pct_3m": null,
+  "ma20": null,
+  "ma60": null,
+  "score_detail": {
+    "tech_降级": "铜数据不可用，技术面取中性分19/38",
+    "macro_DXY美元走势": "DXY=98.65，5日-18.24%，20日-1.70%（得分 8/10）",
+    "macro_铜价3月走势": "数据不可用，取中性分 5/10",
+    "macro_PMI工业预期(铜价动量近似)": "数据不可用，取中性分 4/8",
+    "macro_黄金/铜比率": "数据不可用，取中性分 3/7",
+    "senti_VIX恐慌指数": "VIX=19.2，2年分位=69%（得分 2/8）",
+    "senti_南华商品指数(替代)": "数据不可用，取中性分 5/10",
+    "senti_有色金属资金流向(VIX5日代理)": "VIX=19.2，5日变化-19.4%（得分 9/9）"
+  },
+  "risk_flags": {
+    "data_quality": "cache",
+    "signal_confidence": "medium",
+    "confidence_reason": "实时数据源0个，信号中等可信",
+    "caution_notes": [
+      "部分数据使用本地缓存，信号仅供参考"
+    ]
+  }
+}

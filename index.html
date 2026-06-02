@@ -265,30 +265,38 @@
             <div class="signal-card">
                 <div class="signal-title">🥇 黄金信号</div>
                 <div id="goldGauge" style="width:100%;height:200px;"></div>
-                <div style="color:var(--text-muted);font-size:12px;margin-top:8px;">综合评分 72/100 · 中性偏多</div>
+                <div id="goldSignalDesc" style="color:var(--text-muted);font-size:12px;margin-top:8px;">--</div>
             </div>
             <div class="signal-card">
-                <div class="signal-title">🇺🇸 美股信号</div>
+                <div class="signal-title">🇺🇸 美股信号 (QQQ)</div>
                 <div id="usGauge" style="width:100%;height:200px;"></div>
-                <div style="color:var(--text-muted);font-size:12px;margin-top:8px;">综合评分 58/100 · 谨慎</div>
+                <div id="usSignalDesc" style="color:var(--text-muted);font-size:12px;margin-top:8px;">--</div>
             </div>
             <div class="signal-card">
                 <div class="signal-title">📊 VIX 恐慌指数</div>
                 <div style="margin-top:40px;">
                     <div class="vix-indicator">
-                        <div class="vix-dot" style="background:var(--green);box-shadow:0 0 12px var(--green);"></div>
-                        <span class="num" style="font-size:32px;font-weight:700;">18.2</span>
+                        <div class="vix-dot" id="vixDot" style="background:var(--green);box-shadow:0 0 12px var(--green);"></div>
+                        <span class="num" id="vixValue" style="font-size:32px;font-weight:700;">--</span>
                     </div>
-                    <div style="color:var(--text-muted);font-size:12px;margin-top:16px;">低波动 · 市场情绪稳定</div>
+                    <div id="vixDesc" style="color:var(--text-muted);font-size:12px;margin-top:16px;">--</div>
                     <div style="margin-top:12px;font-size:11px;color:var(--text-muted);">
                         <span style="color:var(--green);">● &lt;20 低恐慌</span>&nbsp;&nbsp;
                         <span style="color:var(--gold);">● 20-30 中等</span>&nbsp;&nbsp;
                         <span style="color:var(--red);">● &gt;30 高恐慌</span>
                     </div>
+                    <div id="vixPctile" style="margin-top:8px;font-size:11px;color:var(--text-muted);"></div>
                 </div>
             </div>
         </div>
+        <div class="card" style="margin-top:20px;">
+            <div style="font-size:13px;color:var(--text-secondary);margin-bottom:12px;font-weight:500;">📐 信号维度明细</div>
+            <div class="grid-3" id="signalDetailGrid"></div>
+        </div>
     </section>
+
+    <!-- Section: 有色金属信号 (附加) -->
+    <section class="section" id="metalsSection" style="display:none;"></section>
 
     <!-- Section: 早晚报 Timeline -->
     <section class="section">
@@ -301,21 +309,14 @@
         <h2 class="section-title">AI 操作建议</h2>
         <div class="grid-2">
             <div class="advice-card">
-                <div class="advice-action">📌 持有观望</div>
-                <div class="advice-reason">
-                    黄金短期回调但长期趋势未破，当前持仓比例偏高（51.3% vs 目标24%），建议在下次反弹时逐步减仓至目标比例。AI/科技仓位严重不足（12.8% vs 目标38%），可分批建仓。
-                </div>
-                <div class="advice-meta">模型置信度: 78% · 更新时间: 2026-05-26 08:00</div>
+                <div class="advice-action" id="adviceAction">--</div>
+                <div class="advice-reason" id="adviceReason">--</div>
+                <div class="advice-meta" id="adviceMeta">--</div>
             </div>
             <div class="advice-card">
-                <div class="advice-action">⚡ 操作清单</div>
-                <div class="advice-reason">
-                    <div style="margin-bottom:8px;">1. 黄金 ETF 超配 27.3%，建议减仓 ¥15,000 → 转入 AI/科技</div>
-                    <div style="margin-bottom:8px;">2. 纳指100 &amp; 标普500 目标配置 34% 但实际 0%，需新建持仓</div>
-                    <div style="margin-bottom:8px;">3. 光伏/新能源与高端制造非目标品类，观察后择机退出</div>
-                    <div>4. 有色金属实际 14.95% vs 目标 4%，超配严重</div>
-                </div>
-                <div class="advice-meta">基于目标配置偏离度分析 · 风险等级: 中等</div>
+                <div class="advice-action">⚡ 再平衡操作清单</div>
+                <div class="advice-reason" id="rebalanceList">--</div>
+                <div class="advice-meta" id="rebalanceMeta">--</div>
             </div>
         </div>
     </section>
@@ -492,15 +493,101 @@ function drawSparkline(canvas, isPositive) {
     ctx.stroke();
 }
 
-// ========== Render Gauge Charts ==========
+// ========== Signal Data (loaded from JSON) ==========
+let signalData = { gold: null, us: null, metals: null };
+
+async function loadSignals() {
+    const tryFetch = async (path) => {
+        try { const r = await fetch(path + '?t=' + Date.now()); if(!r.ok) return null;
+            let txt = await r.text();
+            // gold_signal.json 可能含 NaN（非法JSON），替换为 null
+            txt = txt.replace(/:\s*NaN/g, ': null');
+            return JSON.parse(txt);
+        } catch(e){ console.warn('load fail', path, e); return null; }
+    };
+    [signalData.gold, signalData.us, signalData.metals] = await Promise.all([
+        tryFetch('data/gold_signal.json'),
+        tryFetch('data/us_signal.json'),
+        tryFetch('data/metals_signal.json')
+    ]);
+}
+
+// ========== Render Gauge Charts (真实数据) ==========
 function renderGauges() {
-    // Gold gauge
+    const g = signalData.gold, u = signalData.us;
     const goldChart = echarts.init(document.getElementById('goldGauge'));
-    goldChart.setOption(gaugeOption(72, '黄金'));
-    // US gauge
+    const goldScore = g ? Math.round(g.combined_score ?? g.score) : 0;
+    goldChart.setOption(gaugeOption(goldScore, '黄金'));
+    document.getElementById('goldSignalDesc').innerHTML = g
+        ? `综合评分 <b>${goldScore}</b>/100 · ${g.emoji||''} ${g.signal||''}` + (g.price?` · 金价 $${g.price}`:'')
+        : '数据加载失败';
+
     const usChart = echarts.init(document.getElementById('usGauge'));
-    usChart.setOption(gaugeOption(58, '美股'));
+    const usScore = u ? Math.round(u.qqq_score) : 0;
+    usChart.setOption(gaugeOption(usScore, '美股'));
+    document.getElementById('usSignalDesc').innerHTML = u
+        ? `综合评分 <b>${usScore}</b>/100 · ${u.qqq_emoji||''} ${u.qqq_signal||''} · SPY ${u.spy_score}`
+        : '数据加载失败';
+
     window.addEventListener('resize',()=>{goldChart.resize();usChart.resize();});
+}
+
+// ========== Render VIX (从信号中提取) ==========
+function renderVix() {
+    // VIX 出现在 macro_VIX 维度描述里，从 gold 信号提取
+    let vix = null, pctile = null;
+    const src = (signalData.gold && signalData.gold.score_detail) || (signalData.us && signalData.us.qqq_score_detail);
+    if(src){
+        for(const k in src){
+            if(k.includes('VIX')){
+                const m = String(src[k]).match(/VIX=([\d.]+)/);
+                const p = String(src[k]).match(/分位=(\d+)%/);
+                if(m) vix = parseFloat(m[1]);
+                if(p) pctile = parseInt(p[1]);
+                if(vix) break;
+            }
+        }
+    }
+    const valEl = document.getElementById('vixValue');
+    const dotEl = document.getElementById('vixDot');
+    const descEl = document.getElementById('vixDesc');
+    const pctEl = document.getElementById('vixPctile');
+    if(vix == null){ valEl.textContent='N/A'; descEl.textContent='数据不可用'; return; }
+    valEl.textContent = vix.toFixed(1);
+    let color, desc;
+    if(vix < 20){ color='var(--green)'; desc='低波动 · 市场情绪稳定'; }
+    else if(vix < 30){ color='var(--gold)'; desc='中等波动 · 谨慎观察'; }
+    else { color='var(--red)'; desc='高恐慌 · 系统性风险定价中'; }
+    dotEl.style.background = color;
+    dotEl.style.boxShadow = '0 0 12px ' + color;
+    descEl.textContent = desc;
+    if(pctile != null) pctEl.textContent = `2年历史分位: ${pctile}%`;
+}
+
+// ========== Render Signal Detail Grid ==========
+function renderSignalDetail() {
+    const grid = document.getElementById('signalDetailGrid');
+    const blocks = [];
+    const buildBlock = (title, data) => {
+        if(!data) return '';
+        const rows = Object.entries(data).map(([k,v])=>{
+            const label = k.replace(/^(tech|macro|senti|val)_/,'');
+            const scoreM = String(v).match(/得分\s*(\d+)\/(\d+)/);
+            let badge = '';
+            if(scoreM){
+                const ratio = +scoreM[1]/+scoreM[2];
+                const c = ratio>=0.7?'var(--green)':ratio>=0.4?'var(--gold)':'var(--red)';
+                badge = `<span style="color:${c};font-weight:600;">${scoreM[1]}/${scoreM[2]}</span>`;
+            }
+            return `<div style="display:flex;justify-content:space-between;gap:8px;padding:4px 0;border-bottom:1px solid var(--border-color);font-size:11px;">
+                <span style="color:var(--text-secondary);flex:1;">${label}</span>${badge}</div>`;
+        }).join('');
+        return `<div><div style="font-size:12px;color:var(--gold);margin-bottom:8px;font-weight:600;">${title}</div>${rows}</div>`;
+    };
+    blocks.push(buildBlock('🥇 黄金维度', signalData.gold && signalData.gold.score_detail));
+    blocks.push(buildBlock('🇺🇸 美股QQQ维度', signalData.us && signalData.us.qqq_score_detail));
+    blocks.push(buildBlock('🟣 有色金属维度', signalData.metals && signalData.metals.score_detail));
+    grid.innerHTML = blocks.filter(Boolean).join('');
 }
 
 function gaugeOption(value, name) {
@@ -538,15 +625,117 @@ function renderTimeline() {
     `).join('');
 }
 
+// ========== 再平衡引擎 (基于真实持仓偏离 + 信号) ==========
+// 类别 → 信号映射：用真实量化评分决定"减仓/加仓"倾向
+function getCategorySignalScore(cat){
+    if((cat==='黄金') && signalData.gold) return Math.round(signalData.gold.combined_score ?? signalData.gold.score);
+    if((cat==='有色金属') && signalData.metals) return signalData.metals.score;
+    if((cat==='纳指100'||cat==='标普500'||cat==='AI/科技') && signalData.us) return signalData.us.qqq_score;
+    return null;
+}
+
+function computeRebalance(){
+    const total = portfolioData.totalAsset;
+    // 实际各类别占比
+    const catRatio = {};
+    portfolioData.holdings.forEach(h=>{ catRatio[h.category]=(catRatio[h.category]||0)+h.ratio; });
+    const target = portfolioData.targetAllocation;
+    const allCats = [...new Set([...Object.keys(target),...Object.keys(catRatio)])];
+    const actions = [];
+    allCats.forEach(cat=>{
+        const tgt = target[cat]||0;
+        const act = +(catRatio[cat]||0).toFixed(1);
+        const dev = +(act-tgt).toFixed(1);            // 偏离百分点
+        const amtDev = Math.round(dev/100*total);     // 偏离金额
+        if(Math.abs(dev) < 2) return;                  // 偏离<2pt忽略
+        const sig = getCategorySignalScore(cat);
+        actions.push({cat, tgt, act, dev, amtDev, sig});
+    });
+    // 按偏离绝对值排序
+    actions.sort((a,b)=>Math.abs(b.dev)-Math.abs(a.dev));
+    return actions;
+}
+
+function renderRebalance(){
+    const actions = computeRebalance();
+    const listEl = document.getElementById('rebalanceList');
+    if(!actions.length){ listEl.innerHTML='当前配置接近目标，无需调整。'; document.getElementById('rebalanceMeta').textContent='偏离均<2个百分点'; return; }
+    listEl.innerHTML = actions.map((a,i)=>{
+        const over = a.dev>0;
+        const verb = over?'减仓':'加仓';
+        const arrow = over?'🔻':'🔺';
+        const color = over?'var(--red)':'var(--green)';
+        let sigNote='';
+        if(a.sig!=null){
+            // 减仓时信号高=暂缓减仓；加仓时信号低=谨慎
+            if(over && a.sig>=65) sigNote=`（⚠️信号${a.sig}偏强，可暂缓减仓）`;
+            else if(over && a.sig<45) sigNote=`（信号${a.sig}偏弱，减仓时机佳）`;
+            else if(!over && a.sig>=65) sigNote=`（✅信号${a.sig}偏强，加仓时机佳）`;
+            else if(!over && a.sig<45) sigNote=`（信号${a.sig}偏弱，分批为宜）`;
+            else sigNote=`（信号${a.sig}中性）`;
+        }
+        return `<div style="margin-bottom:10px;line-height:1.6;">
+            <span style="color:${color};font-weight:600;">${arrow} ${a.cat}</span> ${verb}
+            <span class="num">≈¥${Math.abs(a.amtDev).toLocaleString('zh-CN')}</span>
+            <span style="color:var(--text-muted);">（实际${a.act}% vs 目标${a.tgt}%，偏${a.dev>0?'+':''}${a.dev}pt）</span>
+            <span style="color:var(--text-secondary);font-size:12px;">${sigNote}</span>
+        </div>`;
+    }).join('');
+    const maxAbs = Math.max(...actions.map(a=>Math.abs(a.dev)));
+    const risk = maxAbs>20?'高':maxAbs>10?'中等':'低';
+    document.getElementById('rebalanceMeta').textContent = `基于真实持仓偏离度 + 量化信号联合判定 · 配置风险等级: ${risk}`;
+}
+
+// ========== AI 操作建议引擎 ==========
+function renderAdvice(){
+    const g=signalData.gold, u=signalData.us;
+    const goldScore = g?Math.round(g.combined_score??g.score):null;
+    const usScore = u?Math.round(u.qqq_score):null;
+    const actions = computeRebalance();
+    const maxDev = actions.length?actions[0]:null;
+
+    // 决策逻辑
+    let action='📌 持有观望', reasons=[];
+    if(maxDev && Math.abs(maxDev.dev)>20){
+        action = maxDev.dev>0 ? '⚖️ 建议再平衡（减超配）' : '⚖️ 建议再平衡（补低配）';
+    }
+    // 黄金信号解读
+    if(goldScore!=null){
+        if(goldScore>=65) reasons.push(`黄金量化评分${goldScore}偏强，超配部分可暂缓减仓`);
+        else if(goldScore<45) reasons.push(`黄金量化评分${goldScore}偏弱（${g.signal}），超配的黄金是减仓良机`);
+        else reasons.push(`黄金量化评分${goldScore}中性（${g.signal}），维持观望`);
+    }
+    // 美股信号解读
+    if(usScore!=null){
+        if(usScore>=65) reasons.push(`美股QQQ评分${usScore}（${u.qqq_signal}），纳指/标普缺口可逢回调分批建仓`);
+        else reasons.push(`美股QQQ评分${usScore}（${u.qqq_signal}），美股建仓需谨慎`);
+    }
+    // 配置偏离
+    if(maxDev) reasons.push(`最大偏离：${maxDev.cat} ${maxDev.dev>0?'超配':'低配'}${Math.abs(maxDev.dev)}pt，建议优先处理`);
+
+    document.getElementById('adviceAction').textContent = action;
+    document.getElementById('adviceReason').innerHTML = reasons.map(r=>`<div style="margin-bottom:6px;">• ${r}</div>`).join('');
+    const conf = (g&&g.risk_flags&&g.risk_flags.signal_confidence)||'medium';
+    const confMap={high:'高',medium:'中',low:'低'};
+    const dt = g?g.date:'';
+    document.getElementById('adviceMeta').textContent = `信号置信度: ${confMap[conf]||conf} · 数据: ${(g&&g.data_source)||'--'} · 更新: ${dt}`;
+}
+
 // ========== Initialize ==========
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', async function() {
     renderHeader();
     renderMetrics();
     renderPieChart();
     renderBarChart();
     renderHoldings();
-    renderGauges();
     renderTimeline();
+    // 加载真实信号后渲染
+    await loadSignals();
+    renderGauges();
+    renderVix();
+    renderSignalDetail();
+    renderRebalance();
+    renderAdvice();
 });
 </script>
 </body>

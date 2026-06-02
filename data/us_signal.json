@@ -1,0 +1,79 @@
+{
+  "date": "2026-06-02 15:06",
+  "data_source": "degraded",
+  "qqq_score": 76,
+  "qqq_signal": "买入信号",
+  "qqq_emoji": "🟡",
+  "qqq_tech": 36,
+  "qqq_macro": 20,
+  "qqq_senti": 10,
+  "qqq_val": 10,
+  "spy_score": 76,
+  "spy_signal": "买入信号",
+  "spy_emoji": "🟡",
+  "spy_tech": 36,
+  "spy_macro": 20,
+  "spy_senti": 10,
+  "spy_val": 10,
+  "url": "http://33.230.123.49:7788/us_report.html",
+  "qqq_score_detail": {
+    "tech_趋势MA20vsMA60": "MA20=660.80, MA60=618.06, 差距+6.91%（金叉）（得分 12/12）",
+    "tech_RSI(14)": "RSI=84.2（得分 10/10）",
+    "tech_布林带%B": "%B=1.04（得分 10/10）",
+    "tech_成交量": "量比=1.10（得分 4/8）",
+    "macro_DXY美元5日变化": "DXY=98.65，5日-18.24%（得分 8/8）",
+    "macro_TNX10年美债水位": "TNX=4.32%（得分 3/7）",
+    "macro_VIX2年分位": "VIX=19.2，2年分位=69%（得分 2/8）",
+    "macro_QQQvsSPY20日相对强弱": "QQQ=+16.4%, SPY=+8.6%, 差=+7.8%（得分 7/7）",
+    "senti_QQQvsSPY5日情绪": "QQQ=+5.5%, SPY=+2.4%, 差=+3.1%（得分 5/5）",
+    "senti_VIX5日变化情绪": "VIX=19.2，5日-19.4%（得分 5/5）",
+    "val_Shiller CAPE": "数据不可用，取中性分 5/10",
+    "val_纳指PE": "数据不可用，取中性分 5/10"
+  },
+  "spy_score_detail": {
+    "tech_趋势MA20vsMA60": "MA20=713.06, MA60=683.79, 差距+4.28%（金叉）（得分 12/12）",
+    "tech_RSI(14)": "RSI=73.8（得分 10/10）",
+    "tech_布林带%B": "%B=0.98（得分 10/10）",
+    "tech_成交量": "量比=0.93（得分 4/8）",
+    "macro_DXY美元5日变化": "DXY=98.65，5日-18.24%（得分 8/8）",
+    "macro_TNX10年美债水位": "TNX=4.32%（得分 3/7）",
+    "macro_VIX2年分位": "VIX=19.2，2年分位=69%（得分 2/8）",
+    "macro_QQQvsSPY20日相对强弱": "QQQ=+16.4%, SPY=+8.6%, 差=+7.8%（得分 7/7）",
+    "senti_QQQvsSPY5日情绪": "QQQ=+5.5%, SPY=+2.4%, 差=+3.1%（得分 5/5）",
+    "senti_VIX5日变化情绪": "VIX=19.2，5日-19.4%（得分 5/5）",
+    "val_Shiller CAPE": "数据不可用，取中性分 5/10",
+    "val_纳指PE": "数据不可用，取中性分 5/10"
+  },
+  "qqq_risk_flags": {
+    "data_quality": "cache",
+    "signal_confidence": "medium",
+    "confidence_reason": "实时数据源0个，或存在轻微维度分歧",
+    "caution_notes": [
+      "数据源受限，信号仅供参考"
+    ]
+  },
+  "spy_risk_flags": {
+    "data_quality": "cache",
+    "signal_confidence": "medium",
+    "confidence_reason": "实时数据源0个，或存在轻微维度分歧",
+    "caution_notes": [
+      "数据源受限，信号仅供参考"
+    ]
+  },
+  "qqq_price": 711.23,
+  "qqq_pct_1w": 5.5,
+  "qqq_pct_1m": 16.56,
+  "qqq_pct_3m": 17.55,
+  "qqq_52wh": 711.23,
+  "qqq_52wl": 485.16,
+  "qqq_ma20": 660.8,
+  "qqq_ma60": 618.06,
+  "spy_price": 737.62,
+  "spy_pct_1w": 2.35,
+  "spy_pct_1m": 8.49,
+  "spy_pct_3m": 7.78,
+  "spy_52wh": 737.62,
+  "spy_52wl": 556.96,
+  "spy_ma20": 713.06,
+  "spy_ma60": 683.79
+}
