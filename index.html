@@ -140,7 +140,10 @@
         }
         .timeline-time { font-size: 11px; color: var(--text-muted); margin-bottom: 4px; }
         .timeline-title { font-size: 14px; font-weight: 500; margin-bottom: 8px; }
-        .timeline-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+        .timeline-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
+        .timeline-summary { font-size: 12px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 8px; }
+        .timeline-source { font-size: 11px; color: var(--text-muted); }
+        .timeline-reason { font-size: 11px; color: var(--text-muted); line-height: 1.6; margin-top: 6px; padding-left: 8px; border-left: 2px solid var(--border-color); }
         .impact-tag { font-size: 11px; padding: 2px 8px; border-radius: 4px; font-weight: 500; }
         .impact-up { background: var(--green-bg); color: var(--green); }
         .impact-down { background: var(--red-bg); color: var(--red); }
@@ -538,11 +541,12 @@ async function loadSignals() {
             return JSON.parse(txt);
         } catch(e){ console.warn('load fail', path, e); return null; }
     };
-    [signalData.gold, signalData.us, signalData.metals, window.navData] = await Promise.all([
+    [signalData.gold, signalData.us, signalData.metals, window.navData, window.newsData] = await Promise.all([
         tryFetch('data/gold_signal.json'),
         tryFetch('data/us_signal.json'),
         tryFetch('data/metals_signal.json'),
-        tryFetch('data/nav.json')
+        tryFetch('data/nav.json'),
+        tryFetch('data/news.json')
     ]);
 }
 
@@ -646,8 +650,49 @@ function gaugeOption(value, name) {
 }
 
 // ========== Render Timeline ==========
+// 影响判断 → 标签样式映射
+const IMPACT_META = {
+    gold:   {label:'🥇黄金'},
+    ashare: {label:'📈A股'},
+    nasdaq: {label:'🇺🇸纳指'},
+    retail: {label:'🛒零售'}
+};
+function impactType(view){
+    if(/利多/.test(view)) return 'up';
+    if(/利空/.test(view)) return 'down';
+    return 'neutral';
+}
+function impactArrow(view){
+    if(/利多/.test(view)) return '↑';
+    if(/利空/.test(view)) return '↓';
+    return '→';
+}
 function renderTimeline() {
     const el = document.getElementById('timeline');
+    const news = window.newsData;
+    if (news && Array.isArray(news.items) && news.items.length) {
+        // 真实早晚报数据
+        const header = `<div style="font-size:11px;color:var(--text-muted);margin-bottom:14px;">数据更新：${news.updated||''} ${news.period||''} · 每条附 AI 持仓影响判断</div>`;
+        el.innerHTML = header + news.items.map(item => {
+            const imp = item.impact || {};
+            const tags = Object.keys(IMPACT_META)
+                .filter(k => imp[k])
+                .map(k => {
+                    const view = imp[k];
+                    return `<span class="impact-tag impact-${impactType(view)}">${IMPACT_META[k].label}${impactArrow(view)} ${view}</span>`;
+                }).join('');
+            return `
+            <div class="timeline-item">
+                <div class="timeline-time">${item.time||''}${item.source?` · 来源 ${item.source}`:''}</div>
+                <div class="timeline-title">${item.title||''}</div>
+                ${item.summary?`<div class="timeline-summary">${item.summary}</div>`:''}
+                ${tags?`<div class="timeline-tags">${tags}</div>`:''}
+                ${item.reason?`<div class="timeline-reason">💡 ${item.reason}</div>`:''}
+            </div>`;
+        }).join('');
+        return;
+    }
+    // 兜底：mock 数据
     el.innerHTML = mockTimeline.map(item => `
         <div class="timeline-item">
             <div class="timeline-time">${item.time}</div>
