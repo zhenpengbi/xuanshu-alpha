@@ -1,0 +1,83 @@
+{
+  "updated_at": "2026-06-03 21:22",
+  "signals": [
+    {
+      "code": "000216",
+      "name": "易方达黄金ETF联接C",
+      "rsi14": 36.68,
+      "ma5": 3.38816,
+      "ma20": 3.469515,
+      "macd_hist": -0.00664298,
+      "macd_trend": "bearish",
+      "signal": "观望",
+      "reason": "RSI偏低(36.7) · MA5<MA20空头 · MACD柱负向",
+      "buy_score": 1,
+      "sell_score": 2
+    },
+    {
+      "code": "008585",
+      "name": "天弘AI主题指数C",
+      "rsi14": 56.21,
+      "ma5": 1.80364,
+      "ma20": 1.794145,
+      "macd_hist": -0.0301797,
+      "macd_trend": "bearish",
+      "signal": "观望",
+      "reason": "MA5>MA20多头 · MACD柱负向",
+      "buy_score": 1,
+      "sell_score": 1
+    },
+    {
+      "code": "017766",
+      "name": "南方有色金属ETF联接E",
+      "rsi14": 45.25,
+      "ma5": 4.0166,
+      "ma20": 4.0652,
+      "macd_hist": -0.03108645,
+      "macd_trend": "bearish",
+      "signal": "观望",
+      "reason": "MA5<MA20空头 · MACD柱负向",
+      "buy_score": 0,
+      "sell_score": 2
+    },
+    {
+      "code": "515790",
+      "name": "华夏光伏ETF",
+      "rsi14": 43.03,
+      "ma5": 1.0778,
+      "ma20": 1.1059,
+      "macd_hist": -0.01528354,
+      "macd_trend": "bearish",
+      "signal": "观望",
+      "reason": "RSI偏低(43.0) · MA5<MA20空头 · MACD柱负向",
+      "buy_score": 1,
+      "sell_score": 2
+    },
+    {
+      "code": "513100",
+      "name": "纳指100ETF",
+      "rsi14": 69.43,
+      "ma5": 2.2988,
+      "ma20": 2.15795,
+      "macd_hist": 0.02462404,
+      "macd_trend": "bullish",
+      "signal": "观望",
+      "reason": "RSI偏高(69.4) · MA5>MA20多头 · MACD柱正向",
+      "buy_score": 2,
+      "sell_score": 1
+    },
+    {
+      "code": "513500",
+      "name": "标普500ETF",
+      "rsi14": 70.37,
+      "ma5": 2.5838,
+      "ma20": 2.50875,
+      "macd_hist": 0.01474921,
+      "macd_trend": "bullish",
+      "signal": "观望",
+      "reason": "RSI超买(70.4>70)→卖出 · MA5>MA20多头 · MACD柱正向",
+      "buy_score": 2,
+      "sell_score": 2
+    }
+  ]
+}

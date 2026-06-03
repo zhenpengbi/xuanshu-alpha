@@ -1,0 +1,44 @@
+[
+  {
+    "code": "000216",
+    "name": "易方达黄金ETF联接C",
+    "price": 3.3726,
+    "change_pct": -1.39,
+    "updated_at": "2026-06-03"
+  },
+  {
+    "code": "008585",
+    "name": "天弘AI主题指数C",
+    "price": 1.7962,
+    "change_pct": 2.73,
+    "updated_at": "2026-06-02"
+  },
+  {
+    "code": "017766",
+    "name": "南方有色金属ETF联接E",
+    "price": 3.985,
+    "change_pct": 0.28,
+    "updated_at": "2026-06-02"
+  },
+  {
+    "code": "515790",
+    "name": "华夏光伏ETF",
+    "price": 1.065,
+    "change_pct": 0.95,
+    "updated_at": "2026-06-03 21:19"
+  },
+  {
+    "code": "513100",
+    "name": "纳指100ETF",
+    "price": 2.299,
+    "change_pct": -1.88,
+    "updated_at": "2026-06-03 21:19"
+  },
+  {
+    "code": "513500",
+    "name": "标普500ETF",
+    "price": 2.602,
+    "change_pct": -0.34,
+    "updated_at": "2026-06-03 21:19"
+  }
+]

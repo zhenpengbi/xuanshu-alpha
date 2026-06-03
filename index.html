@@ -303,6 +303,34 @@
             .grid-4 { grid-template-columns: 1fr 1fr; }
             .holdings-table th, .holdings-table td { padding: 10px 8px; font-size: 12px; }
         }
+
+        /* ========== 实时行情 Price Cards ========== */
+        .price-card {
+            background: linear-gradient(150deg, rgba(44,35,24,.75), rgba(24,19,13,.6));
+            border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 22px;
+            position: relative; overflow: hidden;
+            box-shadow: 0 12px 36px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.03);
+            transition: border-color .3s, box-shadow .3s, transform .2s;
+        }
+        .price-card:hover { border-color: rgba(201,162,39,.38); transform: translateY(-1px); box-shadow: 0 14px 40px rgba(0,0,0,.5), 0 0 20px rgba(156,122,30,.1); }
+        .price-card.price-up  { border-left: 3px solid rgba(31,184,116,.45); }
+        .price-card.price-down { border-left: 3px solid rgba(255,79,79,.4); }
+        .price-card .pc-name { font-size: 13px; font-weight: 600; color: var(--paper); margin-bottom: 3px; }
+        .price-card .pc-code { font-size: 11px; color: var(--paper-faint); font-family: var(--mono); margin-bottom: 14px; }
+        .price-card .pc-price { font-size: 26px; font-weight: 700; font-family: var(--mono); color: var(--paper); letter-spacing: -0.5px; }
+        .price-card .pc-change { font-size: 15px; font-weight: 700; font-family: var(--mono); margin-top: 6px; }
+        .price-card .pc-time { font-size: 10.5px; color: var(--paper-faint); font-family: var(--mono); margin-top: 10px; letter-spacing: .3px; }
+
+        /* ========== 技术指标信号 ========== */
+        .signal-badge {
+            display: inline-block; padding: 3px 11px; border-radius: 20px;
+            font-size: 11px; font-weight: 700; letter-spacing: .5px; font-family: var(--mono);
+        }
+        .signal-buy  { background: rgba(31,184,116,.18); color: var(--jade-soft); border: 1px solid rgba(31,184,116,.35); }
+        .signal-sell { background: rgba(255,79,79,.18);  color: var(--red);       border: 1px solid rgba(255,79,79,.35); }
+        .signal-hold { background: rgba(180,160,120,.12); color: var(--paper-dim); border: 1px solid rgba(180,160,120,.2); }
+        tr.has-signal-buy  td { background: rgba(31,184,116,.035); }
+        tr.has-signal-sell td { background: rgba(255,79,79,.035); }
     </style>
 </head>
 <body>
@@ -375,6 +403,14 @@
 
 <!-- ========== MAIN CONTENT ========== -->
 <main class="container">
+
+    <!-- Section: 实时行情 -->
+    <section class="section">
+        <h2 class="section-title">实时行情</h2>
+        <div class="grid-3" id="pricesGrid">
+            <div style="color:var(--paper-faint);font-size:13px;padding:16px;">加载中...</div>
+        </div>
+    </section>
 
     <!-- Section: 资产总览 -->
     <section class="section">
@@ -460,6 +496,27 @@
         <div class="card" style="margin-top:20px;"><span class="sweep"></span>
             <div style="font-size:13px;color:var(--text-secondary);margin-bottom:12px;font-weight:500;">📐 信号维度明细</div>
             <div class="grid-3" id="signalDetailGrid"></div>
+        </div>
+    </section>
+
+    <!-- Section: 技术指标信号 -->
+    <section class="section">
+        <h2 class="section-title">技术指标信号</h2>
+        <div class="card" style="padding:0;overflow-x:auto;"><span class="sweep"></span>
+            <table class="holdings-table" id="techSignalsTable">
+                <thead><tr>
+                    <th>标的</th>
+                    <th style="text-align:right;">RSI(14)</th>
+                    <th style="text-align:right;">MA5</th>
+                    <th style="text-align:right;">MA20</th>
+                    <th style="text-align:center;">MACD</th>
+                    <th style="text-align:center;">综合信号</th>
+                    <th>信号说明</th>
+                </tr></thead>
+                <tbody id="techSignalsBody">
+                    <tr><td colspan="7" style="text-align:center;color:var(--paper-faint);padding:24px;">暂无数据，请先运行 indicators.py + signals.py</td></tr>
+                </tbody>
+            </table>
         </div>
     </section>
 
@@ -1008,6 +1065,125 @@ function renderAdvice(){
     document.getElementById('adviceMeta').textContent = `信号置信度: ${confMap[conf]||conf} · 数据: ${(g&&g.data_source)||'--'} · 更新: ${dt}`;
 }
 
+// ========== 实时行情：从 prices.json 加载 ==========
+async function loadAndRenderPrices() {
+    try {
+        const r = await fetch('data/prices.json?t=' + Date.now());
+        if (!r.ok) return;
+        const prices = await r.json();
+        window.pricesData = prices;
+        renderPricesSection(prices);
+        // 用最新 updated_at 更新 header 时间
+        const latest = prices.reduce((a, b) => a.updated_at > b.updated_at ? a : b);
+        document.getElementById('headerUpdateTime').textContent = '行情更新: ' + latest.updated_at;
+    } catch(e) { console.warn('prices.json 加载失败', e); }
+}
+
+function renderPricesSection(prices) {
+    const grid = document.getElementById('pricesGrid');
+    if (!grid) return;
+    grid.innerHTML = prices.map(p => {
+        const isUp = p.change_pct >= 0;
+        const sign = isUp ? '+' : '';
+        const cls = isUp ? 'positive' : 'negative';
+        const cardCls = isUp ? 'price-up' : 'price-down';
+        return `<div class="price-card ${cardCls}">
+            <div class="pc-name">${p.name}</div>
+            <div class="pc-code num">${p.code}</div>
+            <div class="pc-price num">${p.price.toFixed(4)}</div>
+            <div class="pc-change ${cls}">${sign}${p.change_pct.toFixed(2)}%</div>
+            <div class="pc-time">更新: ${p.updated_at}</div>
+        </div>`;
+    }).join('');
+}
+
+// ========== 技术指标信号：从 signals.json 加载 ==========
+async function loadAndRenderTechSignals() {
+    try {
+        const r = await fetch('data/signals.json?t=' + Date.now());
+        if (!r.ok) { renderTechSignalsFallback(); return; }
+        const data = await r.json();
+        renderTechSignals(data.signals || []);
+    } catch(e) { renderTechSignalsFallback(); }
+}
+
+function renderTechSignals(signals) {
+    const tbody = document.getElementById('techSignalsBody');
+    if (!tbody || !signals.length) { renderTechSignalsFallback(); return; }
+    tbody.innerHTML = signals.map(s => {
+        const rsiVal = s.rsi14 != null ? s.rsi14.toFixed(1) : '--';
+        const rsiCls = s.rsi14 < 30 ? 'positive' : s.rsi14 > 70 ? 'negative' : '';
+        const maCls = (s.ma5 != null && s.ma20 != null)
+            ? (s.ma5 > s.ma20 ? 'positive' : 'negative') : '';
+        const macdLabel = s.macd_trend === 'bullish' ? '▲ 多头' : '▼ 空头';
+        const macdCls = s.macd_trend === 'bullish' ? 'positive' : 'negative';
+        let badgeCls = 'signal-hold', badgeText = '— 观望';
+        if (s.signal === '买入') { badgeCls = 'signal-buy'; badgeText = '▲ 买入'; }
+        else if (s.signal === '卖出') { badgeCls = 'signal-sell'; badgeText = '▼ 卖出'; }
+        const rowCls = s.signal === '买入' ? 'has-signal-buy' : s.signal === '卖出' ? 'has-signal-sell' : '';
+        return `<tr class="${rowCls}">
+            <td><div class="fund-name">${s.name}</div><div class="fund-code num">${s.code}</div></td>
+            <td style="text-align:right;" class="num ${rsiCls}">${rsiVal}</td>
+            <td style="text-align:right;" class="num">${s.ma5 != null ? s.ma5.toFixed(4) : '--'}</td>
+            <td style="text-align:right;" class="num ${maCls}">${s.ma20 != null ? s.ma20.toFixed(4) : '--'}</td>
+            <td style="text-align:center;" class="${macdCls}">${s.macd_hist != null ? macdLabel : '--'}</td>
+            <td style="text-align:center;"><span class="signal-badge ${badgeCls}">${badgeText}</span></td>
+            <td style="font-size:12px;color:var(--paper-dim);line-height:1.6;">${s.reason || '--'}</td>
+        </tr>`;
+    }).join('');
+}
+
+function renderTechSignalsFallback() {
+    const tbody = document.getElementById('techSignalsBody');
+    if (tbody) tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:var(--paper-faint);padding:24px;">暂无技术指标数据，请先运行 run_all.sh</td></tr>';
+}
+
+// ========== 再平衡：优先从 rebalance.json 加载 ==========
+async function loadAndRenderRebalanceJson() {
+    try {
+        const r = await fetch('data/rebalance.json?t=' + Date.now());
+        if (!r.ok) return;
+        const data = await r.json();
+        if (data && Array.isArray(data.actions)) renderRebalanceFromFile(data);
+    } catch(e) { /* 降级到 JS 计算 */ }
+}
+
+function renderRebalanceFromFile(data) {
+    const listEl = document.getElementById('rebalanceList');
+    const metaEl = document.getElementById('rebalanceMeta');
+    if (!listEl) return;
+
+    const needsRebalance = data.actions.filter(a => a.needs_rebalance);
+    if (!needsRebalance.length) {
+        listEl.innerHTML = '当前配置接近目标，所有标的偏差均在5%以内，无需调整。';
+        if (metaEl) metaEl.textContent = `更新: ${data.updated_at} · 总市值: ¥${data.total_value.toLocaleString('zh-CN', {minimumFractionDigits:2})}`;
+        return;
+    }
+
+    // Sort by abs deviation descending
+    needsRebalance.sort((a, b) => Math.abs(b.deviation) - Math.abs(a.deviation));
+
+    listEl.innerHTML = needsRebalance.map(a => {
+        const over = a.deviation > 0;
+        const arrow = over ? '🔻' : '🔺';
+        const color = over ? 'var(--red)' : 'var(--green)';
+        const verb = over ? '减仓' : '加仓';
+        const sign = over ? '+' : '';
+        const amt = Math.abs(Math.round(a.deviation_amount));
+        return `<div style="margin-bottom:10px;line-height:1.7;">
+            <span style="color:${color};font-weight:600;">${arrow} ${a.name}</span>
+            &nbsp;${verb} <span class="num">≈¥${amt.toLocaleString('zh-CN')}</span>
+            <span style="color:var(--paper-faint);font-size:12px;">（实际${a.actual_pct.toFixed(1)}% vs 目标${a.target_pct}%，偏${sign}${a.deviation.toFixed(1)}pt）</span>
+        </div>`;
+    }).join('');
+
+    if (metaEl) {
+        const maxAbsDev = Math.max(...data.actions.map(a => Math.abs(a.deviation)));
+        const risk = maxAbsDev > 20 ? '高' : maxAbsDev > 10 ? '中等' : '低';
+        metaEl.textContent = `更新: ${data.updated_at} · 总市值: ¥${data.total_value.toLocaleString('zh-CN', {minimumFractionDigits:2})} · 配置风险: ${risk}`;
+    }
+}
+
 // ========== Initialize ==========
 document.addEventListener('DOMContentLoaded', async function() {
     renderHeader();
@@ -1016,11 +1192,17 @@ document.addEventListener('DOMContentLoaded', async function() {
     renderBarChart();
     renderHoldings();
     renderTimeline();
-    // 加载真实信号后渲染
+    // 实时行情（prices.json）
+    await loadAndRenderPrices();
+    // 量化信号（gold/us/metals signal JSON）
     await loadSignals();
     renderGauges();
     renderVix();
     renderSignalDetail();
+    // 技术指标信号（signals.json）
+    await loadAndRenderTechSignals();
+    // 再平衡：优先用 rebalance.json，JS 计算作为补充
+    await loadAndRenderRebalanceJson();
     renderRebalance();
     renderAdvice();
 });

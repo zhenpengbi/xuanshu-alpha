@@ -1,0 +1,85 @@
+{
+  "updated_at": "2026-06-03 21:23",
+  "total_value": 54023.99,
+  "rebalance_threshold_pct": 5.0,
+  "actions": [
+    {
+      "code": "000216",
+      "name": "易方达黄金ETF联接C",
+      "category": "黄金",
+      "target_pct": 24.0,
+      "actual_pct": 28.09,
+      "value": 15176.7,
+      "shares": 4500,
+      "price": 3.3726,
+      "deviation": 4.09,
+      "deviation_amount": 2209.58,
+      "needs_rebalance": false
+    },
+    {
+      "code": "008585",
+      "name": "天弘AI主题指数C",
+      "category": "AI/科技",
+      "target_pct": 30.0,
+      "actual_pct": 23.94,
+      "value": 12932.64,
+      "shares": 7200,
+      "price": 1.7962,
+      "deviation": -6.06,
+      "deviation_amount": -3273.85,
+      "needs_rebalance": true
+    },
+    {
+      "code": "017766",
+      "name": "南方有色金属ETF联接E",
+      "category": "有色金属",
+      "target_pct": 8.0,
+      "actual_pct": 9.96,
+      "value": 5379.75,
+      "shares": 1350,
+      "price": 3.985,
+      "deviation": 1.96,
+      "deviation_amount": 1058.87,
+      "needs_rebalance": false
+    },
+    {
+      "code": "515790",
+      "name": "华夏光伏ETF",
+      "category": "光伏",
+      "target_pct": 4.0,
+      "actual_pct": 2.96,
+      "value": 1597.5,
+      "shares": 1500,
+      "price": 1.065,
+      "deviation": -1.04,
+      "deviation_amount": -561.85,
+      "needs_rebalance": false
+    },
+    {
+      "code": "513100",
+      "name": "纳指100ETF",
+      "category": "纳指100",
+      "target_pct": 24.0,
+      "actual_pct": 26.38,
+      "value": 14253.8,
+      "shares": 6200,
+      "price": 2.299,
+      "deviation": 2.38,
+      "deviation_amount": 1285.77,
+      "needs_rebalance": false
+    },
+    {
+      "code": "513500",
+      "name": "标普500ETF",
+      "category": "标普500",
+      "target_pct": 10.0,
+      "actual_pct": 8.67,
+      "value": 4683.6,
+      "shares": 1800,
+      "price": 2.602,
+      "deviation": -1.33,
+      "deviation_amount": -718.52,
+      "needs_rebalance": false
+    }
+  ]
+}
