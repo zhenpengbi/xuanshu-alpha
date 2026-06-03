@@ -554,18 +554,35 @@ function renderPieChart() {
     const chart = echarts.init(document.getElementById('pieChart'));
     const catMap = {};
     portfolioData.holdings.forEach(h => { catMap[h.category] = (catMap[h.category]||0) + h.amount; });
-    const colorMap = {'黄金':'#9c7a1e','AI/科技':'#4e7e96','光伏/新能源':'#347061','有色金属':'#7a7088','高端制造':'#6d6450','货币基金':'#5a544a'};
+    // 金色家族明暗渐变光带：亮金 → 墨金，逐级递减；翡翠绿仅作唯一克制点缀
+    const goldFamily = ['#d4af37','#c9962b','#b8841f','#9c6f1e','#7a5518','#5c4214'];
+    const emerald = '#2f7d5e';
     const data = Object.entries(catMap).map(([n,v])=>({name:n,value:+v.toFixed(2)}));
+    // 按值降序，让最大扇区拿到最亮的金，形成由亮到暗的优雅光带
+    data.sort((a,b)=>b.value-a.value);
+    // 为最亮金扇区构造径向渐变（发光质感）
+    const topGlow = new echarts.graphic.RadialGradient(0.5,0.5,0.85,[
+        {offset:0,color:'#e8c75a'},
+        {offset:0.55,color:'#d4af37'},
+        {offset:1,color:'#b8841f'}
+    ]);
     chart.setOption({
         title:{text:'持仓分布',left:'center',top:10,textStyle:{color:'#ece4d3',fontSize:14,fontWeight:600}},
         tooltip:{trigger:'item',formatter:'{b}: ¥{c} ({d}%)',backgroundColor:'#1a1510',borderColor:'rgba(180,160,120,.18)',textStyle:{color:'#ece4d3'}},
         series:[{
             type:'pie',radius:['45%','72%'],center:['50%','55%'],
             avoidLabelOverlap:true,
-            itemStyle:{borderRadius:6,borderColor:'#13100c',borderWidth:3},
-            label:{show:true,color:'rgba(200,190,165,.7)',fontSize:12,formatter:'{b}\n{d}%'},
-            labelLine:{lineStyle:{color:'rgba(180,170,150,.18)'}},
-            data: data.map(d=>({...d,itemStyle:{color:colorMap[d.name]||'#7d7565'}}))
+            itemStyle:{borderRadius:4,borderColor:'#13100c',borderWidth:2},
+            label:{show:true,color:'rgba(214,196,150,.78)',fontSize:12,formatter:'{b}\n{d}%'},
+            labelLine:{lineStyle:{color:'rgba(201,162,39,.22)'}},
+            data: data.map((d,idx)=>{
+                // 最大扇区：发光径向金；最小扇区：克制翡翠绿点缀；其余：金色家族由亮到暗
+                let color;
+                if(idx===0) color = topGlow;
+                else if(idx===data.length-1 && data.length>=4) color = emerald;
+                else color = goldFamily[Math.min(idx,goldFamily.length-1)];
+                return {...d,itemStyle:{color}};
+            })
         }]
     });
     window.addEventListener('resize',()=>chart.resize());
@@ -591,8 +608,18 @@ function renderBarChart() {
         xAxis:{type:'category',data:allCats,axisLabel:{color:'rgba(184,173,151,.45)',fontSize:11,rotate:15},axisLine:{lineStyle:{color:'rgba(255,255,255,.08)'}}},
         yAxis:{type:'value',axisLabel:{color:'rgba(184,173,151,.45)',formatter:'{value}%'},splitLine:{lineStyle:{color:'rgba(255,255,255,.06)'}},axisLine:{lineStyle:{color:'rgba(255,255,255,.08)'}}},
         series:[
-            {name:'目标',type:'bar',barWidth:'30%',itemStyle:{color:'#8f7022',borderRadius:[4,4,0,0]},data:targetData},
-            {name:'实际',type:'bar',barWidth:'30%',itemStyle:{color:'#2f6457',borderRadius:[4,4,0,0]},data:actualData}
+            // 目标柱：半透明描边金，作为“基准”，轻盈
+            {name:'目标',type:'bar',barWidth:'30%',
+                itemStyle:{color:'rgba(201,162,39,.16)',borderColor:'rgba(201,162,39,.55)',borderWidth:1,borderRadius:[5,5,0,0]},
+                data:targetData},
+            // 实际柱：实心颈金纵向渐变（顶部亮金→底部暗金），重而有光泽
+            {name:'实际',type:'bar',barWidth:'30%',
+                itemStyle:{borderRadius:[5,5,0,0],color:new echarts.graphic.LinearGradient(0,0,0,1,[
+                    {offset:0,color:'#e4c25a'},
+                    {offset:0.5,color:'#c9a227'},
+                    {offset:1,color:'#8f6f1f'}
+                ])},
+                data:actualData}
         ]
     });
     window.addEventListener('resize',()=>chart.resize());
@@ -658,7 +685,8 @@ function drawSparkline(canvas, isPositive, navs) {
         // 无净值数据：画一条接近水平的平直线
         points.push([pad, h/2], [w-pad, h/2]);
     }
-    const color = isPositive ? '#3a9d7a' : '#c25852';
+    // 涨用亮金，跌用暗红，与整体鄁金调性统一
+    const color = isPositive ? '#d4af37' : '#a8473f';
     // 渐变填充
     const grad = ctx.createLinearGradient(0,0,0,h);
     grad.addColorStop(0, color + '40');
@@ -786,12 +814,17 @@ function gaugeOption(value, name) {
             startAngle:200,endAngle:-20,
             min:0,max:100,
             splitNumber:10,
-            itemStyle:{color: value>=70?'#2f6457':value>=40?'#9c7a1e':'#a8473f'},
+            // 进度弧走金色家族纵向渐变，高分亮金、中分暗金、低分深焕金
+            itemStyle:{color:new echarts.graphic.LinearGradient(0,0,0,1,
+                value>=70?[{offset:0,color:'#e4c25a'},{offset:1,color:'#b8841f'}]
+                :value>=40?[{offset:0,color:'#c9962b'},{offset:1,color:'#7a5518'}]
+                :[{offset:0,color:'#9c6f1e'},{offset:1,color:'#5c4214'}])},
             progress:{show:true,width:12},
-            pointer:{show:true,length:'60%',width:4,itemStyle:{color:'#cabfa6'}},
-            axisLine:{lineStyle:{width:12,color:[[0.3,'#8a3e38'],[0.7,'#8f7022'],[1,'#2f6457']]}},
+            pointer:{show:true,length:'60%',width:4,itemStyle:{color:'#e8c75a'}},
+            // 背景弧以暗金为主，由深到亮的金色梯度，去掉红绿杂色
+            axisLine:{lineStyle:{width:12,color:[[0.4,'rgba(92,66,20,.6)'],[0.7,'rgba(156,111,30,.7)'],[1,'rgba(201,162,39,.85)']]}},
             axisTick:{show:false},
-            splitLine:{length:8,lineStyle:{width:2,color:'rgba(255,255,255,.08)'}},
+            splitLine:{length:8,lineStyle:{width:2,color:'rgba(201,162,39,.12)'}},
             axisLabel:{distance:16,color:'rgba(125,117,90,.7)',fontSize:10},
             title:{show:false},
             detail:{valueAnimation:true,fontSize:28,fontWeight:700,color:'#ece4d3',offsetCenter:[0,'40%'],formatter:'{value}'},
