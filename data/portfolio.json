@@ -17,7 +17,7 @@
       "name": "易方达黄金ETF联接A",
       "code": "159934",
       "amount": 8667.42,
-      "ratio": 15.90,
+      "ratio": 15.9,
       "dailyReturn": 50.81,
       "holdingReturn": -831.66,
       "holdingReturnRate": -8.76,
@@ -30,9 +30,9 @@
       "amount": 8381.13,
       "ratio": 15.38,
       "dailyReturn": 267.37,
-      "holdingReturn": -655.60,
+      "holdingReturn": -655.6,
       "holdingReturnRate": -7.25,
-      "totalReturn": -655.60,
+      "totalReturn": -655.6,
       "category": "有色金属"
     },
     {
@@ -42,7 +42,7 @@
       "ratio": 9.82,
       "dailyReturn": -54.42,
       "holdingReturn": -148.25,
-      "holdingReturnRate": -2.70,
+      "holdingReturnRate": -2.7,
       "totalReturn": -148.25,
       "category": "光伏/新能源"
     },
