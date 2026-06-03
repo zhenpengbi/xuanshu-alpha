@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>玄枢Alpha · 样式交互稿对比</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    background:radial-gradient(ellipse at top,#16203a,#0a0e1a 60%);color:#e6edf3;min-height:100vh;padding:48px 24px;}
+  .wrap{max-width:1080px;margin:0 auto;}
+  h1{font-size:30px;font-weight:800;letter-spacing:1px;
+    background:linear-gradient(135deg,#f7d774,#d4af37);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+  .sub{color:#8b949e;margin:10px 0 36px;font-size:14px;line-height:1.7;}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  @media(max-width:880px){.grid{grid-template-columns:1fr;}}
+  .card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:16px;
+    padding:28px;transition:.25s;text-decoration:none;color:inherit;display:block;backdrop-filter:blur(10px);}
+  .card:hover{transform:translateY(-4px);border-color:#d4af37;box-shadow:0 12px 40px rgba(212,175,55,0.15);}
+  .swatch{height:80px;border-radius:10px;margin-bottom:18px;border:1px solid rgba(255,255,255,0.1);}
+  .sa{background:linear-gradient(135deg,#0a0e1a,#1c2747);}
+  .sb{background:linear-gradient(135deg,#000,#0a0a0a);border:1px solid #ffd700;}
+  .sc{background:linear-gradient(135deg,#13100c,#1a3a2a);}
+  .tag{display:inline-block;font-size:11px;padding:3px 10px;border-radius:20px;margin-bottom:10px;font-weight:600;}
+  .ta{background:rgba(212,175,55,0.15);color:#e8c874;}
+  .tb{background:rgba(255,215,0,0.12);color:#ffd700;}
+  .tc{background:rgba(15,157,88,0.15);color:#3fcf8e;}
+  .name{font-size:19px;font-weight:700;margin-bottom:8px;}
+  .desc{font-size:13px;color:#8b949e;line-height:1.7;}
+  .open{margin-top:16px;font-size:13px;color:#d4af37;font-weight:600;}
+  .foot{margin-top:40px;color:#484f58;font-size:12px;text-align:center;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>玄枢Alpha · 高级样式交互稿</h1>
+  <p class="sub">三个视觉方向，均用真实持仓数据填充。点开任意一个查看完整效果，挑出你喜欢的，我就按它重做正式版。</p>
+  <div class="grid">
+    <a class="card" href="style-a.html">
+      <div class="swatch sa"></div>
+      <span class="tag ta">方向 A</span>
+      <div class="name">午夜墨蓝 × 香槟金</div>
+      <div class="desc">私人银行 PB 风。深邃墨蓝渐变 + 玻璃拟态卡片 + 克制香槟金，右上角北斗七星呼应"玄枢"道意。沉稳贵气。</div>
+      <div class="open">点击查看 →</div>
+    </a>
+    <a class="card" href="style-b.html">
+      <div class="swatch sb"></div>
+      <span class="tag tb">方向 B</span>
+      <div class="name">纯黑 × 流光金</div>
+      <div class="desc">Bloomberg 金融终端风。纯黑底 + 金色网格 + 发光金线卡片(hover 扫光) + LIVE 脉冲，高饱和涨绿跌红。极致专业冷峻。</div>
+      <div class="open">点击查看 →</div>
+    </a>
+    <a class="card" href="style-c.html">
+      <div class="swatch sc"></div>
+      <span class="tag tc">方向 C</span>
+      <div class="name">暖黑 × 翡翠绿金</div>
+      <div class="desc">新中式财富风。水墨晕染 + 铜钱暗纹 + 北斗连线，鎏金书法标题配翡翠绿金双主色。东方雅韵、财富沉淀。</div>
+      <div class="open">点击查看 →</div>
+    </a>
+  </div>
+  <p class="foot">玄枢Alpha · AI-Powered Investment Intelligence</p>
+</div>
+</body>
+</html>

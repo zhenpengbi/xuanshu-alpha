@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>玄枢Alpha · 智能投顾终端</title>
+<style>
+  :root{
+    --bg:#000000; --bg2:#0a0a0a; --panel:#0c0d0f;
+    --grid:rgba(255,215,0,.10);
+    --gold1:#ffd700; --gold2:#ffb800; --gold-dim:rgba(255,200,40,.55);
+    --up:#00e676; --down:#ff3b3b;
+    --txt:#e8e6df; --txt-dim:#7d7c76; --txt-faint:#4a4a46;
+    --mono:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,'Courier New',monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{background:#000;color:var(--txt);font-family:var(--mono);}
+  body{
+    background:
+      radial-gradient(1200px 600px at 80% -10%, rgba(255,184,0,.05), transparent 60%),
+      linear-gradient(180deg,#000 0%,#0a0a0a 100%);
+    background-attachment:fixed;
+    padding:0 0 50px;-webkit-font-smoothing:antialiased;
+    font-size:13px;line-height:1.4;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+    background-image:
+      linear-gradient(rgba(255,215,0,.025) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(255,215,0,.025) 1px,transparent 1px);
+    background-size:40px 40px;
+  }
+  .wrap{max-width:1400px;margin:0 auto;padding:0 18px;position:relative;z-index:1;}
+
+  /* HEADER */
+  header{display:flex;align-items:center;justify-content:space-between;
+    padding:16px 0 14px;border-bottom:1px solid var(--grid);margin-bottom:18px;}
+  .brand{display:flex;align-items:center;gap:14px;}
+  .logo{font-size:26px;font-weight:800;letter-spacing:1px;
+    background:linear-gradient(100deg,#fff3c2 0%,#ffd700 25%,#ffb800 50%,#fff3c2 75%,#ffd700 100%);
+    background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;
+    animation:shine 5s linear infinite;font-family:-apple-system,'Segoe UI',sans-serif;}
+  @keyframes shine{to{background-position:200% center}}
+  .sub-brand{font-size:10px;color:var(--txt-dim);letter-spacing:3px;text-transform:uppercase;margin-top:2px;}
+  .live{display:inline-flex;align-items:center;gap:6px;font-size:10px;letter-spacing:2px;
+    color:var(--up);border:1px solid rgba(0,230,118,.4);border-radius:2px;padding:3px 8px;}
+  .live .dot{width:7px;height:7px;border-radius:50%;background:var(--up);animation:pulse 1.4s ease-out infinite;}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(0,230,118,.7)}70%{box-shadow:0 0 0 8px rgba(0,230,118,0)}100%{box-shadow:0 0 0 0 rgba(0,230,118,0)}}
+  .header-right{display:flex;align-items:center;gap:34px;text-align:right;}
+  .hr-item .lbl{font-size:9px;color:var(--txt-dim);letter-spacing:2px;text-transform:uppercase;}
+  .hr-item .val{font-size:20px;font-weight:700;letter-spacing:.5px;margin-top:2px;}
+  .hr-item .val.gold{color:var(--gold1);text-shadow:0 0 18px rgba(255,200,40,.35);}
+  .hr-item .val.up{color:var(--up);}
+  .hr-item .time{font-size:11px;color:var(--txt-dim);}
+
+  /* SECTION TITLE */
+  .sec-title{display:flex;align-items:center;gap:10px;font-size:11px;letter-spacing:3px;
+    text-transform:uppercase;color:var(--gold-dim);margin:26px 0 12px;}
+  .sec-title::before{content:"";width:3px;height:13px;background:linear-gradient(var(--gold1),var(--gold2));box-shadow:0 0 8px var(--gold2);}
+  .sec-title .line{flex:1;height:1px;background:var(--grid);}
+
+  /* PANEL */
+  .panel{position:relative;background:linear-gradient(180deg,var(--panel),var(--bg2));
+    border:1px solid rgba(255,200,40,.22);border-radius:3px;overflow:hidden;}
+  .panel::after{content:"";position:absolute;top:0;left:-60%;width:50%;height:100%;
+    background:linear-gradient(105deg,transparent,rgba(255,215,0,.10),transparent);
+    transform:skewX(-18deg);transition:left .7s ease;pointer-events:none;}
+  .panel:hover::after{left:130%;}
+  .panel:hover{border-color:rgba(255,215,0,.5);box-shadow:0 0 22px rgba(255,184,0,.12);}
+
+  /* METRICS */
+  .metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  .metric{padding:16px 18px;}
+  .metric .lbl{font-size:9px;color:var(--txt-dim);letter-spacing:2px;text-transform:uppercase;}
+  .metric .num{font-size:26px;font-weight:700;margin-top:8px;letter-spacing:.5px;}
+  .metric .num.gold{color:var(--gold1);}
+  .metric .sub{font-size:10px;color:var(--txt-dim);margin-top:6px;}
+  .metric .sub b{font-weight:700;}
+  .up{color:var(--up)}.down{color:var(--down)}
+
+  /* ALLOC */
+  .alloc-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:14px;margin-top:14px;}
+  .alloc-panel{padding:18px 20px;}
+  .mini-lbl{font-size:9px;color:var(--txt-dim);letter-spacing:2px;text-transform:uppercase;}
+  .alloc-bar{display:flex;height:30px;border-radius:2px;overflow:hidden;margin:10px 0 18px;border:1px solid rgba(255,200,40,.18);}
+  .alloc-bar span{height:100%;transition:filter .2s;}
+  .alloc-bar span:hover{filter:brightness(1.3);}
+  .alloc-legend{display:grid;grid-template-columns:1fr 1fr;gap:8px 24px;}
+  .leg-row{display:flex;align-items:center;justify-content:space-between;font-size:11px;border-bottom:1px dotted rgba(255,255,255,.06);padding-bottom:5px;}
+  .leg-name{display:flex;align-items:center;gap:8px;color:var(--txt);}
+  .leg-name i{width:9px;height:9px;border-radius:1px;display:inline-block;}
+  .leg-pct{color:var(--gold1);font-weight:700;}
+  .donut-wrap{display:flex;align-items:center;justify-content:center;gap:26px;margin-top:6px;}
+  .donut{position:relative;width:170px;height:170px;}
+  .donut .center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+  .donut .center .big{font-size:22px;font-weight:700;color:var(--gold1);}
+  .donut .center .small{font-size:9px;color:var(--txt-dim);letter-spacing:2px;margin-top:2px;}
+
+  /* TABLE */
+  .tbl-panel{padding:0;}
+  table{width:100%;border-collapse:collapse;font-size:12px;}
+  thead th{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--txt-dim);
+    text-align:right;padding:11px 14px;border-bottom:1px solid rgba(255,200,40,.25);
+    background:rgba(255,200,40,.03);font-weight:600;white-space:nowrap;}
+  thead th.l{text-align:left;}
+  tbody td{padding:12px 14px;text-align:right;border-bottom:1px solid rgba(255,255,255,.045);white-space:nowrap;}
+  tbody td.l{text-align:left;}
+  tbody tr{transition:background .15s;}
+  tbody tr:hover{background:rgba(255,200,40,.05);}
+  .fund-name{color:var(--txt);font-weight:600;font-family:-apple-system,'Segoe UI',sans-serif;}
+  .fund-code{color:var(--txt-faint);font-size:10px;margin-top:2px;}
+  .amt{font-weight:700;letter-spacing:.3px;}
+  .gold-pct{color:var(--gold1);}
+  .tag{display:inline-block;font-size:9px;padding:2px 7px;border-radius:2px;letter-spacing:.5px;border:1px solid;}
+  .tag.gold{color:#ffd87a;border-color:rgba(255,200,40,.4);background:rgba(255,200,40,.07);}
+  .tag.metal{color:#9fb4c9;border-color:rgba(159,180,201,.4);background:rgba(159,180,201,.07);}
+  .tag.pv{color:#7ee0a0;border-color:rgba(126,224,160,.4);background:rgba(126,224,160,.07);}
+  .tag.ai{color:#c79fff;border-color:rgba(199,159,255,.4);background:rgba(199,159,255,.07);}
+  .tag.mfg{color:#ffb27e;border-color:rgba(255,178,126,.4);background:rgba(255,178,126,.07);}
+  .tag.cash{color:#8a8a8a;border-color:rgba(160,160,160,.35);background:rgba(160,160,160,.06);}
+
+  /* SIGNALS */
+  .signals{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  .sig{padding:18px 20px;}
+  .sig .top{display:flex;align-items:center;justify-content:space-between;}
+  .sig .name{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--txt-dim);}
+  .sig .state{font-size:9px;padding:2px 7px;border-radius:2px;letter-spacing:1px;border:1px solid;}
+  .st-bull{color:var(--up);border-color:rgba(0,230,118,.4);}
+  .st-neutral{color:var(--gold1);border-color:rgba(255,200,40,.4);}
+  .st-bear{color:var(--down);border-color:rgba(255,59,59,.4);}
+  .sig .big{font-size:30px;font-weight:700;margin:10px 0 2px;}
+  .gauge{height:8px;background:rgba(255,255,255,.06);border-radius:4px;margin-top:14px;overflow:hidden;}
+  .gauge i{display:block;height:100%;border-radius:4px;}
+  .gauge-lbls{display:flex;justify-content:space-between;font-size:9px;color:var(--txt-faint);margin-top:5px;}
+  .sig .note{font-size:10px;color:var(--txt-dim);margin-top:12px;line-height:1.5;}
+
+  /* AI ADVICE */
+  .advice{display:grid;grid-template-columns:.85fr 1.15fr;gap:14px;}
+  .advice-main{padding:22px 24px;display:flex;flex-direction:column;gap:14px;}
+  .advice-badge{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;font-size:10px;letter-spacing:2px;
+    color:var(--gold1);border:1px solid rgba(255,200,40,.4);padding:4px 10px;border-radius:2px;}
+  .advice-verdict{font-size:24px;font-weight:800;font-family:-apple-system,'Segoe UI',sans-serif;
+    background:linear-gradient(100deg,#fff3c2,#ffd700,#ffb800);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .advice-text{font-size:12px;color:var(--txt-dim);line-height:1.7;}
+  .advice-list{padding:8px 0;}
+  .advice-list .item{display:flex;gap:14px;padding:14px 22px;border-bottom:1px solid rgba(255,255,255,.05);align-items:flex-start;transition:background .15s;}
+  .advice-list .item:hover{background:rgba(255,200,40,.04);}
+  .advice-list .idx{font-size:14px;font-weight:700;color:var(--gold1);min-width:24px;}
+  .advice-list .body .t{font-size:12px;font-weight:600;color:var(--txt);}
+  .advice-list .body .d{font-size:11px;color:var(--txt-dim);margin-top:4px;line-height:1.5;}
+  .op-tag{font-size:9px;padding:1px 6px;border-radius:2px;margin-left:8px;letter-spacing:1px;}
+  .op-reduce{color:var(--down);border:1px solid rgba(255,59,59,.4);}
+  .op-add{color:var(--up);border:1px solid rgba(0,230,118,.4);}
+  .op-hold{color:var(--gold1);border:1px solid rgba(255,200,40,.4);}
+
+  footer{margin-top:30px;padding-top:14px;border-top:1px solid var(--grid);
+    font-size:10px;color:var(--txt-faint);display:flex;justify-content:space-between;letter-spacing:1px;}
+  .blink{animation:blink 1.6s steps(1) infinite;}
+  @keyframes blink{50%{opacity:.3}}
+
+  @media(max-width:1100px){
+    .metrics{grid-template-columns:repeat(2,1fr)}
+    .alloc-grid,.advice{grid-template-columns:1fr}
+    .signals{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HEADER -->
+  <header>
+    <div class="brand">
+      <div>
+        <div class="logo">玄枢Alpha</div>
+        <div class="sub-brand">Intelligent Advisory Terminal</div>
+      </div>
+      <span class="live"><span class="dot"></span>LIVE</span>
+    </div>
+    <div class="header-right">
+      <div class="hr-item"><div class="lbl">总资产 / TOTAL ASSETS</div><div class="val gold">¥56,316.06</div></div>
+      <div class="hr-item"><div class="lbl">今日收益 / DAILY P&amp;L</div><div class="val up">+¥430.30</div></div>
+      <div class="hr-item"><div class="lbl">更新时间 / UPDATED</div><div class="val time">2026-05-26 15:00<span class="blink"> ▮</span></div></div>
+    </div>
+  </header>
+
+  <!-- OVERVIEW -->
+  <div class="sec-title">资产总览 · PORTFOLIO OVERVIEW<span class="line"></span></div>
+  <div class="metrics">
+    <div class="panel metric"><div class="lbl">总市值 NAV</div><div class="num gold">56,316.06</div><div class="sub">持仓基金 <b>9</b> 只</div></div>
+    <div class="panel metric"><div class="lbl">今日收益率 DAILY</div><div class="num up">+0.77%</div><div class="sub up">+¥430.30</div></div>
+    <div class="panel metric"><div class="lbl">累计收益 TOTAL P&amp;L</div><div class="num up">+1,082.4</div><div class="sub">收益率 <b class="up">+1.96%</b></div></div>
+    <div class="panel metric"><div class="lbl">最大权重 TOP HOLDING</div><div class="num gold">35.75%</div><div class="sub">易方达黄金ETF联接C</div></div>
+  </div>
+
+  <!-- ALLOCATION -->
+  <div class="alloc-grid">
+    <div class="panel alloc-panel">
+      <div class="mini-lbl">大类资产配置 · ASSET ALLOCATION</div>
+      <div class="alloc-bar">
+        <span style="flex:51.30;background:linear-gradient(180deg,#ffd700,#c79400);" title="黄金 51.30%"></span>
+        <span style="flex:14.95;background:linear-gradient(180deg,#9fb4c9,#5e7488);" title="有色金属 14.95%"></span>
+        <span style="flex:12.83;background:linear-gradient(180deg,#c79fff,#7a52c4);" title="AI/科技 12.83%"></span>
+        <span style="flex:10.60;background:linear-gradient(180deg,#ffb27e,#c46f3a);" title="高端制造 10.60%"></span>
+        <span style="flex:10.09;background:linear-gradient(180deg,#7ee0a0,#3a9460);" title="光伏/新能源 10.09%"></span>
+        <span style="flex:0.23;background:#555;" title="货币基金 0.23%"></span>
+      </div>
+      <div class="alloc-legend">
+        <div class="leg-row"><span class="leg-name"><i style="background:#ffd700"></i>黄金</span><span class="leg-pct">51.30%</span></div>
+        <div class="leg-row"><span class="leg-name"><i style="background:#9fb4c9"></i>有色金属</span><span class="leg-pct">14.95%</span></div>
+        <div class="leg-row"><span class="leg-name"><i style="background:#c79fff"></i>AI / 科技</span><span class="leg-pct">12.83%</span></div>
+        <div class="leg-row"><span class="leg-name"><i style="background:#ffb27e"></i>高端制造</span><span class="leg-pct">10.60%</span></div>
+        <div class="leg-row"><span class="leg-name"><i style="background:#7ee0a0"></i>光伏/新能源</span><span class="leg-pct">10.09%</span></div>
+        <div class="leg-row"><span class="leg-name"><i style="background:#555"></i>货币基金</span><span class="leg-pct">0.23%</span></div>
+      </div>
+    </div>
+    <div class="panel alloc-panel">
+      <div class="mini-lbl">集中度 · CONCENTRATION</div>
+      <div class="donut-wrap">
+        <div class="donut">
+          <svg width="170" height="170" viewBox="0 0 42 42">
+            <circle cx="21" cy="21" r="15.915" fill="transparent" stroke="#1a1a1a" stroke-width="5"></circle>
+            <circle cx="21" cy="21" r="15.915" fill="transparent" stroke="#ffd700" stroke-width="5" stroke-dasharray="51.30 48.70" stroke-dashoffset="25"></circle>
+            <circle cx="21" cy="21" r="15.915" fill="transparent" stroke="#9fb4c9" stroke-width="5" stroke-dasharray="14.95 85.05" stroke-dashoffset="-26.30"></circle>
+            <circle cx="21" cy="21" r="15.915" fill="transparent" stroke="#c79fff" stroke-width="5" stroke-dasharray="12.83 87.17" stroke-dashoffset="-41.25"></circle>
+            <circle cx="21" cy="21" r="15.915" fill="transparent" stroke="#ffb27e" stroke-width="5" stroke-dasharray="10.60 89.40" stroke-dashoffset="-54.08"></circle>
+            <circle cx="21" cy="21" r="15.915" fill="transparent" stroke="#7ee0a0" stroke-width="5" stroke-dasharray="10.09 89.91" stroke-dashoffset="-64.68"></circle>
+          </svg>
+          <div class="center"><div class="big">51.3%</div><div class="small">GOLD WEIGHT</div></div>
+        </div>
+        <div style="font-size:11px;color:var(--txt-dim);line-height:1.9;">
+          <div>· 贵金属合计 <b style="color:var(--gold1)">66.25%</b></div>
+          <div>· 权益资产 <b style="color:#c79fff">33.52%</b></div>
+          <div>· 现金等价 <b style="color:#888">0.23%</b></div>
+          <div style="margin-top:8px;color:var(--down)">⚠ 黄金敞口偏高</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOLDINGS -->
+  <div class="sec-title">持仓明细 · HOLDINGS DETAIL<span class="line"></span></div>
+  <div class="panel tbl-panel">
+    <table>
+      <thead>
+        <tr>
+          <th class="l">名称 / 代码</th><th class="l">类别</th><th>金额 (¥)</th><th>占比</th>
+          <th>日收益</th><th>持有收益率</th><th>净值走势</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="l"><div class="fund-name">易方达黄金ETF联接C</div><div class="fund-code">002963</div></td>
+          <td class="l"><span class="tag gold">黄金</span></td>
+          <td class="amt">20,135.58</td><td class="gold-pct">35.75%</td>
+          <td class="up">+96.99</td><td class="down">-5.02%</td>
+          <td><svg width="80" height="24"><polyline fill="none" stroke="#00e676" stroke-width="1.3" points="0,16 13,18 26,14 39,17 52,11 65,13 80,8"/></svg></td>
+        </tr>
+        <tr>
+          <td class="l"><div class="fund-name">易方达黄金ETF联接A</div><div class="fund-code">159934</div></td>
+          <td class="l"><span class="tag gold">黄金</span></td>
+          <td class="amt">8,759.41</td><td class="gold-pct">15.55%</td>
+          <td class="up">+42.52</td><td class="down">-7.79%</td>
+          <td><svg width="80" height="24"><polyline fill="none" stroke="#00e676" stroke-width="1.3" points="0,17 13,19 26,15 39,18 52,12 65,14 80,9"/></svg></td>
+        </tr>
+        <tr>
+          <td class="l"><div class="fund-name">南方有色金属ETF联接E</div><div class="fund-code">020882</div></td>
+          <td class="l"><span class="tag metal">有色金属</span></td>
+          <td class="amt">8,417.12</td><td class="gold-pct">14.95%</td>
+          <td class="up">+37.28</td><td class="down">-6.86%</td>
+          <td><svg width="80" height="24"><polyline fill="none" stroke="#00e676" stroke-width="1.3" points="0,18 13,16 26,19 39,14 52,16 65,11 80,12"/></svg></td>
+        </tr>
+        <tr>
+          <td class="l"><div class="fund-name">华夏中证光伏产业ETF联接A</div><div class="fund-code">013301</div></td>
+          <td class="l"><span class="tag pv">光伏/新能源</span></td>
+          <td class="amt">5,679.89</td><td class="gold-pct">10.09%</td>
+          <td class="up">+56.02</td><td class="up">+3.27%</td>
+          <td><svg width="80" height="24"><polyline fill="none" stroke="#00e676" stroke-width="1.3" points="0,19 13,16 26,17 39,12 52,13 65,9 80,6"/></svg></td>
+        </tr>
+        <tr>
+          <td class="l"><div class="fund-name">天弘中证人工智能主题指数C</div><div class="fund-code">001631</div></td>
+          <td class="l"><span class="tag ai">AI/科技</span></td>
+          <td class="amt">5,189.88</td><td class="gold-pct">9.22%</td>
+          <td class="up">+190.33</td><td class="up">+42.29%</td>
+          <td><svg width="80" height="24"><polyline fill="none" stroke="#00e676" stroke-width="1.3" points="0,21 13,18 26,15 39,13 52,9 65,6 80,3"/></svg></td>
+        </tr>
+        <tr>
+          <td class="l"><div class="fund-name">永赢高端装备智选混合C</div><div class="fund-code">014658</div></td>
+          <td class="l"><span class="tag mfg">高端制造</span></td>
+          <td class="amt">3,970.70</td><td class="gold-pct">7.05%</td>
+          <td class="up">+2.85</td><td class="down">-0.73%</td>
+          <td><svg width="80" height="24"><polyline fill="none" stroke="#7d7c76" stroke-width="1.3" points="0,14 13,15 26,13 39,16 52,14 65,15 80,13"/></svg></td>
+        </tr>
+        <tr>
+          <td class="l"><div class="fund-name">天弘中证机器人ETF联接C</div><div class="fund-code">014880</div></td>
+          <td class="l"><span class="tag ai">AI/科技</span></td>
+          <td class="amt">2,031.17</td><td class="gold-pct">3.61%</td>
+          <td class="up">+6.59</td><td class="up">+8.33%</td>
+          <td><svg width="80" height="24"><polyline fill="none" stroke="#00e676" stroke-width="1.3" points="0,18 13,16 26,14 39,15 52,11 65,10 80,7"/></svg></td>
+        </tr>
+        <tr>
+          <td class="l"><div class="fund-name">平安高端装备混合C</div><div class="fund-code">015897</div></td>
+          <td class="l"><span class="tag mfg">高端制造</span></td>
+          <td class="amt">1,999.72</td><td class="gold-pct">3.55%</td>
+          <td class="down">-2.28</td><td class="down">-0.01%</td>
+          <td><svg width="80" height="24"><polyline fill="none" stroke="#ff3b3b" stroke-width="1.3" points="0,12 13,13 26,11 39,14 52,13 65,15 80,16"/></svg></td>
+        </tr>
+        <tr>
+          <td class="l"><div class="fund-name">余额宝</div><div class="fund-code">000198</div></td>
+          <td class="l"><span class="tag cash">货币基金</span></td>
+          <td class="amt">132.59</td><td class="gold-pct">0.23%</td>
+          <td class="up">+0.00</td><td style="color:var(--txt-dim)">+0.00%</td>
+          <td><svg width="80" height="24"><polyline fill="none" stroke="#555" stroke-width="1.3" points="0,12 13,12 26,12 39,12 52,12 65,12 80,12"/></svg></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SIGNALS -->
+  <div class="sec-title">量化信号 · QUANT SIGNALS<span class="line"></span></div>
+  <div class="signals">
+    <div class="panel sig">
+      <div class="top"><span class="name">黄金 GOLD</span><span class="state st-neutral">NEUTRAL</span></div>
+      <div class="big gold-pct" style="color:var(--gold1)">62 <span style="font-size:13px;color:var(--txt-dim)">/100</span></div>
+      <div class="gauge"><i style="width:62%;background:linear-gradient(90deg,#ffb800,#ffd700)"></i></div>
+      <div class="gauge-lbls"><span>超卖</span><span>中性</span><span>超买</span></div>
+      <div class="note">动量趋缓，技术面进入高位震荡区间，短期上行空间收敛。</div>
+    </div>
+    <div class="panel sig">
+      <div class="top"><span class="name">美股 US EQUITY</span><span class="state st-bull">BULLISH</span></div>
+      <div class="big up">74 <span style="font-size:13px;color:var(--txt-dim)">/100</span></div>
+      <div class="gauge"><i style="width:74%;background:linear-gradient(90deg,#00b35a,#00e676)"></i></div>
+      <div class="gauge-lbls"><span>避险</span><span>中性</span><span>风险偏好</span></div>
+      <div class="note">风险偏好回升，科技板块资金流入，利好组合内 AI/科技敞口。</div>
+    </div>
+    <div class="panel sig">
+      <div class="top"><span class="name">波动率 VIX</span><span class="state st-bear">LOW VOL</span></div>
+      <div class="big" style="color:#fff">14.2</div>
+      <div class="gauge"><i style="width:28%;background:linear-gradient(90deg,#ff3b3b,#ffb800)"></i></div>
+      <div class="gauge-lbls"><span>平静</span><span>正常</span><span>恐慌</span></div>
+      <div class="note">市场处于低波动状态，回撤风险可控，适合维持现有仓位。</div>
+    </div>
+  </div>
+
+  <!-- AI ADVICE -->
+  <div class="sec-title">AI 操作建议 · ADVISORY<span class="line"></span></div>
+  <div class="advice">
+    <div class="panel advice-main">
+      <span class="advice-badge">◆ XUANSHU AI ENGINE</span>
+      <div class="advice-verdict">持有观望 · HOLD</div>
+      <div class="advice-text">
+        当前组合贵金属敞口达 <b style="color:var(--gold1)">66.25%</b>，集中度偏高；AI/科技板块今日领涨贡献主要收益。
+        市场低波动、美股风险偏好回升，建议<b style="color:var(--gold1)">维持核心仓位</b>，并通过下方清单适度再平衡，
+        降低单一资产风险敞口，增强组合韧性。
+      </div>
+    </div>
+    <div class="panel advice-list">
+      <div class="item">
+        <div class="idx">01</div>
+        <div class="body">
+          <div class="t">减持黄金敞口<span class="op-tag op-reduce">REDUCE</span></div>
+          <div class="d">黄金合计权重 51.30% 偏高，建议将易方达黄金ETF联接C 减持约 5%，落袋部分浮盈，控制单一资产集中度。</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="idx">02</div>
+        <div class="body">
+          <div class="t">加配光伏/新能源<span class="op-tag op-add">ADD</span></div>
+          <div class="d">光伏板块净值修复中且权重仅 10.09%，可借减持资金小幅加仓华夏光伏ETF联接A，提升组合成长性与分散度。</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="idx">03</div>
+        <div class="body">
+          <div class="t">AI/科技止盈保留<span class="op-tag op-hold">HOLD</span></div>
+          <div class="d">天弘人工智能持有收益 +42.29%，趋势仍强，建议保留底仓不全部止盈，设置移动止盈线锁定收益。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <span>XUANSHU ALPHA TERMINAL · v2.6 · DATA AS OF 2026-05-26</span>
+    <span>本页面为视觉交互稿，数据仅供演示 · NOT INVESTMENT ADVICE</span>
+  </footer>
+
+</div>
+</body>
+</html>
