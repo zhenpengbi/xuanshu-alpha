@@ -7,166 +7,273 @@
     <link rel="icon" type="image/svg+xml" href="logo.svg">
     <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
     <style>
-        /* ========== CSS Variables & Reset ========== */
+        /* ========== CSS Variables & Reset (新中式 × 金融终端) ========== */
         :root {
-            --bg-primary: #0d1117;
-            --bg-secondary: #161b22;
-            --bg-card: #1c2128;
-            --bg-hover: #21262d;
-            --border-color: #30363d;
-            --text-primary: #e6edf3;
-            --text-secondary: #8b949e;
-            --text-muted: #484f58;
-            --gold: #f0b90b;
-            --gold-dark: #c99a07;
-            --green: #3fb950;
-            --green-bg: rgba(63, 185, 80, 0.1);
-            --red: #f85149;
-            --red-bg: rgba(248, 81, 73, 0.1);
-            --blue: #58a6ff;
-            --purple: #bc8cff;
-            --radius: 12px;
+            --ink-0:#13100c; --ink-1:#1a1510; --ink-2:#221b14; --ink-3:#2c241a;
+            --jade:#1fb874; --jade-deep:#1a7a4c; --jade-soft:#2ecc8f;
+            --gold:#c9a227; --gold-bright:#e6c252; --gold-soft:#b8932f; --gold-dark:#9c7a1e;
+            --paper:#e8e0cf; --paper-dim:#b8ad97; --paper-faint:#7d7565;
+            --red:#e5564f; --line:rgba(201,162,39,.16);
+            --mono:'SFMono-Regular',ui-monospace,'Cascadia Code','JetBrains Mono',Menlo,Consolas,monospace;
+            --sans:'PingFang SC','Microsoft YaHei','Noto Sans SC',sans-serif;
+            /* 语义别名（兼容旧 class，全部映射到新中式色板） */
+            --bg-primary: var(--ink-0);
+            --bg-secondary: rgba(34,27,20,.86);
+            --bg-card: linear-gradient(150deg, rgba(40,32,23,.7), rgba(26,21,16,.55));
+            --bg-hover: rgba(201,162,39,.05);
+            --border-color: var(--line);
+            --text-primary: var(--paper);
+            --text-secondary: var(--paper-dim);
+            --text-muted: var(--paper-faint);
+            --green: var(--jade-soft);
+            --green-bg: rgba(31,184,116,.12);
+            --red-bg: rgba(229,86,79,.12);
+            --blue: #7fb8d9;
+            --purple: #b89dd9;
+            --radius: 10px;
             --radius-sm: 8px;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { background: var(--ink-0); }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
+            font-family: var(--sans);
+            color: var(--paper);
             line-height: 1.6;
             min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+            background:
+              radial-gradient(1100px 600px at 78% -8%, rgba(31,184,116,.10), transparent 60%),
+              radial-gradient(900px 520px at 12% 8%, rgba(201,162,39,.08), transparent 60%),
+              radial-gradient(1300px 900px at 50% 120%, rgba(201,162,39,.05), transparent 55%),
+              linear-gradient(160deg, #1a1510 0%, #13100c 45%, #16110b 100%);
+            background-attachment: fixed;
         }
+        /* 暖金终端网格纹理叠加在水墨晕染之上 */
+        body::before {
+            content:""; position:fixed; inset:0; z-index:0; pointer-events:none;
+            background:
+              radial-gradient(420px 320px at 20% 30%, rgba(31,184,116,.06), transparent 70%),
+              radial-gradient(520px 380px at 85% 60%, rgba(201,162,39,.05), transparent 70%),
+              radial-gradient(360px 300px at 60% 90%, rgba(255,255,255,.015), transparent 70%),
+              linear-gradient(rgba(201,162,39,.04) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(201,162,39,.04) 1px, transparent 1px);
+            background-size: auto,auto,auto,40px 40px,40px 40px;
+            opacity:.9;
+        }
+        /* 铜钱暗纹 */
+        body::after {
+            content:""; position:fixed; inset:0; z-index:0; pointer-events:none; opacity:.04;
+            background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%23c9a227' stroke-width='1'%3E%3Ccircle cx='60' cy='60' r='30'/%3E%3Crect x='48' y='48' width='24' height='24'/%3E%3C/g%3E%3C/svg%3E");
+            background-size:160px 160px;
+        }
+        /* 北斗七星背景 */
+        .stars { position:fixed; top:0; right:0; width:560px; height:420px; z-index:0; opacity:.5; pointer-events:none; }
         .num {
             font-variant-numeric: tabular-nums;
             font-feature-settings: "tnum";
-            font-family: 'SF Mono', 'Fira Code', 'JetBrains Mono', monospace;
+            font-family: var(--mono);
         }
-        .container { max-width: 1400px; margin: 0 auto; padding: 0 24px; }
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
-        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 40px; position: relative; z-index: 1; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
 
         /* ========== Header ========== */
         .header {
-            background: var(--bg-secondary);
-            border-bottom: 1px solid var(--border-color);
-            padding: 16px 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            backdrop-filter: blur(12px);
+            position: sticky; top: 0; z-index: 100;
+            padding: 16px 0 0;
+            backdrop-filter: blur(8px);
         }
-        .header-inner { display: flex; justify-content: space-between; align-items: center; }
-        .logo-area { display: flex; align-items: center; gap: 16px; }
-        .logo-svg { height: 36px; }
-        .subtitle { color: var(--text-secondary); font-size: 13px; letter-spacing: 0.5px; }
-        .header-stats { display: flex; align-items: center; gap: 32px; }
+        .header-inner {
+            display: flex; justify-content: space-between; align-items: center; gap: 30px;
+            padding: 22px 30px; border-radius: 10px;
+            background: linear-gradient(135deg, rgba(34,27,20,.92), rgba(26,21,16,.85));
+            border: 1px solid var(--line);
+            box-shadow: 0 18px 50px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.03);
+            position: relative; overflow: hidden;
+        }
+        .header-inner::before {
+            content:""; position:absolute; left:-40px; top:-60px; width:240px; height:240px;
+            background: radial-gradient(circle, rgba(201,162,39,.18), transparent 65%); pointer-events:none;
+        }
+        .logo-area { display: flex; align-items: center; gap: 16px; position: relative; }
+        .logo-svg { height: 40px; }
+        .subtitle {
+            color: var(--paper-faint); font-size: 12.5px; letter-spacing: 1.5px; font-family: var(--sans);
+            display: inline-flex; align-items: center; gap: 12px;
+        }
+        /* LIVE 脉冲标记 */
+        .live { display:inline-flex; align-items:center; gap:6px; font-size:10px; letter-spacing:2px; font-family:var(--mono);
+            color:var(--jade-soft); border:1px solid rgba(31,184,116,.4); border-radius:3px; padding:3px 9px; }
+        .live .dot { width:7px; height:7px; border-radius:50%; background:var(--jade-soft); animation:livePulse 1.4s ease-out infinite; }
+        @keyframes livePulse { 0%{box-shadow:0 0 0 0 rgba(31,184,116,.7)} 70%{box-shadow:0 0 0 8px rgba(31,184,116,0)} 100%{box-shadow:0 0 0 0 rgba(31,184,116,0)} }
+        .header-stats { display: flex; align-items: center; gap: 28px; text-align: right; }
         .header-stat { text-align: right; }
-        .header-stat-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
-        .header-stat-value { font-size: 20px; font-weight: 700; }
-        .positive { color: var(--green); }
+        .header-stat-label { font-size: 11px; color: var(--paper-faint); letter-spacing: 2px; margin-bottom: 5px; }
+        .header-stat-value { font-size: 22px; font-weight: 600; color: var(--gold-bright); font-family: var(--mono); }
+        .positive { color: var(--jade-soft); }
         .negative { color: var(--red); }
-        .update-time { font-size: 11px; color: var(--text-muted); }
+        .update-time { font-size: 13px; color: var(--paper-dim); font-family: var(--mono); }
 
         /* ========== Section ========== */
-        .section { padding: 32px 0; }
+        .section { padding: 26px 0; }
         .section-title {
-            font-size: 18px; font-weight: 600; margin-bottom: 20px;
-            display: flex; align-items: center; gap: 8px;
+            font-family: var(--sans); font-size: 19px; font-weight: 600; letter-spacing: 2px; color: var(--paper);
+            margin-bottom: 18px; display: flex; align-items: center; gap: 14px;
         }
         .section-title::before {
-            content: ''; width: 4px; height: 20px;
-            background: linear-gradient(180deg, var(--gold), var(--gold-dark));
-            border-radius: 2px;
+            content: ''; width: 7px; height: 7px; border-radius: 50%;
+            background: var(--gold); box-shadow: 0 0 12px var(--gold), 0 0 4px var(--gold-bright);
+            flex: none;
+        }
+        .section-title::after {
+            content: ''; flex: 1; height: 1px; margin-left: 4px;
+            background: linear-gradient(90deg, var(--line), transparent);
         }
 
         /* ========== Cards ========== */
         .card {
-            background: var(--bg-card); border: 1px solid var(--border-color);
-            border-radius: var(--radius); padding: 24px; transition: border-color 0.2s;
+            background: linear-gradient(150deg, rgba(40,32,23,.7), rgba(26,21,16,.55));
+            border: 1px solid var(--line); border-radius: var(--radius); padding: 22px;
+            position: relative; overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.025);
+            transition: border-color .3s, box-shadow .3s;
         }
-        .card:hover { border-color: var(--gold); }
+        .card::after {
+            content:""; position:absolute; inset:0; pointer-events:none; opacity:.5;
+            background-image: radial-gradient(rgba(201,162,39,.05) 0.5px, transparent 0.6px);
+            background-size: 5px 5px; mix-blend-mode: overlay;
+        }
+        /* hover 扫光 + 发光金边 */
+        .card .sweep, .signal-card .sweep, .metric-card .sweep, .advice-card .sweep {
+            position:absolute; top:0; left:-60%; width:50%; height:100%; z-index:2;
+            background: linear-gradient(105deg, transparent, rgba(201,162,39,.12), transparent);
+            transform: skewX(-18deg); transition: left .7s ease; pointer-events:none;
+        }
+        .card:hover .sweep, .signal-card:hover .sweep, .metric-card:hover .sweep, .advice-card:hover .sweep { left:130%; }
+        .card:hover { border-color: rgba(201,162,39,.5); box-shadow: 0 10px 30px rgba(0,0,0,.35), 0 0 22px rgba(201,162,39,.16); }
         .metric-card {
-            background: var(--bg-card); border: 1px solid var(--border-color);
-            border-radius: var(--radius-sm); padding: 20px; text-align: center;
+            background: linear-gradient(150deg, rgba(40,32,23,.7), rgba(26,21,16,.55));
+            border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 22px;
+            text-align: left; position: relative; overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.025);
+            transition: border-color .3s, box-shadow .3s;
         }
-        .metric-card .label { font-size: 12px; color: var(--text-secondary); margin-bottom: 8px; }
-        .metric-card .value { font-size: 24px; font-weight: 700; }
-        .metric-card .sub { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+        .metric-card::after {
+            content:""; position:absolute; inset:0; pointer-events:none; opacity:.5;
+            background-image: radial-gradient(rgba(201,162,39,.05) 0.5px, transparent 0.6px);
+            background-size: 5px 5px; mix-blend-mode: overlay;
+        }
+        .metric-card:hover { border-color: rgba(201,162,39,.5); box-shadow: 0 10px 30px rgba(0,0,0,.35), 0 0 22px rgba(201,162,39,.16); }
+        .metric-card .label { font-size: 12px; color: var(--paper-faint); letter-spacing: 2px; margin-bottom: 12px; }
+        .metric-card .value { font-size: 26px; font-weight: 600; font-family: var(--mono); color: var(--paper); }
+        .metric-card .sub { font-size: 12.5px; color: var(--paper-faint); margin-top: 8px; font-family: var(--mono); }
 
         /* ========== Table ========== */
-        .holdings-table { width: 100%; border-collapse: collapse; }
+        .holdings-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
         .holdings-table th {
-            text-align: left; padding: 12px 16px; font-size: 12px; color: var(--text-muted);
-            text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--border-color); font-weight: 500;
+            text-align: left; padding: 15px 16px; font-size: 11px; color: var(--paper-faint);
+            letter-spacing: 1.5px; border-bottom: 1px solid var(--line); font-weight: 500;
+            background: rgba(31,184,116,.06);
         }
-        .holdings-table td { padding: 14px 16px; border-bottom: 1px solid var(--border-color); font-size: 14px; }
-        .holdings-table tr:hover { background: var(--bg-hover); }
-        .fund-name { font-weight: 500; }
-        .fund-code { color: var(--text-muted); font-size: 12px; }
+        .holdings-table td { padding: 14px 16px; border-bottom: 1px solid rgba(201,162,39,.07); font-size: 13.5px; vertical-align: middle; }
+        .holdings-table tbody tr { transition: background .25s; }
+        .holdings-table tr:hover { background: rgba(201,162,39,.05); }
+        .fund-name { font-weight: 500; color: var(--paper); }
+        .fund-code { color: var(--paper-faint); font-size: 11px; font-family: var(--mono); }
         .tag {
-            display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 500;
+            display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 500;
+            letter-spacing: .5px; border: 1px solid transparent;
         }
-        .tag-gold { background: rgba(240,185,11,0.15); color: var(--gold); }
-        .tag-tech { background: rgba(88,166,255,0.15); color: var(--blue); }
-        .tag-green { background: rgba(63,185,80,0.15); color: var(--green); }
-        .tag-metal { background: rgba(188,140,255,0.15); color: var(--purple); }
-        .tag-mfg { background: rgba(248,81,73,0.15); color: var(--red); }
-        .tag-cash { background: rgba(139,148,158,0.15); color: var(--text-secondary); }
+        .tag-gold { color: var(--gold-bright); background: rgba(201,162,39,.1); border-color: rgba(201,162,39,.3); }
+        .tag-tech { color: #7fb8d9; background: rgba(80,150,200,.1); border-color: rgba(80,150,200,.28); }
+        .tag-green { color: var(--jade-soft); background: rgba(31,184,116,.1); border-color: rgba(31,184,116,.3); }
+        .tag-metal { color: #b89dd9; background: rgba(150,110,200,.1); border-color: rgba(150,110,200,.28); }
+        .tag-mfg { color: #b89dd9; background: rgba(150,110,200,.1); border-color: rgba(150,110,200,.28); }
+        .tag-cash { color: var(--paper-dim); background: rgba(180,170,150,.08); border-color: rgba(180,170,150,.2); }
 
         /* ========== Signal ========== */
         .signal-card {
-            background: var(--bg-card); border: 1px solid var(--border-color);
-            border-radius: var(--radius); padding: 20px; text-align: center;
+            background: linear-gradient(150deg, rgba(40,32,23,.7), rgba(26,21,16,.55));
+            border: 1px solid var(--line); border-radius: var(--radius); padding: 22px 24px; text-align: center;
+            position: relative; overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.025);
+            transition: border-color .3s, box-shadow .3s;
         }
-        .signal-card .signal-title { font-size: 14px; color: var(--text-secondary); margin-bottom: 12px; }
+        .signal-card::after {
+            content:""; position:absolute; inset:0; pointer-events:none; opacity:.5;
+            background-image: radial-gradient(rgba(201,162,39,.05) 0.5px, transparent 0.6px);
+            background-size: 5px 5px; mix-blend-mode: overlay;
+        }
+        .signal-card:hover { border-color: rgba(201,162,39,.5); box-shadow: 0 10px 30px rgba(0,0,0,.35), 0 0 22px rgba(201,162,39,.16); }
+        .signal-card .signal-title { font-size: 15px; color: var(--paper); margin-bottom: 12px; font-weight: 600; letter-spacing: 1.5px; }
         .vix-indicator { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 16px; }
-        .vix-dot { width: 16px; height: 16px; border-radius: 50%; animation: pulse 2s infinite; }
-        @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.5;} }
+        .vix-dot { width: 16px; height: 16px; border-radius: 50%; animation: vixPulse 2s infinite; }
+        @keyframes vixPulse { 0%,100%{opacity:1;} 50%{opacity:0.5;} }
 
         /* ========== Timeline ========== */
         .timeline { position: relative; padding-left: 32px; }
         .timeline::before {
             content: ''; position: absolute; left: 8px; top: 0; bottom: 0;
-            width: 2px; background: var(--border-color);
+            width: 2px; background: linear-gradient(180deg, var(--line), rgba(201,162,39,.04));
         }
         .timeline-item {
-            position: relative; margin-bottom: 20px; padding: 16px 20px;
-            background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-sm);
+            position: relative; margin-bottom: 18px; padding: 16px 20px;
+            background: linear-gradient(150deg, rgba(40,32,23,.7), rgba(26,21,16,.55));
+            border: 1px solid var(--line); border-radius: var(--radius-sm);
+            box-shadow: 0 8px 24px rgba(0,0,0,.3); transition: border-color .3s, box-shadow .3s;
         }
+        .timeline-item:hover { border-color: rgba(201,162,39,.4); box-shadow: 0 8px 24px rgba(0,0,0,.3), 0 0 18px rgba(201,162,39,.12); }
         .timeline-item::before {
             content: ''; position: absolute; left: -28px; top: 20px;
-            width: 10px; height: 10px; border-radius: 50%; background: var(--gold); border: 2px solid var(--bg-primary);
+            width: 10px; height: 10px; border-radius: 50%; background: var(--gold);
+            border: 2px solid var(--ink-0); box-shadow: 0 0 8px var(--gold);
         }
-        .timeline-time { font-size: 11px; color: var(--text-muted); margin-bottom: 4px; }
-        .timeline-title { font-size: 14px; font-weight: 500; margin-bottom: 8px; }
+        .timeline-time { font-size: 11px; color: var(--paper-faint); margin-bottom: 4px; font-family: var(--mono); }
+        .timeline-title { font-size: 14px; font-weight: 500; margin-bottom: 8px; color: var(--paper); }
         .timeline-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
-        .timeline-summary { font-size: 12px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 8px; }
-        .timeline-source { font-size: 11px; color: var(--text-muted); }
-        .timeline-reason { font-size: 11px; color: var(--text-muted); line-height: 1.6; margin-top: 6px; padding-left: 8px; border-left: 2px solid var(--border-color); }
-        .impact-tag { font-size: 11px; padding: 2px 8px; border-radius: 4px; font-weight: 500; }
-        .impact-up { background: var(--green-bg); color: var(--green); }
-        .impact-down { background: var(--red-bg); color: var(--red); }
-        .impact-neutral { background: rgba(139,148,158,0.1); color: var(--text-secondary); }
+        .timeline-summary { font-size: 12px; color: var(--paper-dim); line-height: 1.6; margin-bottom: 8px; }
+        .timeline-source { font-size: 11px; color: var(--paper-faint); }
+        .timeline-reason { font-size: 11px; color: var(--paper-faint); line-height: 1.6; margin-top: 6px; padding-left: 8px; border-left: 2px solid var(--line); }
+        .impact-tag { font-size: 11px; padding: 2px 10px; border-radius: 14px; font-weight: 500; }
+        .impact-up { background: rgba(31,184,116,.16); color: var(--jade-soft); }
+        .impact-down { background: rgba(229,86,79,.16); color: #e88; }
+        .impact-neutral { background: rgba(201,162,39,.14); color: var(--gold-bright); }
 
         /* ========== Advice ========== */
         .advice-card {
-            background: linear-gradient(135deg, var(--bg-card), rgba(240,185,11,0.05));
-            border: 1px solid var(--gold); border-radius: var(--radius); padding: 24px;
+            background:
+              radial-gradient(700px 300px at 90% 0%, rgba(31,184,116,.1), transparent 60%),
+              linear-gradient(150deg, rgba(40,32,23,.78), rgba(24,19,14,.6));
+            border: 1px solid var(--line); border-radius: var(--radius); padding: 28px 30px;
+            position: relative; overflow: hidden;
+            box-shadow: 0 16px 44px rgba(0,0,0,.4);
+            transition: border-color .3s, box-shadow .3s;
         }
-        .advice-action { font-size: 20px; font-weight: 700; color: var(--gold); margin-bottom: 8px; }
-        .advice-reason { color: var(--text-secondary); font-size: 14px; line-height: 1.8; }
-        .advice-meta { margin-top: 16px; font-size: 11px; color: var(--text-muted); }
+        .advice-card:hover { border-color: rgba(201,162,39,.5); box-shadow: 0 16px 44px rgba(0,0,0,.4), 0 0 22px rgba(201,162,39,.15); }
+        .advice-card .taiji { position:absolute; right:-30px; bottom:-40px; width:200px; height:200px; opacity:.07; pointer-events:none; }
+        .advice-action {
+            font-family: var(--sans); font-size: 19px; font-weight: 600; letter-spacing: 1.5px;
+            color: var(--gold-bright); margin-bottom: 12px; position: relative;
+        }
+        .advice-reason { color: var(--paper-dim); font-size: 13px; line-height: 1.9; position: relative; }
+        .advice-meta { margin-top: 16px; font-size: 11px; color: var(--paper-faint); font-family: var(--mono); position: relative; }
 
         /* ========== Sparkline Canvas ========== */
         .sparkline-canvas { width: 80px; height: 28px; }
+
+        /* ========== Footer ========== */
+        footer { font-family: var(--sans); }
 
         /* ========== Responsive ========== */
         @media (max-width: 1024px) {
             .grid-2, .grid-3 { grid-template-columns: 1fr; }
             .grid-4 { grid-template-columns: repeat(2, 1fr); }
+            .stars { display: none; }
         }
         @media (max-width: 768px) {
+            .container { padding: 0 18px; }
             .header-inner { flex-direction: column; gap: 12px; }
             .header-stats { gap: 16px; }
             .grid-4 { grid-template-columns: 1fr 1fr; }
@@ -176,21 +283,55 @@
 </head>
 <body>
 
+<!-- 北斗七星背景装饰 -->
+<svg class="stars" viewBox="0 0 560 420" fill="none" aria-hidden="true">
+  <g stroke="#c9a227" stroke-width="1" opacity="0.55">
+    <line x1="80" y1="80" x2="170" y2="110"/><line x1="170" y1="110" x2="250" y2="100"/>
+    <line x1="250" y1="100" x2="330" y2="140"/><line x1="330" y1="140" x2="400" y2="200"/>
+    <line x1="400" y1="200" x2="470" y2="180"/><line x1="470" y1="180" x2="500" y2="260"/>
+  </g>
+  <g fill="#e6c252">
+    <circle cx="80" cy="80" r="3.2"/><circle cx="170" cy="110" r="2.6"/>
+    <circle cx="250" cy="100" r="3"/><circle cx="330" cy="140" r="2.4"/>
+    <circle cx="400" cy="200" r="3.4"/><circle cx="470" cy="180" r="2.6"/>
+    <circle cx="500" cy="260" r="3.8"/>
+  </g>
+</svg>
+
 <!-- ========== HEADER ========== -->
 <header class="header">
     <div class="container header-inner">
         <div class="logo-area">
-            <svg class="logo-svg" viewBox="0 0 220 40" xmlns="http://www.w3.org/2000/svg">
+            <svg class="logo-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" style="height:48px;width:48px;flex:none;">
                 <defs>
-                    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:#f0b90b"/>
-                        <stop offset="50%" style="stop-color:#fcd535"/>
-                        <stop offset="100%" style="stop-color:#f0b90b"/>
-                    </linearGradient>
+                    <radialGradient id="gm" cx="50%" cy="40%" r="60%">
+                        <stop offset="0%" stop-color="#f3dd92"/><stop offset="60%" stop-color="#c9a227"/><stop offset="100%" stop-color="#8a6a18"/>
+                    </radialGradient>
                 </defs>
-                <text x="0" y="30" font-family="'SF Mono', monospace" font-size="24" font-weight="700" fill="url(#goldGrad)">玄枢Alpha</text>
+                <circle cx="32" cy="32" r="29" stroke="url(#gm)" stroke-width="1.4" opacity="0.7"/>
+                <circle cx="32" cy="32" r="22" stroke="#1fb874" stroke-width="0.8" opacity="0.5"/>
+                <g stroke="url(#gm)" stroke-width="1.2" fill="url(#gm)">
+                    <line x1="20" y1="22" x2="30" y2="26" opacity="0.6"/>
+                    <line x1="30" y1="26" x2="40" y2="24" opacity="0.6"/>
+                    <line x1="40" y1="24" x2="44" y2="34" opacity="0.6"/>
+                    <circle cx="20" cy="22" r="2"/><circle cx="30" cy="26" r="1.6"/>
+                    <circle cx="40" cy="24" r="1.8"/><circle cx="44" cy="34" r="2.4"/>
+                </g>
+                <text x="32" y="47" text-anchor="middle" font-family="var(--sans)" font-size="15" fill="url(#gm)" font-weight="700">枢</text>
             </svg>
-            <span class="subtitle">AI-Powered Investment Intelligence</span>
+            <div>
+                <svg class="logo-svg" viewBox="0 0 180 40" xmlns="http://www.w3.org/2000/svg" style="height:30px;">
+                    <defs>
+                        <linearGradient id="goldGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" style="stop-color:#f3dd92"/>
+                            <stop offset="55%" style="stop-color:#c9a227"/>
+                            <stop offset="100%" style="stop-color:#9c7a1e"/>
+                        </linearGradient>
+                    </defs>
+                    <text x="0" y="30" font-family="'PingFang SC','Microsoft YaHei',sans-serif" font-size="28" font-weight="700" letter-spacing="2" fill="url(#goldGrad)">玄枢Alpha</text>
+                </svg>
+                <div class="subtitle">北斗定枢 · 守正出奇 <span class="live"><span class="dot"></span>LIVE</span></div>
+            </div>
         </div>
         <div class="header-stats">
             <div class="header-stat">
@@ -215,23 +356,23 @@
     <section class="section">
         <h2 class="section-title">资产总览</h2>
         <div class="grid-2">
-            <div class="card"><div id="pieChart" style="width:100%;height:320px;"></div></div>
-            <div class="card"><div id="barChart" style="width:100%;height:320px;"></div></div>
+            <div class="card"><span class="sweep"></span><div id="pieChart" style="width:100%;height:320px;"></div></div>
+            <div class="card"><span class="sweep"></span><div id="barChart" style="width:100%;height:320px;"></div></div>
         </div>
         <div class="grid-4" style="margin-top:20px;">
-            <div class="metric-card">
+            <div class="metric-card"><span class="sweep"></span>
                 <div class="label">总资产</div>
                 <div class="value num" id="metricTotal">--</div>
             </div>
-            <div class="metric-card">
+            <div class="metric-card"><span class="sweep"></span>
                 <div class="label">今日收益</div>
                 <div class="value num" id="metricDaily">--</div>
             </div>
-            <div class="metric-card">
+            <div class="metric-card"><span class="sweep"></span>
                 <div class="label">持有收益</div>
                 <div class="value num" id="metricHolding">--</div>
             </div>
-            <div class="metric-card">
+            <div class="metric-card"><span class="sweep"></span>
                 <div class="label">最大持仓</div>
                 <div class="value" id="metricMax" style="font-size:16px;">--</div>
                 <div class="sub num" id="metricMaxRatio">--</div>
@@ -242,7 +383,7 @@
     <!-- Section: 持仓明细 -->
     <section class="section">
         <h2 class="section-title">持仓明细</h2>
-        <div class="card" style="padding:0; overflow-x:auto;">
+        <div class="card" style="padding:0; overflow-x:auto;"><span class="sweep"></span>
             <table class="holdings-table">
                 <thead>
                     <tr>
@@ -265,17 +406,17 @@
     <section class="section">
         <h2 class="section-title">量化信号</h2>
         <div class="grid-3">
-            <div class="signal-card">
+            <div class="signal-card"><span class="sweep"></span>
                 <div class="signal-title">🥇 黄金信号</div>
                 <div id="goldGauge" style="width:100%;height:200px;"></div>
                 <div id="goldSignalDesc" style="color:var(--text-muted);font-size:12px;margin-top:8px;">--</div>
             </div>
-            <div class="signal-card">
+            <div class="signal-card"><span class="sweep"></span>
                 <div class="signal-title">🇺🇸 美股信号 (QQQ)</div>
                 <div id="usGauge" style="width:100%;height:200px;"></div>
                 <div id="usSignalDesc" style="color:var(--text-muted);font-size:12px;margin-top:8px;">--</div>
             </div>
-            <div class="signal-card">
+            <div class="signal-card"><span class="sweep"></span>
                 <div class="signal-title">📊 VIX 恐慌指数</div>
                 <div style="margin-top:40px;">
                     <div class="vix-indicator">
@@ -292,7 +433,7 @@
                 </div>
             </div>
         </div>
-        <div class="card" style="margin-top:20px;">
+        <div class="card" style="margin-top:20px;"><span class="sweep"></span>
             <div style="font-size:13px;color:var(--text-secondary);margin-bottom:12px;font-weight:500;">📐 信号维度明细</div>
             <div class="grid-3" id="signalDetailGrid"></div>
         </div>
@@ -311,12 +452,22 @@
     <section class="section">
         <h2 class="section-title">AI 操作建议</h2>
         <div class="grid-2">
-            <div class="advice-card">
+            <div class="advice-card"><span class="sweep"></span>
+                <svg class="taiji" viewBox="0 0 100 100" aria-hidden="true">
+                    <circle cx="50" cy="50" r="48" fill="none" stroke="#c9a227" stroke-width="1"/>
+                    <path d="M50 2 a24 24 0 0 1 0 48 a24 24 0 0 0 0 48 a48 48 0 0 1 0-96" fill="#c9a227"/>
+                    <circle cx="50" cy="26" r="6" fill="#13100c"/><circle cx="50" cy="74" r="6" fill="#c9a227"/>
+                </svg>
                 <div class="advice-action" id="adviceAction">--</div>
                 <div class="advice-reason" id="adviceReason">--</div>
                 <div class="advice-meta" id="adviceMeta">--</div>
             </div>
-            <div class="advice-card">
+            <div class="advice-card"><span class="sweep"></span>
+                <svg class="taiji" viewBox="0 0 100 100" aria-hidden="true">
+                    <circle cx="50" cy="50" r="48" fill="none" stroke="#c9a227" stroke-width="1"/>
+                    <path d="M50 2 a24 24 0 0 1 0 48 a24 24 0 0 0 0 48 a48 48 0 0 1 0-96" fill="#c9a227"/>
+                    <circle cx="50" cy="26" r="6" fill="#13100c"/><circle cx="50" cy="74" r="6" fill="#c9a227"/>
+                </svg>
                 <div class="advice-action">⚡ 再平衡操作清单</div>
                 <div class="advice-reason" id="rebalanceList">--</div>
                 <div class="advice-meta" id="rebalanceMeta">--</div>
@@ -326,8 +477,8 @@
 
 </main>
 
-<footer style="text-align:center;padding:40px 0;color:var(--text-muted);font-size:12px;border-top:1px solid var(--border-color);">
-    玄枢Alpha &copy; 2026 · AI-Powered Investment Intelligence · Data for reference only
+<footer style="text-align:center;padding:40px 0;color:var(--paper-faint);font-size:11.5px;letter-spacing:1.2px;border-top:1px solid var(--line);position:relative;z-index:1;">
+    玄枢 Alpha · 北斗为枢，财富有度 &nbsp;<span style="color:var(--gold-soft);">|</span>&nbsp; AI-Powered Investment Intelligence · Data for reference only
 </footer>
 
 <script>
@@ -403,18 +554,18 @@ function renderPieChart() {
     const chart = echarts.init(document.getElementById('pieChart'));
     const catMap = {};
     portfolioData.holdings.forEach(h => { catMap[h.category] = (catMap[h.category]||0) + h.amount; });
-    const colorMap = {'黄金':'#f0b90b','AI/科技':'#58a6ff','光伏/新能源':'#3fb950','有色金属':'#bc8cff','高端制造':'#f85149','货币基金':'#8b949e'};
+    const colorMap = {'黄金':'#c9a227','AI/科技':'#7fb8d9','光伏/新能源':'#2ecc8f','有色金属':'#b8932f','高端制造':'#b89dd9','货币基金':'#7d7565'};
     const data = Object.entries(catMap).map(([n,v])=>({name:n,value:+v.toFixed(2)}));
     chart.setOption({
-        title:{text:'持仓分布',left:'center',top:10,textStyle:{color:'#e6edf3',fontSize:14,fontWeight:500}},
-        tooltip:{trigger:'item',formatter:'{b}: ¥{c} ({d}%)',backgroundColor:'#1c2128',borderColor:'#30363d',textStyle:{color:'#e6edf3'}},
+        title:{text:'持仓分布',left:'center',top:10,textStyle:{color:'#e8e0cf',fontSize:14,fontWeight:600}},
+        tooltip:{trigger:'item',formatter:'{b}: ¥{c} ({d}%)',backgroundColor:'#1a1510',borderColor:'rgba(201,162,39,.3)',textStyle:{color:'#e8e0cf'}},
         series:[{
             type:'pie',radius:['45%','72%'],center:['50%','55%'],
             avoidLabelOverlap:true,
-            itemStyle:{borderRadius:6,borderColor:'#0d1117',borderWidth:3},
-            label:{show:true,color:'#8b949e',fontSize:12,formatter:'{b}\n{d}%'},
-            labelLine:{lineStyle:{color:'#30363d'}},
-            data: data.map(d=>({...d,itemStyle:{color:colorMap[d.name]||'#8b949e'}}))
+            itemStyle:{borderRadius:6,borderColor:'#13100c',borderWidth:3},
+            label:{show:true,color:'#b8ad97',fontSize:12,formatter:'{b}\n{d}%'},
+            labelLine:{lineStyle:{color:'rgba(201,162,39,.3)'}},
+            data: data.map(d=>({...d,itemStyle:{color:colorMap[d.name]||'#7d7565'}}))
         }]
     });
     window.addEventListener('resize',()=>chart.resize());
@@ -431,17 +582,17 @@ function renderBarChart() {
     const actualData = allCats.map(c => +(catMap[c]||0).toFixed(1));
 
     chart.setOption({
-        title:{text:'目标 vs 实际配置',left:'center',top:10,textStyle:{color:'#e6edf3',fontSize:14,fontWeight:500}},
-        tooltip:{trigger:'axis',backgroundColor:'#1c2128',borderColor:'#30363d',textStyle:{color:'#e6edf3'},
+        title:{text:'目标 vs 实际配置',left:'center',top:10,textStyle:{color:'#e8e0cf',fontSize:14,fontWeight:600}},
+        tooltip:{trigger:'axis',backgroundColor:'#1a1510',borderColor:'rgba(201,162,39,.3)',textStyle:{color:'#e8e0cf'},
             formatter:function(p){return p[0].name+'<br/>'+p.map(i=>i.marker+i.seriesName+': '+i.value+'%').join('<br/>');}
         },
-        legend:{bottom:0,textStyle:{color:'#8b949e'},data:['目标','实际']},
+        legend:{bottom:0,textStyle:{color:'#b8ad97'},data:['目标','实际']},
         grid:{left:50,right:20,top:50,bottom:40},
-        xAxis:{type:'category',data:allCats,axisLabel:{color:'#8b949e',fontSize:11,rotate:15},axisLine:{lineStyle:{color:'#30363d'}}},
-        yAxis:{type:'value',axisLabel:{color:'#8b949e',formatter:'{value}%'},splitLine:{lineStyle:{color:'#21262d'}},axisLine:{lineStyle:{color:'#30363d'}}},
+        xAxis:{type:'category',data:allCats,axisLabel:{color:'#b8ad97',fontSize:11,rotate:15},axisLine:{lineStyle:{color:'rgba(201,162,39,.3)'}}},
+        yAxis:{type:'value',axisLabel:{color:'#b8ad97',formatter:'{value}%'},splitLine:{lineStyle:{color:'rgba(201,162,39,.1)'}},axisLine:{lineStyle:{color:'rgba(201,162,39,.3)'}}},
         series:[
-            {name:'目标',type:'bar',barWidth:'30%',itemStyle:{color:'#f0b90b',borderRadius:[4,4,0,0]},data:targetData},
-            {name:'实际',type:'bar',barWidth:'30%',itemStyle:{color:'#58a6ff',borderRadius:[4,4,0,0]},data:actualData}
+            {name:'目标',type:'bar',barWidth:'30%',itemStyle:{color:'#c9a227',borderRadius:[4,4,0,0]},data:targetData},
+            {name:'实际',type:'bar',barWidth:'30%',itemStyle:{color:'#2ecc8f',borderRadius:[4,4,0,0]},data:actualData}
         ]
     });
     window.addEventListener('resize',()=>chart.resize());
@@ -507,7 +658,7 @@ function drawSparkline(canvas, isPositive, navs) {
         // 无净值数据：画一条接近水平的平直线
         points.push([pad, h/2], [w-pad, h/2]);
     }
-    const color = isPositive ? '#3fb950' : '#f85149';
+    const color = isPositive ? '#2ecc8f' : '#e5564f';
     // 渐变填充
     const grad = ctx.createLinearGradient(0,0,0,h);
     grad.addColorStop(0, color + '40');
@@ -635,15 +786,15 @@ function gaugeOption(value, name) {
             startAngle:200,endAngle:-20,
             min:0,max:100,
             splitNumber:10,
-            itemStyle:{color: value>=70?'#3fb950':value>=40?'#f0b90b':'#f85149'},
+            itemStyle:{color: value>=70?'#2ecc8f':value>=40?'#c9a227':'#e5564f'},
             progress:{show:true,width:12},
-            pointer:{show:true,length:'60%',width:4,itemStyle:{color:'#e6edf3'}},
-            axisLine:{lineStyle:{width:12,color:[[0.3,'#f85149'],[0.7,'#f0b90b'],[1,'#3fb950']]}},
+            pointer:{show:true,length:'60%',width:4,itemStyle:{color:'#e8e0cf'}},
+            axisLine:{lineStyle:{width:12,color:[[0.3,'#e5564f'],[0.7,'#c9a227'],[1,'#2ecc8f']]}},
             axisTick:{show:false},
-            splitLine:{length:8,lineStyle:{width:2,color:'#30363d'}},
-            axisLabel:{distance:16,color:'#484f58',fontSize:10},
+            splitLine:{length:8,lineStyle:{width:2,color:'rgba(201,162,39,.3)'}},
+            axisLabel:{distance:16,color:'#7d7565',fontSize:10},
             title:{show:false},
-            detail:{valueAnimation:true,fontSize:28,fontWeight:700,color:'#e6edf3',offsetCenter:[0,'40%'],formatter:'{value}'},
+            detail:{valueAnimation:true,fontSize:28,fontWeight:700,color:'#e8e0cf',offsetCenter:[0,'40%'],formatter:'{value}'},
             data:[{value:value}]
         }]
     };
