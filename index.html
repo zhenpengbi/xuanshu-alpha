@@ -10,10 +10,10 @@
         /* ========== CSS Variables & Reset (新中式 × 金融终端) ========== */
         :root {
             --ink-0:#13100c; --ink-1:#1a1510; --ink-2:#221b14; --ink-3:#2c241a;
-            --jade:#1fb874; --jade-deep:#1a7a4c; --jade-soft:#2ecc8f;
+            --jade:#1fb874; --jade-deep:#1a7a4c; --jade-soft:#00e09a;
             --gold:#c9a227; --gold-bright:#e6c252; --gold-soft:#b8932f; --gold-dark:#9c7a1e;
             --paper:#ece4d3; --paper-dim:#b8ad97; --paper-faint:#857d6c;
-            --red:#e5564f; --line:rgba(180,160,120,.12);
+            --red:#ff4f4f; --line:rgba(180,160,120,.13);
             --mono:'SFMono-Regular',ui-monospace,'Cascadia Code','JetBrains Mono',Menlo,Consolas,monospace;
             --sans:'PingFang SC','Microsoft YaHei','Noto Sans SC',sans-serif;
             /* 语义别名（兼容旧 class，全部映射到新中式色板） */
@@ -75,9 +75,9 @@
             font-family: var(--mono);
         }
         .container { max-width: 1400px; margin: 0 auto; padding: 0 40px; position: relative; z-index: 1; }
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; }
-        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
 
         /* ========== Header ========== */
         .header {
@@ -87,11 +87,17 @@
         }
         .header-inner {
             display: flex; justify-content: space-between; align-items: center; gap: 30px;
-            padding: 22px 30px; border-radius: 10px;
-            background: linear-gradient(135deg, rgba(34,27,20,.92), rgba(26,21,16,.85));
-            border: 1px solid var(--line);
-            box-shadow: 0 18px 50px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.03);
+            padding: 20px 32px; border-radius: 10px;
+            background: linear-gradient(135deg, rgba(36,28,19,.96), rgba(22,17,11,.92));
+            border: 1px solid rgba(201,162,39,.16);
+            box-shadow: 0 20px 60px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.035), 0 1px 0 rgba(201,162,39,.15);
             position: relative; overflow: hidden;
+        }
+        /* 顶部金色装饰线 */
+        .header-inner::after {
+            content:""; position:absolute; top:0; left:5%; right:5%; height:1px;
+            background: linear-gradient(90deg, transparent, rgba(201,162,39,.5), rgba(232,199,90,.7), rgba(201,162,39,.5), transparent);
+            pointer-events:none;
         }
         .header-inner::before {
             content:""; position:absolute; left:-40px; top:-60px; width:240px; height:240px;
@@ -110,76 +116,93 @@
         @keyframes livePulse { 0%{box-shadow:0 0 0 0 rgba(31,184,116,.7)} 70%{box-shadow:0 0 0 8px rgba(31,184,116,0)} 100%{box-shadow:0 0 0 0 rgba(31,184,116,0)} }
         .header-stats { display: flex; align-items: center; gap: 28px; text-align: right; }
         .header-stat { text-align: right; }
-        .header-stat-label { font-size: 11px; color: var(--paper-faint); letter-spacing: 2px; margin-bottom: 5px; }
-        .header-stat-value { font-size: 22px; font-weight: 600; color: var(--paper); font-family: var(--mono); }
+        .header-stat-label { font-size: 10.5px; color: var(--paper-faint); letter-spacing: 2.5px; margin-bottom: 6px; text-transform: uppercase; }
+        .header-stat-value { font-size: 30px; font-weight: 700; color: var(--paper); font-family: var(--mono); letter-spacing: -0.5px; }
+        .header-stat-value.positive { color: var(--jade-soft); text-shadow: 0 0 18px rgba(0,224,154,.35); }
+        .header-stat-value.negative { color: var(--red); text-shadow: 0 0 18px rgba(255,79,79,.35); }
         .positive { color: var(--jade-soft); }
         .negative { color: var(--red); }
-        .update-time { font-size: 13px; color: var(--paper-dim); font-family: var(--mono); }
+        .update-time { font-size: 12px; color: var(--paper-faint); font-family: var(--mono); letter-spacing: .5px; }
 
         /* ========== Section ========== */
-        .section { padding: 26px 0; }
+        .section { padding: 30px 0; }
         .section-title {
-            font-family: var(--sans); font-size: 19px; font-weight: 600; letter-spacing: 2px; color: var(--paper);
-            margin-bottom: 18px; display: flex; align-items: center; gap: 14px;
+            font-family: var(--sans); font-size: 15px; font-weight: 600; letter-spacing: 3px; color: var(--paper-dim);
+            margin-bottom: 20px; display: flex; align-items: center; gap: 14px;
+            text-transform: uppercase;
         }
         .section-title::before {
-            content: ''; width: 5px; height: 5px; border-radius: 50%;
-            background: var(--gold-dark); box-shadow: 0 0 5px rgba(156,122,30,.45);
-            flex: none;
+            content: ''; width: 3px; height: 16px; border-radius: 2px;
+            background: linear-gradient(180deg, var(--gold-bright), var(--gold-dark));
+            box-shadow: 0 0 8px rgba(201,162,39,.5); flex: none;
         }
         .section-title::after {
             content: ''; flex: 1; height: 1px; margin-left: 4px;
-            background: linear-gradient(90deg, var(--line), transparent);
+            background: linear-gradient(90deg, rgba(201,162,39,.2), transparent);
         }
 
         /* ========== Cards ========== */
         .card {
-            background: linear-gradient(150deg, rgba(40,32,23,.7), rgba(26,21,16,.55));
-            border: 1px solid var(--line); border-radius: var(--radius); padding: 22px;
+            background: linear-gradient(150deg, rgba(44,35,24,.75), rgba(24,19,13,.6));
+            border: 1px solid var(--line); border-radius: var(--radius); padding: 24px;
             position: relative; overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.025);
-            transition: border-color .3s, box-shadow .3s;
+            box-shadow: 0 12px 36px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.03), inset 0 -1px 0 rgba(0,0,0,.18);
+            transition: border-color .3s, box-shadow .3s, transform .2s;
         }
         .card::after {
-            content:""; position:absolute; inset:0; pointer-events:none; opacity:.4;
-            background-image: radial-gradient(rgba(180,170,150,.035) 0.5px, transparent 0.6px);
+            content:""; position:absolute; inset:0; pointer-events:none; opacity:.35;
+            background-image: radial-gradient(rgba(180,170,150,.04) 0.5px, transparent 0.6px);
             background-size: 5px 5px; mix-blend-mode: overlay;
         }
         /* hover 扫光 + 发光金边 */
         .card .sweep, .signal-card .sweep, .metric-card .sweep, .advice-card .sweep {
             position:absolute; top:0; left:-60%; width:50%; height:100%; z-index:2;
-            background: linear-gradient(105deg, transparent, rgba(200,190,165,.06), transparent);
-            transform: skewX(-18deg); transition: left .7s ease; pointer-events:none;
+            background: linear-gradient(105deg, transparent, rgba(220,200,155,.07), transparent);
+            transform: skewX(-18deg); transition: left .65s ease; pointer-events:none;
         }
         .card:hover .sweep, .signal-card:hover .sweep, .metric-card:hover .sweep, .advice-card:hover .sweep { left:130%; }
-        .card:hover { border-color: rgba(156,122,30,.32); box-shadow: 0 10px 30px rgba(0,0,0,.35), 0 0 18px rgba(156,122,30,.08); }
+        .card:hover { border-color: rgba(201,162,39,.38); box-shadow: 0 14px 40px rgba(0,0,0,.5), 0 0 24px rgba(156,122,30,.1); transform: translateY(-1px); }
         .metric-card {
-            background: linear-gradient(150deg, rgba(40,32,23,.7), rgba(26,21,16,.55));
-            border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 22px;
+            background: linear-gradient(150deg, rgba(44,35,24,.75), rgba(24,19,13,.6));
+            border: 1px solid var(--line); border-radius: var(--radius); padding: 24px 26px;
             text-align: left; position: relative; overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.025);
-            transition: border-color .3s, box-shadow .3s;
+            box-shadow: 0 12px 36px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.03), inset 0 -1px 0 rgba(0,0,0,.2);
+            transition: border-color .3s, box-shadow .3s, transform .2s;
+        }
+        /* 左侧金色装饰条 */
+        .metric-card::before {
+            content:""; position:absolute; left:0; top:20%; height:60%; width:3px;
+            background: linear-gradient(180deg, transparent, rgba(201,162,39,.6), transparent);
+            border-radius:0 2px 2px 0;
         }
         .metric-card::after {
-            content:""; position:absolute; inset:0; pointer-events:none; opacity:.4;
-            background-image: radial-gradient(rgba(180,170,150,.035) 0.5px, transparent 0.6px);
+            content:""; position:absolute; inset:0; pointer-events:none; opacity:.35;
+            background-image: radial-gradient(rgba(180,170,150,.04) 0.5px, transparent 0.6px);
             background-size: 5px 5px; mix-blend-mode: overlay;
         }
-        .metric-card:hover { border-color: rgba(156,122,30,.32); box-shadow: 0 10px 30px rgba(0,0,0,.35), 0 0 18px rgba(156,122,30,.08); }
-        .metric-card .label { font-size: 12px; color: var(--paper-faint); letter-spacing: 2px; margin-bottom: 12px; }
-        .metric-card .value { font-size: 26px; font-weight: 600; font-family: var(--mono); color: var(--paper); }
-        .metric-card .sub { font-size: 12.5px; color: var(--paper-faint); margin-top: 8px; font-family: var(--mono); }
+        .metric-card:hover { border-color: rgba(201,162,39,.38); box-shadow: 0 14px 40px rgba(0,0,0,.5), 0 0 22px rgba(156,122,30,.1); transform: translateY(-1px); }
+        .metric-card .label { font-size: 10.5px; color: var(--paper-faint); letter-spacing: 2.5px; margin-bottom: 14px; text-transform: uppercase; }
+        .metric-card .value { font-size: 36px; font-weight: 700; font-family: var(--mono); color: var(--paper); letter-spacing: -1px; line-height: 1.1; }
+        .metric-card .sub { font-size: 12px; color: var(--paper-faint); margin-top: 10px; font-family: var(--mono); letter-spacing: .5px; }
 
         /* ========== Table ========== */
         .holdings-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+        .holdings-table thead { position: sticky; top: 64px; z-index: 10; }
         .holdings-table th {
-            text-align: left; padding: 15px 16px; font-size: 11px; color: var(--paper-faint);
-            letter-spacing: 1.5px; border-bottom: 1px solid var(--line); font-weight: 500;
-            background: rgba(31,184,116,.06);
+            text-align: left; padding: 16px 18px; font-size: 10.5px; color: var(--paper-dim);
+            letter-spacing: 2px; border-bottom: 1px solid rgba(201,162,39,.18); font-weight: 600;
+            background: rgba(30,23,15,.95); text-transform: uppercase;
+            backdrop-filter: blur(8px);
         }
-        .holdings-table td { padding: 14px 16px; border-bottom: 1px solid rgba(180,170,150,.06); font-size: 13.5px; vertical-align: middle; }
-        .holdings-table tbody tr { transition: background .25s; }
-        .holdings-table tr:hover { background: rgba(180,170,150,.04); }
+        .holdings-table th:first-child { border-left: 3px solid rgba(201,162,39,.3); padding-left: 20px; }
+        .holdings-table td { padding: 15px 18px; border-bottom: 1px solid rgba(180,170,150,.07); font-size: 13.5px; vertical-align: middle; }
+        .holdings-table td:first-child { padding-left: 20px; border-left: 3px solid transparent; transition: border-color .25s; }
+        .holdings-table tbody tr { transition: background .2s; }
+        .holdings-table tbody tr:hover td:first-child { border-left-color: rgba(201,162,39,.4); }
+        .holdings-table tr:hover { background: rgba(201,162,39,.04); }
+        /* 涨跌列加背景色块强化对比 */
+        .holdings-table td.positive { color: var(--jade-soft); font-weight: 600; }
+        .holdings-table td.negative { color: var(--red); font-weight: 600; }
         .fund-name { font-weight: 500; color: var(--paper); }
         .fund-code { color: var(--paper-faint); font-size: 11px; font-family: var(--mono); }
         .tag {
@@ -195,19 +218,19 @@
 
         /* ========== Signal ========== */
         .signal-card {
-            background: linear-gradient(150deg, rgba(40,32,23,.7), rgba(26,21,16,.55));
-            border: 1px solid var(--line); border-radius: var(--radius); padding: 22px 24px; text-align: center;
+            background: linear-gradient(150deg, rgba(44,35,24,.75), rgba(24,19,13,.6));
+            border: 1px solid var(--line); border-radius: var(--radius); padding: 24px 26px; text-align: center;
             position: relative; overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.025);
-            transition: border-color .3s, box-shadow .3s;
+            box-shadow: 0 12px 36px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.03);
+            transition: border-color .3s, box-shadow .3s, transform .2s;
         }
         .signal-card::after {
-            content:""; position:absolute; inset:0; pointer-events:none; opacity:.4;
-            background-image: radial-gradient(rgba(180,170,150,.035) 0.5px, transparent 0.6px);
+            content:""; position:absolute; inset:0; pointer-events:none; opacity:.35;
+            background-image: radial-gradient(rgba(180,170,150,.04) 0.5px, transparent 0.6px);
             background-size: 5px 5px; mix-blend-mode: overlay;
         }
-        .signal-card:hover { border-color: rgba(156,122,30,.32); box-shadow: 0 10px 30px rgba(0,0,0,.35), 0 0 18px rgba(156,122,30,.08); }
-        .signal-card .signal-title { font-size: 15px; color: var(--paper); margin-bottom: 12px; font-weight: 600; letter-spacing: 1.5px; }
+        .signal-card:hover { border-color: rgba(201,162,39,.38); box-shadow: 0 14px 40px rgba(0,0,0,.5), 0 0 24px rgba(156,122,30,.1); transform: translateY(-1px); }
+        .signal-card .signal-title { font-size: 13px; color: var(--paper-dim); margin-bottom: 12px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; }
         .vix-indicator { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 16px; }
         .vix-dot { width: 16px; height: 16px; border-radius: 50%; animation: vixPulse 2s infinite; }
         @keyframes vixPulse { 0%,100%{opacity:1;} 50%{opacity:0.5;} }
@@ -254,11 +277,12 @@
         .advice-card:hover { border-color: rgba(156,122,30,.32); box-shadow: 0 16px 44px rgba(0,0,0,.4), 0 0 18px rgba(156,122,30,.08); }
         .advice-card .taiji { position:absolute; right:-30px; bottom:-40px; width:200px; height:200px; opacity:.07; pointer-events:none; }
         .advice-action {
-            font-family: var(--sans); font-size: 19px; font-weight: 600; letter-spacing: 1.5px;
-            color: #cbb472; margin-bottom: 12px; position: relative;
+            font-family: var(--sans); font-size: 22px; font-weight: 700; letter-spacing: 1px;
+            color: #dbc47e; margin-bottom: 14px; position: relative;
+            text-shadow: 0 0 20px rgba(219,196,126,.2);
         }
-        .advice-reason { color: var(--paper-dim); font-size: 13px; line-height: 1.9; position: relative; }
-        .advice-meta { margin-top: 16px; font-size: 11px; color: var(--paper-faint); font-family: var(--mono); position: relative; }
+        .advice-reason { color: var(--paper-dim); font-size: 13.5px; line-height: 2; position: relative; }
+        .advice-meta { margin-top: 18px; font-size: 11px; color: var(--paper-faint); font-family: var(--mono); position: relative; letter-spacing: .5px; border-top: 1px solid var(--line); padding-top: 12px; }
 
         /* ========== Sparkline Canvas ========== */
         .sparkline-canvas { width: 80px; height: 28px; }
@@ -421,7 +445,7 @@
                 <div style="margin-top:40px;">
                     <div class="vix-indicator">
                         <div class="vix-dot" id="vixDot" style="background:var(--green);box-shadow:0 0 12px var(--green);"></div>
-                        <span class="num" id="vixValue" style="font-size:32px;font-weight:700;">--</span>
+                        <span class="num" id="vixValue" style="font-size:44px;font-weight:700;letter-spacing:-1px;line-height:1;">--</span>
                     </div>
                     <div id="vixDesc" style="color:var(--text-muted);font-size:12px;margin-top:16px;">--</div>
                     <div style="margin-top:12px;font-size:11px;color:var(--text-muted);">
