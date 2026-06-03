@@ -61,12 +61,12 @@
   .brand{display:flex;align-items:center;gap:18px;position:relative;}
   .brand .mark{width:62px;height:62px;flex:none;}
   .brand h1{
-    font-family:var(--serif);font-size:34px;font-weight:700;letter-spacing:3px;
+    font-family:var(--sans);font-size:32px;font-weight:700;letter-spacing:2px;
     background:linear-gradient(180deg,#f3dd92 0%,#c9a227 55%,#9c7a1e 100%);
     -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
     text-shadow:0 2px 14px rgba(201,162,39,.18);line-height:1;
   }
-  .brand .sub{margin-top:7px;font-size:12.5px;color:var(--paper-faint);letter-spacing:2px;font-family:var(--serif);}
+  .brand .sub{margin-top:7px;font-size:12.5px;color:var(--paper-faint);letter-spacing:1.5px;font-family:var(--sans);}
   .hdr-stats{display:flex;align-items:stretch;gap:28px;text-align:right;}
   .hdr-stats .blk{display:flex;flex-direction:column;justify-content:center;}
   .hdr-stats .lab{font-size:11px;color:var(--paper-faint);letter-spacing:2px;margin-bottom:5px;}
@@ -76,7 +76,7 @@
   .hdr-stats .div{width:1px;background:linear-gradient(180deg,transparent,var(--line),transparent);}
 
   .sec-title{display:flex;align-items:center;gap:14px;margin:40px 4px 18px;}
-  .sec-title .cn{font-family:var(--serif);font-size:20px;letter-spacing:3px;color:var(--paper);}
+  .sec-title .cn{font-family:var(--sans);font-size:19px;font-weight:600;letter-spacing:2px;color:var(--paper);}
   .sec-title .en{font-size:11px;letter-spacing:3px;color:var(--paper-faint);text-transform:uppercase;}
   .sec-title .ln{flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent);}
   .sec-title .dot{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 10px var(--gold);}
@@ -99,7 +99,7 @@
   .metric .s .up{color:var(--jade-soft);} .metric .s .dn{color:var(--red);}
   .metric .corner{position:absolute;top:14px;right:16px;width:26px;height:26px;opacity:.35;}
 
-  .alloc h4{font-family:var(--serif);font-size:14px;letter-spacing:2px;color:var(--paper-dim);margin-bottom:14px;}
+  .alloc h4{font-family:var(--sans);font-weight:600;font-size:14px;letter-spacing:1.5px;color:var(--paper-dim);margin-bottom:14px;}
   .alloc-flex{display:flex;align-items:center;gap:22px;}
   .ring{width:128px;height:128px;flex:none;position:relative;}
   .ring .pct{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
@@ -143,7 +143,7 @@
   .sig-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
   .sig{padding:22px 24px;}
   .sig .top{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;}
-  .sig .nm{font-family:var(--serif);font-size:16px;letter-spacing:2px;color:var(--paper);}
+  .sig .nm{font-family:var(--sans);font-weight:600;font-size:15px;letter-spacing:1.5px;color:var(--paper);}
   .sig .ic{width:34px;height:34px;opacity:.85;}
   .sig .big{font-family:var(--mono);font-size:30px;font-weight:600;}
   .sig .meta{margin-top:10px;font-size:12px;color:var(--paper-faint);line-height:1.7;}
@@ -163,23 +163,23 @@
   .advice .taiji{position:absolute;right:-30px;bottom:-40px;width:220px;height:220px;opacity:.07;}
   .advice .head{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
   .advice .head .badge{font-size:11px;letter-spacing:2px;color:var(--ink-0);background:linear-gradient(135deg,var(--gold-bright),var(--gold-soft));padding:4px 12px;border-radius:14px;font-weight:600;}
-  .advice .head h3{font-family:var(--serif);font-size:20px;letter-spacing:2px;color:var(--paper);}
+  .advice .head h3{font-family:var(--sans);font-weight:600;font-size:19px;letter-spacing:1.5px;color:var(--paper);}
   .stance{font-family:var(--mono);font-size:13px;line-height:2;color:var(--paper-dim);position:relative;}
   .stance b.jade{color:var(--jade-soft);} .stance b.gold{color:var(--gold-bright);}
   .verdict{
     display:inline-flex;align-items:center;gap:10px;margin:6px 0 16px;padding:10px 18px;border-radius:12px;
     background:rgba(15,157,88,.1);border:1px solid rgba(15,157,88,.3);
-    font-family:var(--serif);font-size:18px;letter-spacing:3px;color:var(--jade-soft);
+    font-family:var(--sans);font-weight:600;font-size:16px;letter-spacing:1.5px;color:var(--jade-soft);
   }
   .verdict .gd{width:8px;height:8px;border-radius:50%;background:var(--jade-soft);box-shadow:0 0 12px var(--jade);}
-  .rebal h4{font-family:var(--serif);font-size:14px;letter-spacing:2px;color:var(--paper-dim);margin-bottom:14px;}
+  .rebal h4{font-family:var(--sans);font-weight:600;font-size:14px;letter-spacing:1.5px;color:var(--paper-dim);margin-bottom:14px;}
   .rebal ol{list-style:none;display:flex;flex-direction:column;gap:12px;}
   .rebal li{
     display:flex;gap:14px;align-items:flex-start;padding:13px 16px;border-radius:12px;position:relative;
     background:rgba(0,0,0,.18);border:1px solid var(--line);
   }
   .rebal li .no{
-    font-family:var(--serif);font-size:13px;width:26px;height:26px;flex:none;border-radius:50%;
+    font-family:var(--sans);font-weight:700;font-size:12px;width:26px;height:26px;flex:none;border-radius:50%;
     display:flex;align-items:center;justify-content:center;
     background:linear-gradient(135deg,var(--gold-bright),var(--gold-soft));color:var(--ink-0);font-weight:700;
   }
@@ -190,7 +190,7 @@
   .act.add{background:rgba(15,157,88,.16);color:var(--jade-soft);}
   .act.hold{background:rgba(201,162,39,.16);color:var(--gold-bright);}
 
-  footer{margin-top:42px;text-align:center;font-size:11.5px;color:var(--paper-faint);letter-spacing:1.5px;font-family:var(--serif);}
+  footer{margin-top:42px;text-align:center;font-size:11.5px;color:var(--paper-faint);letter-spacing:1.2px;font-family:var(--sans);}
   footer .sp{color:var(--gold-soft);}
   @media (max-width:1100px){
     .ov-grid{grid-template-columns:repeat(2,1fr);}
@@ -442,9 +442,9 @@
     <div class="rebal">
       <h4>再平衡操作清单</h4>
       <ol>
-        <li><span class="no">壹</span><div class="tx"><span class="act reduce">减仓</span><b>黄金 ETF（002963/159934）</b>合计降至约 45%，释放约 3,500 元，降低单一资产集中度风险。</div></li>
-        <li><span class="no">贰</span><div class="tx"><span class="act hold">兑现</span><b>天弘人工智能（001631）</b>收益率达 +42.29%，建议部分止盈约 30%，锁定浮盈、回收弹药。</div></li>
-        <li><span class="no">叁</span><div class="tx"><span class="act add">加仓</span>将释放资金分批补入<b>光伏（013301）</b>与<b>机器人（014880）</b>等景气成长线，优化进攻端配置。</div></li>
+        <li><span class="no">1</span><div class="tx"><span class="act reduce">减仓</span><b>黄金 ETF（002963/159934）</b>合计降至约 45%，释放约 3,500 元，降低单一资产集中度风险。</div></li>
+        <li><span class="no">2</span><div class="tx"><span class="act hold">兑现</span><b>天弘人工智能（001631）</b>收益率达 +42.29%，建议部分止盈约 30%，锁定浮盈、回收弹药。</div></li>
+        <li><span class="no">3</span><div class="tx"><span class="act add">加仓</span>将释放资金分批补入<b>光伏（013301）</b>与<b>机器人（014880）</b>等景气成长线，优化进攻端配置。</div></li>
       </ol>
     </div>
   </div>
