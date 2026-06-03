@@ -554,17 +554,17 @@ function renderPieChart() {
     const chart = echarts.init(document.getElementById('pieChart'));
     const catMap = {};
     portfolioData.holdings.forEach(h => { catMap[h.category] = (catMap[h.category]||0) + h.amount; });
-    const colorMap = {'黄金':'#c9a227','AI/科技':'#7fb8d9','光伏/新能源':'#2ecc8f','有色金属':'#b8932f','高端制造':'#b89dd9','货币基金':'#7d7565'};
+    const colorMap = {'黄金':'#c9a227','AI/科技':'#5a93b0','光伏/新能源':'#3a9d7a','有色金属':'#a8851f','高端制造':'#8c7aa8','货币基金':'#6e665a'};
     const data = Object.entries(catMap).map(([n,v])=>({name:n,value:+v.toFixed(2)}));
     chart.setOption({
         title:{text:'持仓分布',left:'center',top:10,textStyle:{color:'#e8e0cf',fontSize:14,fontWeight:600}},
-        tooltip:{trigger:'item',formatter:'{b}: ¥{c} ({d}%)',backgroundColor:'#1a1510',borderColor:'rgba(201,162,39,.3)',textStyle:{color:'#e8e0cf'}},
+        tooltip:{trigger:'item',formatter:'{b}: ¥{c} ({d}%)',backgroundColor:'#1a1510',borderColor:'rgba(201,162,39,.22)',textStyle:{color:'#e8e0cf'}},
         series:[{
             type:'pie',radius:['45%','72%'],center:['50%','55%'],
             avoidLabelOverlap:true,
             itemStyle:{borderRadius:6,borderColor:'#13100c',borderWidth:3},
-            label:{show:true,color:'#b8ad97',fontSize:12,formatter:'{b}\n{d}%'},
-            labelLine:{lineStyle:{color:'rgba(201,162,39,.3)'}},
+            label:{show:true,color:'rgba(184,173,151,.7)',fontSize:12,formatter:'{b}\n{d}%'},
+            labelLine:{lineStyle:{color:'rgba(201,162,39,.2)'}},
             data: data.map(d=>({...d,itemStyle:{color:colorMap[d.name]||'#7d7565'}}))
         }]
     });
@@ -583,16 +583,16 @@ function renderBarChart() {
 
     chart.setOption({
         title:{text:'目标 vs 实际配置',left:'center',top:10,textStyle:{color:'#e8e0cf',fontSize:14,fontWeight:600}},
-        tooltip:{trigger:'axis',backgroundColor:'#1a1510',borderColor:'rgba(201,162,39,.3)',textStyle:{color:'#e8e0cf'},
+        tooltip:{trigger:'axis',backgroundColor:'#1a1510',borderColor:'rgba(201,162,39,.22)',textStyle:{color:'#e8e0cf'},
             formatter:function(p){return p[0].name+'<br/>'+p.map(i=>i.marker+i.seriesName+': '+i.value+'%').join('<br/>');}
         },
-        legend:{bottom:0,textStyle:{color:'#b8ad97'},data:['目标','实际']},
+        legend:{bottom:0,textStyle:{color:'rgba(184,173,151,.7)'},data:['目标','实际']},
         grid:{left:50,right:20,top:50,bottom:40},
-        xAxis:{type:'category',data:allCats,axisLabel:{color:'#b8ad97',fontSize:11,rotate:15},axisLine:{lineStyle:{color:'rgba(201,162,39,.3)'}}},
-        yAxis:{type:'value',axisLabel:{color:'#b8ad97',formatter:'{value}%'},splitLine:{lineStyle:{color:'rgba(201,162,39,.1)'}},axisLine:{lineStyle:{color:'rgba(201,162,39,.3)'}}},
+        xAxis:{type:'category',data:allCats,axisLabel:{color:'rgba(184,173,151,.45)',fontSize:11,rotate:15},axisLine:{lineStyle:{color:'rgba(255,255,255,.08)'}}},
+        yAxis:{type:'value',axisLabel:{color:'rgba(184,173,151,.45)',formatter:'{value}%'},splitLine:{lineStyle:{color:'rgba(255,255,255,.06)'}},axisLine:{lineStyle:{color:'rgba(255,255,255,.08)'}}},
         series:[
-            {name:'目标',type:'bar',barWidth:'30%',itemStyle:{color:'#c9a227',borderRadius:[4,4,0,0]},data:targetData},
-            {name:'实际',type:'bar',barWidth:'30%',itemStyle:{color:'#2ecc8f',borderRadius:[4,4,0,0]},data:actualData}
+            {name:'目标',type:'bar',barWidth:'30%',itemStyle:{color:'#b8941f',borderRadius:[4,4,0,0]},data:targetData},
+            {name:'实际',type:'bar',barWidth:'30%',itemStyle:{color:'#3a9d7a',borderRadius:[4,4,0,0]},data:actualData}
         ]
     });
     window.addEventListener('resize',()=>chart.resize());
@@ -658,7 +658,7 @@ function drawSparkline(canvas, isPositive, navs) {
         // 无净值数据：画一条接近水平的平直线
         points.push([pad, h/2], [w-pad, h/2]);
     }
-    const color = isPositive ? '#2ecc8f' : '#e5564f';
+    const color = isPositive ? '#3a9d7a' : '#c25852';
     // 渐变填充
     const grad = ctx.createLinearGradient(0,0,0,h);
     grad.addColorStop(0, color + '40');
@@ -786,13 +786,13 @@ function gaugeOption(value, name) {
             startAngle:200,endAngle:-20,
             min:0,max:100,
             splitNumber:10,
-            itemStyle:{color: value>=70?'#2ecc8f':value>=40?'#c9a227':'#e5564f'},
+            itemStyle:{color: value>=70?'#3a9d7a':value>=40?'#c9a227':'#c25852'},
             progress:{show:true,width:12},
-            pointer:{show:true,length:'60%',width:4,itemStyle:{color:'#e8e0cf'}},
-            axisLine:{lineStyle:{width:12,color:[[0.3,'#e5564f'],[0.7,'#c9a227'],[1,'#2ecc8f']]}},
+            pointer:{show:true,length:'60%',width:4,itemStyle:{color:'#d8cfbb'}},
+            axisLine:{lineStyle:{width:12,color:[[0.3,'#a8473f'],[0.7,'#b8941f'],[1,'#3a9d7a']]}},
             axisTick:{show:false},
-            splitLine:{length:8,lineStyle:{width:2,color:'rgba(201,162,39,.3)'}},
-            axisLabel:{distance:16,color:'#7d7565',fontSize:10},
+            splitLine:{length:8,lineStyle:{width:2,color:'rgba(255,255,255,.08)'}},
+            axisLabel:{distance:16,color:'rgba(125,117,90,.7)',fontSize:10},
             title:{show:false},
             detail:{valueAnimation:true,fontSize:28,fontWeight:700,color:'#e8e0cf',offsetCenter:[0,'40%'],formatter:'{value}'},
             data:[{value:value}]
