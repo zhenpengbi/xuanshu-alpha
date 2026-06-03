@@ -12,8 +12,8 @@
             --ink-0:#13100c; --ink-1:#1a1510; --ink-2:#221b14; --ink-3:#2c241a;
             --jade:#1fb874; --jade-deep:#1a7a4c; --jade-soft:#2ecc8f;
             --gold:#c9a227; --gold-bright:#e6c252; --gold-soft:#b8932f; --gold-dark:#9c7a1e;
-            --paper:#e8e0cf; --paper-dim:#b8ad97; --paper-faint:#7d7565;
-            --red:#e5564f; --line:rgba(201,162,39,.16);
+            --paper:#ece4d3; --paper-dim:#b8ad97; --paper-faint:#857d6c;
+            --red:#e5564f; --line:rgba(180,160,120,.12);
             --mono:'SFMono-Regular',ui-monospace,'Cascadia Code','JetBrains Mono',Menlo,Consolas,monospace;
             --sans:'PingFang SC','Microsoft YaHei','Noto Sans SC',sans-serif;
             /* 语义别名（兼容旧 class，全部映射到新中式色板） */
@@ -43,9 +43,9 @@
             position: relative;
             overflow-x: hidden;
             background:
-              radial-gradient(1100px 600px at 78% -8%, rgba(31,184,116,.10), transparent 60%),
-              radial-gradient(900px 520px at 12% 8%, rgba(201,162,39,.08), transparent 60%),
-              radial-gradient(1300px 900px at 50% 120%, rgba(201,162,39,.05), transparent 55%),
+              radial-gradient(1100px 600px at 78% -8%, rgba(31,184,116,.07), transparent 60%),
+              radial-gradient(900px 520px at 12% 8%, rgba(180,160,120,.04), transparent 60%),
+              radial-gradient(1300px 900px at 50% 120%, rgba(180,160,120,.025), transparent 55%),
               linear-gradient(160deg, #1a1510 0%, #13100c 45%, #16110b 100%);
             background-attachment: fixed;
         }
@@ -53,18 +53,18 @@
         body::before {
             content:""; position:fixed; inset:0; z-index:0; pointer-events:none;
             background:
-              radial-gradient(420px 320px at 20% 30%, rgba(31,184,116,.06), transparent 70%),
-              radial-gradient(520px 380px at 85% 60%, rgba(201,162,39,.05), transparent 70%),
-              radial-gradient(360px 300px at 60% 90%, rgba(255,255,255,.015), transparent 70%),
-              linear-gradient(rgba(201,162,39,.04) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(201,162,39,.04) 1px, transparent 1px);
+              radial-gradient(420px 320px at 20% 30%, rgba(31,184,116,.04), transparent 70%),
+              radial-gradient(520px 380px at 85% 60%, rgba(180,160,120,.025), transparent 70%),
+              radial-gradient(360px 300px at 60% 90%, rgba(255,255,255,.012), transparent 70%),
+              linear-gradient(rgba(150,140,110,.022) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(150,140,110,.022) 1px, transparent 1px);
             background-size: auto,auto,auto,40px 40px,40px 40px;
-            opacity:.9;
+            opacity:.8;
         }
         /* 铜钱暗纹 */
         body::after {
-            content:""; position:fixed; inset:0; z-index:0; pointer-events:none; opacity:.04;
-            background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%23c9a227' stroke-width='1'%3E%3Ccircle cx='60' cy='60' r='30'/%3E%3Crect x='48' y='48' width='24' height='24'/%3E%3C/g%3E%3C/svg%3E");
+            content:""; position:fixed; inset:0; z-index:0; pointer-events:none; opacity:.018;
+            background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%23b8ad97' stroke-width='1'%3E%3Ccircle cx='60' cy='60' r='30'/%3E%3Crect x='48' y='48' width='24' height='24'/%3E%3C/g%3E%3C/svg%3E");
             background-size:160px 160px;
         }
         /* 北斗七星背景 */
@@ -95,7 +95,7 @@
         }
         .header-inner::before {
             content:""; position:absolute; left:-40px; top:-60px; width:240px; height:240px;
-            background: radial-gradient(circle, rgba(201,162,39,.18), transparent 65%); pointer-events:none;
+            background: radial-gradient(circle, rgba(180,160,120,.08), transparent 65%); pointer-events:none;
         }
         .logo-area { display: flex; align-items: center; gap: 16px; position: relative; }
         .logo-svg { height: 40px; }
@@ -111,7 +111,7 @@
         .header-stats { display: flex; align-items: center; gap: 28px; text-align: right; }
         .header-stat { text-align: right; }
         .header-stat-label { font-size: 11px; color: var(--paper-faint); letter-spacing: 2px; margin-bottom: 5px; }
-        .header-stat-value { font-size: 22px; font-weight: 600; color: var(--gold-bright); font-family: var(--mono); }
+        .header-stat-value { font-size: 22px; font-weight: 600; color: var(--paper); font-family: var(--mono); }
         .positive { color: var(--jade-soft); }
         .negative { color: var(--red); }
         .update-time { font-size: 13px; color: var(--paper-dim); font-family: var(--mono); }
@@ -123,8 +123,8 @@
             margin-bottom: 18px; display: flex; align-items: center; gap: 14px;
         }
         .section-title::before {
-            content: ''; width: 7px; height: 7px; border-radius: 50%;
-            background: var(--gold); box-shadow: 0 0 12px var(--gold), 0 0 4px var(--gold-bright);
+            content: ''; width: 5px; height: 5px; border-radius: 50%;
+            background: var(--gold-dark); box-shadow: 0 0 5px rgba(156,122,30,.45);
             flex: none;
         }
         .section-title::after {
@@ -141,18 +141,18 @@
             transition: border-color .3s, box-shadow .3s;
         }
         .card::after {
-            content:""; position:absolute; inset:0; pointer-events:none; opacity:.5;
-            background-image: radial-gradient(rgba(201,162,39,.05) 0.5px, transparent 0.6px);
+            content:""; position:absolute; inset:0; pointer-events:none; opacity:.4;
+            background-image: radial-gradient(rgba(180,170,150,.035) 0.5px, transparent 0.6px);
             background-size: 5px 5px; mix-blend-mode: overlay;
         }
         /* hover 扫光 + 发光金边 */
         .card .sweep, .signal-card .sweep, .metric-card .sweep, .advice-card .sweep {
             position:absolute; top:0; left:-60%; width:50%; height:100%; z-index:2;
-            background: linear-gradient(105deg, transparent, rgba(201,162,39,.12), transparent);
+            background: linear-gradient(105deg, transparent, rgba(200,190,165,.06), transparent);
             transform: skewX(-18deg); transition: left .7s ease; pointer-events:none;
         }
         .card:hover .sweep, .signal-card:hover .sweep, .metric-card:hover .sweep, .advice-card:hover .sweep { left:130%; }
-        .card:hover { border-color: rgba(201,162,39,.5); box-shadow: 0 10px 30px rgba(0,0,0,.35), 0 0 22px rgba(201,162,39,.16); }
+        .card:hover { border-color: rgba(156,122,30,.32); box-shadow: 0 10px 30px rgba(0,0,0,.35), 0 0 18px rgba(156,122,30,.08); }
         .metric-card {
             background: linear-gradient(150deg, rgba(40,32,23,.7), rgba(26,21,16,.55));
             border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 22px;
@@ -161,11 +161,11 @@
             transition: border-color .3s, box-shadow .3s;
         }
         .metric-card::after {
-            content:""; position:absolute; inset:0; pointer-events:none; opacity:.5;
-            background-image: radial-gradient(rgba(201,162,39,.05) 0.5px, transparent 0.6px);
+            content:""; position:absolute; inset:0; pointer-events:none; opacity:.4;
+            background-image: radial-gradient(rgba(180,170,150,.035) 0.5px, transparent 0.6px);
             background-size: 5px 5px; mix-blend-mode: overlay;
         }
-        .metric-card:hover { border-color: rgba(201,162,39,.5); box-shadow: 0 10px 30px rgba(0,0,0,.35), 0 0 22px rgba(201,162,39,.16); }
+        .metric-card:hover { border-color: rgba(156,122,30,.32); box-shadow: 0 10px 30px rgba(0,0,0,.35), 0 0 18px rgba(156,122,30,.08); }
         .metric-card .label { font-size: 12px; color: var(--paper-faint); letter-spacing: 2px; margin-bottom: 12px; }
         .metric-card .value { font-size: 26px; font-weight: 600; font-family: var(--mono); color: var(--paper); }
         .metric-card .sub { font-size: 12.5px; color: var(--paper-faint); margin-top: 8px; font-family: var(--mono); }
@@ -177,21 +177,21 @@
             letter-spacing: 1.5px; border-bottom: 1px solid var(--line); font-weight: 500;
             background: rgba(31,184,116,.06);
         }
-        .holdings-table td { padding: 14px 16px; border-bottom: 1px solid rgba(201,162,39,.07); font-size: 13.5px; vertical-align: middle; }
+        .holdings-table td { padding: 14px 16px; border-bottom: 1px solid rgba(180,170,150,.06); font-size: 13.5px; vertical-align: middle; }
         .holdings-table tbody tr { transition: background .25s; }
-        .holdings-table tr:hover { background: rgba(201,162,39,.05); }
+        .holdings-table tr:hover { background: rgba(180,170,150,.04); }
         .fund-name { font-weight: 500; color: var(--paper); }
         .fund-code { color: var(--paper-faint); font-size: 11px; font-family: var(--mono); }
         .tag {
             display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 500;
             letter-spacing: .5px; border: 1px solid transparent;
         }
-        .tag-gold { color: var(--gold-bright); background: rgba(201,162,39,.1); border-color: rgba(201,162,39,.3); }
+        .tag-gold { color: #cbb472; background: rgba(156,122,30,.1); border-color: rgba(156,122,30,.28); }
         .tag-tech { color: #7fb8d9; background: rgba(80,150,200,.1); border-color: rgba(80,150,200,.28); }
         .tag-green { color: var(--jade-soft); background: rgba(31,184,116,.1); border-color: rgba(31,184,116,.3); }
         .tag-metal { color: #b89dd9; background: rgba(150,110,200,.1); border-color: rgba(150,110,200,.28); }
         .tag-mfg { color: #b89dd9; background: rgba(150,110,200,.1); border-color: rgba(150,110,200,.28); }
-        .tag-cash { color: var(--paper-dim); background: rgba(180,170,150,.08); border-color: rgba(180,170,150,.2); }
+        .tag-cash { color: var(--paper-dim); background: rgba(180,170,150,.07); border-color: rgba(180,170,150,.18); }
 
         /* ========== Signal ========== */
         .signal-card {
@@ -202,11 +202,11 @@
             transition: border-color .3s, box-shadow .3s;
         }
         .signal-card::after {
-            content:""; position:absolute; inset:0; pointer-events:none; opacity:.5;
-            background-image: radial-gradient(rgba(201,162,39,.05) 0.5px, transparent 0.6px);
+            content:""; position:absolute; inset:0; pointer-events:none; opacity:.4;
+            background-image: radial-gradient(rgba(180,170,150,.035) 0.5px, transparent 0.6px);
             background-size: 5px 5px; mix-blend-mode: overlay;
         }
-        .signal-card:hover { border-color: rgba(201,162,39,.5); box-shadow: 0 10px 30px rgba(0,0,0,.35), 0 0 22px rgba(201,162,39,.16); }
+        .signal-card:hover { border-color: rgba(156,122,30,.32); box-shadow: 0 10px 30px rgba(0,0,0,.35), 0 0 18px rgba(156,122,30,.08); }
         .signal-card .signal-title { font-size: 15px; color: var(--paper); margin-bottom: 12px; font-weight: 600; letter-spacing: 1.5px; }
         .vix-indicator { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 16px; }
         .vix-dot { width: 16px; height: 16px; border-radius: 50%; animation: vixPulse 2s infinite; }
@@ -216,7 +216,7 @@
         .timeline { position: relative; padding-left: 32px; }
         .timeline::before {
             content: ''; position: absolute; left: 8px; top: 0; bottom: 0;
-            width: 2px; background: linear-gradient(180deg, var(--line), rgba(201,162,39,.04));
+            width: 2px; background: linear-gradient(180deg, var(--line), rgba(180,170,150,.03));
         }
         .timeline-item {
             position: relative; margin-bottom: 18px; padding: 16px 20px;
@@ -224,11 +224,11 @@
             border: 1px solid var(--line); border-radius: var(--radius-sm);
             box-shadow: 0 8px 24px rgba(0,0,0,.3); transition: border-color .3s, box-shadow .3s;
         }
-        .timeline-item:hover { border-color: rgba(201,162,39,.4); box-shadow: 0 8px 24px rgba(0,0,0,.3), 0 0 18px rgba(201,162,39,.12); }
+        .timeline-item:hover { border-color: rgba(156,122,30,.28); box-shadow: 0 8px 24px rgba(0,0,0,.3), 0 0 14px rgba(156,122,30,.07); }
         .timeline-item::before {
             content: ''; position: absolute; left: -28px; top: 20px;
-            width: 10px; height: 10px; border-radius: 50%; background: var(--gold);
-            border: 2px solid var(--ink-0); box-shadow: 0 0 8px var(--gold);
+            width: 8px; height: 8px; border-radius: 50%; background: var(--gold-dark);
+            border: 2px solid var(--ink-0); box-shadow: 0 0 5px rgba(156,122,30,.4);
         }
         .timeline-time { font-size: 11px; color: var(--paper-faint); margin-bottom: 4px; font-family: var(--mono); }
         .timeline-title { font-size: 14px; font-weight: 500; margin-bottom: 8px; color: var(--paper); }
@@ -239,7 +239,7 @@
         .impact-tag { font-size: 11px; padding: 2px 10px; border-radius: 14px; font-weight: 500; }
         .impact-up { background: rgba(31,184,116,.16); color: var(--jade-soft); }
         .impact-down { background: rgba(229,86,79,.16); color: #e88; }
-        .impact-neutral { background: rgba(201,162,39,.14); color: var(--gold-bright); }
+        .impact-neutral { background: rgba(180,170,150,.12); color: var(--paper-dim); }
 
         /* ========== Advice ========== */
         .advice-card {
@@ -251,11 +251,11 @@
             box-shadow: 0 16px 44px rgba(0,0,0,.4);
             transition: border-color .3s, box-shadow .3s;
         }
-        .advice-card:hover { border-color: rgba(201,162,39,.5); box-shadow: 0 16px 44px rgba(0,0,0,.4), 0 0 22px rgba(201,162,39,.15); }
+        .advice-card:hover { border-color: rgba(156,122,30,.32); box-shadow: 0 16px 44px rgba(0,0,0,.4), 0 0 18px rgba(156,122,30,.08); }
         .advice-card .taiji { position:absolute; right:-30px; bottom:-40px; width:200px; height:200px; opacity:.07; pointer-events:none; }
         .advice-action {
             font-family: var(--sans); font-size: 19px; font-weight: 600; letter-spacing: 1.5px;
-            color: var(--gold-bright); margin-bottom: 12px; position: relative;
+            color: #cbb472; margin-bottom: 12px; position: relative;
         }
         .advice-reason { color: var(--paper-dim); font-size: 13px; line-height: 1.9; position: relative; }
         .advice-meta { margin-top: 16px; font-size: 11px; color: var(--paper-faint); font-family: var(--mono); position: relative; }
@@ -285,12 +285,12 @@
 
 <!-- 北斗七星背景装饰 -->
 <svg class="stars" viewBox="0 0 560 420" fill="none" aria-hidden="true">
-  <g stroke="#c9a227" stroke-width="1" opacity="0.55">
+  <g stroke="#9c8f6e" stroke-width="1" opacity="0.35">
     <line x1="80" y1="80" x2="170" y2="110"/><line x1="170" y1="110" x2="250" y2="100"/>
     <line x1="250" y1="100" x2="330" y2="140"/><line x1="330" y1="140" x2="400" y2="200"/>
     <line x1="400" y1="200" x2="470" y2="180"/><line x1="470" y1="180" x2="500" y2="260"/>
   </g>
-  <g fill="#e6c252">
+  <g fill="#c4b896">
     <circle cx="80" cy="80" r="3.2"/><circle cx="170" cy="110" r="2.6"/>
     <circle cx="250" cy="100" r="3"/><circle cx="330" cy="140" r="2.4"/>
     <circle cx="400" cy="200" r="3.4"/><circle cx="470" cy="180" r="2.6"/>
@@ -426,7 +426,7 @@
                     <div id="vixDesc" style="color:var(--text-muted);font-size:12px;margin-top:16px;">--</div>
                     <div style="margin-top:12px;font-size:11px;color:var(--text-muted);">
                         <span style="color:var(--green);">● &lt;20 低恐慌</span>&nbsp;&nbsp;
-                        <span style="color:var(--gold);">● 20-30 中等</span>&nbsp;&nbsp;
+                        <span style="color:var(--gold-dark);">● 20-30 中等</span>&nbsp;&nbsp;
                         <span style="color:var(--red);">● &gt;30 高恐慌</span>
                     </div>
                     <div id="vixPctile" style="margin-top:8px;font-size:11px;color:var(--text-muted);"></div>
@@ -454,9 +454,9 @@
         <div class="grid-2">
             <div class="advice-card"><span class="sweep"></span>
                 <svg class="taiji" viewBox="0 0 100 100" aria-hidden="true">
-                    <circle cx="50" cy="50" r="48" fill="none" stroke="#c9a227" stroke-width="1"/>
-                    <path d="M50 2 a24 24 0 0 1 0 48 a24 24 0 0 0 0 48 a48 48 0 0 1 0-96" fill="#c9a227"/>
-                    <circle cx="50" cy="26" r="6" fill="#13100c"/><circle cx="50" cy="74" r="6" fill="#c9a227"/>
+                    <circle cx="50" cy="50" r="48" fill="none" stroke="#9c7a1e" stroke-width="1"/>
+                    <path d="M50 2 a24 24 0 0 1 0 48 a24 24 0 0 0 0 48 a48 48 0 0 1 0-96" fill="#9c7a1e"/>
+                    <circle cx="50" cy="26" r="6" fill="#13100c"/><circle cx="50" cy="74" r="6" fill="#9c7a1e"/>
                 </svg>
                 <div class="advice-action" id="adviceAction">--</div>
                 <div class="advice-reason" id="adviceReason">--</div>
@@ -464,9 +464,9 @@
             </div>
             <div class="advice-card"><span class="sweep"></span>
                 <svg class="taiji" viewBox="0 0 100 100" aria-hidden="true">
-                    <circle cx="50" cy="50" r="48" fill="none" stroke="#c9a227" stroke-width="1"/>
-                    <path d="M50 2 a24 24 0 0 1 0 48 a24 24 0 0 0 0 48 a48 48 0 0 1 0-96" fill="#c9a227"/>
-                    <circle cx="50" cy="26" r="6" fill="#13100c"/><circle cx="50" cy="74" r="6" fill="#c9a227"/>
+                    <circle cx="50" cy="50" r="48" fill="none" stroke="#9c7a1e" stroke-width="1"/>
+                    <path d="M50 2 a24 24 0 0 1 0 48 a24 24 0 0 0 0 48 a48 48 0 0 1 0-96" fill="#9c7a1e"/>
+                    <circle cx="50" cy="26" r="6" fill="#13100c"/><circle cx="50" cy="74" r="6" fill="#9c7a1e"/>
                 </svg>
                 <div class="advice-action">⚡ 再平衡操作清单</div>
                 <div class="advice-reason" id="rebalanceList">--</div>
@@ -478,7 +478,7 @@
 </main>
 
 <footer style="text-align:center;padding:40px 0;color:var(--paper-faint);font-size:11.5px;letter-spacing:1.2px;border-top:1px solid var(--line);position:relative;z-index:1;">
-    玄枢 Alpha · 北斗为枢，财富有度 &nbsp;<span style="color:var(--gold-soft);">|</span>&nbsp; AI-Powered Investment Intelligence · Data for reference only
+    玄枢 Alpha · 北斗为枢，财富有度 &nbsp;<span style="color:var(--paper-faint);">|</span>&nbsp; AI-Powered Investment Intelligence · Data for reference only
 </footer>
 
 <script>
@@ -554,17 +554,17 @@ function renderPieChart() {
     const chart = echarts.init(document.getElementById('pieChart'));
     const catMap = {};
     portfolioData.holdings.forEach(h => { catMap[h.category] = (catMap[h.category]||0) + h.amount; });
-    const colorMap = {'黄金':'#c9a227','AI/科技':'#5a93b0','光伏/新能源':'#3a9d7a','有色金属':'#a8851f','高端制造':'#8c7aa8','货币基金':'#6e665a'};
+    const colorMap = {'黄金':'#9c7a1e','AI/科技':'#4e7e96','光伏/新能源':'#347061','有色金属':'#7a7088','高端制造':'#6d6450','货币基金':'#5a544a'};
     const data = Object.entries(catMap).map(([n,v])=>({name:n,value:+v.toFixed(2)}));
     chart.setOption({
-        title:{text:'持仓分布',left:'center',top:10,textStyle:{color:'#e8e0cf',fontSize:14,fontWeight:600}},
-        tooltip:{trigger:'item',formatter:'{b}: ¥{c} ({d}%)',backgroundColor:'#1a1510',borderColor:'rgba(201,162,39,.22)',textStyle:{color:'#e8e0cf'}},
+        title:{text:'持仓分布',left:'center',top:10,textStyle:{color:'#ece4d3',fontSize:14,fontWeight:600}},
+        tooltip:{trigger:'item',formatter:'{b}: ¥{c} ({d}%)',backgroundColor:'#1a1510',borderColor:'rgba(180,160,120,.18)',textStyle:{color:'#ece4d3'}},
         series:[{
             type:'pie',radius:['45%','72%'],center:['50%','55%'],
             avoidLabelOverlap:true,
             itemStyle:{borderRadius:6,borderColor:'#13100c',borderWidth:3},
-            label:{show:true,color:'rgba(184,173,151,.7)',fontSize:12,formatter:'{b}\n{d}%'},
-            labelLine:{lineStyle:{color:'rgba(201,162,39,.2)'}},
+            label:{show:true,color:'rgba(200,190,165,.7)',fontSize:12,formatter:'{b}\n{d}%'},
+            labelLine:{lineStyle:{color:'rgba(180,170,150,.18)'}},
             data: data.map(d=>({...d,itemStyle:{color:colorMap[d.name]||'#7d7565'}}))
         }]
     });
@@ -582,17 +582,17 @@ function renderBarChart() {
     const actualData = allCats.map(c => +(catMap[c]||0).toFixed(1));
 
     chart.setOption({
-        title:{text:'目标 vs 实际配置',left:'center',top:10,textStyle:{color:'#e8e0cf',fontSize:14,fontWeight:600}},
-        tooltip:{trigger:'axis',backgroundColor:'#1a1510',borderColor:'rgba(201,162,39,.22)',textStyle:{color:'#e8e0cf'},
+        title:{text:'目标 vs 实际配置',left:'center',top:10,textStyle:{color:'#ece4d3',fontSize:14,fontWeight:600}},
+        tooltip:{trigger:'axis',backgroundColor:'#1a1510',borderColor:'rgba(180,160,120,.18)',textStyle:{color:'#ece4d3'},
             formatter:function(p){return p[0].name+'<br/>'+p.map(i=>i.marker+i.seriesName+': '+i.value+'%').join('<br/>');}
         },
-        legend:{bottom:0,textStyle:{color:'rgba(184,173,151,.7)'},data:['目标','实际']},
+        legend:{bottom:0,textStyle:{color:'rgba(200,190,165,.7)'},data:['目标','实际']},
         grid:{left:50,right:20,top:50,bottom:40},
         xAxis:{type:'category',data:allCats,axisLabel:{color:'rgba(184,173,151,.45)',fontSize:11,rotate:15},axisLine:{lineStyle:{color:'rgba(255,255,255,.08)'}}},
         yAxis:{type:'value',axisLabel:{color:'rgba(184,173,151,.45)',formatter:'{value}%'},splitLine:{lineStyle:{color:'rgba(255,255,255,.06)'}},axisLine:{lineStyle:{color:'rgba(255,255,255,.08)'}}},
         series:[
-            {name:'目标',type:'bar',barWidth:'30%',itemStyle:{color:'#b8941f',borderRadius:[4,4,0,0]},data:targetData},
-            {name:'实际',type:'bar',barWidth:'30%',itemStyle:{color:'#3a9d7a',borderRadius:[4,4,0,0]},data:actualData}
+            {name:'目标',type:'bar',barWidth:'30%',itemStyle:{color:'#8f7022',borderRadius:[4,4,0,0]},data:targetData},
+            {name:'实际',type:'bar',barWidth:'30%',itemStyle:{color:'#2f6457',borderRadius:[4,4,0,0]},data:actualData}
         ]
     });
     window.addEventListener('resize',()=>chart.resize());
@@ -745,7 +745,7 @@ function renderVix() {
     valEl.textContent = vix.toFixed(1);
     let color, desc;
     if(vix < 20){ color='var(--green)'; desc='低波动 · 市场情绪稳定'; }
-    else if(vix < 30){ color='var(--gold)'; desc='中等波动 · 谨慎观察'; }
+    else if(vix < 30){ color='var(--gold-dark)'; desc='中等波动 · 谨慎观察'; }
     else { color='var(--red)'; desc='高恐慌 · 系统性风险定价中'; }
     dotEl.style.background = color;
     dotEl.style.boxShadow = '0 0 12px ' + color;
@@ -765,13 +765,13 @@ function renderSignalDetail() {
             let badge = '';
             if(scoreM){
                 const ratio = +scoreM[1]/+scoreM[2];
-                const c = ratio>=0.7?'var(--green)':ratio>=0.4?'var(--gold)':'var(--red)';
+                const c = ratio>=0.7?'var(--green)':ratio>=0.4?'var(--gold-dark)':'var(--red)';
                 badge = `<span style="color:${c};font-weight:600;">${scoreM[1]}/${scoreM[2]}</span>`;
             }
             return `<div style="display:flex;justify-content:space-between;gap:8px;padding:4px 0;border-bottom:1px solid var(--border-color);font-size:11px;">
                 <span style="color:var(--text-secondary);flex:1;">${label}</span>${badge}</div>`;
         }).join('');
-        return `<div><div style="font-size:12px;color:var(--gold);margin-bottom:8px;font-weight:600;">${title}</div>${rows}</div>`;
+        return `<div><div style="font-size:12px;color:var(--paper-dim);margin-bottom:8px;font-weight:600;">${title}</div>${rows}</div>`;
     };
     blocks.push(buildBlock('🥇 黄金维度', signalData.gold && signalData.gold.score_detail));
     blocks.push(buildBlock('🇺🇸 美股QQQ维度', signalData.us && signalData.us.qqq_score_detail));
@@ -786,15 +786,15 @@ function gaugeOption(value, name) {
             startAngle:200,endAngle:-20,
             min:0,max:100,
             splitNumber:10,
-            itemStyle:{color: value>=70?'#3a9d7a':value>=40?'#c9a227':'#c25852'},
+            itemStyle:{color: value>=70?'#2f6457':value>=40?'#9c7a1e':'#a8473f'},
             progress:{show:true,width:12},
-            pointer:{show:true,length:'60%',width:4,itemStyle:{color:'#d8cfbb'}},
-            axisLine:{lineStyle:{width:12,color:[[0.3,'#a8473f'],[0.7,'#b8941f'],[1,'#3a9d7a']]}},
+            pointer:{show:true,length:'60%',width:4,itemStyle:{color:'#cabfa6'}},
+            axisLine:{lineStyle:{width:12,color:[[0.3,'#8a3e38'],[0.7,'#8f7022'],[1,'#2f6457']]}},
             axisTick:{show:false},
             splitLine:{length:8,lineStyle:{width:2,color:'rgba(255,255,255,.08)'}},
             axisLabel:{distance:16,color:'rgba(125,117,90,.7)',fontSize:10},
             title:{show:false},
-            detail:{valueAnimation:true,fontSize:28,fontWeight:700,color:'#e8e0cf',offsetCenter:[0,'40%'],formatter:'{value}'},
+            detail:{valueAnimation:true,fontSize:28,fontWeight:700,color:'#ece4d3',offsetCenter:[0,'40%'],formatter:'{value}'},
             data:[{value:value}]
         }]
     };
