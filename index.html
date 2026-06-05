@@ -333,42 +333,82 @@
         tr.has-signal-sell td { background: rgba(255,79,79,.035); }
 
         /* ========== 融合决策卡 ========== */
-        .fusion-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-        @media (max-width: 1024px) { .fusion-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 600px)  { .fusion-grid { grid-template-columns: 1fr; } }
-        .fusion-card {
-            background: linear-gradient(150deg, rgba(44,35,24,.75), rgba(24,19,13,.6));
-            border: 1px solid var(--line); border-radius: var(--radius); padding: 22px 24px;
-            position: relative; overflow: hidden;
-            box-shadow: 0 12px 36px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.03);
-            transition: border-color .3s, box-shadow .3s, transform .2s;
+        .fusion-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 16px;
         }
-        .fusion-card:hover { border-color: rgba(201,162,39,.38); transform: translateY(-1px); box-shadow: 0 14px 40px rgba(0,0,0,.5), 0 0 20px rgba(156,122,30,.1); }
-        .fusion-card.level-green   { border-left: 3px solid rgba(31,184,116,.65); }
-        .fusion-card.level-yellow  { border-left: 3px solid rgba(201,162,39,.65); }
-        .fusion-card.level-orange  { border-left: 3px solid rgba(224,140,60,.65); }
-        .fusion-card.level-red     { border-left: 3px solid rgba(229,86,79,.65); }
-        .fusion-card.level-neutral { border-left: 3px solid rgba(180,160,120,.3); }
-        .fusion-card.level-muted   { border-left: 3px solid rgba(120,110,90,.25); opacity: .82; }
-        .fusion-card .fc-name  { font-size: 13px; font-weight: 600; color: var(--paper); margin-bottom: 2px; }
-        .fusion-card .fc-code  { font-size: 11px; color: var(--paper-faint); font-family: var(--mono); margin-bottom: 14px; }
+        /* 卡片：比页面底色明显亮一档，独立平铺 */
+        .fusion-card {
+            background: rgba(255,255,255,.04);
+            border: 1px solid rgba(255,255,255,.08);
+            border-radius: 12px;
+            padding: 16px 18px 18px;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0,0,0,.35);
+            transition: transform .2s, box-shadow .2s;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+        .fusion-card:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,.45); }
+        /* 顶部 level 色条 */
+        .fusion-card::before {
+            content: ''; display: block;
+            height: 3px; border-radius: 3px 3px 0 0;
+            position: absolute; top: 0; left: 0; right: 0;
+        }
+        .fusion-card.level-green::before  { background: #1fb874; }
+        .fusion-card.level-yellow::before { background: #c9a227; }
+        .fusion-card.level-orange::before { background: #d47a28; }
+        .fusion-card.level-red::before    { background: #e5564f; }
+        .fusion-card.level-neutral::before{ background: rgba(180,160,120,.4); }
+        .fusion-card.level-muted::before  { background: rgba(120,110,90,.3); }
+        /* 标的名：高对比度白/纸色 */
+        .fusion-card .fc-name {
+            font-size: 16px; font-weight: 700;
+            color: var(--paper);
+            margin: 8px 0 2px;
+            line-height: 1.3;
+        }
+        .fusion-card .fc-code {
+            font-size: 12px; font-family: var(--mono);
+            color: var(--paper-faint);
+            margin-bottom: 12px;
+        }
+        /* 徽章 */
         .fusion-card .fc-badges { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
-        .fc-badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; letter-spacing: .4px; font-family: var(--mono); }
-        .fc-badge-buy     { background: rgba(31,184,116,.18); color: var(--jade-soft);   border: 1px solid rgba(31,184,116,.35); }
-        .fc-badge-sell    { background: rgba(229,86,79,.18);  color: #e5564f;            border: 1px solid rgba(229,86,79,.35); }
-        .fc-badge-hold    { background: rgba(180,160,120,.12); color: var(--paper-dim);  border: 1px solid rgba(180,160,120,.2); }
-        .fc-badge-quality { background: rgba(31,184,116,.14); color: var(--jade-soft);   border: 1px solid rgba(31,184,116,.32); }
-        .fc-badge-ok      { background: rgba(201,162,39,.14); color: var(--gold-bright); border: 1px solid rgba(201,162,39,.32); }
-        .fc-badge-flaw    { background: rgba(229,86,79,.14);  color: #e5564f;            border: 1px solid rgba(229,86,79,.32); }
-        .fc-badge-na      { background: rgba(180,160,120,.1); color: var(--paper-faint); border: 1px solid rgba(180,160,120,.16); font-size: 10px; }
-        .fusion-card .fc-action { font-size: 19px; font-weight: 700; letter-spacing: .5px; margin-bottom: 10px; line-height: 1.25; }
-        .fc-action-green   { color: var(--jade-soft);   text-shadow: 0 0 16px rgba(0,224,154,.28); }
-        .fc-action-yellow  { color: var(--gold-bright); text-shadow: 0 0 14px rgba(201,162,39,.28); }
-        .fc-action-orange  { color: #e09050;            text-shadow: 0 0 14px rgba(224,144,80,.22); }
-        .fc-action-red     { color: #e5564f;            text-shadow: 0 0 14px rgba(229,86,79,.22); }
+        .fc-badge {
+            display: inline-block; padding: 4px 11px;
+            border-radius: 20px; font-size: 12px; font-weight: 600;
+            letter-spacing: .3px; font-family: var(--mono); white-space: nowrap;
+        }
+        /* 技术信号徽章 */
+        .fc-badge-buy  { background: #1fb874; color: #0a2e1c; }
+        .fc-badge-sell { background: #e5564f; color: #fff; }
+        .fc-badge-hold { background: rgba(180,160,120,.28); color: var(--paper-dim); border: 1px solid rgba(180,160,120,.3); }
+        /* 价值评级徽章 */
+        .fc-badge-quality { background: #1a7a4c; color: #a8ffd8; border: 1px solid rgba(31,184,116,.4); }
+        .fc-badge-ok      { background: #7a5c10; color: #f0d270; border: 1px solid rgba(201,162,39,.4); }
+        .fc-badge-flaw    { background: rgba(229,86,79,.22); color: #ff9090; border: 1px solid rgba(229,86,79,.35); }
+        .fc-badge-na      { background: rgba(100,95,85,.3); color: var(--paper-faint); border: 1px solid rgba(180,160,120,.2); }
+        /* 决策动作：大字高对比 */
+        .fusion-card .fc-action {
+            font-size: 19px; font-weight: 700; letter-spacing: .5px;
+            margin-bottom: 8px; line-height: 1.25;
+        }
+        .fc-action-green   { color: #2de89a; }
+        .fc-action-yellow  { color: #e6c252; }
+        .fc-action-orange  { color: #e09050; }
+        .fc-action-red     { color: #ff6b63; }
         .fc-action-neutral { color: var(--paper-dim); }
         .fc-action-muted   { color: var(--paper-faint); }
-        .fusion-card .fc-reason { font-size: 11.5px; color: var(--paper-faint); line-height: 1.7; }
+        /* 理由：正文级别对比度 */
+        .fusion-card .fc-reason {
+            font-size: 13px; color: #b8ad97;
+            line-height: 1.65; margin-top: 2px;
+            word-break: break-all;
+        }
     </style>
 </head>
 <body>
@@ -1231,7 +1271,17 @@ function renderRebalanceFromFile(data) {
 }
 
 // ========== 融合决策卡：从 value_compass/data/fusion.json 加载 ==========
-const TECH_BADGE_CLS = { '买入': 'fc-badge-buy', '卖出': 'fc-badge-sell', '持有': 'fc-badge-hold' };
+
+// 安全转义 HTML，防止 reason 里的 < > 破坏 DOM（如 "MA5<MA20"）
+function escHtml(s) {
+    return String(s)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+}
+
+const TECH_BADGE_CLS  = { '买入': 'fc-badge-buy', '卖出': 'fc-badge-sell', '持有': 'fc-badge-hold' };
 const VALUE_BADGE_CLS = { '优质': 'fc-badge-quality', '合格': 'fc-badge-ok', '瑕疵': 'fc-badge-flaw' };
 
 async function loadAndRenderFusion() {
@@ -1246,30 +1296,31 @@ async function loadAndRenderFusion() {
 function renderFusion(items) {
     const grid = document.getElementById('fusionGrid');
     if (!grid || !items.length) { renderFusionFallback(); return; }
+    // 每张卡独立平铺为 grid 的直接子元素
     grid.innerHTML = items.map(item => {
-        const techCls  = TECH_BADGE_CLS[item.tech_signal] || 'fc-badge-hold';
+        const techCls  = TECH_BADGE_CLS[item.tech_signal]  || 'fc-badge-hold';
         const valueCls = item.applicable
             ? (VALUE_BADGE_CLS[item.value_rating] || 'fc-badge-na')
             : 'fc-badge-na';
-        const valueTxt = item.applicable ? item.value_rating : '价值框架不适用';
+        const valueTxt  = escHtml(item.applicable ? item.value_rating : '价值框架不适用');
         const actionCls = `fc-action-${item.level}`;
-        const cardCls   = `level-${item.level}`;
-        return `<div class="fusion-card ${cardCls}">
-            <div class="fc-name">${item.name}</div>
-            <div class="fc-code num">${item.code}</div>
+        const cardCls   = `fusion-card level-${item.level}`;
+        return `<div class="${cardCls}">
+            <div class="fc-name">${escHtml(item.name)}</div>
+            <div class="fc-code num">${escHtml(item.code)}</div>
             <div class="fc-badges">
-                <span class="fc-badge ${techCls}">技术 ${item.tech_signal}</span>
+                <span class="fc-badge ${techCls}">技术&nbsp;${escHtml(item.tech_signal)}</span>
                 <span class="fc-badge ${valueCls}">${valueTxt}</span>
             </div>
-            <div class="fc-action ${actionCls}">${item.action}</div>
-            <div class="fc-reason">${item.reason}</div>
+            <div class="fc-action ${actionCls}">${escHtml(item.action)}</div>
+            <div class="fc-reason">${escHtml(item.reason)}</div>
         </div>`;
     }).join('');
 }
 
 function renderFusionFallback() {
     const grid = document.getElementById('fusionGrid');
-    if (grid) grid.innerHTML = '<div style="color:var(--paper-faint);font-size:13px;padding:16px;">暂无融合决策数据，请先运行 python3 value_compass/build_fusion.py</div>';
+    if (grid) grid.innerHTML = '<div style="color:var(--paper-faint);font-size:13px;padding:16px 0;">暂无融合决策数据，请先运行 python3 value_compass/build_fusion.py</div>';
 }
 
 // ========== Initialize ==========
