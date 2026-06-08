@@ -1,83 +1,44 @@
 {
-  "updated_at": "2026-06-05 11:08",
+  "updated_at": "2026-06-08 12:45",
   "signals": [
     {
       "code": "000216",
       "name": "易方达黄金ETF联接C",
-      "rsi14": 37.32,
-      "ma5": 3.39678,
-      "ma20": 3.45834,
-      "macd_hist": -0.00523845,
+      "rsi14": 37.06,
+      "ma5": 3.38944,
+      "ma20": 3.44817,
+      "macd_hist": -0.00355277,
       "macd_trend": "bearish",
       "signal": "观望",
-      "reason": "RSI偏低(37.3) · MA5<MA20空头 · MACD柱负向",
+      "reason": "RSI偏低(37.1) · MA5<MA20空头 · MACD柱负向",
       "buy_score": 1,
       "sell_score": 2
     },
     {
       "code": "008585",
       "name": "天弘AI主题指数C",
-      "rsi14": 59.36,
-      "ma5": 1.80554,
-      "ma20": 1.807365,
-      "macd_hist": -0.02097248,
+      "rsi14": 46.45,
+      "ma5": 1.79646,
+      "ma20": 1.807075,
+      "macd_hist": -0.03902325,
       "macd_trend": "bearish",
-      "signal": "卖出",
-      "reason": "死叉(MA5下穿MA20) · MACD柱负向",
+      "signal": "观望",
+      "reason": "MA5<MA20空头 · MACD柱负向",
       "buy_score": 0,
-      "sell_score": 3
+      "sell_score": 2
     },
     {
       "code": "017766",
       "name": "南方有色金属ETF联接E",
-      "rsi14": 32.32,
-      "ma5": 3.9296,
-      "ma20": 4.0339,
-      "macd_hist": -0.05561386,
+      "rsi14": 28.77,
+      "ma5": 3.8814,
+      "ma20": 4.01305,
+      "macd_hist": -0.07303609,
       "macd_trend": "bearish",
       "signal": "观望",
-      "reason": "RSI偏低(32.3) · MA5<MA20空头 · MACD柱负向",
-      "buy_score": 1,
-      "sell_score": 2
-    },
-    {
-      "code": "515790",
-      "name": "华夏光伏ETF",
-      "rsi14": 37.67,
-      "ma5": 1.0584,
-      "ma20": 1.10135,
-      "macd_hist": -0.01750563,
-      "macd_trend": "bearish",
-      "signal": "观望",
-      "reason": "RSI偏低(37.7) · MA5<MA20空头 · MACD柱负向",
-      "buy_score": 1,
-      "sell_score": 2
-    },
-    {
-      "code": "513100",
-      "name": "纳指100ETF",
-      "rsi14": 57.24,
-      "ma5": 2.2904,
-      "ma20": 2.17425,
-      "macd_hist": -0.00687835,
-      "macd_trend": "bearish",
-      "signal": "观望",
-      "reason": "MA5>MA20多头 · MACD柱负向",
-      "buy_score": 1,
-      "sell_score": 1
-    },
-    {
-      "code": "513500",
-      "name": "标普500ETF",
-      "rsi14": 62.79,
-      "ma5": 2.5944,
-      "ma20": 2.5172,
-      "macd_hist": 0.00190091,
-      "macd_trend": "bullish",
-      "signal": "观望",
-      "reason": "RSI偏高(62.8) · MA5>MA20多头 · MACD柱正向",
+      "reason": "RSI超卖(28.8<30)→买入 · MA5<MA20空头 · MACD柱负向",
       "buy_score": 2,
-      "sell_score": 1
+      "sell_score": 2
     }
   ]
 }

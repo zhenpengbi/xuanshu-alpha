@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-06-05 11:08",
-  "total_value": 53425.38,
+  "updated_at": "2026-06-08 12:45",
+  "total_value": 51694.3,
   "rebalance_threshold_pct": 5.0,
   "actions": [
     {
@@ -8,25 +8,25 @@
       "name": "易方达黄金ETF联接C",
       "category": "黄金",
       "target_pct": 24.0,
-      "actual_pct": 28.45,
-      "value": 15198.75,
+      "actual_pct": 29.39,
+      "value": 15193.35,
       "shares": 4500,
-      "price": 3.3775,
-      "deviation": 4.45,
-      "deviation_amount": 2377.43,
-      "needs_rebalance": false
+      "price": 3.3763,
+      "deviation": 5.39,
+      "deviation_amount": 2786.32,
+      "needs_rebalance": true
     },
     {
       "code": "008585",
       "name": "天弘AI主题指数C",
       "category": "AI/科技",
       "target_pct": 30.0,
-      "actual_pct": 24.8,
-      "value": 13247.28,
+      "actual_pct": 23.9,
+      "value": 12355.2,
       "shares": 7200,
-      "price": 1.8399,
-      "deviation": -5.2,
-      "deviation_amount": -2778.12,
+      "price": 1.716,
+      "deviation": -6.1,
+      "deviation_amount": -3153.35,
       "needs_rebalance": true
     },
     {
@@ -34,12 +34,12 @@
       "name": "南方有色金属ETF联接E",
       "category": "有色金属",
       "target_pct": 8.0,
-      "actual_pct": 9.59,
-      "value": 5125.95,
+      "actual_pct": 9.73,
+      "value": 5031.45,
       "shares": 1350,
-      "price": 3.797,
-      "deviation": 1.59,
-      "deviation_amount": 849.46,
+      "price": 3.727,
+      "deviation": 1.73,
+      "deviation_amount": 894.31,
       "needs_rebalance": false
     },
     {
@@ -47,12 +47,12 @@
       "name": "华夏光伏ETF",
       "category": "光伏",
       "target_pct": 4.0,
-      "actual_pct": 2.92,
-      "value": 1560.0,
+      "actual_pct": 2.86,
+      "value": 1480.5,
       "shares": 1500,
-      "price": 1.04,
-      "deviation": -1.08,
-      "deviation_amount": -576.99,
+      "price": 0.987,
+      "deviation": -1.14,
+      "deviation_amount": -589.32,
       "needs_rebalance": false
     },
     {
@@ -60,12 +60,12 @@
       "name": "纳指100ETF",
       "category": "纳指100",
       "target_pct": 24.0,
-      "actual_pct": 25.59,
-      "value": 13671.0,
+      "actual_pct": 25.35,
+      "value": 13106.8,
       "shares": 6200,
-      "price": 2.205,
-      "deviation": 1.59,
-      "deviation_amount": 849.46,
+      "price": 2.114,
+      "deviation": 1.35,
+      "deviation_amount": 697.87,
       "needs_rebalance": false
     },
     {
@@ -73,12 +73,12 @@
       "name": "标普500ETF",
       "category": "标普500",
       "target_pct": 10.0,
-      "actual_pct": 8.65,
-      "value": 4622.4,
+      "actual_pct": 8.76,
+      "value": 4527.0,
       "shares": 1800,
-      "price": 2.568,
-      "deviation": -1.35,
-      "deviation_amount": -721.24,
+      "price": 2.515,
+      "deviation": -1.24,
+      "deviation_amount": -641.01,
       "needs_rebalance": false
     }
   ]
