@@ -257,34 +257,48 @@ xuanshu-alpha/
 
 ## 八、开发计划
 
-### 第一阶段：MVP 骨架（本周）✅ 已完成
+> **状态总览（截至 2026-06-09）：四个阶段全部完成 ✅，四层架构补齐，P0/P1/P2 能力全部上线。**
+
+### 第一阶段：MVP 骨架 ✅ 已完成
 
 - [x] 项目初始化
 - [x] 持仓数据 JSON
 - [x] 页面骨架（6大模块）
 - [x] Logo SVG 设计
-- [x] 深色金融终端风格
+- [x] 深色金融终端风格（暖黑×翡翠绿金 新中式 · 方向C）
 - [x] ECharts 图表（饼图、柱状图、仪表盘）
 
-### 第二阶段：数据接入（下周前半）
+### 第二阶段：数据接入 ✅ 已完成
 
-- [ ] 接入真实量化信号（gold_latest_result.json / us_latest_result.json）
-- [ ] 基金历史净值曲线（AKShare fund_open_fund_info_em）
-- [ ] 早晚报 JSON 归档 + 页面读取
-- [ ] 持仓 OCR 更新能力
+- [x] 接入真实量化信号（gold/us/metals_signal.json → data/signals.json）
+- [x] 基金历史净值曲线（AKShare，scripts/fetch_nav.py → data/nav.json）
+- [x] 早晚报 JSON 归档 + 页面读取（data/news.json，独立 cron 维护）
+- [x] 持仓 OCR 更新能力（scripts/portfolio_ocr.py，截图→自动更新 portfolio.json）
 
-### 第三阶段：智能化（下周后半）
+### 第三阶段：智能化 ✅ 已完成
 
-- [ ] AI 操作建议引擎（综合信号+估值+情绪→结论）
-- [ ] 基金发现/推荐（恐慌指数高位时扫描超跌ETF）
-- [ ] 资产再平衡计算器
+- [x] AI 操作建议引擎（data/rebalance.py，综合信号+持仓偏离）
+- [x] 价值罗盘（巴菲特八问）+ 融合决策卡（技术×价值双确认矩阵）
+- [x] 价值罗盘接真实持仓穿透（008585/515790 真实十大重仓）
+- [x] 趋势资产建议优化（基于回测：趋势型→长期持有，震荡型→技术择时）
+- [x] 基金发现/推荐引擎（scripts/fund_scanner.py，恐慌时扫描超跌ETF）
+- [x] 新闻情绪→持仓影响联动（scripts/build_news_impact.py）
+- [x] 资产再平衡计算器（data/rebalance.py）
 
-### 第四阶段：上线部署
+### 第四阶段：上线部署 ✅ 已完成
 
-- [ ] GitHub 仓库创建（zhenpengbi/xuanshu-alpha）
-- [ ] GitHub Pages 部署
-- [ ] 自定义域名（可选）
-- [ ] 每日 cron 自动更新数据并 push
+- [x] GitHub 仓库创建（zhenpengbi/xuanshu-alpha）
+- [x] GitHub Pages 部署（https://zhenpengbi.github.io/xuanshu-alpha/）
+- [x] 每日 cron 自动更新数据并 push（.github/workflows/daily.yml，工作日 16:30）
+- [x] 每周回测自动更新（.github/workflows/weekly_backtest.yml，周一 09:00）
+- [x] 信号速报大象推送（cron 30224af9，工作日 17:00）
+- [ ] 自定义域名（可选，未做）
+
+### P3 待办（锦上添花，不急）
+
+- [ ] 持仓盈亏历史曲线（买入成本 vs 现价）
+- [ ] 移动端适配
+- [ ] 自定义域名
 
 ---
 
@@ -298,8 +312,8 @@ xuanshu-alpha/
 | catclaw-search | 搜索宏观新闻/政策 | ✅ 已安装 |
 | xueqiu-stock-discussion | 雪球舆情/散户情绪 | ✅ 已安装 |
 | earnings-analyst | 财报解读（关联持仓公司） | ✅ 已安装 |
-| 基金净值数据接口 | 历史净值曲线 | ⚠️ 需新建 |
-| 基金筛选推荐引擎 | 恐慌时推荐超跌ETF | ⚠️ 需新建 |
+| 基金净值数据接口 | 历史净值曲线 | ✅ 已实现（scripts/fetch_nav.py，AKShare）|
+| 基金筛选推荐引擎 | 恐慌时推荐超跌ETF | ✅ 已实现（scripts/fund_scanner.py）|
 
 ---
 
@@ -356,7 +370,96 @@ git push origin main
 
 ---
 
-## 十一、设计决策记录
+## 十一、项目运行架构（四层）
+
+```
+第一层 数据自动化
+  fetch_prices.py → data/prices.json
+  data/indicators.py → data/indicators.json
+  data/signals.py → data/signals.json（量化信号）
+  scripts/fetch_nav.py → data/nav.json（基金净值曲线）
+  （独立 cron）→ data/news.json（早晚报新闻）
+        ↓
+第二层 策略信号
+  data/signals.json（黄金/美股/有色信号）
+  scripts/signal_push.py → 大象推送（cron 30224af9，每日简报+突变加急）
+        ↓
+第三层 回测系统
+  backtest/backtest_engine.py → backtest/data/backtest.json（3年真实回测）
+        ↓
+第四层 智能建议
+  value_compass/build_value_compass.py → value_compass/data/value_compass.json（价值评级）
+  value_compass/build_fusion.py → value_compass/data/fusion.json（技术×价值融合决策）
+  data/rebalance.py → data/rebalance.json（再平衡清单）
+        ↓
+工具层
+  scripts/portfolio_ocr.py（截图→更新持仓）
+  scripts/build_news_impact.py → data/news_impact.json（新闻情绪→持仓影响）
+  scripts/fund_scanner.py → data/fund_recommendations.json（超跌ETF雷达）
+        ↓
+前端 index.html（单文件，读所有 *.json 渲染）
+```
+
+### 自动化调度
+
+| 调度 | 频率 | 内容 |
+|---|---|---|
+| .github/workflows/daily.yml | 工作日 16:30（UTC 08:30）| run_all.sh 全链路更新数据并 push |
+| .github/workflows/weekly_backtest.yml | 周一 09:00 | 重跑回测更新 backtest.json |
+| cron 30224af9（小老大沙箱）| 工作日 17:00 | signal_push.py 信号速报推大象 |
+| 新闻 cron（独立）| 每晚 20:30 | 生成 news.json 并 push |
+
+> ⚠️ run_all.sh 末尾的 `python3 -m http.server` 在 GitHub Actions 会卡死，workflow 里只跑数据生成步骤，不跑 http.server。
+
+---
+
+## 十二、脚本 & 数据文件清单
+
+### 核心脚本
+
+| 脚本 | 作用 | 输出 |
+|---|---|---|
+| fetch_prices.py | 拉行情 | data/prices.json |
+| data/indicators.py | 算技术指标 | data/indicators.json |
+| data/signals.py | 生成量化信号 | data/signals.json |
+| data/rebalance.py | 再平衡计算 | data/rebalance.json |
+| scripts/fetch_nav.py | 拉基金净值 | data/nav.json |
+| scripts/portfolio_ocr.py | 持仓截图OCR更新 | data/portfolio.json |
+| scripts/build_news_impact.py | 新闻情绪→持仓影响 | data/news_impact.json |
+| scripts/fund_scanner.py | 超跌ETF扫描 | data/fund_recommendations.json |
+| scripts/signal_push.py | 信号速报大象推送 | （推大象，存快照）|
+| value_compass/build_value_compass.py | 价值评级（十大重仓穿透）| value_compass/data/value_compass.json |
+| value_compass/build_fusion.py | 技术×价值融合决策 | value_compass/data/fusion.json |
+| backtest/backtest_engine.py | 3年策略回测 | backtest/data/backtest.json |
+
+### portfolio_ocr.py 用法
+
+```bash
+python3 scripts/portfolio_ocr.py 截图.png            # 交互确认后写入
+python3 scripts/portfolio_ocr.py 截图.png --dry-run  # 只看识别结果不写入
+python3 scripts/portfolio_ocr.py 截图.png --yes      # 直接写入不询问
+```
+
+### 持仓代码映射
+
+| 代码 | 名称 | 资产类型 |
+|---|---|---|
+| 000216 | 易方达黄金ETF联接C | trend（趋势）→长期持有 |
+| 008585 | 天弘AI主题指数C | oscillation（震荡）→技术择时 |
+| 017766 | 南方有色金属ETF联接E | trend（趋势）→长期持有 |
+| 513100 | 纳指100ETF | trend（趋势）→长期持有 |
+| 513500 | 标普500ETF | trend（趋势）→长期持有 |
+| 515790 | 华夏光伏ETF | oscillation（震荡）→技术择时 |
+
+### ⚠️ 协作禁区（多端开发避免冲突）
+
+- `data/news.json` — 独立新闻 cron 维护，**任何开发不要改**
+- `scripts/signal_push.py` — 信号推送脚本，跑在小老大沙箱
+- Claude Code（MacBook）负责代码开发+push；小老大（沙箱）负责架构/推送/pull同步核对。两端用同一 PAT，谁推都行，pull 同步。
+
+---
+
+## 十三、设计决策记录
 
 | 日期 | 决策 | 原因 |
 |---|---|---|
@@ -366,7 +469,31 @@ git push origin main
 | 2026-05-26 | 单文件 HTML 架构 | 零依赖、GitHub Pages 直接部署、便于迭代 |
 | 2026-05-26 | 保留现有 gold-quant 系统 | 新平台是上层消费者，不替代现有组件 |
 | 2026-05-26 | 集成早晚报 | 形成"信息→分析→决策"完整闭环 |
+| 2026-06-05 | CatPaw + Claude Code 协作开发模式 | 小老大当架构师/产品，Claude Code（MacBook）写代码+push；沙箱 pull 同步核对 |
+| 2026-06-05 | GitHub Actions 自动化用内置 GITHUB_TOKEN | 不用 PAT，permissions: contents:write 即可自动 push |
+| 2026-06-09 | 价值罗盘接真实持仓穿透 | 用 akshare 拉 008585/515790 真实十大重仓股，彻底清除 DEMO 数据 |
+| 2026-06-09 | 趋势资产不做技术择时 | 回测证明黄金/纳指/标普择时跑输买入持有（少赚11-22pt），改为长期持有/定投 |
+| 2026-06-09 | 信号推送频率 = 每日简报+突变加急 | 避免噪音，只在信号变化时🚨加急推送 |
+| 2026-06-09 | 基金雷达仅恐慌高位触发 | avg_sell_score>=2 才扫描超跌ETF，避免平时乱推荐 |
 
 ---
 
-_文档创建于 2026-05-26，随开发进度持续更新。_
+## 十四、里程碑
+
+### 2026-06-09：一日七个 commit，四层架构补齐
+
+| Commit | 内容 |
+|---|---|
+| dc1aeb3 | 价值罗盘接真实持仓（008585/515790）|
+| a124c1e | 回测系统（3年真实数据 + ECharts 净值曲线）|
+| 1a8f953 | 信号速报推送脚本 |
+| 7215bda | 持仓 OCR 工具 |
+| dc19e16 | 趋势资产建议优化（基于回测）|
+| 35e0bfb | 新闻情绪→持仓影响联动 |
+| 23f7512 | 基金雷达超跌ETF推荐引擎 |
+
+**回测核心洞察**：信号策略只对震荡型资产有效（AI主题 α+8.8pt、光伏 α+1.6pt）；对趋势型资产（黄金/纳指/标普）择时反而拖累，买入持有完胜。这个洞察已落地到融合卡资产分类逻辑。
+
+---
+
+_文档创建于 2026-05-26，最近更新 2026-06-09。_
