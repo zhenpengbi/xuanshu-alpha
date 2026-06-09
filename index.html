@@ -409,6 +409,53 @@
             line-height: 1.65; margin-top: 2px;
             word-break: break-all;
         }
+
+        /* ========== 策略回测 ========== */
+        .backtest-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+        @media (max-width: 1024px) { .backtest-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 600px)  { .backtest-grid { grid-template-columns: 1fr; } }
+
+        .backtest-card {
+            background: rgba(255,255,255,.035);
+            border: 1px solid rgba(255,255,255,.07);
+            border-radius: 10px; padding: 18px 20px;
+            cursor: pointer; position: relative; overflow: hidden;
+            box-shadow: 0 4px 18px rgba(0,0,0,.32);
+            transition: border-color .22s, transform .18s, box-shadow .22s;
+        }
+        .backtest-card:hover  { border-color: rgba(201,162,39,.32); transform: translateY(-1px); }
+        .backtest-card.selected {
+            border-color: rgba(31,184,116,.55);
+            box-shadow: 0 0 0 1px rgba(31,184,116,.18), 0 6px 24px rgba(0,0,0,.38);
+        }
+        .backtest-card.selected::before {
+            content:''; position:absolute; top:0; left:0; right:0; height:2px;
+            background: linear-gradient(90deg, #1fb874, #2de89a);
+            border-radius: 10px 10px 0 0;
+        }
+        .bt-name  { font-size: 13px; font-weight: 700; color: var(--paper); margin-bottom: 2px; }
+        .bt-code  { font-size: 11px; color: var(--paper-faint); font-family: var(--mono); margin-bottom: 12px; }
+        .bt-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 14px; margin-bottom: 10px; }
+        .bt-metric  { display: flex; flex-direction: column; gap: 2px; }
+        .bt-label   { font-size: 9.5px; color: var(--paper-faint); letter-spacing: 1.2px; text-transform: uppercase; }
+        .bt-val     { font-size: 18px; font-weight: 700; font-family: var(--mono); color: var(--paper); line-height: 1.25; }
+        .bt-sub     { font-size: 10px; color: var(--paper-faint); font-family: var(--mono); }
+        .bt-period  {
+            font-size: 10px; color: var(--paper-faint); font-family: var(--mono);
+            border-top: 1px solid var(--line); padding-top: 8px; letter-spacing: .3px;
+        }
+        /* 回测图表 card */
+        .backtest-chart-card {
+            background: linear-gradient(150deg, rgba(44,35,24,.75), rgba(24,19,13,.6));
+            border: 1px solid var(--line); border-radius: var(--radius); padding: 0;
+            overflow: hidden; margin-top: 16px;
+            box-shadow: 0 12px 36px rgba(0,0,0,.45);
+            position: relative;
+        }
+        .backtest-chart-card .sweep { position:absolute;top:0;left:-60%;width:50%;height:100%;z-index:2;
+            background:linear-gradient(105deg,transparent,rgba(220,200,155,.06),transparent);
+            transform:skewX(-18deg);transition:left .65s ease;pointer-events:none; }
+        .backtest-chart-card:hover .sweep { left:130%; }
     </style>
 </head>
 <body>
@@ -600,6 +647,17 @@
 
     <!-- Section: 有色金属信号 (附加) -->
     <section class="section" id="metalsSection" style="display:none;"></section>
+
+    <!-- Section: 策略回测 -->
+    <section class="section">
+        <h2 class="section-title">策略回测 · 信号策略 vs 买入持有</h2>
+        <div class="backtest-grid" id="backtestCards">
+            <div style="color:var(--paper-faint);font-size:13px;padding:16px 0;">加载中...</div>
+        </div>
+        <div class="backtest-chart-card"><span class="sweep"></span>
+            <div id="backtestChart" style="width:100%;height:380px;"></div>
+        </div>
+    </section>
 
     <!-- Section: 早晚报 Timeline -->
     <section class="section">
@@ -1323,6 +1381,152 @@ function renderFusionFallback() {
     if (grid) grid.innerHTML = '<div style="color:var(--paper-faint);font-size:13px;padding:16px 0;">暂无融合决策数据，请先运行 python3 value_compass/build_fusion.py</div>';
 }
 
+// ========== 策略回测：从 backtest/data/backtest.json 加载 ==========
+let _btData = null;
+let _btChart = null;
+let _btSelected = null;
+
+async function loadAndRenderBacktest() {
+    try {
+        const r = await fetch('backtest/data/backtest.json?t=' + Date.now());
+        if (!r.ok) { renderBacktestFallback(); return; }
+        _btData = await r.json();
+        const results = _btData.results || [];
+        renderBacktestCards(results);
+        if (results.length) selectBtFund(results[0].code);
+    } catch(e) { renderBacktestFallback(); }
+}
+
+function renderBacktestCards(results) {
+    const grid = document.getElementById('backtestCards');
+    if (!grid || !results.length) { renderBacktestFallback(); return; }
+    grid.innerHTML = results.map(r => {
+        const s = r.metrics.strategy;
+        const b = r.metrics.benchmark;
+        const alpha    = s.annual_return_pct - b.annual_return_pct;
+        const aCls     = alpha >= 0 ? 'positive' : 'negative';
+        const aSign    = alpha >= 0 ? '+' : '';
+        const retCls   = s.annual_return_pct >= 0 ? 'positive' : 'negative';
+        const retSign  = s.annual_return_pct >= 0 ? '+' : '';
+        const ddCls    = s.max_drawdown_pct <= -20 ? 'negative' : '';
+        const shpCls   = s.sharpe >= 1 ? 'positive' : s.sharpe < 0 ? 'negative' : '';
+        return `<div class="backtest-card" data-code="${escHtml(r.code)}"
+                     onclick="selectBtFund('${escHtml(r.code)}')">
+            <div class="bt-name">${escHtml(r.name)}</div>
+            <div class="bt-code num">${escHtml(r.code)}</div>
+            <div class="bt-metrics">
+                <div class="bt-metric">
+                    <span class="bt-label">策略年化</span>
+                    <span class="bt-val num ${retCls}">${retSign}${s.annual_return_pct.toFixed(1)}%</span>
+                    <span class="bt-sub ${aCls}">α ${aSign}${alpha.toFixed(1)}pt</span>
+                </div>
+                <div class="bt-metric">
+                    <span class="bt-label">最大回撤</span>
+                    <span class="bt-val num ${ddCls}">${s.max_drawdown_pct.toFixed(1)}%</span>
+                    <span class="bt-sub">基准 ${b.max_drawdown_pct.toFixed(1)}%</span>
+                </div>
+                <div class="bt-metric">
+                    <span class="bt-label">夏普比率</span>
+                    <span class="bt-val num ${shpCls}">${s.sharpe.toFixed(2)}</span>
+                    <span class="bt-sub">基准 ${b.sharpe.toFixed(2)}</span>
+                </div>
+                <div class="bt-metric">
+                    <span class="bt-label">胜率 / 笔数</span>
+                    <span class="bt-val num">${s.win_rate_pct.toFixed(0)}%</span>
+                    <span class="bt-sub">${s.trade_count} 笔交易</span>
+                </div>
+            </div>
+            <div class="bt-period">${escHtml(r.period_start)} ~ ${escHtml(r.period_end)}</div>
+        </div>`;
+    }).join('');
+}
+
+function selectBtFund(code) {
+    _btSelected = code;
+    document.querySelectorAll('.backtest-card').forEach(el =>
+        el.classList.toggle('selected', el.dataset.code === code));
+    if (!_btData) return;
+    const result = _btData.results.find(r => r.code === code);
+    if (result) renderBtChart(result);
+}
+
+function renderBtChart(result) {
+    const el = document.getElementById('backtestChart');
+    if (!el) return;
+    if (!_btChart) {
+        _btChart = echarts.init(el);
+        window.addEventListener('resize', () => _btChart.resize());
+    }
+    const c = result.nav_curve;
+    const s = result.metrics.strategy;
+    const b = result.metrics.benchmark;
+    const sSign = s.annual_return_pct >= 0 ? '+' : '';
+    const bSign = b.annual_return_pct >= 0 ? '+' : '';
+    const alpha = s.annual_return_pct - b.annual_return_pct;
+    _btChart.setOption({
+        backgroundColor: 'transparent',
+        title: {
+            text: escHtml(result.name) + ' · 净值曲线对比',
+            subtext: '策略 ' + sSign + s.annual_return_pct.toFixed(1) + '%  ·  '
+                   + '基准 ' + bSign + b.annual_return_pct.toFixed(1) + '%  ·  '
+                   + 'α ' + (alpha >= 0 ? '+' : '') + alpha.toFixed(1) + 'pt  ·  '
+                   + '回撤 ' + s.max_drawdown_pct.toFixed(1) + '%  ·  '
+                   + '夏普 ' + s.sharpe.toFixed(2),
+            left: 'center', top: 14,
+            textStyle:    { color: '#ece4d3', fontSize: 14, fontWeight: 600 },
+            subtextStyle: { color: '#857d6c', fontSize: 11.5 },
+        },
+        tooltip: {
+            trigger: 'axis',
+            backgroundColor: '#1a1510',
+            borderColor: 'rgba(180,160,120,.18)',
+            textStyle: { color: '#ece4d3', fontSize: 12 },
+            formatter: params =>
+                params[0].axisValue + '<br>' +
+                params.map(p => p.marker + p.seriesName + ': ' + (+p.value).toFixed(3)).join('<br>')
+        },
+        legend: {
+            bottom: 6,
+            textStyle: { color: 'rgba(200,190,165,.72)', fontSize: 12 },
+            data: ['信号策略', '买入持有(基准)']
+        },
+        grid: { left: 56, right: 22, top: 88, bottom: 40 },
+        xAxis: {
+            type: 'category', data: c.dates,
+            axisLabel: { color: 'rgba(184,173,151,.45)', fontSize: 10, rotate: 20 },
+            axisLine:  { lineStyle: { color: 'rgba(255,255,255,.08)' } },
+            splitLine: { show: false },
+        },
+        yAxis: {
+            type: 'value',
+            axisLabel: { color: 'rgba(184,173,151,.45)', formatter: v => v.toFixed(2) },
+            splitLine: { lineStyle: { color: 'rgba(255,255,255,.055)' } },
+        },
+        series: [
+            {
+                name: '信号策略', type: 'line', data: c.strategy,
+                smooth: true, symbol: 'none',
+                lineStyle: { color: '#2de89a', width: 2.2 },
+                areaStyle: { color: { type: 'linear', x: 0, y: 0, x2: 0, y2: 1,
+                    colorStops: [{ offset: 0, color: 'rgba(45,232,154,.22)' },
+                                 { offset: 1, color: 'rgba(45,232,154,.02)' }] }},
+            },
+            {
+                name: '买入持有(基准)', type: 'line', data: c.benchmark,
+                smooth: true, symbol: 'none',
+                lineStyle: { color: 'rgba(201,162,39,.7)', width: 1.6, type: 'dashed' },
+            }
+        ]
+    });
+}
+
+function renderBacktestFallback() {
+    const grid = document.getElementById('backtestCards');
+    if (grid) grid.innerHTML =
+        '<div style="color:var(--paper-faint);font-size:13px;padding:16px 0;">' +
+        '暂无回测数据，请先运行 python3 backtest/backtest_engine.py</div>';
+}
+
 // ========== Initialize ==========
 document.addEventListener('DOMContentLoaded', async function() {
     renderHeader();
@@ -1340,6 +1544,8 @@ document.addEventListener('DOMContentLoaded', async function() {
     renderSignalDetail();
     // 技术指标信号（signals.json）
     await loadAndRenderTechSignals();
+    // 策略回测（backtest/data/backtest.json）
+    await loadAndRenderBacktest();
     // 融合决策卡（value_compass/data/fusion.json）
     await loadAndRenderFusion();
     // 再平衡：优先用 rebalance.json，JS 计算作为补充

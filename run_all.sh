@@ -26,8 +26,22 @@ echo "【第4步】计算再平衡建议..."
 python3 data/rebalance.py
 
 echo ""
+echo "【第5步】价值罗盘（可选：仅在重仓股变动时重跑）..."
+# python3 value_compass/build_value_compass.py
+# python3 value_compass/build_fusion.py
+
+# ── 策略回测（每周跑一次即可，数据量大约1-2分钟）───────────────
+# 加 --backtest 参数时执行，例如：  ./run_all.sh --backtest
+if [[ "${1}" == "--backtest" ]]; then
+    echo ""
+    echo "【第6步】策略回测（--backtest 模式）..."
+    python3 backtest/backtest_engine.py
+fi
+
+echo ""
 echo "=========================================="
 echo "  ✅ 全量更新完成！"
+echo "  策略回测：./run_all.sh --backtest（每周）"
 echo "=========================================="
 echo ""
 echo "启动本地预览 → http://localhost:8080"
