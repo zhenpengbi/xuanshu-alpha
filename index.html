@@ -392,6 +392,10 @@
         .fc-badge-ok      { background: #7a5c10; color: #f0d270; border: 1px solid rgba(201,162,39,.4); }
         .fc-badge-flaw    { background: rgba(229,86,79,.22); color: #ff9090; border: 1px solid rgba(229,86,79,.35); }
         .fc-badge-na      { background: rgba(100,95,85,.3); color: var(--paper-faint); border: 1px solid rgba(180,160,120,.2); }
+        /* 趋势型资产标识徽章 */
+        .fc-badge-trend   { background: rgba(201,162,39,.15); color: var(--gold-bright); border: 1px solid rgba(201,162,39,.32); }
+        /* 技术参考（趋势型资产，信号仅供参考） */
+        .fc-badge-techref { background: rgba(130,120,100,.18); color: var(--paper-faint); border: 1px solid rgba(150,140,110,.22); font-size: 11px; }
         /* 决策动作：大字高对比 */
         .fusion-card .fc-action {
             font-size: 19px; font-weight: 700; letter-spacing: .5px;
@@ -1356,20 +1360,28 @@ function renderFusion(items) {
     if (!grid || !items.length) { renderFusionFallback(); return; }
     // 每张卡独立平铺为 grid 的直接子元素
     grid.innerHTML = items.map(item => {
-        const techCls  = TECH_BADGE_CLS[item.tech_signal]  || 'fc-badge-hold';
-        const valueCls = item.applicable
-            ? (VALUE_BADGE_CLS[item.value_rating] || 'fc-badge-na')
-            : 'fc-badge-na';
-        const valueTxt  = escHtml(item.applicable ? item.value_rating : '价值框架不适用');
+        const isTrend = item.asset_type === 'trend';
+        let badge1, badge2;
+        if (isTrend) {
+            // 趋势型资产：显示"趋势型"标识 + 技术信号仅供参考
+            badge1 = `<span class="fc-badge fc-badge-trend">📈 趋势型</span>`;
+            badge2 = `<span class="fc-badge fc-badge-techref">技术参考&nbsp;${escHtml(item.tech_signal)}</span>`;
+        } else {
+            // 震荡型 / 可穿透资产：技术信号 + 价值评级双确认
+            const techCls  = TECH_BADGE_CLS[item.tech_signal]  || 'fc-badge-hold';
+            const valueCls = item.applicable
+                ? (VALUE_BADGE_CLS[item.value_rating] || 'fc-badge-na')
+                : 'fc-badge-na';
+            const valueTxt = escHtml(item.applicable ? item.value_rating : '价值框架不适用');
+            badge1 = `<span class="fc-badge ${techCls}">技术&nbsp;${escHtml(item.tech_signal)}</span>`;
+            badge2 = `<span class="fc-badge ${valueCls}">${valueTxt}</span>`;
+        }
         const actionCls = `fc-action-${item.level}`;
         const cardCls   = `fusion-card level-${item.level}`;
         return `<div class="${cardCls}">
             <div class="fc-name">${escHtml(item.name)}</div>
             <div class="fc-code num">${escHtml(item.code)}</div>
-            <div class="fc-badges">
-                <span class="fc-badge ${techCls}">技术&nbsp;${escHtml(item.tech_signal)}</span>
-                <span class="fc-badge ${valueCls}">${valueTxt}</span>
-            </div>
+            <div class="fc-badges">${badge1}${badge2}</div>
             <div class="fc-action ${actionCls}">${escHtml(item.action)}</div>
             <div class="fc-reason">${escHtml(item.reason)}</div>
         </div>`;

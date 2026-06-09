@@ -4,9 +4,18 @@ build_fusion.py — 融合决策卡生成器
 读取 data/signals.json + value_compass/data/value_compass.json
 生成 value_compass/data/fusion.json
 
-⚠️ DEMO 占位映射（本期临时，下期由 build_value_compass.py 重跑真实持仓基金后按 fund_code 直接匹配替换）：
-  008585 (天弘AI主题指数C)  ← 使用 014880 (天弘中证机器人ETF联接) 的价值评级
-  515790 (华夏光伏ETF)      ← 使用 001631 (天弘中证食品饮料ETF联接) 的价值评级
+资产分类（asset_type）：
+  trend       — 趋势型资产（黄金/有色/纳指/标普），回测证明信号择时跑输买入持有，
+                建议长期持有/定投，不做短线择时
+  oscillation — 震荡型资产（AI主题/光伏ETF），技术信号×价值面双确认有效（α>0）
+
+回测依据（2023-03 ~ 2026-06，3年）：
+  000216 黄金      α -21.8pt（策略+4.9% vs 基准+26.7%）
+  017766 有色金属  α  -2.3pt（策略-0.7% vs 基准+1.6%）
+  513100 纳指100   α -22.0pt（策略+9.9% vs 基准+31.9%）
+  513500 标普500   α -11.6pt（策略+11.9% vs 基准+23.5%）
+  008585 AI主题    α  +8.8pt（策略+36.2% vs 基准+27.4%）← 双确认有效
+  515790 光伏ETF   α  +1.6pt（策略-5.9% vs 基准-7.5%）  ← 减少损失
 """
 
 import json
@@ -31,6 +40,26 @@ APPLICABLE = {"008585", "515790"}
 
 # DEMO_VALUE_MAP 已移除 ── value_compass.json 现在直接包含 008585/515790 真实评级
 # build_fusion.py 直接按 fund_code 匹配，不再需要临时映射
+
+# ── 资产类型（用于前端区分展示策略）────────────────────────────
+# trend       : 趋势型，回测证明信号择时跑输买入持有
+# oscillation : 震荡型，技术信号×价值面双确认有效
+ASSET_TYPE = {
+    "000216": "trend",       # 黄金       α -21.8pt
+    "017766": "trend",       # 有色金属   α  -2.3pt
+    "513100": "trend",       # 纳指100    α -22.0pt
+    "513500": "trend",       # 标普500    α -11.6pt
+    "008585": "oscillation", # AI主题     α  +8.8pt
+    "515790": "oscillation", # 光伏ETF    α  +1.6pt
+}
+
+# 趋势型资产 — 各标的回测 Alpha 标注
+_TREND_BACKTEST_NOTE = {
+    "000216": "回测3年(2023-2026)：信号策略年化+4.9% vs 买入持有+26.7%，少赚21.8pt",
+    "017766": "回测3年(2023-2026)：信号策略年化-0.7% vs 买入持有+1.6%，少赚2.3pt",
+    "513100": "回测3年(2023-2026)：信号策略年化+9.9% vs 买入持有+31.9%，少赚22.0pt",
+    "513500": "回测3年(2023-2026)：信号策略年化+11.9% vs 买入持有+23.5%，少赚11.6pt",
+}
 
 
 # ── 技术信号归一化 ────────────────────────────────────────────
@@ -144,17 +173,20 @@ def build():
         tech_reason = sig_entry.get("reason", "")
 
         if code in NOT_APPLICABLE:
-            # 宏观/宽基/大宗：不参与价值矩阵
+            # 趋势型资产：回测证明信号择时跑输买入持有，建议长期持有
+            backtest_note = _TREND_BACKTEST_NOTE.get(code, "")
             items.append({
                 "code": code,
                 "name": name,
+                "asset_type": ASSET_TYPE.get(code, "trend"),
                 "applicable": False,
                 "tech_signal": tech_signal,
                 "value_rating": "价值框架不适用(宏观/宽基资产)",
-                "action": "按技术信号执行",
+                "action": "长期持有",
                 "reason": (
-                    f"宏观/宽基/大宗资产，巴菲特八问框架不适用，仅参考技术信号。"
-                    f"当前技术面：{tech_reason or tech_signal}"
+                    f"回测显示趋势型资产择时跑输买入持有，建议长期持有或定投，不做短线择时。"
+                    f"{backtest_note}。"
+                    f"当前技术信号仅供参考：{tech_reason or tech_signal}"
                 ),
                 "level": "neutral",
             })
@@ -174,6 +206,7 @@ def build():
                 items.append({
                     "code": code,
                     "name": name,
+                    "asset_type": ASSET_TYPE.get(code, "oscillation"),
                     "applicable": True,
                     "tech_signal": tech_signal,
                     "value_rating": value_rating,
@@ -187,6 +220,7 @@ def build():
                 items.append({
                     "code": code,
                     "name": name,
+                    "asset_type": ASSET_TYPE.get(code, "oscillation"),
                     "applicable": True,
                     "tech_signal": tech_signal,
                     "value_rating": "暂无价值评级",
