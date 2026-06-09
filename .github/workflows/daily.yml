@@ -28,6 +28,10 @@ jobs:
         run: python3 data/indicators.py
       - name: 生成买卖信号
         run: python3 data/signals.py
+      - name: 新闻情绪分析
+        run: python3 scripts/build_news_impact.py
+      - name: 基金雷达扫描
+        run: python3 scripts/fund_scanner.py
       - name: 计算再平衡建议
         run: python3 data/rebalance.py
       - name: 提交并推送更新

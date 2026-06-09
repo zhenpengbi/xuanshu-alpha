@@ -460,6 +460,65 @@
             background:linear-gradient(105deg,transparent,rgba(220,200,155,.06),transparent);
             transform:skewX(-18deg);transition:left .65s ease;pointer-events:none; }
         .backtest-chart-card:hover .sweep { left:130%; }
+
+        /* ========== 新闻情绪卡片 ========== */
+        .sentiment-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+        @media (max-width: 1024px) { .sentiment-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 600px)  { .sentiment-grid { grid-template-columns: 1fr; } }
+        .sentiment-card {
+            background: rgba(255,255,255,.035); border: 1px solid rgba(255,255,255,.07);
+            border-radius: 10px; padding: 16px 18px;
+            box-shadow: 0 4px 18px rgba(0,0,0,.3);
+            position: relative;
+        }
+        .sentiment-card.sent-bull { border-left: 3px solid rgba(31,184,116,.55); }
+        .sentiment-card.sent-bear { border-left: 3px solid rgba(229,86,79,.5); }
+        .sentiment-card.sent-neut { border-left: 3px solid rgba(180,160,120,.3); }
+        .sc-name  { font-size: 13px; font-weight: 700; color: var(--paper); margin-bottom: 2px; }
+        .sc-code  { font-size: 11px; color: var(--paper-faint); font-family: var(--mono); margin-bottom: 10px; }
+        .sc-label { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 12px; font-weight: 700; font-family: var(--mono); margin-bottom: 10px; }
+        .sc-label-bull { background: rgba(31,184,116,.2); color: #2de89a; border: 1px solid rgba(31,184,116,.3); }
+        .sc-label-bear { background: rgba(229,86,79,.2); color: #ff6b63; border: 1px solid rgba(229,86,79,.3); }
+        .sc-label-neut { background: rgba(180,160,120,.12); color: var(--paper-dim); border: 1px solid rgba(180,160,120,.2); }
+        /* 情绪进度条 */
+        .sc-bar-wrap { background: rgba(255,255,255,.06); border-radius: 3px; height: 5px; margin: 8px 0 10px; overflow: hidden; display: flex; }
+        .sc-bar-bull { background: linear-gradient(90deg, #1fb874, #2de89a); border-radius: 3px 0 0 3px; }
+        .sc-bar-bear { background: linear-gradient(90deg, #e5564f, #ff6b63); border-radius: 0 3px 3px 0; }
+        .sc-counts { font-size: 11px; color: var(--paper-faint); font-family: var(--mono); margin-bottom: 8px; }
+        .sc-counts .bull { color: #2de89a; } .sc-counts .bear { color: #ff6b63; }
+        .sc-news { font-size: 11.5px; color: var(--paper-faint); line-height: 1.6; border-top: 1px solid var(--line); padding-top: 8px; }
+        .sc-news-item { display: flex; gap: 6px; margin-bottom: 4px; }
+        .sc-news-dot { flex: none; margin-top: 5px; width: 5px; height: 5px; border-radius: 50%; }
+        .dot-bull { background: #2de89a; } .dot-bear { background: #ff6b63; } .dot-neut { background: var(--paper-faint); }
+
+        /* ========== 基金雷达卡片 ========== */
+        .radar-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+        @media (max-width: 768px) { .radar-grid { grid-template-columns: 1fr; } }
+        .radar-empty {
+            color: var(--paper-faint); font-size: 13px; padding: 32px;
+            text-align: center; background: rgba(255,255,255,.025);
+            border: 1px solid rgba(255,255,255,.06); border-radius: 10px;
+        }
+        .radar-card {
+            background: rgba(255,255,255,.035); border: 1px solid rgba(255,255,255,.07);
+            border-radius: 10px; padding: 16px 18px; position: relative;
+            box-shadow: 0 4px 18px rgba(0,0,0,.3);
+        }
+        .radar-card.signal-rebound { border-top: 2px solid rgba(31,184,116,.6); }
+        .radar-card.signal-watch   { border-top: 2px solid rgba(201,162,39,.4); }
+        .rc-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+        .rc-name { font-size: 13px; font-weight: 700; color: var(--paper); }
+        .rc-code { font-size: 11px; color: var(--paper-faint); font-family: var(--mono); margin-top: 2px; }
+        .rc-signal-badge { padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; font-family: var(--mono); flex: none; }
+        .badge-rebound { background: rgba(31,184,116,.2); color: #2de89a; border: 1px solid rgba(31,184,116,.3); }
+        .badge-watch   { background: rgba(201,162,39,.15); color: var(--gold-bright); border: 1px solid rgba(201,162,39,.3); }
+        .rc-metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 10px; }
+        .rc-metric { display: flex; flex-direction: column; gap: 2px; }
+        .rc-metric-label { font-size: 9.5px; color: var(--paper-faint); text-transform: uppercase; letter-spacing: 1px; }
+        .rc-metric-val { font-size: 16px; font-weight: 700; font-family: var(--mono); color: var(--paper); }
+        .rc-reason { font-size: 11.5px; color: var(--paper-faint); line-height: 1.6; margin-bottom: 8px; }
+        .rc-warning { font-size: 10.5px; color: rgba(229,86,79,.7); border-top: 1px solid var(--line); padding-top: 8px; }
+        .radar-disclaimer { margin-top: 12px; padding: 10px 14px; background: rgba(229,86,79,.06); border: 1px solid rgba(229,86,79,.15); border-radius: 8px; font-size: 11px; color: rgba(229,86,79,.8); text-align: center; }
     </style>
 </head>
 <body>
@@ -669,11 +728,27 @@
         <div class="timeline" id="timeline"></div>
     </section>
 
+    <!-- Section: 新闻情绪 -->
+    <section class="section">
+        <h2 class="section-title">新闻情绪 · 持仓影响速览</h2>
+        <div class="sentiment-grid" id="sentimentGrid">
+            <div style="color:var(--paper-faint);font-size:13px;padding:16px 0;">加载中...</div>
+        </div>
+    </section>
+
     <!-- Section: 融合决策卡 -->
     <section class="section">
         <h2 class="section-title">融合决策 · 技术×价值双确认</h2>
         <div class="fusion-grid" id="fusionGrid">
             <div style="color:var(--paper-faint);font-size:13px;padding:16px;">加载中...</div>
+        </div>
+    </section>
+
+    <!-- Section: 基金雷达 -->
+    <section class="section">
+        <h2 class="section-title">基金雷达 · 超跌机会扫描</h2>
+        <div id="fundRadarSection">
+            <div class="radar-empty">加载中...</div>
         </div>
     </section>
 
@@ -1539,6 +1614,127 @@ function renderBacktestFallback() {
         '暂无回测数据，请先运行 python3 backtest/backtest_engine.py</div>';
 }
 
+// ========== 新闻情绪：从 data/news_impact.json 加载 ==========
+async function loadAndRenderSentiment() {
+    try {
+        const r = await fetch('data/news_impact.json?t=' + Date.now());
+        if (!r.ok) { renderSentimentFallback(); return; }
+        const data = await r.json();
+        renderSentiment(data.items || [], data);
+    } catch(e) { renderSentimentFallback(); }
+}
+
+function renderSentiment(items, meta) {
+    const grid = document.getElementById('sentimentGrid');
+    if (!grid || !items.length) { renderSentimentFallback(); return; }
+    const total = (meta.total_news || 1);
+    grid.innerHTML = items.map(item => {
+        const score = item.sentiment_score;
+        const label = item.sentiment_label;
+        const bull  = item.bullish_count;
+        const bear  = item.bearish_count;
+        const neut  = item.neutral_count;
+        const cardCls  = score > 0 ? 'sent-bull' : score < 0 ? 'sent-bear' : 'sent-neut';
+        const labelCls = score > 0 ? 'sc-label-bull' : score < 0 ? 'sc-label-bear' : 'sc-label-neut';
+        const sign     = score > 0 ? '+' : '';
+        // Progress bar widths (bull + bear share 100%, neutral excluded)
+        const tot = bull + bear || 1;
+        const bw = Math.round(bull / tot * 100);
+        const rw = 100 - bw;
+        // Top news (max 3)
+        const newsHtml = (item.top_impact_news || []).slice(0, 3).map(n => {
+            const dc = n.sentiment === '利多' ? 'dot-bull' : n.sentiment === '利空' ? 'dot-bear' : 'dot-neut';
+            return `<div class="sc-news-item">
+                <span class="sc-news-dot ${dc}"></span>
+                <span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${escHtml(n.title)}">${escHtml(n.title)}</span>
+            </div>`;
+        }).join('');
+        return `<div class="sentiment-card ${cardCls}">
+            <div class="sc-name">${escHtml(item.name)}</div>
+            <div class="sc-code num">${escHtml(item.code)}</div>
+            <span class="sc-label ${labelCls}">${escHtml(label)}&nbsp;${sign}${score}</span>
+            <div class="sc-bar-wrap">
+                <div class="sc-bar-bull" style="width:${bw}%"></div>
+                <div class="sc-bar-bear" style="width:${rw}%"></div>
+            </div>
+            <div class="sc-counts">
+                <span class="bull">利多 ${bull} 条</span>&nbsp;/&nbsp;
+                <span class="bear">利空 ${bear} 条</span>&nbsp;/&nbsp;中性 ${neut} 条
+            </div>
+            <div class="sc-news">${newsHtml || '<span style="color:var(--paper-faint)">暂无相关新闻</span>'}</div>
+        </div>`;
+    }).join('');
+}
+
+function renderSentimentFallback() {
+    const grid = document.getElementById('sentimentGrid');
+    if (grid) grid.innerHTML = '<div style="color:var(--paper-faint);font-size:13px;padding:16px 0;">暂无情绪数据，请先运行 python3 scripts/build_news_impact.py</div>';
+}
+
+// ========== 基金雷达：从 data/fund_recommendations.json 加载 ==========
+async function loadAndRenderRadar() {
+    try {
+        const r = await fetch('data/fund_recommendations.json?t=' + Date.now());
+        if (!r.ok) { renderRadarFallback(); return; }
+        const data = await r.json();
+        renderRadar(data);
+    } catch(e) { renderRadarFallback(); }
+}
+
+function renderRadar(data) {
+    const wrap = document.getElementById('fundRadarSection');
+    if (!wrap) return;
+    const recs = data.recommendations || [];
+    if (!data.triggered || !recs.length) {
+        const msg = data.message || '当前市场情绪平稳，暂无超跌机会';
+        wrap.innerHTML = `<div class="radar-empty">
+            <div style="font-size:28px;margin-bottom:12px;">📡</div>
+            <div style="font-size:14px;color:var(--paper-dim);margin-bottom:6px;">${escHtml(msg)}</div>
+            <div style="font-size:11px;color:var(--paper-faint);">avg_sell_score = ${data.avg_sell_score || 0} · 触发门槛 ≥ ${data.panic_threshold || 2.0}</div>
+        </div>`;
+        return;
+    }
+    const cardsHtml = recs.map(r => {
+        const isBounce = r.signal === '超跌反弹';
+        const cardCls  = isBounce ? 'signal-rebound' : 'signal-watch';
+        const badgeCls = isBounce ? 'badge-rebound'  : 'badge-watch';
+        const dropCls  = 'negative';
+        return `<div class="radar-card ${cardCls}">
+            <div class="rc-header">
+                <div>
+                    <div class="rc-name">${escHtml(r.name)}</div>
+                    <div class="rc-code num">${escHtml(r.code)}</div>
+                </div>
+                <span class="rc-signal-badge ${badgeCls}">${escHtml(r.signal)}</span>
+            </div>
+            <div class="rc-metrics">
+                <div class="rc-metric">
+                    <span class="rc-metric-label">20日跌幅</span>
+                    <span class="rc-metric-val ${dropCls}">-${r.drop_20d_pct.toFixed(1)}%</span>
+                </div>
+                <div class="rc-metric">
+                    <span class="rc-metric-label">RSI(14)</span>
+                    <span class="rc-metric-val" style="color:var(--gold-bright);">${r.rsi14 != null ? r.rsi14.toFixed(1) : '--'}</span>
+                </div>
+                <div class="rc-metric">
+                    <span class="rc-metric-label">规模(亿)</span>
+                    <span class="rc-metric-val">${r.scale_bn > 0 ? r.scale_bn.toFixed(1) : '--'}</span>
+                </div>
+            </div>
+            <div class="rc-reason">${escHtml(r.reason)}</div>
+            <div class="rc-warning">${escHtml(r.risk_warning || '')}</div>
+        </div>`;
+    }).join('');
+    const disc = escHtml(data.disclaimer || '以上仅为量化扫描结果，不构成投资建议');
+    wrap.innerHTML = `<div class="radar-grid">${cardsHtml}</div>
+        <div class="radar-disclaimer">⚠️ ${disc}</div>`;
+}
+
+function renderRadarFallback() {
+    const wrap = document.getElementById('fundRadarSection');
+    if (wrap) wrap.innerHTML = '<div class="radar-empty">暂无基金雷达数据，请先运行 python3 scripts/fund_scanner.py</div>';
+}
+
 // ========== Initialize ==========
 document.addEventListener('DOMContentLoaded', async function() {
     renderHeader();
@@ -1547,6 +1743,8 @@ document.addEventListener('DOMContentLoaded', async function() {
     renderBarChart();
     renderHoldings();
     renderTimeline();
+    // 新闻情绪（data/news_impact.json）
+    await loadAndRenderSentiment();
     // 实时行情（prices.json）
     await loadAndRenderPrices();
     // 量化信号（gold/us/metals signal JSON）
@@ -1563,6 +1761,8 @@ document.addEventListener('DOMContentLoaded', async function() {
     // 再平衡：优先用 rebalance.json，JS 计算作为补充
     await loadAndRenderRebalanceJson();
     renderRebalance();
+    // 基金雷达（data/fund_recommendations.json）
+    await loadAndRenderRadar();
     renderAdvice();
 });
 </script>
