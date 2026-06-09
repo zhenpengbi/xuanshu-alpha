@@ -1,17 +1,17 @@
 {
-  "updated_at": "2026-06-08 12:45",
+  "updated_at": "2026-06-09 11:36",
   "signals": [
     {
       "code": "000216",
       "name": "易方达黄金ETF联接C",
-      "rsi14": 37.06,
-      "ma5": 3.38944,
-      "ma20": 3.44817,
-      "macd_hist": -0.00355277,
+      "rsi14": 28.49,
+      "ma5": 3.36188,
+      "ma20": 3.433465,
+      "macd_hist": -0.01592331,
       "macd_trend": "bearish",
       "signal": "观望",
-      "reason": "RSI偏低(37.1) · MA5<MA20空头 · MACD柱负向",
-      "buy_score": 1,
+      "reason": "RSI超卖(28.5<30)→买入 · MA5<MA20空头 · MACD柱负向",
+      "buy_score": 2,
       "sell_score": 2
     },
     {
@@ -30,15 +30,54 @@
     {
       "code": "017766",
       "name": "南方有色金属ETF联接E",
-      "rsi14": 28.77,
-      "ma5": 3.8814,
-      "ma20": 4.01305,
-      "macd_hist": -0.07303609,
+      "rsi14": 24.99,
+      "ma5": 3.8148,
+      "ma20": 3.98685,
+      "macd_hist": -0.09091327,
       "macd_trend": "bearish",
       "signal": "观望",
-      "reason": "RSI超卖(28.8<30)→买入 · MA5<MA20空头 · MACD柱负向",
+      "reason": "RSI超卖(25.0<30)→买入 · MA5<MA20空头 · MACD柱负向",
       "buy_score": 2,
       "sell_score": 2
+    },
+    {
+      "code": "515790",
+      "name": "华夏光伏ETF",
+      "rsi14": 36.78,
+      "ma5": 1.0344,
+      "ma20": 1.08915,
+      "macd_hist": -0.02496583,
+      "macd_trend": "bearish",
+      "signal": "观望",
+      "reason": "RSI偏低(36.8) · MA5<MA20空头 · MACD柱负向",
+      "buy_score": 1,
+      "sell_score": 2
+    },
+    {
+      "code": "513100",
+      "name": "纳指100ETF",
+      "rsi14": 55.3,
+      "ma5": 2.2116,
+      "ma20": 2.1805,
+      "macd_hist": -0.03332869,
+      "macd_trend": "bearish",
+      "signal": "观望",
+      "reason": "MA5>MA20多头 · MACD柱负向",
+      "buy_score": 1,
+      "sell_score": 1
+    },
+    {
+      "code": "513500",
+      "name": "标普500ETF",
+      "rsi14": 57.6,
+      "ma5": 2.5606,
+      "ma20": 2.5221,
+      "macd_hist": -0.01229683,
+      "macd_trend": "bearish",
+      "signal": "观望",
+      "reason": "MA5>MA20多头 · MACD柱负向",
+      "buy_score": 1,
+      "sell_score": 1
     }
   ]
 }
