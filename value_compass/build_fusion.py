@@ -29,12 +29,8 @@ NOT_APPLICABLE = {"000216", "017766", "513100", "513500"}
 # 价值框架【适用·可穿透】：持股基金，可看穿底层持仓质地
 APPLICABLE = {"008585", "515790"}
 
-# ── DEMO 映射表（本期临时占位） ───────────────────────────────
-# key=持仓基金代码, value=value_compass.json 中对应的 fund_code
-DEMO_VALUE_MAP = {
-    "008585": "014880",  # AI主题 ← 机器人ETF评级（DEMO）
-    "515790": "001631",  # 光伏ETF ← 食品饮料ETF评级（DEMO）
-}
+# DEMO_VALUE_MAP 已移除 ── value_compass.json 现在直接包含 008585/515790 真实评级
+# build_fusion.py 直接按 fund_code 匹配，不再需要临时映射
 
 
 # ── 技术信号归一化 ────────────────────────────────────────────
@@ -164,9 +160,8 @@ def build():
             })
 
         elif code in APPLICABLE:
-            # 可穿透基金：查 DEMO 映射
-            vc_code = DEMO_VALUE_MAP.get(code)
-            vc_entry = vc_map.get(vc_code) if vc_code else None
+            # 直接按基金代码匹配真实评级（value_compass.json 已包含真实持仓数据）
+            vc_entry = vc_map.get(code)
 
             if vc_entry and "fund_quality_summary" in vc_entry:
                 summary = vc_entry["fund_quality_summary"]
@@ -185,7 +180,7 @@ def build():
                     "action": decision["action"],
                     "reason": decision["reason"],
                     "level": decision["level"],
-                    "value_source_note": f"DEMO映射←{vc_code}({vc_entry.get('official_name', '')})",
+                    "value_source_note": f"真实持仓穿透 {vc_entry.get('latest_quarter', '')}",
                     "value_verdict": verdict,
                 })
             else:

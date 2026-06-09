@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-05 19:46",
+  "updated_at": "2026-06-09 16:27",
   "items": [
     {
       "code": "000216",
@@ -8,20 +8,20 @@
       "tech_signal": "持有",
       "value_rating": "价值框架不适用(宏观/宽基资产)",
       "action": "按技术信号执行",
-      "reason": "宏观/宽基/大宗资产，巴菲特八问框架不适用，仅参考技术信号。当前技术面：RSI偏低(36.7) · MA5<MA20空头 · MACD柱负向",
+      "reason": "宏观/宽基/大宗资产，巴菲特八问框架不适用，仅参考技术信号。当前技术面：RSI偏低(37.3) · MA5<MA20空头 · MACD柱负向",
       "level": "neutral"
     },
     {
       "code": "008585",
       "name": "天弘AI主题指数C",
       "applicable": true,
-      "tech_signal": "持有",
-      "value_rating": "合格",
-      "action": "持有观察",
-      "reason": "质地合格，技术面中性，继续持有并等待更明确的信号变化",
-      "level": "yellow",
-      "value_source_note": "DEMO映射←014880(天弘中证机器人ETF发起联接A)",
-      "value_verdict": "前十大重仓中约 62.5% 权重为绿/黄，质地中等，分化明显"
+      "tech_signal": "卖出",
+      "value_rating": "瑕疵",
+      "action": "清仓离场",
+      "reason": "技术面卖出 + 底层价值瑕疵，双重负向确认，建议清仓离场",
+      "level": "red",
+      "value_source_note": "真实持仓穿透 2026年1季度股票投资明细",
+      "value_verdict": "前十大重仓中约 50.8% 权重为绿/黄，质地中等，分化明显"
     },
     {
       "code": "017766",
@@ -30,7 +30,7 @@
       "tech_signal": "持有",
       "value_rating": "价值框架不适用(宏观/宽基资产)",
       "action": "按技术信号执行",
-      "reason": "宏观/宽基/大宗资产，巴菲特八问框架不适用，仅参考技术信号。当前技术面：MA5<MA20空头 · MACD柱负向",
+      "reason": "宏观/宽基/大宗资产，巴菲特八问框架不适用，仅参考技术信号。当前技术面：RSI偏低(32.3) · MA5<MA20空头 · MACD柱负向",
       "level": "neutral"
     },
     {
@@ -38,12 +38,12 @@
       "name": "华夏光伏ETF",
       "applicable": true,
       "tech_signal": "持有",
-      "value_rating": "优质",
-      "action": "安心持有",
-      "reason": "底层质地优质，技术面暂无明确方向，无需操作，安心持有",
-      "level": "green",
-      "value_source_note": "DEMO映射←001631(天弘中证食品饮料ETF联接A)",
-      "value_verdict": "前十大重仓中约 95.4% 权重落在绿/黄评级公司，底层质地中上"
+      "value_rating": "瑕疵",
+      "action": "持有但盯紧",
+      "reason": "底层价值存瑕疵，技术面亦无支撑，需盯紧止损线，准备减仓",
+      "level": "yellow",
+      "value_source_note": "真实持仓穿透 2026年1季度股票投资明细",
+      "value_verdict": "底层质地偏弱或多为回避/不评级标的，需谨慎"
     },
     {
       "code": "513100",
@@ -52,7 +52,7 @@
       "tech_signal": "持有",
       "value_rating": "价值框架不适用(宏观/宽基资产)",
       "action": "按技术信号执行",
-      "reason": "宏观/宽基/大宗资产，巴菲特八问框架不适用，仅参考技术信号。当前技术面：RSI偏高(69.4) · MA5>MA20多头 · MACD柱正向",
+      "reason": "宏观/宽基/大宗资产，巴菲特八问框架不适用，仅参考技术信号。当前技术面：MA5>MA20多头 · MACD柱负向",
       "level": "neutral"
     },
     {
@@ -62,7 +62,7 @@
       "tech_signal": "持有",
       "value_rating": "价值框架不适用(宏观/宽基资产)",
       "action": "按技术信号执行",
-      "reason": "宏观/宽基/大宗资产，巴菲特八问框架不适用，仅参考技术信号。当前技术面：RSI超买(70.4>70)→卖出 · MA5>MA20多头 · MACD柱正向",
+      "reason": "宏观/宽基/大宗资产，巴菲特八问框架不适用，仅参考技术信号。当前技术面：RSI偏高(62.8) · MA5>MA20多头 · MACD柱正向",
       "level": "neutral"
     }
   ]
