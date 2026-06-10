@@ -1,6 +1,6 @@
 {
   "portfolio_updateTime": "2026-06-10",
-  "updated_at": "2026-06-10 18:29",
+  "updated_at": "2026-06-10 18:45",
   "total_value": 52613.47,
   "rebalance_threshold_pct": 5.0,
   "bullet": {
@@ -67,6 +67,23 @@
       "needs_action": true
     },
     {
+      "category": "高端制造",
+      "asset_type": "active",
+      "target_pct": 10.0,
+      "actual_pct": 10.24,
+      "actual_amount": 5386.67,
+      "target_amount": 5261.35,
+      "deviation": 0.24,
+      "deviation_amount": 126.27,
+      "signal": null,
+      "action": "建议调研替换",
+      "reason": "同类排名前66%；今年以来同类排名 66%（落后同类）  |  警告：⚠️ 排名落后，建议关注是否替换",
+      "priority": "medium",
+      "recommend_amount": null,
+      "needs_action": false,
+      "active_diag_ref": true
+    },
+    {
       "category": "黄金",
       "asset_type": "trend",
       "target_pct": 24.0,
@@ -110,22 +127,6 @@
       "signal": "观望",
       "action": "持有观察",
       "reason": "偏差 +3.8pt 在容忍区间内，按技术信号 [观望] 灵活操作",
-      "priority": "low",
-      "recommend_amount": null,
-      "needs_action": false
-    },
-    {
-      "category": "高端制造",
-      "asset_type": "active",
-      "target_pct": 10.0,
-      "actual_pct": 10.24,
-      "actual_amount": 5386.67,
-      "target_amount": 5261.35,
-      "deviation": 0.24,
-      "deviation_amount": 126.27,
-      "signal": null,
-      "action": "待主动基诊断",
-      "reason": "主动型基金（偏差 +0.2pt），需结合基金经理策略判断。请先运行 python3 scripts/active_fund_diagnose.py 生成诊断报告。",
       "priority": "low",
       "recommend_amount": null,
       "needs_action": false

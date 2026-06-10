@@ -1,13 +1,312 @@
 {
-  "generated_at": "2026-06-10 18:10:31",
+  "generated_at": "2026-06-10 18:40:07",
   "data_source": "AKShare（东方财富公开披露：基金季报前十大重仓 + A股财务分析指标）",
   "methodology": "持仓穿透(look-through) + 巴菲特八问质地评级 + 权重汇总",
   "funds": [
     {
-      "fund_code": "008585",
-      "official_name": "华夏人工智能ETF联接A",
+      "fund_code": "012885",
+      "official_name": "华夏中证光伏产业ETF发起式联接A",
       "fund_type": "指数型-股票",
-      "portfolio_labeled_name": null,
+      "portfolio_labeled_name": "华夏中证光伏产业ETF发起式联接A",
+      "name_mismatch_warning": false,
+      "latest_quarter": "2026年1季度股票投资明细",
+      "holdings_error": null,
+      "holdings_rated": [
+        {
+          "stock_code": "688795",
+          "stock_name": "摩尔线程",
+          "ratio_pct": 0.04,
+          "financials": {
+            "roe_pct": null,
+            "gross_margin_pct": null,
+            "net_margin_pct": null,
+            "debt_ratio_pct": null,
+            "ocf_to_netprofit_pct": null,
+            "rev_growth_pct": null,
+            "profit_growth_pct": null,
+            "report_date": null,
+            "roe_history": [],
+            "error": "fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")"
+          },
+          "rating": {
+            "circle": "out",
+            "checks": {
+              "Q1_能力圈": "✗ 超出能力圈（高技术壁垒/格局难判断）"
+            },
+            "rating": "灰",
+            "rating_label": "不予评级",
+            "rating_reason": "摩尔线程 属于高技术/半导体/AI算力领域，长期竞争格局超出巴菲特框架与普通投资者能力圈，诚实标注「不知道」，不强行评级。",
+            "score": null
+          }
+        },
+        {
+          "stock_code": "688783",
+          "stock_name": "西安奕材",
+          "ratio_pct": 0.02,
+          "financials": {
+            "roe_pct": null,
+            "gross_margin_pct": null,
+            "net_margin_pct": null,
+            "debt_ratio_pct": null,
+            "ocf_to_netprofit_pct": null,
+            "rev_growth_pct": null,
+            "profit_growth_pct": null,
+            "report_date": null,
+            "roe_history": [],
+            "error": "fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")"
+          },
+          "rating": {
+            "circle": "unknown",
+            "checks": {
+              "Q1_能力圈": "？ 难以判断行业归属",
+              "数据": "✗ 核心财务数据不足（缺3/3，fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")）"
+            },
+            "rating": "灰",
+            "rating_label": "不予评级",
+            "rating_reason": "西安奕材 核心财务数据缺失（fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")），无法基于真实数据评估，诚实标注数据不足，不评级。",
+            "score": null
+          }
+        },
+        {
+          "stock_code": "688765",
+          "stock_name": "禾元生物",
+          "ratio_pct": 0.01,
+          "financials": {
+            "roe_pct": null,
+            "gross_margin_pct": null,
+            "net_margin_pct": null,
+            "debt_ratio_pct": null,
+            "ocf_to_netprofit_pct": null,
+            "rev_growth_pct": null,
+            "profit_growth_pct": null,
+            "report_date": null,
+            "roe_history": [],
+            "error": "fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")"
+          },
+          "rating": {
+            "circle": "unknown",
+            "checks": {
+              "Q1_能力圈": "？ 难以判断行业归属",
+              "数据": "✗ 核心财务数据不足（缺3/3，fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")）"
+            },
+            "rating": "灰",
+            "rating_label": "不予评级",
+            "rating_reason": "禾元生物 核心财务数据缺失（fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")），无法基于真实数据评估，诚实标注数据不足，不评级。",
+            "score": null
+          }
+        },
+        {
+          "stock_code": "001280",
+          "stock_name": "中国铀业",
+          "ratio_pct": 0.01,
+          "financials": {
+            "roe_pct": null,
+            "gross_margin_pct": null,
+            "net_margin_pct": null,
+            "debt_ratio_pct": null,
+            "ocf_to_netprofit_pct": null,
+            "rev_growth_pct": null,
+            "profit_growth_pct": null,
+            "report_date": null,
+            "roe_history": [],
+            "error": "fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")"
+          },
+          "rating": {
+            "circle": "borderline",
+            "checks": {
+              "Q1_能力圈": "△ 能力圈边缘（高端制造/工业自动化，需谨慎）",
+              "数据": "✗ 核心财务数据不足（缺3/3，fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")）"
+            },
+            "rating": "灰",
+            "rating_label": "不予评级",
+            "rating_reason": "中国铀业 核心财务数据缺失（fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")），无法基于真实数据评估，诚实标注数据不足，不评级。",
+            "score": null
+          }
+        },
+        {
+          "stock_code": "688759",
+          "stock_name": "必贝特",
+          "ratio_pct": 0.01,
+          "financials": {
+            "roe_pct": null,
+            "gross_margin_pct": null,
+            "net_margin_pct": null,
+            "debt_ratio_pct": null,
+            "ocf_to_netprofit_pct": null,
+            "rev_growth_pct": null,
+            "profit_growth_pct": null,
+            "report_date": null,
+            "roe_history": [],
+            "error": "fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")"
+          },
+          "rating": {
+            "circle": "unknown",
+            "checks": {
+              "Q1_能力圈": "？ 难以判断行业归属",
+              "数据": "✗ 核心财务数据不足（缺3/3，fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")）"
+            },
+            "rating": "灰",
+            "rating_label": "不予评级",
+            "rating_reason": "必贝特 核心财务数据缺失（fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")），无法基于真实数据评估，诚实标注数据不足，不评级。",
+            "score": null
+          }
+        },
+        {
+          "stock_code": "688809",
+          "stock_name": "强一股份",
+          "ratio_pct": 0.01,
+          "financials": {
+            "roe_pct": null,
+            "gross_margin_pct": null,
+            "net_margin_pct": null,
+            "debt_ratio_pct": null,
+            "ocf_to_netprofit_pct": null,
+            "rev_growth_pct": null,
+            "profit_growth_pct": null,
+            "report_date": null,
+            "roe_history": [],
+            "error": "fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")"
+          },
+          "rating": {
+            "circle": "unknown",
+            "checks": {
+              "Q1_能力圈": "？ 难以判断行业归属",
+              "数据": "✗ 核心财务数据不足（缺3/3，fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")）"
+            },
+            "rating": "灰",
+            "rating_label": "不予评级",
+            "rating_reason": "强一股份 核心财务数据缺失（fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")），无法基于真实数据评估，诚实标注数据不足，不评级。",
+            "score": null
+          }
+        },
+        {
+          "stock_code": "301638",
+          "stock_name": "南网数字",
+          "ratio_pct": 0.0,
+          "financials": {
+            "roe_pct": null,
+            "gross_margin_pct": null,
+            "net_margin_pct": null,
+            "debt_ratio_pct": null,
+            "ocf_to_netprofit_pct": null,
+            "rev_growth_pct": null,
+            "profit_growth_pct": null,
+            "report_date": null,
+            "roe_history": [],
+            "error": "fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")"
+          },
+          "rating": {
+            "circle": "borderline",
+            "checks": {
+              "Q1_能力圈": "△ 能力圈边缘（高端制造/工业自动化，需谨慎）",
+              "数据": "✗ 核心财务数据不足（缺3/3，fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")）"
+            },
+            "rating": "灰",
+            "rating_label": "不予评级",
+            "rating_reason": "南网数字 核心财务数据缺失（fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")），无法基于真实数据评估，诚实标注数据不足，不评级。",
+            "score": null
+          }
+        },
+        {
+          "stock_code": "688802",
+          "stock_name": "沐曦股份",
+          "ratio_pct": 0.0,
+          "financials": {
+            "roe_pct": null,
+            "gross_margin_pct": null,
+            "net_margin_pct": null,
+            "debt_ratio_pct": null,
+            "ocf_to_netprofit_pct": null,
+            "rev_growth_pct": null,
+            "profit_growth_pct": null,
+            "report_date": null,
+            "roe_history": [],
+            "error": "fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")"
+          },
+          "rating": {
+            "circle": "out",
+            "checks": {
+              "Q1_能力圈": "✗ 超出能力圈（高技术壁垒/格局难判断）"
+            },
+            "rating": "灰",
+            "rating_label": "不予评级",
+            "rating_reason": "沐曦股份 属于高技术/半导体/AI算力领域，长期竞争格局超出巴菲特框架与普通投资者能力圈，诚实标注「不知道」，不强行评级。",
+            "score": null
+          }
+        },
+        {
+          "stock_code": "688796",
+          "stock_name": "百奥赛图",
+          "ratio_pct": 0.0,
+          "financials": {
+            "roe_pct": null,
+            "gross_margin_pct": null,
+            "net_margin_pct": null,
+            "debt_ratio_pct": null,
+            "ocf_to_netprofit_pct": null,
+            "rev_growth_pct": null,
+            "profit_growth_pct": null,
+            "report_date": null,
+            "roe_history": [],
+            "error": "fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")"
+          },
+          "rating": {
+            "circle": "unknown",
+            "checks": {
+              "Q1_能力圈": "？ 难以判断行业归属",
+              "数据": "✗ 核心财务数据不足（缺3/3，fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")）"
+            },
+            "rating": "灰",
+            "rating_label": "不予评级",
+            "rating_reason": "百奥赛图 核心财务数据缺失（fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")），无法基于真实数据评估，诚实标注数据不足，不评级。",
+            "score": null
+          }
+        },
+        {
+          "stock_code": "001386",
+          "stock_name": "马可波罗",
+          "ratio_pct": 0.0,
+          "financials": {
+            "roe_pct": null,
+            "gross_margin_pct": null,
+            "net_margin_pct": null,
+            "debt_ratio_pct": null,
+            "ocf_to_netprofit_pct": null,
+            "rev_growth_pct": null,
+            "profit_growth_pct": null,
+            "report_date": null,
+            "roe_history": [],
+            "error": "fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")"
+          },
+          "rating": {
+            "circle": "unknown",
+            "checks": {
+              "Q1_能力圈": "？ 难以判断行业归属",
+              "数据": "✗ 核心财务数据不足（缺3/3，fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")）"
+            },
+            "rating": "灰",
+            "rating_label": "不予评级",
+            "rating_reason": "马可波罗 核心财务数据缺失（fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")），无法基于真实数据评估，诚实标注数据不足，不评级。",
+            "score": null
+          }
+        }
+      ],
+      "fund_quality_summary": {
+        "weight_by_rating_in_top10_pct": {
+          "绿": 0.0,
+          "黄": 0.0,
+          "红": 0.0,
+          "灰": 100.0
+        },
+        "top10_disclosed_weight_pct": 0.1,
+        "verdict": "底层多为超出能力圈/数据不足的标的，质地难判断（诚实保留）"
+      }
+    },
+    {
+      "fund_code": "011840",
+      "official_name": "天弘中证人工智能C",
+      "fund_type": "指数型-股票",
+      "portfolio_labeled_name": "天弘中证人工智能C",
       "name_mismatch_warning": false,
       "latest_quarter": "2026年1季度股票投资明细",
       "holdings_error": null,
@@ -15,176 +314,74 @@
         {
           "stock_code": "300502",
           "stock_name": "新易盛",
-          "ratio_pct": 0.25,
+          "ratio_pct": 10.96,
           "financials": {
-            "roe_pct": 53.18,
-            "gross_margin_pct": 47.5041,
-            "net_margin_pct": 38.4564,
-            "debt_ratio_pct": 31.035,
-            "ocf_to_netprofit_pct": 80.61,
-            "rev_growth_pct": 187.2943,
-            "profit_growth_pct": 236.6421,
-            "report_date": "2025-12-31",
-            "roe_history": [
-              [
-                "2020-12-31",
-                14.28
-              ],
-              [
-                "2021-12-31",
-                16.72
-              ],
-              [
-                "2022-12-31",
-                18.71
-              ],
-              [
-                "2023-12-31",
-                12.59
-              ],
-              [
-                "2024-12-31",
-                34.08
-              ],
-              [
-                "2025-12-31",
-                53.18
-              ]
-            ],
-            "error": null,
-            "report_is_annual": true,
-            "latest_period": "2026-03-31",
-            "gross_margin_source": "主营业务利润率(代理)"
+            "roe_pct": null,
+            "gross_margin_pct": null,
+            "net_margin_pct": null,
+            "debt_ratio_pct": null,
+            "ocf_to_netprofit_pct": null,
+            "rev_growth_pct": null,
+            "profit_growth_pct": null,
+            "report_date": null,
+            "roe_history": [],
+            "error": "fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")"
           },
           "rating": {
             "circle": "borderline",
             "checks": {
               "Q1_能力圈": "△ 能力圈边缘（高端制造/工业自动化，需谨慎）",
-              "Q2_商业模式(毛利率)": "✓ 毛利率 47.5041%（高，盈利质量好）",
-              "Q3_护城河(ROE)": "✓ ROE 53.18%（≥15%，护城河迹象明显）",
-              "Q3b_ROE稳定性": "✓ 近期 ROE 持续 ≥10%（[18.7, 12.6, 34.1, 53.2]）",
-              "Q4_定价权(净利率)": "✓ 净利率 38.4564%（强定价权）",
-              "Q5_现金含金量": "✓ 经营现金流/净利润 80.61%（利润含金量高）",
-              "Q6_抗压(负债率)": "✓ 资产负债率 31.035%（稳健）",
-              "Q7_成长性": "营收增速 187.2943% / 净利增速 236.6421%（参考，非评级核心）",
-              "Q8_管理层&安全边际": "⚠ 本MVP未做内在价值估算与管理层诚信调查，安全边际维度暂缺，评级仅反映「生意质地」非「买入时机」"
+              "数据": "✗ 核心财务数据不足（缺3/3，fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")）"
             },
-            "rating": "黄",
-            "rating_label": "观察",
-            "rating_reason": "新易盛 生意质地达标（质地分 10/10），但属能力圈边缘的高端制造/工业领域，长期格局不确定性较高，谨慎评「黄-观察」。",
-            "score": 10,
-            "score_max": 10,
-            "score_pct": 1.0
+            "rating": "灰",
+            "rating_label": "不予评级",
+            "rating_reason": "新易盛 核心财务数据缺失（fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")），无法基于真实数据评估，诚实标注数据不足，不评级。",
+            "score": null
           }
         },
         {
           "stock_code": "300308",
           "stock_name": "中际旭创",
-          "ratio_pct": 0.23,
+          "ratio_pct": 10.0,
           "financials": {
-            "roe_pct": 36.27,
-            "gross_margin_pct": 41.8326,
-            "net_margin_pct": 30.2818,
-            "debt_ratio_pct": 32.6362,
-            "ocf_to_netprofit_pct": 94.1,
-            "rev_growth_pct": 60.2535,
-            "profit_growth_pct": 115.5666,
-            "report_date": "2025-12-31",
-            "roe_history": [
-              [
-                "2020-12-31",
-                10.97
-              ],
-              [
-                "2021-12-31",
-                7.63
-              ],
-              [
-                "2022-12-31",
-                10.25
-              ],
-              [
-                "2023-12-31",
-                15.24
-              ],
-              [
-                "2024-12-31",
-                27.03
-              ],
-              [
-                "2025-12-31",
-                36.27
-              ]
-            ],
-            "error": null,
-            "report_is_annual": true,
-            "latest_period": "2026-03-31",
-            "gross_margin_source": "主营业务利润率(代理)"
+            "roe_pct": null,
+            "gross_margin_pct": null,
+            "net_margin_pct": null,
+            "debt_ratio_pct": null,
+            "ocf_to_netprofit_pct": null,
+            "rev_growth_pct": null,
+            "profit_growth_pct": null,
+            "report_date": null,
+            "roe_history": [],
+            "error": "fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")"
           },
           "rating": {
             "circle": "borderline",
             "checks": {
               "Q1_能力圈": "△ 能力圈边缘（高端制造/工业自动化，需谨慎）",
-              "Q2_商业模式(毛利率)": "✓ 毛利率 41.8326%（高，盈利质量好）",
-              "Q3_护城河(ROE)": "✓ ROE 36.27%（≥15%，护城河迹象明显）",
-              "Q3b_ROE稳定性": "✓ 近期 ROE 持续 ≥10%（[10.2, 15.2, 27.0, 36.3]）",
-              "Q4_定价权(净利率)": "✓ 净利率 30.2818%（强定价权）",
-              "Q5_现金含金量": "✓ 经营现金流/净利润 94.1%（利润含金量高）",
-              "Q6_抗压(负债率)": "✓ 资产负债率 32.6362%（稳健）",
-              "Q7_成长性": "营收增速 60.2535% / 净利增速 115.5666%（参考，非评级核心）",
-              "Q8_管理层&安全边际": "⚠ 本MVP未做内在价值估算与管理层诚信调查，安全边际维度暂缺，评级仅反映「生意质地」非「买入时机」"
+              "数据": "✗ 核心财务数据不足（缺3/3，fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")）"
             },
-            "rating": "黄",
-            "rating_label": "观察",
-            "rating_reason": "中际旭创 生意质地达标（质地分 10/10），但属能力圈边缘的高端制造/工业领域，长期格局不确定性较高，谨慎评「黄-观察」。",
-            "score": 10,
-            "score_max": 10,
-            "score_pct": 1.0
+            "rating": "灰",
+            "rating_label": "不予评级",
+            "rating_reason": "中际旭创 核心财务数据缺失（fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")），无法基于真实数据评估，诚实标注数据不足，不评级。",
+            "score": null
           }
         },
         {
           "stock_code": "688256",
           "stock_name": "寒武纪",
-          "ratio_pct": 0.16,
+          "ratio_pct": 6.95,
           "financials": {
-            "roe_pct": 17.4,
-            "gross_margin_pct": 54.7541,
-            "net_margin_pct": 31.6827,
-            "debt_ratio_pct": 16.3795,
-            "ocf_to_netprofit_pct": -24.21,
-            "rev_growth_pct": 453.205,
+            "roe_pct": null,
+            "gross_margin_pct": null,
+            "net_margin_pct": null,
+            "debt_ratio_pct": null,
+            "ocf_to_netprofit_pct": null,
+            "rev_growth_pct": null,
             "profit_growth_pct": null,
-            "report_date": "2025-12-31",
-            "roe_history": [
-              [
-                "2020-12-31",
-                -6.76
-              ],
-              [
-                "2021-12-31",
-                -14.0
-              ],
-              [
-                "2022-12-31",
-                -25.88
-              ],
-              [
-                "2023-12-31",
-                -15.02
-              ],
-              [
-                "2024-12-31",
-                -8.34
-              ],
-              [
-                "2025-12-31",
-                17.4
-              ]
-            ],
-            "error": null,
-            "report_is_annual": true,
-            "latest_period": "2026-03-31",
-            "gross_margin_source": "主营业务利润率(代理)"
+            "report_date": null,
+            "roe_history": [],
+            "error": "fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")"
           },
           "rating": {
             "circle": "out",
@@ -200,46 +397,18 @@
         {
           "stock_code": "688008",
           "stock_name": "澜起科技",
-          "ratio_pct": 0.13,
+          "ratio_pct": 5.45,
           "financials": {
-            "roe_pct": 17.3,
-            "gross_margin_pct": 62.1062,
-            "net_margin_pct": 39.0307,
-            "debt_ratio_pct": 4.1745,
-            "ocf_to_netprofit_pct": 94.95,
-            "rev_growth_pct": 49.9437,
-            "profit_growth_pct": 58.8408,
-            "report_date": "2025-12-31",
-            "roe_history": [
-              [
-                "2020-12-31",
-                13.68
-              ],
-              [
-                "2021-12-31",
-                9.88
-              ],
-              [
-                "2022-12-31",
-                13.11
-              ],
-              [
-                "2023-12-31",
-                4.42
-              ],
-              [
-                "2024-12-31",
-                12.38
-              ],
-              [
-                "2025-12-31",
-                17.3
-              ]
-            ],
-            "error": null,
-            "report_is_annual": true,
-            "latest_period": "2026-03-31",
-            "gross_margin_source": "主营业务利润率(代理)"
+            "roe_pct": null,
+            "gross_margin_pct": null,
+            "net_margin_pct": null,
+            "debt_ratio_pct": null,
+            "ocf_to_netprofit_pct": null,
+            "rev_growth_pct": null,
+            "profit_growth_pct": null,
+            "report_date": null,
+            "roe_history": [],
+            "error": "fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")"
           },
           "rating": {
             "circle": "out",
@@ -255,46 +424,18 @@
         {
           "stock_code": "603019",
           "stock_name": "中科曙光",
-          "ratio_pct": 0.1,
+          "ratio_pct": 4.37,
           "financials": {
-            "roe_pct": 9.79,
-            "gross_margin_pct": 30.0834,
-            "net_margin_pct": 14.4194,
-            "debt_ratio_pct": 41.1353,
-            "ocf_to_netprofit_pct": 60.87,
-            "rev_growth_pct": 13.812,
-            "profit_growth_pct": 8.239,
-            "report_date": "2025-12-31",
-            "roe_history": [
-              [
-                "2020-12-31",
-                7.07
-              ],
-              [
-                "2021-12-31",
-                9.14
-              ],
-              [
-                "2022-12-31",
-                9.07
-              ],
-              [
-                "2023-12-31",
-                9.84
-              ],
-              [
-                "2024-12-31",
-                9.37
-              ],
-              [
-                "2025-12-31",
-                9.79
-              ]
-            ],
-            "error": null,
-            "report_is_annual": true,
-            "latest_period": "2026-03-31",
-            "gross_margin_source": "主营业务利润率(代理)"
+            "roe_pct": null,
+            "gross_margin_pct": null,
+            "net_margin_pct": null,
+            "debt_ratio_pct": null,
+            "ocf_to_netprofit_pct": null,
+            "rev_growth_pct": null,
+            "profit_growth_pct": null,
+            "report_date": null,
+            "roe_history": [],
+            "error": "fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")"
           },
           "rating": {
             "circle": "out",
@@ -310,111 +451,46 @@
         {
           "stock_code": "002415",
           "stock_name": "海康威视",
-          "ratio_pct": 0.1,
+          "ratio_pct": 4.24,
           "financials": {
-            "roe_pct": 17.03,
-            "gross_margin_pct": 45.0479,
-            "net_margin_pct": 16.6836,
-            "debt_ratio_pct": 30.2572,
-            "ocf_to_netprofit_pct": 164.18,
-            "rev_growth_pct": 0.0133,
-            "profit_growth_pct": 17.4464,
-            "report_date": "2025-12-31",
-            "roe_history": [
-              [
-                "2020-12-31",
-                24.88
-              ],
-              [
-                "2021-12-31",
-                26.47
-              ],
-              [
-                "2022-12-31",
-                18.77
-              ],
-              [
-                "2023-12-31",
-                18.48
-              ],
-              [
-                "2024-12-31",
-                14.85
-              ],
-              [
-                "2025-12-31",
-                17.03
-              ]
-            ],
-            "error": null,
-            "report_is_annual": true,
-            "latest_period": "2026-03-31",
-            "gross_margin_source": "主营业务利润率(代理)"
+            "roe_pct": null,
+            "gross_margin_pct": null,
+            "net_margin_pct": null,
+            "debt_ratio_pct": null,
+            "ocf_to_netprofit_pct": null,
+            "rev_growth_pct": null,
+            "profit_growth_pct": null,
+            "report_date": null,
+            "roe_history": [],
+            "error": "fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")"
           },
           "rating": {
             "circle": "borderline",
             "checks": {
               "Q1_能力圈": "△ 能力圈边缘（高端制造/工业自动化，需谨慎）",
-              "Q2_商业模式(毛利率)": "✓ 毛利率 45.0479%（高，盈利质量好）",
-              "Q3_护城河(ROE)": "✓ ROE 17.03%（≥15%，护城河迹象明显）",
-              "Q3b_ROE稳定性": "✓ 近期 ROE 持续 ≥10%（[18.8, 18.5, 14.8, 17.0]）",
-              "Q4_定价权(净利率)": "△ 净利率 16.6836%（中等）",
-              "Q5_现金含金量": "✓ 经营现金流/净利润 164.18%（利润含金量高）",
-              "Q6_抗压(负债率)": "✓ 资产负债率 30.2572%（稳健）",
-              "Q7_成长性": "营收增速 0.0133% / 净利增速 17.4464%（参考，非评级核心）",
-              "Q8_管理层&安全边际": "⚠ 本MVP未做内在价值估算与管理层诚信调查，安全边际维度暂缺，评级仅反映「生意质地」非「买入时机」"
+              "数据": "✗ 核心财务数据不足（缺3/3，fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")）"
             },
-            "rating": "黄",
-            "rating_label": "观察",
-            "rating_reason": "海康威视 生意质地达标（质地分 9/10），但属能力圈边缘的高端制造/工业领域，长期格局不确定性较高，谨慎评「黄-观察」。",
-            "score": 9,
-            "score_max": 10,
-            "score_pct": 0.9
+            "rating": "灰",
+            "rating_label": "不予评级",
+            "rating_reason": "海康威视 核心财务数据缺失（fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")），无法基于真实数据评估，诚实标注数据不足，不评级。",
+            "score": null
           }
         },
         {
           "stock_code": "002230",
           "stock_name": "科大讯飞",
-          "ratio_pct": 0.09,
+          "ratio_pct": 4.06,
           "financials": {
-            "roe_pct": 4.47,
-            "gross_margin_pct": 41.6474,
-            "net_margin_pct": 3.1339,
-            "debt_ratio_pct": 56.4093,
-            "ocf_to_netprofit_pct": 377.66,
-            "rev_growth_pct": 16.1174,
-            "profit_growth_pct": 67.5369,
-            "report_date": "2025-12-31",
-            "roe_history": [
-              [
-                "2020-12-31",
-                10.77
-              ],
-              [
-                "2021-12-31",
-                9.28
-              ],
-              [
-                "2022-12-31",
-                3.42
-              ],
-              [
-                "2023-12-31",
-                3.86
-              ],
-              [
-                "2024-12-31",
-                3.15
-              ],
-              [
-                "2025-12-31",
-                4.47
-              ]
-            ],
-            "error": null,
-            "report_is_annual": true,
-            "latest_period": "2026-03-31",
-            "gross_margin_source": "主营业务利润率(代理)"
+            "roe_pct": null,
+            "gross_margin_pct": null,
+            "net_margin_pct": null,
+            "debt_ratio_pct": null,
+            "ocf_to_netprofit_pct": null,
+            "rev_growth_pct": null,
+            "profit_growth_pct": null,
+            "report_date": null,
+            "roe_history": [],
+            "error": "fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")"
           },
           "rating": {
             "circle": "out",
@@ -430,46 +506,18 @@
         {
           "stock_code": "603501",
           "stock_name": "豪威集团",
-          "ratio_pct": 0.07,
+          "ratio_pct": 3.06,
           "financials": {
-            "roe_pct": 14.36,
-            "gross_margin_pct": 30.4757,
-            "net_margin_pct": 13.9723,
-            "debt_ratio_pct": 33.1322,
-            "ocf_to_netprofit_pct": 102.18,
-            "rev_growth_pct": 12.1418,
-            "profit_growth_pct": 22.7563,
-            "report_date": "2025-12-31",
-            "roe_history": [
-              [
-                "2020-12-31",
-                24.08
-              ],
-              [
-                "2021-12-31",
-                27.63
-              ],
-              [
-                "2022-12-31",
-                5.49
-              ],
-              [
-                "2023-12-31",
-                2.59
-              ],
-              [
-                "2024-12-31",
-                13.73
-              ],
-              [
-                "2025-12-31",
-                14.36
-              ]
-            ],
-            "error": null,
-            "report_is_annual": true,
-            "latest_period": "2026-03-31",
-            "gross_margin_source": "主营业务利润率(代理)"
+            "roe_pct": null,
+            "gross_margin_pct": null,
+            "net_margin_pct": null,
+            "debt_ratio_pct": null,
+            "ocf_to_netprofit_pct": null,
+            "rev_growth_pct": null,
+            "profit_growth_pct": null,
+            "report_date": null,
+            "roe_history": [],
+            "error": "fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")"
           },
           "rating": {
             "circle": "out",
@@ -485,46 +533,18 @@
         {
           "stock_code": "688521",
           "stock_name": "芯原股份",
-          "ratio_pct": 0.07,
+          "ratio_pct": 2.83,
           "financials": {
-            "roe_pct": -15.44,
-            "gross_margin_pct": 33.9278,
-            "net_margin_pct": -16.743,
-            "debt_ratio_pct": 59.7352,
+            "roe_pct": null,
+            "gross_margin_pct": null,
+            "net_margin_pct": null,
+            "debt_ratio_pct": null,
             "ocf_to_netprofit_pct": null,
-            "rev_growth_pct": 35.7709,
+            "rev_growth_pct": null,
             "profit_growth_pct": null,
-            "report_date": "2025-12-31",
-            "roe_history": [
-              [
-                "2020-12-31",
-                -0.97
-              ],
-              [
-                "2021-12-31",
-                0.49
-              ],
-              [
-                "2022-12-31",
-                2.54
-              ],
-              [
-                "2023-12-31",
-                -10.98
-              ],
-              [
-                "2024-12-31",
-                -28.31
-              ],
-              [
-                "2025-12-31",
-                -15.44
-              ]
-            ],
-            "error": null,
-            "report_is_annual": true,
-            "latest_period": "2026-03-31",
-            "gross_margin_source": "主营业务利润率(代理)"
+            "report_date": null,
+            "roe_history": [],
+            "error": "fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")"
           },
           "rating": {
             "circle": "out",
@@ -540,1275 +560,7 @@
         {
           "stock_code": "300442",
           "stock_name": "润泽科技",
-          "ratio_pct": 0.06,
-          "financials": {
-            "roe_pct": 36.98,
-            "gross_margin_pct": 44.6083,
-            "net_margin_pct": 88.9896,
-            "debt_ratio_pct": 64.9706,
-            "ocf_to_netprofit_pct": 65.2,
-            "rev_growth_pct": 29.9863,
-            "profit_growth_pct": 177.6153,
-            "report_date": "2025-12-31",
-            "roe_history": [
-              [
-                "2020-12-31",
-                -44.61
-              ],
-              [
-                "2021-12-31",
-                -2.44
-              ],
-              [
-                "2022-12-31",
-                40.82
-              ],
-              [
-                "2023-12-31",
-                20.67
-              ],
-              [
-                "2024-12-31",
-                17.96
-              ],
-              [
-                "2025-12-31",
-                36.98
-              ]
-            ],
-            "error": null,
-            "report_is_annual": true,
-            "latest_period": "2026-03-31",
-            "gross_margin_source": "主营业务利润率(代理)"
-          },
-          "rating": {
-            "circle": "borderline",
-            "checks": {
-              "Q1_能力圈": "△ 能力圈边缘（高端制造/工业自动化，需谨慎）",
-              "Q2_商业模式(毛利率)": "✓ 毛利率 44.6083%（高，盈利质量好）",
-              "Q3_护城河(ROE)": "✓ ROE 36.98%（≥15%，护城河迹象明显）",
-              "Q3b_ROE稳定性": "✓ 近期 ROE 持续 ≥10%（[40.8, 20.7, 18.0, 37.0]）",
-              "Q4_定价权(净利率)": "✓ 净利率 88.9896%（强定价权）",
-              "Q5_现金含金量": "△ 现金转化 65.2%（一般）",
-              "Q6_抗压(负债率)": "△ 资产负债率 64.9706%（偏高）",
-              "Q7_成长性": "营收增速 29.9863% / 净利增速 177.6153%（参考，非评级核心）",
-              "Q8_管理层&安全边际": "⚠ 本MVP未做内在价值估算与管理层诚信调查，安全边际维度暂缺，评级仅反映「生意质地」非「买入时机」"
-            },
-            "rating": "黄",
-            "rating_label": "观察",
-            "rating_reason": "润泽科技 生意质地达标（质地分 8/10），但属能力圈边缘的高端制造/工业领域，长期格局不确定性较高，谨慎评「黄-观察」。",
-            "score": 8,
-            "score_max": 10,
-            "score_pct": 0.8
-          }
-        }
-      ],
-      "fund_quality_summary": {
-        "weight_by_rating_in_top10_pct": {
-          "绿": 0.0,
-          "黄": 50.8,
-          "红": 0.0,
-          "灰": 49.2
-        },
-        "top10_disclosed_weight_pct": 1.26,
-        "verdict": "前十大重仓中约 50.8% 权重为绿/黄，质地中等，分化明显"
-      }
-    },
-    {
-      "fund_code": "515790",
-      "official_name": "光伏ETF华泰柏瑞",
-      "fund_type": "指数型-股票",
-      "portfolio_labeled_name": null,
-      "name_mismatch_warning": false,
-      "latest_quarter": "2026年1季度股票投资明细",
-      "holdings_error": null,
-      "holdings_rated": [
-        {
-          "stock_code": "600089",
-          "stock_name": "特变电工",
-          "ratio_pct": 10.8,
-          "financials": {
-            "roe_pct": 8.0,
-            "gross_margin_pct": 16.8885,
-            "net_margin_pct": 6.1722,
-            "debt_ratio_pct": 56.5765,
-            "ocf_to_netprofit_pct": 155.49,
-            "rev_growth_pct": -0.5683,
-            "profit_growth_pct": 66.7903,
-            "report_date": "2025-12-31",
-            "roe_history": [
-              [
-                "2020-12-31",
-                6.61
-              ],
-              [
-                "2021-12-31",
-                16.42
-              ],
-              [
-                "2022-12-31",
-                27.53
-              ],
-              [
-                "2023-12-31",
-                17.11
-              ],
-              [
-                "2024-12-31",
-                6.13
-              ],
-              [
-                "2025-12-31",
-                8.0
-              ]
-            ],
-            "error": null,
-            "report_is_annual": true,
-            "latest_period": "2026-03-31",
-            "gross_margin_source": "主营业务利润率(代理)"
-          },
-          "rating": {
-            "circle": "borderline",
-            "checks": {
-              "Q1_能力圈": "△ 能力圈边缘（高端制造/工业自动化，需谨慎）",
-              "Q2_商业模式(毛利率)": "✗ 毛利率 16.8885%（偏低）",
-              "Q3_护城河(ROE)": "△ ROE 8.0%（一般）",
-              "Q3b_ROE稳定性": "△ ROE 波动（[27.5, 17.1, 6.1, 8.0]）",
-              "Q4_定价权(净利率)": "✗ 净利率 6.1722%（薄利）",
-              "Q5_现金含金量": "✓ 经营现金流/净利润 155.49%（利润含金量高）",
-              "Q6_抗压(负债率)": "△ 资产负债率 56.5765%（偏高）",
-              "Q7_成长性": "营收增速 -0.5683% / 净利增速 66.7903%（参考，非评级核心）",
-              "Q8_管理层&安全边际": "⚠ 本MVP未做内在价值估算与管理层诚信调查，安全边际维度暂缺，评级仅反映「生意质地」非「买入时机」"
-            },
-            "rating": "红",
-            "rating_label": "回避",
-            "rating_reason": "特变电工 质地偏弱（3/10），评「红-回避」。",
-            "score": 3,
-            "score_max": 10,
-            "score_pct": 0.3
-          }
-        },
-        {
-          "stock_code": "601012",
-          "stock_name": "隆基绿能",
-          "ratio_pct": 8.55,
-          "financials": {
-            "roe_pct": -11.83,
-            "gross_margin_pct": 0.3638,
-            "net_margin_pct": -9.2537,
-            "debt_ratio_pct": 66.0778,
-            "ocf_to_netprofit_pct": null,
-            "rev_growth_pct": -14.8158,
-            "profit_growth_pct": null,
-            "report_date": "2025-12-31",
-            "roe_history": [
-              [
-                "2020-12-31",
-                24.36
-              ],
-              [
-                "2021-12-31",
-                19.15
-              ],
-              [
-                "2022-12-31",
-                23.83
-              ],
-              [
-                "2023-12-31",
-                15.25
-              ],
-              [
-                "2024-12-31",
-                -14.15
-              ],
-              [
-                "2025-12-31",
-                -11.83
-              ]
-            ],
-            "error": null,
-            "report_is_annual": true,
-            "latest_period": "2026-03-31",
-            "gross_margin_source": "主营业务利润率(代理)"
-          },
-          "rating": {
-            "circle": "borderline",
-            "checks": {
-              "Q1_能力圈": "△ 能力圈边缘（高端制造/工业自动化，需谨慎）",
-              "Q2_商业模式(毛利率)": "✗ 毛利率 0.3638%（偏低）",
-              "Q3_护城河(ROE)": "✗ ROE -11.83%（偏弱）",
-              "Q3b_ROE稳定性": "△ ROE 波动（[23.8, 15.2, -14.2, -11.8]）",
-              "Q4_定价权(净利率)": "✗ 净利率 -9.2537%（薄利）",
-              "Q5_现金含金量": "？ 现金流数据缺失",
-              "Q6_抗压(负债率)": "✗ 资产负债率 66.0778%（高杠杆）",
-              "Q7_成长性": "营收增速 -14.8158% / 净利增速 None%（参考，非评级核心）",
-              "Q8_管理层&安全边际": "⚠ 本MVP未做内在价值估算与管理层诚信调查，安全边际维度暂缺，评级仅反映「生意质地」非「买入时机」"
-            },
-            "rating": "红",
-            "rating_label": "回避",
-            "rating_reason": "隆基绿能 质地偏弱（0/10），评「红-回避」。",
-            "score": 0,
-            "score_max": 10,
-            "score_pct": 0.0
-          }
-        },
-        {
-          "stock_code": "300274",
-          "stock_name": "阳光电源",
-          "ratio_pct": 7.51,
-          "financials": {
-            "roe_pct": 28.88,
-            "gross_margin_pct": 31.2612,
-            "net_margin_pct": 15.174,
-            "debt_ratio_pct": 57.5148,
-            "ocf_to_netprofit_pct": 125.01,
-            "rev_growth_pct": 14.549,
-            "profit_growth_pct": 20.1401,
-            "report_date": "2025-12-31",
-            "roe_history": [
-              [
-                "2020-12-31",
-                18.69
-              ],
-              [
-                "2021-12-31",
-                10.11
-              ],
-              [
-                "2022-12-31",
-                19.25
-              ],
-              [
-                "2023-12-31",
-                34.07
-              ],
-              [
-                "2024-12-31",
-                29.9
-              ],
-              [
-                "2025-12-31",
-                28.88
-              ]
-            ],
-            "error": null,
-            "report_is_annual": true,
-            "latest_period": "2026-03-31",
-            "gross_margin_source": "主营业务利润率(代理)"
-          },
-          "rating": {
-            "circle": "borderline",
-            "checks": {
-              "Q1_能力圈": "△ 能力圈边缘（高端制造/工业自动化，需谨慎）",
-              "Q2_商业模式(毛利率)": "△ 毛利率 31.2612%（中等）",
-              "Q3_护城河(ROE)": "✓ ROE 28.88%（≥15%，护城河迹象明显）",
-              "Q3b_ROE稳定性": "✓ 近期 ROE 持续 ≥10%（[19.2, 34.1, 29.9, 28.9]）",
-              "Q4_定价权(净利率)": "△ 净利率 15.174%（中等）",
-              "Q5_现金含金量": "✓ 经营现金流/净利润 125.01%（利润含金量高）",
-              "Q6_抗压(负债率)": "△ 资产负债率 57.5148%（偏高）",
-              "Q7_成长性": "营收增速 14.549% / 净利增速 20.1401%（参考，非评级核心）",
-              "Q8_管理层&安全边际": "⚠ 本MVP未做内在价值估算与管理层诚信调查，安全边际维度暂缺，评级仅反映「生意质地」非「买入时机」"
-            },
-            "rating": "黄",
-            "rating_label": "观察",
-            "rating_reason": "阳光电源 生意质地达标（质地分 7/10），但属能力圈边缘的高端制造/工业领域，长期格局不确定性较高，谨慎评「黄-观察」。",
-            "score": 7,
-            "score_max": 10,
-            "score_pct": 0.7
-          }
-        },
-        {
-          "stock_code": "000100",
-          "stock_name": "TCL科技",
-          "ratio_pct": 7.19,
-          "financials": {
-            "roe_pct": 7.35,
-            "gross_margin_pct": 12.4583,
-            "net_margin_pct": 0.1162,
-            "debt_ratio_pct": 65.0272,
-            "ocf_to_netprofit_pct": 205.856,
-            "rev_growth_pct": 11.6735,
-            "profit_growth_pct": null,
-            "report_date": "2025-12-31",
-            "roe_history": [
-              [
-                "2020-12-31",
-                12.87
-              ],
-              [
-                "2021-12-31",
-                23.37
-              ],
-              [
-                "2022-12-31",
-                0.52
-              ],
-              [
-                "2023-12-31",
-                4.19
-              ],
-              [
-                "2024-12-31",
-                2.94
-              ],
-              [
-                "2025-12-31",
-                7.35
-              ]
-            ],
-            "error": null,
-            "report_is_annual": true,
-            "latest_period": "2026-03-31",
-            "gross_margin_source": "主营业务利润率(代理)"
-          },
-          "rating": {
-            "circle": "borderline",
-            "checks": {
-              "Q1_能力圈": "△ 能力圈边缘（高端制造/工业自动化，需谨慎）",
-              "Q2_商业模式(毛利率)": "✗ 毛利率 12.4583%（偏低）",
-              "Q3_护城河(ROE)": "✗ ROE 7.35%（偏弱）",
-              "Q3b_ROE稳定性": "△ ROE 波动（[0.5, 4.2, 2.9, 7.3]）",
-              "Q4_定价权(净利率)": "✗ 净利率 0.1162%（薄利）",
-              "Q5_现金含金量": "✓ 经营现金流/净利润 205.856%（利润含金量高）",
-              "Q6_抗压(负债率)": "✗ 资产负债率 65.0272%（高杠杆）",
-              "Q7_成长性": "营收增速 11.6735% / 净利增速 None%（参考，非评级核心）",
-              "Q8_管理层&安全边际": "⚠ 本MVP未做内在价值估算与管理层诚信调查，安全边际维度暂缺，评级仅反映「生意质地」非「买入时机」"
-            },
-            "rating": "红",
-            "rating_label": "回避",
-            "rating_reason": "TCL科技 质地偏弱（2/10），评「红-回避」。",
-            "score": 2,
-            "score_max": 10,
-            "score_pct": 0.2
-          }
-        },
-        {
-          "stock_code": "605117",
-          "stock_name": "德业股份",
-          "ratio_pct": 3.86,
-          "financials": {
-            "roe_pct": 30.75,
-            "gross_margin_pct": 37.1643,
-            "net_margin_pct": 25.9221,
-            "debt_ratio_pct": 47.1349,
-            "ocf_to_netprofit_pct": 125.8,
-            "rev_growth_pct": 9.0776,
-            "profit_growth_pct": 7.0366,
-            "report_date": "2025-12-31",
-            "roe_history": [
-              [
-                "2020-12-31",
-                43.81
-              ],
-              [
-                "2021-12-31",
-                21.91
-              ],
-              [
-                "2022-12-31",
-                37.35
-              ],
-              [
-                "2023-12-31",
-                34.24
-              ],
-              [
-                "2024-12-31",
-                31.31
-              ],
-              [
-                "2025-12-31",
-                30.75
-              ]
-            ],
-            "error": null,
-            "report_is_annual": true,
-            "latest_period": "2026-03-31",
-            "gross_margin_source": "主营业务利润率(代理)"
-          },
-          "rating": {
-            "circle": "borderline",
-            "checks": {
-              "Q1_能力圈": "△ 能力圈边缘（高端制造/工业自动化，需谨慎）",
-              "Q2_商业模式(毛利率)": "△ 毛利率 37.1643%（中等）",
-              "Q3_护城河(ROE)": "✓ ROE 30.75%（≥15%，护城河迹象明显）",
-              "Q3b_ROE稳定性": "✓ 近期 ROE 持续 ≥10%（[37.4, 34.2, 31.3, 30.8]）",
-              "Q4_定价权(净利率)": "✓ 净利率 25.9221%（强定价权）",
-              "Q5_现金含金量": "✓ 经营现金流/净利润 125.8%（利润含金量高）",
-              "Q6_抗压(负债率)": "✓ 资产负债率 47.1349%（稳健）",
-              "Q7_成长性": "营收增速 9.0776% / 净利增速 7.0366%（参考，非评级核心）",
-              "Q8_管理层&安全边际": "⚠ 本MVP未做内在价值估算与管理层诚信调查，安全边际维度暂缺，评级仅反映「生意质地」非「买入时机」"
-            },
-            "rating": "黄",
-            "rating_label": "观察",
-            "rating_reason": "德业股份 生意质地达标（质地分 9/10），但属能力圈边缘的高端制造/工业领域，长期格局不确定性较高，谨慎评「黄-观察」。",
-            "score": 9,
-            "score_max": 10,
-            "score_pct": 0.9
-          }
-        },
-        {
-          "stock_code": "600438",
-          "stock_name": "通威股份",
-          "ratio_pct": 3.59,
-          "financials": {
-            "roe_pct": -24.57,
-            "gross_margin_pct": 2.0984,
-            "net_margin_pct": -12.9575,
-            "debt_ratio_pct": 74.2306,
-            "ocf_to_netprofit_pct": null,
-            "rev_growth_pct": -8.5507,
-            "profit_growth_pct": null,
-            "report_date": "2025-12-31",
-            "roe_history": [
-              [
-                "2020-12-31",
-                11.81
-              ],
-              [
-                "2021-12-31",
-                21.89
-              ],
-              [
-                "2022-12-31",
-                42.32
-              ],
-              [
-                "2023-12-31",
-                22.06
-              ],
-              [
-                "2024-12-31",
-                -14.53
-              ],
-              [
-                "2025-12-31",
-                -24.57
-              ]
-            ],
-            "error": null,
-            "report_is_annual": true,
-            "latest_period": "2026-03-31",
-            "gross_margin_source": "主营业务利润率(代理)"
-          },
-          "rating": {
-            "circle": "borderline",
-            "checks": {
-              "Q1_能力圈": "△ 能力圈边缘（高端制造/工业自动化，需谨慎）",
-              "Q2_商业模式(毛利率)": "✗ 毛利率 2.0984%（偏低）",
-              "Q3_护城河(ROE)": "✗ ROE -24.57%（偏弱）",
-              "Q3b_ROE稳定性": "△ ROE 波动（[42.3, 22.1, -14.5, -24.6]）",
-              "Q4_定价权(净利率)": "✗ 净利率 -12.9575%（薄利）",
-              "Q5_现金含金量": "？ 现金流数据缺失",
-              "Q6_抗压(负债率)": "✗ 资产负债率 74.2306%（高杠杆）",
-              "Q7_成长性": "营收增速 -8.5507% / 净利增速 None%（参考，非评级核心）",
-              "Q8_管理层&安全边际": "⚠ 本MVP未做内在价值估算与管理层诚信调查，安全边际维度暂缺，评级仅反映「生意质地」非「买入时机」"
-            },
-            "rating": "红",
-            "rating_label": "回避",
-            "rating_reason": "通威股份 质地偏弱（0/10），评「红-回避」。",
-            "score": 0,
-            "score_max": 10,
-            "score_pct": 0.0
-          }
-        },
-        {
-          "stock_code": "300751",
-          "stock_name": "迈为股份",
-          "ratio_pct": 3.09,
-          "financials": {
-            "roe_pct": 9.1,
-            "gross_margin_pct": 38.0911,
-            "net_margin_pct": 8.4523,
-            "debt_ratio_pct": 65.4343,
-            "ocf_to_netprofit_pct": -101.31,
-            "rev_growth_pct": -17.0734,
-            "profit_growth_pct": -28.4938,
-            "report_date": "2025-12-31",
-            "roe_history": [
-              [
-                "2020-12-31",
-                22.59
-              ],
-              [
-                "2021-12-31",
-                10.95
-              ],
-              [
-                "2022-12-31",
-                13.36
-              ],
-              [
-                "2023-12-31",
-                12.84
-              ],
-              [
-                "2024-12-31",
-                12.26
-              ],
-              [
-                "2025-12-31",
-                9.1
-              ]
-            ],
-            "error": null,
-            "report_is_annual": true,
-            "latest_period": "2026-03-31",
-            "gross_margin_source": "主营业务利润率(代理)"
-          },
-          "rating": {
-            "circle": "borderline",
-            "checks": {
-              "Q1_能力圈": "△ 能力圈边缘（高端制造/工业自动化，需谨慎）",
-              "Q2_商业模式(毛利率)": "△ 毛利率 38.0911%（中等）",
-              "Q3_护城河(ROE)": "△ ROE 9.1%（一般）",
-              "Q3b_ROE稳定性": "△ ROE 波动（[13.4, 12.8, 12.3, 9.1]）",
-              "Q4_定价权(净利率)": "△ 净利率 8.4523%（中等）",
-              "Q5_现金含金量": "✗ 现金转化 -101.31%（利润成色存疑）",
-              "Q6_抗压(负债率)": "✗ 资产负债率 65.4343%（高杠杆）",
-              "Q7_成长性": "营收增速 -17.0734% / 净利增速 -28.4938%（参考，非评级核心）",
-              "Q8_管理层&安全边际": "⚠ 本MVP未做内在价值估算与管理层诚信调查，安全边际维度暂缺，评级仅反映「生意质地」非「买入时机」"
-            },
-            "rating": "红",
-            "rating_label": "回避",
-            "rating_reason": "迈为股份 质地偏弱（3/10），评「红-回避」。",
-            "score": 3,
-            "score_max": 10,
-            "score_pct": 0.3
-          }
-        },
-        {
-          "stock_code": "300757",
-          "stock_name": "罗博特科",
-          "ratio_pct": 3.07,
-          "financials": {
-            "roe_pct": -3.97,
-            "gross_margin_pct": 33.579,
-            "net_margin_pct": -6.9392,
-            "debt_ratio_pct": 55.4207,
-            "ocf_to_netprofit_pct": null,
-            "rev_growth_pct": -14.1449,
-            "profit_growth_pct": -204.3253,
-            "report_date": "2025-12-31",
-            "roe_history": [
-              [
-                "2020-12-31",
-                -9.68
-              ],
-              [
-                "2021-12-31",
-                -5.54
-              ],
-              [
-                "2022-12-31",
-                3.0
-              ],
-              [
-                "2023-12-31",
-                7.85
-              ],
-              [
-                "2024-12-31",
-                6.34
-              ],
-              [
-                "2025-12-31",
-                -3.97
-              ]
-            ],
-            "error": null,
-            "report_is_annual": true,
-            "latest_period": "2026-03-31",
-            "gross_margin_source": "主营业务利润率(代理)"
-          },
-          "rating": {
-            "circle": "borderline",
-            "checks": {
-              "Q1_能力圈": "△ 能力圈边缘（高端制造/工业自动化，需谨慎）",
-              "Q2_商业模式(毛利率)": "△ 毛利率 33.579%（中等）",
-              "Q3_护城河(ROE)": "✗ ROE -3.97%（偏弱）",
-              "Q3b_ROE稳定性": "△ ROE 波动（[3.0, 7.8, 6.3, -4.0]）",
-              "Q4_定价权(净利率)": "✗ 净利率 -6.9392%（薄利）",
-              "Q5_现金含金量": "？ 现金流数据缺失",
-              "Q6_抗压(负债率)": "△ 资产负债率 55.4207%（偏高）",
-              "Q7_成长性": "营收增速 -14.1449% / 净利增速 -204.3253%（参考，非评级核心）",
-              "Q8_管理层&安全边际": "⚠ 本MVP未做内在价值估算与管理层诚信调查，安全边际维度暂缺，评级仅反映「生意质地」非「买入时机」"
-            },
-            "rating": "红",
-            "rating_label": "回避",
-            "rating_reason": "罗博特科 质地偏弱（1/10），评「红-回避」。",
-            "score": 1,
-            "score_max": 10,
-            "score_pct": 0.1
-          }
-        },
-        {
-          "stock_code": "601877",
-          "stock_name": "正泰电器",
-          "ratio_pct": 2.83,
-          "financials": {
-            "roe_pct": 10.11,
-            "gross_margin_pct": 25.0615,
-            "net_margin_pct": 10.3589,
-            "debt_ratio_pct": 63.9741,
-            "ocf_to_netprofit_pct": 376.88,
-            "rev_growth_pct": -8.3301,
-            "profit_growth_pct": 17.6137,
-            "report_date": "2025-12-31",
-            "roe_history": [
-              [
-                "2020-12-31",
-                21.49
-              ],
-              [
-                "2021-12-31",
-                10.62
-              ],
-              [
-                "2022-12-31",
-                11.07
-              ],
-              [
-                "2023-12-31",
-                9.43
-              ],
-              [
-                "2024-12-31",
-                9.2
-              ],
-              [
-                "2025-12-31",
-                10.11
-              ]
-            ],
-            "error": null,
-            "report_is_annual": true,
-            "latest_period": "2026-03-31",
-            "gross_margin_source": "主营业务利润率(代理)"
-          },
-          "rating": {
-            "circle": "borderline",
-            "checks": {
-              "Q1_能力圈": "△ 能力圈边缘（高端制造/工业自动化，需谨慎）",
-              "Q2_商业模式(毛利率)": "△ 毛利率 25.0615%（中等）",
-              "Q3_护城河(ROE)": "△ ROE 10.11%（一般）",
-              "Q3b_ROE稳定性": "△ ROE 波动（[11.1, 9.4, 9.2, 10.1]）",
-              "Q4_定价权(净利率)": "△ 净利率 10.3589%（中等）",
-              "Q5_现金含金量": "✓ 经营现金流/净利润 376.88%（利润含金量高）",
-              "Q6_抗压(负债率)": "△ 资产负债率 63.9741%（偏高）",
-              "Q7_成长性": "营收增速 -8.3301% / 净利增速 17.6137%（参考，非评级核心）",
-              "Q8_管理层&安全边际": "⚠ 本MVP未做内在价值估算与管理层诚信调查，安全边际维度暂缺，评级仅反映「生意质地」非「买入时机」"
-            },
-            "rating": "黄",
-            "rating_label": "观察",
-            "rating_reason": "正泰电器 质地中等（5/10）且处能力圈边缘，评「黄-观察」。",
-            "score": 5,
-            "score_max": 10,
-            "score_pct": 0.5
-          }
-        },
-        {
-          "stock_code": "002129",
-          "stock_name": "TCL中环",
-          "ratio_pct": 2.3,
-          "financials": {
-            "roe_pct": -42.17,
-            "gross_margin_pct": -7.0847,
-            "net_margin_pct": -34.0191,
-            "debt_ratio_pct": 68.1879,
-            "ocf_to_netprofit_pct": null,
-            "rev_growth_pct": 2.223,
-            "profit_growth_pct": null,
-            "report_date": "2025-12-31",
-            "roe_history": [
-              [
-                "2020-12-31",
-                5.67
-              ],
-              [
-                "2021-12-31",
-                12.72
-              ],
-              [
-                "2022-12-31",
-                18.13
-              ],
-              [
-                "2023-12-31",
-                8.23
-              ],
-              [
-                "2024-12-31",
-                -31.77
-              ],
-              [
-                "2025-12-31",
-                -42.17
-              ]
-            ],
-            "error": null,
-            "report_is_annual": true,
-            "latest_period": "2026-03-31",
-            "gross_margin_source": "主营业务利润率(代理)"
-          },
-          "rating": {
-            "circle": "borderline",
-            "checks": {
-              "Q1_能力圈": "△ 能力圈边缘（高端制造/工业自动化，需谨慎）",
-              "Q2_商业模式(毛利率)": "✗ 毛利率 -7.0847%（偏低）",
-              "Q3_护城河(ROE)": "✗ ROE -42.17%（偏弱）",
-              "Q3b_ROE稳定性": "△ ROE 波动（[18.1, 8.2, -31.8, -42.2]）",
-              "Q4_定价权(净利率)": "✗ 净利率 -34.0191%（薄利）",
-              "Q5_现金含金量": "？ 现金流数据缺失",
-              "Q6_抗压(负债率)": "✗ 资产负债率 68.1879%（高杠杆）",
-              "Q7_成长性": "营收增速 2.223% / 净利增速 None%（参考，非评级核心）",
-              "Q8_管理层&安全边际": "⚠ 本MVP未做内在价值估算与管理层诚信调查，安全边际维度暂缺，评级仅反映「生意质地」非「买入时机」"
-            },
-            "rating": "红",
-            "rating_label": "回避",
-            "rating_reason": "TCL中环 质地偏弱（0/10），评「红-回避」。",
-            "score": 0,
-            "score_max": 10,
-            "score_pct": 0.0
-          }
-        }
-      ],
-      "fund_quality_summary": {
-        "weight_by_rating_in_top10_pct": {
-          "绿": 0.0,
-          "黄": 26.9,
-          "红": 73.1,
-          "灰": 0.0
-        },
-        "top10_disclosed_weight_pct": 52.79,
-        "verdict": "底层质地偏弱或多为回避/不评级标的，需谨慎"
-      }
-    },
-    {
-      "fund_code": "001631",
-      "official_name": "天弘中证食品饮料ETF联接A",
-      "fund_type": "指数型-股票",
-      "portfolio_labeled_name": "天弘中证人工智能主题指数C",
-      "name_mismatch_warning": true,
-      "latest_quarter": "2026年1季度股票投资明细",
-      "holdings_error": null,
-      "holdings_rated": [
-        {
-          "stock_code": "600519",
-          "stock_name": "贵州茅台",
-          "ratio_pct": 0.5,
-          "financials": {
-            "roe_pct": 33.65,
-            "gross_margin_pct": 74.9781,
-            "net_margin_pct": 50.5279,
-            "debt_ratio_pct": 12.1227,
-            "ocf_to_netprofit_pct": 72.12,
-            "rev_growth_pct": -1.206,
-            "profit_growth_pct": -4.5049,
-            "report_date": "2025-12-31",
-            "roe_history": [
-              [
-                "2020-12-31",
-                28.95
-              ],
-              [
-                "2021-12-31",
-                27.68
-              ],
-              [
-                "2022-12-31",
-                31.75
-              ],
-              [
-                "2023-12-31",
-                34.65
-              ],
-              [
-                "2024-12-31",
-                36.99
-              ],
-              [
-                "2025-12-31",
-                33.65
-              ]
-            ],
-            "error": null,
-            "report_is_annual": true,
-            "latest_period": "2026-03-31",
-            "gross_margin_source": "主营业务利润率(代理)"
-          },
-          "rating": {
-            "circle": "in",
-            "checks": {
-              "Q1_能力圈": "✓ 在能力圈内（消费/食品饮料，商业模式清晰）",
-              "Q2_商业模式(毛利率)": "✓ 毛利率 74.9781%（高，盈利质量好）",
-              "Q3_护城河(ROE)": "✓ ROE 33.65%（≥15%，护城河迹象明显）",
-              "Q3b_ROE稳定性": "✓ 近期 ROE 持续 ≥10%（[31.8, 34.6, 37.0, 33.6]）",
-              "Q4_定价权(净利率)": "✓ 净利率 50.5279%（强定价权）",
-              "Q5_现金含金量": "△ 现金转化 72.12%（一般）",
-              "Q6_抗压(负债率)": "✓ 资产负债率 12.1227%（稳健）",
-              "Q7_成长性": "营收增速 -1.206% / 净利增速 -4.5049%（参考，非评级核心）",
-              "Q8_管理层&安全边际": "⚠ 本MVP未做内在价值估算与管理层诚信调查，安全边际维度暂缺，评级仅反映「生意质地」非「买入时机」"
-            },
-            "rating": "绿",
-            "rating_label": "优质可持有",
-            "rating_reason": "贵州茅台 质地优秀（质地分 9/10）：高ROE/高毛利/现金成色好，符合巴菲特优质消费股特征。注：未做安全边际估值，是否「便宜」需另判。",
-            "score": 9,
-            "score_max": 10,
-            "score_pct": 0.9
-          }
-        },
-        {
-          "stock_code": "600887",
-          "stock_name": "伊利股份",
-          "ratio_pct": 0.45,
-          "financials": {
-            "roe_pct": 21.16,
-            "gross_margin_pct": 33.9944,
-            "net_margin_pct": 9.957,
-            "debt_ratio_pct": 59.4984,
-            "ocf_to_netprofit_pct": 124.58,
-            "rev_growth_pct": 0.2105,
-            "profit_growth_pct": 36.0386,
-            "report_date": "2025-12-31",
-            "roe_history": [
-              [
-                "2020-12-31",
-                23.3
-              ],
-              [
-                "2021-12-31",
-                18.25
-              ],
-              [
-                "2022-12-31",
-                18.76
-              ],
-              [
-                "2023-12-31",
-                19.48
-              ],
-              [
-                "2024-12-31",
-                15.89
-              ],
-              [
-                "2025-12-31",
-                21.16
-              ]
-            ],
-            "error": null,
-            "report_is_annual": true,
-            "latest_period": "2026-03-31",
-            "gross_margin_source": "主营业务利润率(代理)"
-          },
-          "rating": {
-            "circle": "in",
-            "checks": {
-              "Q1_能力圈": "✓ 在能力圈内（消费/食品饮料，商业模式清晰）",
-              "Q2_商业模式(毛利率)": "△ 毛利率 33.9944%（中等）",
-              "Q3_护城河(ROE)": "✓ ROE 21.16%（≥15%，护城河迹象明显）",
-              "Q3b_ROE稳定性": "✓ 近期 ROE 持续 ≥10%（[18.8, 19.5, 15.9, 21.2]）",
-              "Q4_定价权(净利率)": "△ 净利率 9.957%（中等）",
-              "Q5_现金含金量": "✓ 经营现金流/净利润 124.58%（利润含金量高）",
-              "Q6_抗压(负债率)": "△ 资产负债率 59.4984%（偏高）",
-              "Q7_成长性": "营收增速 0.2105% / 净利增速 36.0386%（参考，非评级核心）",
-              "Q8_管理层&安全边际": "⚠ 本MVP未做内在价值估算与管理层诚信调查，安全边际维度暂缺，评级仅反映「生意质地」非「买入时机」"
-            },
-            "rating": "绿",
-            "rating_label": "优质可持有",
-            "rating_reason": "伊利股份 质地优秀（质地分 7/10）：高ROE/高毛利/现金成色好，符合巴菲特优质消费股特征。注：未做安全边际估值，是否「便宜」需另判。",
-            "score": 7,
-            "score_max": 10,
-            "score_pct": 0.7
-          }
-        },
-        {
-          "stock_code": "000858",
-          "stock_name": "五粮液",
-          "ratio_pct": 0.45,
-          "financials": {
-            "roe_pct": 7.47,
-            "gross_margin_pct": 50.3065,
-            "net_margin_pct": 22.989,
-            "debt_ratio_pct": 34.3133,
-            "ocf_to_netprofit_pct": 318.84,
-            "rev_growth_pct": -54.5518,
-            "profit_growth_pct": -71.9309,
-            "report_date": "2025-12-31",
-            "roe_history": [
-              [
-                "2020-12-31",
-                23.28
-              ],
-              [
-                "2021-12-31",
-                23.6
-              ],
-              [
-                "2022-12-31",
-                23.41
-              ],
-              [
-                "2023-12-31",
-                23.32
-              ],
-              [
-                "2024-12-31",
-                23.9
-              ],
-              [
-                "2025-12-31",
-                7.47
-              ]
-            ],
-            "error": null,
-            "report_is_annual": true,
-            "latest_period": "2026-03-31",
-            "gross_margin_source": "主营业务利润率(代理)"
-          },
-          "rating": {
-            "circle": "in",
-            "checks": {
-              "Q1_能力圈": "✓ 在能力圈内（消费/食品饮料，商业模式清晰）",
-              "Q2_商业模式(毛利率)": "✓ 毛利率 50.3065%（高，盈利质量好）",
-              "Q3_护城河(ROE)": "✗ ROE 7.47%（偏弱）",
-              "Q3b_ROE稳定性": "△ ROE 波动（[23.4, 23.3, 23.9, 7.5]）",
-              "Q4_定价权(净利率)": "✓ 净利率 22.989%（强定价权）",
-              "Q5_现金含金量": "✓ 经营现金流/净利润 318.84%（利润含金量高）",
-              "Q6_抗压(负债率)": "✓ 资产负债率 34.3133%（稳健）",
-              "Q7_成长性": "营收增速 -54.5518% / 净利增速 -71.9309%（参考，非评级核心）",
-              "Q8_管理层&安全边际": "⚠ 本MVP未做内在价值估算与管理层诚信调查，安全边际维度暂缺，评级仅反映「生意质地」非「买入时机」"
-            },
-            "rating": "绿",
-            "rating_label": "优质可持有",
-            "rating_reason": "五粮液 质地优秀（质地分 7/10）：高ROE/高毛利/现金成色好，符合巴菲特优质消费股特征。注：未做安全边际估值，是否「便宜」需另判。",
-            "score": 7,
-            "score_max": 10,
-            "score_pct": 0.7
-          }
-        },
-        {
-          "stock_code": "000568",
-          "stock_name": "泸州老窖",
-          "ratio_pct": 0.28,
-          "financials": {
-            "roe_pct": 21.76,
-            "gross_margin_pct": 71.3595,
-            "net_margin_pct": 42.2055,
-            "debt_ratio_pct": 21.8137,
-            "ocf_to_netprofit_pct": 65.59,
-            "rev_growth_pct": -17.5189,
-            "profit_growth_pct": -19.543,
-            "report_date": "2025-12-31",
-            "roe_history": [
-              [
-                "2020-12-31",
-                26.03
-              ],
-              [
-                "2021-12-31",
-                28.37
-              ],
-              [
-                "2022-12-31",
-                30.3
-              ],
-              [
-                "2023-12-31",
-                32.0
-              ],
-              [
-                "2024-12-31",
-                28.43
-              ],
-              [
-                "2025-12-31",
-                21.76
-              ]
-            ],
-            "error": null,
-            "report_is_annual": true,
-            "latest_period": "2026-03-31",
-            "gross_margin_source": "主营业务利润率(代理)"
-          },
-          "rating": {
-            "circle": "in",
-            "checks": {
-              "Q1_能力圈": "✓ 在能力圈内（消费/食品饮料，商业模式清晰）",
-              "Q2_商业模式(毛利率)": "✓ 毛利率 71.3595%（高，盈利质量好）",
-              "Q3_护城河(ROE)": "✓ ROE 21.76%（≥15%，护城河迹象明显）",
-              "Q3b_ROE稳定性": "✓ 近期 ROE 持续 ≥10%（[30.3, 32.0, 28.4, 21.8]）",
-              "Q4_定价权(净利率)": "✓ 净利率 42.2055%（强定价权）",
-              "Q5_现金含金量": "△ 现金转化 65.59%（一般）",
-              "Q6_抗压(负债率)": "✓ 资产负债率 21.8137%（稳健）",
-              "Q7_成长性": "营收增速 -17.5189% / 净利增速 -19.543%（参考，非评级核心）",
-              "Q8_管理层&安全边际": "⚠ 本MVP未做内在价值估算与管理层诚信调查，安全边际维度暂缺，评级仅反映「生意质地」非「买入时机」"
-            },
-            "rating": "绿",
-            "rating_label": "优质可持有",
-            "rating_reason": "泸州老窖 质地优秀（质地分 9/10）：高ROE/高毛利/现金成色好，符合巴菲特优质消费股特征。注：未做安全边际估值，是否「便宜」需另判。",
-            "score": 9,
-            "score_max": 10,
-            "score_pct": 0.9
-          }
-        },
-        {
-          "stock_code": "600809",
-          "stock_name": "山西汾酒",
-          "ratio_pct": 0.25,
-          "financials": {
-            "roe_pct": 30.9,
-            "gross_margin_pct": 56.9914,
-            "net_margin_pct": 31.7557,
-            "debt_ratio_pct": 29.2569,
-            "ocf_to_netprofit_pct": 73.31,
-            "rev_growth_pct": 7.5179,
-            "profit_growth_pct": 0.3441,
-            "report_date": "2025-12-31",
-            "roe_history": [
-              [
-                "2020-12-31",
-                31.49
-              ],
-              [
-                "2021-12-31",
-                34.91
-              ],
-              [
-                "2022-12-31",
-                37.97
-              ],
-              [
-                "2023-12-31",
-                37.5
-              ],
-              [
-                "2024-12-31",
-                35.23
-              ],
-              [
-                "2025-12-31",
-                30.9
-              ]
-            ],
-            "error": null,
-            "report_is_annual": true,
-            "latest_period": "2026-03-31",
-            "gross_margin_source": "主营业务利润率(代理)"
-          },
-          "rating": {
-            "circle": "in",
-            "checks": {
-              "Q1_能力圈": "✓ 在能力圈内（消费/食品饮料，商业模式清晰）",
-              "Q2_商业模式(毛利率)": "✓ 毛利率 56.9914%（高，盈利质量好）",
-              "Q3_护城河(ROE)": "✓ ROE 30.9%（≥15%，护城河迹象明显）",
-              "Q3b_ROE稳定性": "✓ 近期 ROE 持续 ≥10%（[38.0, 37.5, 35.2, 30.9]）",
-              "Q4_定价权(净利率)": "✓ 净利率 31.7557%（强定价权）",
-              "Q5_现金含金量": "△ 现金转化 73.31%（一般）",
-              "Q6_抗压(负债率)": "✓ 资产负债率 29.2569%（稳健）",
-              "Q7_成长性": "营收增速 7.5179% / 净利增速 0.3441%（参考，非评级核心）",
-              "Q8_管理层&安全边际": "⚠ 本MVP未做内在价值估算与管理层诚信调查，安全边际维度暂缺，评级仅反映「生意质地」非「买入时机」"
-            },
-            "rating": "绿",
-            "rating_label": "优质可持有",
-            "rating_reason": "山西汾酒 质地优秀（质地分 9/10）：高ROE/高毛利/现金成色好，符合巴菲特优质消费股特征。注：未做安全边际估值，是否「便宜」需另判。",
-            "score": 9,
-            "score_max": 10,
-            "score_pct": 0.9
-          }
-        },
-        {
-          "stock_code": "603288",
-          "stock_name": "海天味业",
-          "ratio_pct": 0.25,
-          "financials": {
-            "roe_pct": 17.03,
-            "gross_margin_pct": 39.3642,
-            "net_margin_pct": 24.4012,
-            "debt_ratio_pct": 12.0851,
-            "ocf_to_netprofit_pct": 109.94,
-            "rev_growth_pct": 7.3321,
-            "profit_growth_pct": 10.8497,
-            "report_date": "2025-12-31",
-            "roe_history": [
-              [
-                "2020-12-31",
-                31.91
-              ],
-              [
-                "2021-12-31",
-                28.51
-              ],
-              [
-                "2022-12-31",
-                23.48
-              ],
-              [
-                "2023-12-31",
-                19.72
-              ],
-              [
-                "2024-12-31",
-                20.53
-              ],
-              [
-                "2025-12-31",
-                17.03
-              ]
-            ],
-            "error": null,
-            "report_is_annual": true,
-            "latest_period": "2026-03-31",
-            "gross_margin_source": "主营业务利润率(代理)"
-          },
-          "rating": {
-            "circle": "in",
-            "checks": {
-              "Q1_能力圈": "✓ 在能力圈内（消费/食品饮料，商业模式清晰）",
-              "Q2_商业模式(毛利率)": "△ 毛利率 39.3642%（中等）",
-              "Q3_护城河(ROE)": "✓ ROE 17.03%（≥15%，护城河迹象明显）",
-              "Q3b_ROE稳定性": "✓ 近期 ROE 持续 ≥10%（[23.5, 19.7, 20.5, 17.0]）",
-              "Q4_定价权(净利率)": "✓ 净利率 24.4012%（强定价权）",
-              "Q5_现金含金量": "✓ 经营现金流/净利润 109.94%（利润含金量高）",
-              "Q6_抗压(负债率)": "✓ 资产负债率 12.0851%（稳健）",
-              "Q7_成长性": "营收增速 7.3321% / 净利增速 10.8497%（参考，非评级核心）",
-              "Q8_管理层&安全边际": "⚠ 本MVP未做内在价值估算与管理层诚信调查，安全边际维度暂缺，评级仅反映「生意质地」非「买入时机」"
-            },
-            "rating": "绿",
-            "rating_label": "优质可持有",
-            "rating_reason": "海天味业 质地优秀（质地分 9/10）：高ROE/高毛利/现金成色好，符合巴菲特优质消费股特征。注：未做安全边际估值，是否「便宜」需另判。",
-            "score": 9,
-            "score_max": 10,
-            "score_pct": 0.9
-          }
-        },
-        {
-          "stock_code": "605499",
-          "stock_name": "东鹏饮料",
-          "ratio_pct": 0.16,
-          "financials": {
-            "roe_pct": 46.87,
-            "gross_margin_pct": 43.8551,
-            "net_margin_pct": 21.1447,
-            "debt_ratio_pct": 44.4817,
-            "ocf_to_netprofit_pct": 139.88,
-            "rev_growth_pct": 31.7979,
-            "profit_growth_pct": 32.6954,
-            "report_date": "2025-12-31",
-            "roe_history": [
-              [
-                "2020-12-31",
-                42.44
-              ],
-              [
-                "2021-12-31",
-                28.15
-              ],
-              [
-                "2022-12-31",
-                28.44
-              ],
-              [
-                "2023-12-31",
-                32.26
-              ],
-              [
-                "2024-12-31",
-                43.27
-              ],
-              [
-                "2025-12-31",
-                46.87
-              ]
-            ],
-            "error": null,
-            "report_is_annual": true,
-            "latest_period": "2026-03-31",
-            "gross_margin_source": "主营业务利润率(代理)"
-          },
-          "rating": {
-            "circle": "in",
-            "checks": {
-              "Q1_能力圈": "✓ 在能力圈内（消费/食品饮料，商业模式清晰）",
-              "Q2_商业模式(毛利率)": "✓ 毛利率 43.8551%（高，盈利质量好）",
-              "Q3_护城河(ROE)": "✓ ROE 46.87%（≥15%，护城河迹象明显）",
-              "Q3b_ROE稳定性": "✓ 近期 ROE 持续 ≥10%（[28.4, 32.3, 43.3, 46.9]）",
-              "Q4_定价权(净利率)": "✓ 净利率 21.1447%（强定价权）",
-              "Q5_现金含金量": "✓ 经营现金流/净利润 139.88%（利润含金量高）",
-              "Q6_抗压(负债率)": "✓ 资产负债率 44.4817%（稳健）",
-              "Q7_成长性": "营收增速 31.7979% / 净利增速 32.6954%（参考，非评级核心）",
-              "Q8_管理层&安全边际": "⚠ 本MVP未做内在价值估算与管理层诚信调查，安全边际维度暂缺，评级仅反映「生意质地」非「买入时机」"
-            },
-            "rating": "绿",
-            "rating_label": "优质可持有",
-            "rating_reason": "东鹏饮料 质地优秀（质地分 10/10）：高ROE/高毛利/现金成色好，符合巴菲特优质消费股特征。注：未做安全边际估值，是否「便宜」需另判。",
-            "score": 10,
-            "score_max": 10,
-            "score_pct": 1.0
-          }
-        },
-        {
-          "stock_code": "002304",
-          "stock_name": "洋河股份",
-          "ratio_pct": 0.11,
-          "financials": {
-            "roe_pct": null,
-            "gross_margin_pct": null,
-            "net_margin_pct": null,
-            "debt_ratio_pct": null,
-            "ocf_to_netprofit_pct": null,
-            "rev_growth_pct": null,
-            "profit_growth_pct": null,
-            "report_date": null,
-            "roe_history": [],
-            "error": "fin_error: ValueError('No tables found')"
-          },
-          "rating": {
-            "circle": "in",
-            "checks": {
-              "Q1_能力圈": "✓ 在能力圈内（消费/食品饮料，商业模式清晰）",
-              "数据": "✗ 核心财务数据不足（缺3/3，fin_error: ValueError('No tables found')）"
-            },
-            "rating": "灰",
-            "rating_label": "不予评级",
-            "rating_reason": "洋河股份 核心财务数据缺失（fin_error: ValueError('No tables found')），无法基于真实数据评估，诚实标注数据不足，不评级。",
-            "score": null
-          }
-        },
-        {
-          "stock_code": "000895",
-          "stock_name": "双汇发展",
-          "ratio_pct": 0.11,
-          "financials": {
-            "roe_pct": null,
-            "gross_margin_pct": null,
-            "net_margin_pct": null,
-            "debt_ratio_pct": null,
-            "ocf_to_netprofit_pct": null,
-            "rev_growth_pct": null,
-            "profit_growth_pct": null,
-            "report_date": null,
-            "roe_history": [],
-            "error": "fin_error: ValueError('No tables found')"
-          },
-          "rating": {
-            "circle": "in",
-            "checks": {
-              "Q1_能力圈": "✓ 在能力圈内（消费/食品饮料，商业模式清晰）",
-              "数据": "✗ 核心财务数据不足（缺3/3，fin_error: ValueError('No tables found')）"
-            },
-            "rating": "灰",
-            "rating_label": "不予评级",
-            "rating_reason": "双汇发展 核心财务数据缺失（fin_error: ValueError('No tables found')），无法基于真实数据评估，诚实标注数据不足，不评级。",
-            "score": null
-          }
-        },
-        {
-          "stock_code": "600298",
-          "stock_name": "安琪酵母",
-          "ratio_pct": 0.09,
+          "ratio_pct": 2.51,
           "financials": {
             "roe_pct": null,
             "gross_margin_pct": null,
@@ -1822,35 +574,329 @@
             "error": "fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")"
           },
           "rating": {
-            "circle": "in",
+            "circle": "borderline",
             "checks": {
-              "Q1_能力圈": "✓ 在能力圈内（消费/食品饮料，商业模式清晰）",
+              "Q1_能力圈": "△ 能力圈边缘（高端制造/工业自动化，需谨慎）",
               "数据": "✗ 核心财务数据不足（缺3/3，fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")）"
             },
             "rating": "灰",
             "rating_label": "不予评级",
-            "rating_reason": "安琪酵母 核心财务数据缺失（fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")），无法基于真实数据评估，诚实标注数据不足，不评级。",
+            "rating_reason": "润泽科技 核心财务数据缺失（fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")），无法基于真实数据评估，诚实标注数据不足，不评级。",
             "score": null
           }
         }
       ],
       "fund_quality_summary": {
         "weight_by_rating_in_top10_pct": {
-          "绿": 88.3,
+          "绿": 0.0,
           "黄": 0.0,
           "红": 0.0,
-          "灰": 11.7
+          "灰": 100.0
         },
-        "top10_disclosed_weight_pct": 2.65,
-        "verdict": "前十大重仓中约 88.3% 权重落在绿/黄评级公司，底层质地中上"
+        "top10_disclosed_weight_pct": 54.43,
+        "verdict": "底层多为超出能力圈/数据不足的标的，质地难判断（诚实保留）"
       }
     },
     {
-      "fund_code": "014880",
-      "official_name": "天弘中证机器人ETF发起联接A",
+      "fund_code": "015790",
+      "official_name": "永赢高端装备智选混合发起C",
+      "fund_type": "混合型-偏股",
+      "portfolio_labeled_name": "永赢高端装备智选混合发起C",
+      "name_mismatch_warning": false,
+      "latest_quarter": "2026年1季度股票投资明细",
+      "holdings_error": null,
+      "holdings_rated": [
+        {
+          "stock_code": "600879",
+          "stock_name": "航天电子",
+          "ratio_pct": 7.6,
+          "financials": {
+            "roe_pct": null,
+            "gross_margin_pct": null,
+            "net_margin_pct": null,
+            "debt_ratio_pct": null,
+            "ocf_to_netprofit_pct": null,
+            "rev_growth_pct": null,
+            "profit_growth_pct": null,
+            "report_date": null,
+            "roe_history": [],
+            "error": "fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")"
+          },
+          "rating": {
+            "circle": "out",
+            "checks": {
+              "Q1_能力圈": "✗ 超出能力圈（高技术壁垒/格局难判断）"
+            },
+            "rating": "灰",
+            "rating_label": "不予评级",
+            "rating_reason": "航天电子 属于高技术/半导体/AI算力领域，长期竞争格局超出巴菲特框架与普通投资者能力圈，诚实标注「不知道」，不强行评级。",
+            "score": null
+          }
+        },
+        {
+          "stock_code": "600118",
+          "stock_name": "中国卫星",
+          "ratio_pct": 5.21,
+          "financials": {
+            "roe_pct": null,
+            "gross_margin_pct": null,
+            "net_margin_pct": null,
+            "debt_ratio_pct": null,
+            "ocf_to_netprofit_pct": null,
+            "rev_growth_pct": null,
+            "profit_growth_pct": null,
+            "report_date": null,
+            "roe_history": [],
+            "error": "fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")"
+          },
+          "rating": {
+            "circle": "out",
+            "checks": {
+              "Q1_能力圈": "✗ 超出能力圈（高技术壁垒/格局难判断）"
+            },
+            "rating": "灰",
+            "rating_label": "不予评级",
+            "rating_reason": "中国卫星 属于高技术/半导体/AI算力领域，长期竞争格局超出巴菲特框架与普通投资者能力圈，诚实标注「不知道」，不强行评级。",
+            "score": null
+          }
+        },
+        {
+          "stock_code": "300342",
+          "stock_name": "天银机电",
+          "ratio_pct": 4.76,
+          "financials": {
+            "roe_pct": null,
+            "gross_margin_pct": null,
+            "net_margin_pct": null,
+            "debt_ratio_pct": null,
+            "ocf_to_netprofit_pct": null,
+            "rev_growth_pct": null,
+            "profit_growth_pct": null,
+            "report_date": null,
+            "roe_history": [],
+            "error": "fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")"
+          },
+          "rating": {
+            "circle": "out",
+            "checks": {
+              "Q1_能力圈": "✗ 超出能力圈（高技术壁垒/格局难判断）"
+            },
+            "rating": "灰",
+            "rating_label": "不予评级",
+            "rating_reason": "天银机电 属于高技术/半导体/AI算力领域，长期竞争格局超出巴菲特框架与普通投资者能力圈，诚实标注「不知道」，不强行评级。",
+            "score": null
+          }
+        },
+        {
+          "stock_code": "688375",
+          "stock_name": "国博电子",
+          "ratio_pct": 4.54,
+          "financials": {
+            "roe_pct": null,
+            "gross_margin_pct": null,
+            "net_margin_pct": null,
+            "debt_ratio_pct": null,
+            "ocf_to_netprofit_pct": null,
+            "rev_growth_pct": null,
+            "profit_growth_pct": null,
+            "report_date": null,
+            "roe_history": [],
+            "error": "fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")"
+          },
+          "rating": {
+            "circle": "out",
+            "checks": {
+              "Q1_能力圈": "✗ 超出能力圈（高技术壁垒/格局难判断）"
+            },
+            "rating": "灰",
+            "rating_label": "不予评级",
+            "rating_reason": "国博电子 属于高技术/半导体/AI算力领域，长期竞争格局超出巴菲特框架与普通投资者能力圈，诚实标注「不知道」，不强行评级。",
+            "score": null
+          }
+        },
+        {
+          "stock_code": "601698",
+          "stock_name": "中国卫通",
+          "ratio_pct": 4.19,
+          "financials": {
+            "roe_pct": null,
+            "gross_margin_pct": null,
+            "net_margin_pct": null,
+            "debt_ratio_pct": null,
+            "ocf_to_netprofit_pct": null,
+            "rev_growth_pct": null,
+            "profit_growth_pct": null,
+            "report_date": null,
+            "roe_history": [],
+            "error": "fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")"
+          },
+          "rating": {
+            "circle": "out",
+            "checks": {
+              "Q1_能力圈": "✗ 超出能力圈（高技术壁垒/格局难判断）"
+            },
+            "rating": "灰",
+            "rating_label": "不予评级",
+            "rating_reason": "中国卫通 属于高技术/半导体/AI算力领域，长期竞争格局超出巴菲特框架与普通投资者能力圈，诚实标注「不知道」，不强行评级。",
+            "score": null
+          }
+        },
+        {
+          "stock_code": "300136",
+          "stock_name": "信维通信",
+          "ratio_pct": 4.17,
+          "financials": {
+            "roe_pct": null,
+            "gross_margin_pct": null,
+            "net_margin_pct": null,
+            "debt_ratio_pct": null,
+            "ocf_to_netprofit_pct": null,
+            "rev_growth_pct": null,
+            "profit_growth_pct": null,
+            "report_date": null,
+            "roe_history": [],
+            "error": "fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")"
+          },
+          "rating": {
+            "circle": "borderline",
+            "checks": {
+              "Q1_能力圈": "△ 能力圈边缘（高端制造/工业自动化，需谨慎）",
+              "数据": "✗ 核心财务数据不足（缺3/3，fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")）"
+            },
+            "rating": "灰",
+            "rating_label": "不予评级",
+            "rating_reason": "信维通信 核心财务数据缺失（fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")），无法基于真实数据评估，诚实标注数据不足，不评级。",
+            "score": null
+          }
+        },
+        {
+          "stock_code": "688568",
+          "stock_name": "中科星图",
+          "ratio_pct": 4.17,
+          "financials": {
+            "roe_pct": null,
+            "gross_margin_pct": null,
+            "net_margin_pct": null,
+            "debt_ratio_pct": null,
+            "ocf_to_netprofit_pct": null,
+            "rev_growth_pct": null,
+            "profit_growth_pct": null,
+            "report_date": null,
+            "roe_history": [],
+            "error": "fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")"
+          },
+          "rating": {
+            "circle": "out",
+            "checks": {
+              "Q1_能力圈": "✗ 超出能力圈（高技术壁垒/格局难判断）"
+            },
+            "rating": "灰",
+            "rating_label": "不予评级",
+            "rating_reason": "中科星图 属于高技术/半导体/AI算力领域，长期竞争格局超出巴菲特框架与普通投资者能力圈，诚实标注「不知道」，不强行评级。",
+            "score": null
+          }
+        },
+        {
+          "stock_code": "300102",
+          "stock_name": "乾照光电",
+          "ratio_pct": 4.16,
+          "financials": {
+            "roe_pct": null,
+            "gross_margin_pct": null,
+            "net_margin_pct": null,
+            "debt_ratio_pct": null,
+            "ocf_to_netprofit_pct": null,
+            "rev_growth_pct": null,
+            "profit_growth_pct": null,
+            "report_date": null,
+            "roe_history": [],
+            "error": "fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")"
+          },
+          "rating": {
+            "circle": "out",
+            "checks": {
+              "Q1_能力圈": "✗ 超出能力圈（高技术壁垒/格局难判断）"
+            },
+            "rating": "灰",
+            "rating_label": "不予评级",
+            "rating_reason": "乾照光电 属于高技术/半导体/AI算力领域，长期竞争格局超出巴菲特框架与普通投资者能力圈，诚实标注「不知道」，不强行评级。",
+            "score": null
+          }
+        },
+        {
+          "stock_code": "600498",
+          "stock_name": "烽火通信",
+          "ratio_pct": 4.1,
+          "financials": {
+            "roe_pct": null,
+            "gross_margin_pct": null,
+            "net_margin_pct": null,
+            "debt_ratio_pct": null,
+            "ocf_to_netprofit_pct": null,
+            "rev_growth_pct": null,
+            "profit_growth_pct": null,
+            "report_date": null,
+            "roe_history": [],
+            "error": "fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")"
+          },
+          "rating": {
+            "circle": "borderline",
+            "checks": {
+              "Q1_能力圈": "△ 能力圈边缘（高端制造/工业自动化，需谨慎）",
+              "数据": "✗ 核心财务数据不足（缺3/3，fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")）"
+            },
+            "rating": "灰",
+            "rating_label": "不予评级",
+            "rating_reason": "烽火通信 核心财务数据缺失（fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")），无法基于真实数据评估，诚实标注数据不足，不评级。",
+            "score": null
+          }
+        },
+        {
+          "stock_code": "301005",
+          "stock_name": "超捷股份",
+          "ratio_pct": 3.66,
+          "financials": {
+            "roe_pct": null,
+            "gross_margin_pct": null,
+            "net_margin_pct": null,
+            "debt_ratio_pct": null,
+            "ocf_to_netprofit_pct": null,
+            "rev_growth_pct": null,
+            "profit_growth_pct": null,
+            "report_date": null,
+            "roe_history": [],
+            "error": "fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")"
+          },
+          "rating": {
+            "circle": "borderline",
+            "checks": {
+              "Q1_能力圈": "△ 能力圈边缘（高端制造/工业自动化，需谨慎）",
+              "数据": "✗ 核心财务数据不足（缺3/3，fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")）"
+            },
+            "rating": "灰",
+            "rating_label": "不予评级",
+            "rating_reason": "超捷股份 核心财务数据缺失（fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")），无法基于真实数据评估，诚实标注数据不足，不评级。",
+            "score": null
+          }
+        }
+      ],
+      "fund_quality_summary": {
+        "weight_by_rating_in_top10_pct": {
+          "绿": 0.0,
+          "黄": 0.0,
+          "红": 0.0,
+          "灰": 100.0
+        },
+        "top10_disclosed_weight_pct": 46.56,
+        "verdict": "底层多为超出能力圈/数据不足的标的，质地难判断（诚实保留）"
+      }
+    },
+    {
+      "fund_code": "014881",
+      "official_name": "天弘中证机器人ETF发起联接C",
       "fund_type": "指数型-股票",
-      "portfolio_labeled_name": "天弘中证机器人ETF联接C",
-      "name_mismatch_warning": true,
+      "portfolio_labeled_name": "天弘中证机器人ETF发起联接C",
+      "name_mismatch_warning": false,
       "latest_quarter": "2026年1季度股票投资明细",
       "holdings_error": null,
       "holdings_rated": [
@@ -1868,7 +914,7 @@
             "profit_growth_pct": null,
             "report_date": null,
             "roe_history": [],
-            "error": "fin_error: ValueError('No tables found')"
+            "error": "fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")"
           },
           "rating": {
             "circle": "out",
@@ -1895,17 +941,17 @@
             "profit_growth_pct": null,
             "report_date": null,
             "roe_history": [],
-            "error": "fin_error: ValueError('No tables found')"
+            "error": "fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")"
           },
           "rating": {
             "circle": "borderline",
             "checks": {
               "Q1_能力圈": "△ 能力圈边缘（高端制造/工业自动化，需谨慎）",
-              "数据": "✗ 核心财务数据不足（缺3/3，fin_error: ValueError('No tables found')）"
+              "数据": "✗ 核心财务数据不足（缺3/3，fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")）"
             },
             "rating": "灰",
             "rating_label": "不予评级",
-            "rating_reason": "汇川技术 核心财务数据缺失（fin_error: ValueError('No tables found')），无法基于真实数据评估，诚实标注数据不足，不评级。",
+            "rating_reason": "汇川技术 核心财务数据缺失（fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")），无法基于真实数据评估，诚实标注数据不足，不评级。",
             "score": null
           }
         },
@@ -2146,18 +1192,18 @@
       }
     },
     {
-      "fund_code": "014658",
-      "official_name": "中欧融享增益一年持有期混合C",
-      "fund_type": "混合型-偏债",
-      "portfolio_labeled_name": "永赢高端装备智选混合C",
-      "name_mismatch_warning": true,
+      "fund_code": "025647",
+      "official_name": "平安高端装备混合发起式C",
+      "fund_type": "混合型-偏股",
+      "portfolio_labeled_name": "平安高端装备混合发起式C",
+      "name_mismatch_warning": false,
       "latest_quarter": "2026年1季度股票投资明细",
       "holdings_error": null,
       "holdings_rated": [
         {
-          "stock_code": "601665",
-          "stock_name": "齐鲁银行",
-          "ratio_pct": 0.47,
+          "stock_code": "600879",
+          "stock_name": "航天电子",
+          "ratio_pct": 8.61,
           "financials": {
             "roe_pct": null,
             "gross_margin_pct": null,
@@ -2171,49 +1217,20 @@
             "error": "fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")"
           },
           "rating": {
-            "circle": "unknown",
+            "circle": "out",
             "checks": {
-              "Q1_能力圈": "？ 难以判断行业归属",
-              "数据": "✗ 核心财务数据不足（缺3/3，fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")）"
+              "Q1_能力圈": "✗ 超出能力圈（高技术壁垒/格局难判断）"
             },
             "rating": "灰",
             "rating_label": "不予评级",
-            "rating_reason": "齐鲁银行 核心财务数据缺失（fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")），无法基于真实数据评估，诚实标注数据不足，不评级。",
+            "rating_reason": "航天电子 属于高技术/半导体/AI算力领域，长期竞争格局超出巴菲特框架与普通投资者能力圈，诚实标注「不知道」，不强行评级。",
             "score": null
           }
         },
         {
-          "stock_code": "603259",
-          "stock_name": "药明康德",
-          "ratio_pct": 0.35,
-          "financials": {
-            "roe_pct": null,
-            "gross_margin_pct": null,
-            "net_margin_pct": null,
-            "debt_ratio_pct": null,
-            "ocf_to_netprofit_pct": null,
-            "rev_growth_pct": null,
-            "profit_growth_pct": null,
-            "report_date": null,
-            "roe_history": [],
-            "error": "fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")"
-          },
-          "rating": {
-            "circle": "unknown",
-            "checks": {
-              "Q1_能力圈": "？ 难以判断行业归属",
-              "数据": "✗ 核心财务数据不足（缺3/3，fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")）"
-            },
-            "rating": "灰",
-            "rating_label": "不予评级",
-            "rating_reason": "药明康德 核心财务数据缺失（fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")），无法基于真实数据评估，诚实标注数据不足，不评级。",
-            "score": null
-          }
-        },
-        {
-          "stock_code": "300308",
-          "stock_name": "中际旭创",
-          "ratio_pct": 0.26,
+          "stock_code": "002149",
+          "stock_name": "西部材料",
+          "ratio_pct": 6.49,
           "financials": {
             "roe_pct": null,
             "gross_margin_pct": null,
@@ -2234,14 +1251,14 @@
             },
             "rating": "灰",
             "rating_label": "不予评级",
-            "rating_reason": "中际旭创 核心财务数据缺失（fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")），无法基于真实数据评估，诚实标注数据不足，不评级。",
+            "rating_reason": "西部材料 核心财务数据缺失（fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")），无法基于真实数据评估，诚实标注数据不足，不评级。",
             "score": null
           }
         },
         {
-          "stock_code": "601166",
-          "stock_name": "兴业银行",
-          "ratio_pct": 0.24,
+          "stock_code": "688387",
+          "stock_name": "信科移动",
+          "ratio_pct": 5.48,
           "financials": {
             "roe_pct": null,
             "gross_margin_pct": null,
@@ -2255,21 +1272,20 @@
             "error": "fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")"
           },
           "rating": {
-            "circle": "unknown",
+            "circle": "out",
             "checks": {
-              "Q1_能力圈": "？ 难以判断行业归属",
-              "数据": "✗ 核心财务数据不足（缺3/3，fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")）"
+              "Q1_能力圈": "✗ 超出能力圈（高技术壁垒/格局难判断）"
             },
             "rating": "灰",
             "rating_label": "不予评级",
-            "rating_reason": "兴业银行 核心财务数据缺失（fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")），无法基于真实数据评估，诚实标注数据不足，不评级。",
+            "rating_reason": "信科移动 属于高技术/半导体/AI算力领域，长期竞争格局超出巴菲特框架与普通投资者能力圈，诚实标注「不知道」，不强行评级。",
             "score": null
           }
         },
         {
-          "stock_code": "002379",
-          "stock_name": "宏桥控股",
-          "ratio_pct": 0.24,
+          "stock_code": "600118",
+          "stock_name": "中国卫星",
+          "ratio_pct": 5.16,
           "financials": {
             "roe_pct": null,
             "gross_margin_pct": null,
@@ -2283,21 +1299,20 @@
             "error": "fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")"
           },
           "rating": {
-            "circle": "unknown",
+            "circle": "out",
             "checks": {
-              "Q1_能力圈": "？ 难以判断行业归属",
-              "数据": "✗ 核心财务数据不足（缺3/3，fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")）"
+              "Q1_能力圈": "✗ 超出能力圈（高技术壁垒/格局难判断）"
             },
             "rating": "灰",
             "rating_label": "不予评级",
-            "rating_reason": "宏桥控股 核心财务数据缺失（fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")），无法基于真实数据评估，诚实标注数据不足，不评级。",
+            "rating_reason": "中国卫星 属于高技术/半导体/AI算力领域，长期竞争格局超出巴菲特框架与普通投资者能力圈，诚实标注「不知道」，不强行评级。",
             "score": null
           }
         },
         {
-          "stock_code": "688180",
-          "stock_name": "君实生物",
-          "ratio_pct": 0.23,
+          "stock_code": "688270",
+          "stock_name": "臻镭科技",
+          "ratio_pct": 4.53,
           "financials": {
             "roe_pct": null,
             "gross_margin_pct": null,
@@ -2311,21 +1326,20 @@
             "error": "fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")"
           },
           "rating": {
-            "circle": "unknown",
+            "circle": "out",
             "checks": {
-              "Q1_能力圈": "？ 难以判断行业归属",
-              "数据": "✗ 核心财务数据不足（缺3/3，fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")）"
+              "Q1_能力圈": "✗ 超出能力圈（高技术壁垒/格局难判断）"
             },
             "rating": "灰",
             "rating_label": "不予评级",
-            "rating_reason": "君实生物 核心财务数据缺失（fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")），无法基于真实数据评估，诚实标注数据不足，不评级。",
+            "rating_reason": "臻镭科技 属于高技术/半导体/AI算力领域，长期竞争格局超出巴菲特框架与普通投资者能力圈，诚实标注「不知道」，不强行评级。",
             "score": null
           }
         },
         {
-          "stock_code": "002948",
-          "stock_name": "青岛银行",
-          "ratio_pct": 0.23,
+          "stock_code": "001400",
+          "stock_name": "江顺科技",
+          "ratio_pct": 4.51,
           "financials": {
             "roe_pct": null,
             "gross_margin_pct": null,
@@ -2339,21 +1353,21 @@
             "error": "fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")"
           },
           "rating": {
-            "circle": "unknown",
+            "circle": "borderline",
             "checks": {
-              "Q1_能力圈": "？ 难以判断行业归属",
+              "Q1_能力圈": "△ 能力圈边缘（高端制造/工业自动化，需谨慎）",
               "数据": "✗ 核心财务数据不足（缺3/3，fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")）"
             },
             "rating": "灰",
             "rating_label": "不予评级",
-            "rating_reason": "青岛银行 核心财务数据缺失（fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")），无法基于真实数据评估，诚实标注数据不足，不评级。",
+            "rating_reason": "江顺科技 核心财务数据缺失（fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")），无法基于真实数据评估，诚实标注数据不足，不评级。",
             "score": null
           }
         },
         {
-          "stock_code": "600985",
-          "stock_name": "淮北矿业",
-          "ratio_pct": 0.23,
+          "stock_code": "688378",
+          "stock_name": "奥来德",
+          "ratio_pct": 4.36,
           "financials": {
             "roe_pct": null,
             "gross_margin_pct": null,
@@ -2367,21 +1381,20 @@
             "error": "fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")"
           },
           "rating": {
-            "circle": "unknown",
+            "circle": "out",
             "checks": {
-              "Q1_能力圈": "？ 难以判断行业归属",
-              "数据": "✗ 核心财务数据不足（缺3/3，fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")）"
+              "Q1_能力圈": "✗ 超出能力圈（高技术壁垒/格局难判断）"
             },
             "rating": "灰",
             "rating_label": "不予评级",
-            "rating_reason": "淮北矿业 核心财务数据缺失（fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")），无法基于真实数据评估，诚实标注数据不足，不评级。",
+            "rating_reason": "奥来德 属于高技术/半导体/AI算力领域，长期竞争格局超出巴菲特框架与普通投资者能力圈，诚实标注「不知道」，不强行评级。",
             "score": null
           }
         },
         {
-          "stock_code": "600426",
-          "stock_name": "华鲁恒升",
-          "ratio_pct": 0.23,
+          "stock_code": "688385",
+          "stock_name": "复旦微电",
+          "ratio_pct": 4.15,
           "financials": {
             "roe_pct": null,
             "gross_margin_pct": null,
@@ -2395,21 +1408,20 @@
             "error": "fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")"
           },
           "rating": {
-            "circle": "unknown",
+            "circle": "out",
             "checks": {
-              "Q1_能力圈": "？ 难以判断行业归属",
-              "数据": "✗ 核心财务数据不足（缺3/3，fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")）"
+              "Q1_能力圈": "✗ 超出能力圈（高技术壁垒/格局难判断）"
             },
             "rating": "灰",
             "rating_label": "不予评级",
-            "rating_reason": "华鲁恒升 核心财务数据缺失（fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")），无法基于真实数据评估，诚实标注数据不足，不评级。",
+            "rating_reason": "复旦微电 属于高技术/半导体/AI算力领域，长期竞争格局超出巴菲特框架与普通投资者能力圈，诚实标注「不知道」，不强行评级。",
             "score": null
           }
         },
         {
-          "stock_code": "688777",
-          "stock_name": "中控技术",
-          "ratio_pct": 0.23,
+          "stock_code": "688818",
+          "stock_name": "电科蓝天",
+          "ratio_pct": 4.09,
           "financials": {
             "roe_pct": null,
             "gross_margin_pct": null,
@@ -2423,14 +1435,41 @@
             "error": "fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")"
           },
           "rating": {
-            "circle": "unknown",
+            "circle": "out",
             "checks": {
-              "Q1_能力圈": "？ 难以判断行业归属",
+              "Q1_能力圈": "✗ 超出能力圈（高技术壁垒/格局难判断）"
+            },
+            "rating": "灰",
+            "rating_label": "不予评级",
+            "rating_reason": "电科蓝天 属于高技术/半导体/AI算力领域，长期竞争格局超出巴菲特框架与普通投资者能力圈，诚实标注「不知道」，不强行评级。",
+            "score": null
+          }
+        },
+        {
+          "stock_code": "300751",
+          "stock_name": "迈为股份",
+          "ratio_pct": 3.91,
+          "financials": {
+            "roe_pct": null,
+            "gross_margin_pct": null,
+            "net_margin_pct": null,
+            "debt_ratio_pct": null,
+            "ocf_to_netprofit_pct": null,
+            "rev_growth_pct": null,
+            "profit_growth_pct": null,
+            "report_date": null,
+            "roe_history": [],
+            "error": "fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")"
+          },
+          "rating": {
+            "circle": "borderline",
+            "checks": {
+              "Q1_能力圈": "△ 能力圈边缘（高端制造/工业自动化，需谨慎）",
               "数据": "✗ 核心财务数据不足（缺3/3，fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")）"
             },
             "rating": "灰",
             "rating_label": "不予评级",
-            "rating_reason": "中控技术 核心财务数据缺失（fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")），无法基于真实数据评估，诚实标注数据不足，不评级。",
+            "rating_reason": "迈为股份 核心财务数据缺失（fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")），无法基于真实数据评估，诚实标注数据不足，不评级。",
             "score": null
           }
         }
@@ -2442,302 +1481,7 @@
           "红": 0.0,
           "灰": 100.0
         },
-        "top10_disclosed_weight_pct": 2.71,
-        "verdict": "底层多为超出能力圈/数据不足的标的，质地难判断（诚实保留）"
-      }
-    },
-    {
-      "fund_code": "015897",
-      "official_name": "天弘中证细分化工产业主题ETF联接C",
-      "fund_type": "指数型-股票",
-      "portfolio_labeled_name": "平安高端装备混合C",
-      "name_mismatch_warning": true,
-      "latest_quarter": "2026年1季度股票投资明细",
-      "holdings_error": null,
-      "holdings_rated": [
-        {
-          "stock_code": "688783",
-          "stock_name": "西安奕材",
-          "ratio_pct": 0.01,
-          "financials": {
-            "roe_pct": null,
-            "gross_margin_pct": null,
-            "net_margin_pct": null,
-            "debt_ratio_pct": null,
-            "ocf_to_netprofit_pct": null,
-            "rev_growth_pct": null,
-            "profit_growth_pct": null,
-            "report_date": null,
-            "roe_history": [],
-            "error": "fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")"
-          },
-          "rating": {
-            "circle": "out",
-            "checks": {
-              "Q1_能力圈": "✗ 超出能力圈（高技术壁垒/格局难判断）"
-            },
-            "rating": "灰",
-            "rating_label": "不予评级",
-            "rating_reason": "西安奕材 属于高技术/半导体/AI算力领域，长期竞争格局超出巴菲特框架与普通投资者能力圈，诚实标注「不知道」，不强行评级。",
-            "score": null
-          }
-        },
-        {
-          "stock_code": "688765",
-          "stock_name": "禾元生物",
-          "ratio_pct": 0.01,
-          "financials": {
-            "roe_pct": null,
-            "gross_margin_pct": null,
-            "net_margin_pct": null,
-            "debt_ratio_pct": null,
-            "ocf_to_netprofit_pct": null,
-            "rev_growth_pct": null,
-            "profit_growth_pct": null,
-            "report_date": null,
-            "roe_history": [],
-            "error": "fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")"
-          },
-          "rating": {
-            "circle": "out",
-            "checks": {
-              "Q1_能力圈": "✗ 超出能力圈（高技术壁垒/格局难判断）"
-            },
-            "rating": "灰",
-            "rating_label": "不予评级",
-            "rating_reason": "禾元生物 属于高技术/半导体/AI算力领域，长期竞争格局超出巴菲特框架与普通投资者能力圈，诚实标注「不知道」，不强行评级。",
-            "score": null
-          }
-        },
-        {
-          "stock_code": "688759",
-          "stock_name": "必贝特",
-          "ratio_pct": 0.0,
-          "financials": {
-            "roe_pct": null,
-            "gross_margin_pct": null,
-            "net_margin_pct": null,
-            "debt_ratio_pct": null,
-            "ocf_to_netprofit_pct": null,
-            "rev_growth_pct": null,
-            "profit_growth_pct": null,
-            "report_date": null,
-            "roe_history": [],
-            "error": "fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")"
-          },
-          "rating": {
-            "circle": "out",
-            "checks": {
-              "Q1_能力圈": "✗ 超出能力圈（高技术壁垒/格局难判断）"
-            },
-            "rating": "灰",
-            "rating_label": "不予评级",
-            "rating_reason": "必贝特 属于高技术/半导体/AI算力领域，长期竞争格局超出巴菲特框架与普通投资者能力圈，诚实标注「不知道」，不强行评级。",
-            "score": null
-          }
-        },
-        {
-          "stock_code": "301683",
-          "stock_name": "慧谷新材",
-          "ratio_pct": 0.0,
-          "financials": {
-            "roe_pct": null,
-            "gross_margin_pct": null,
-            "net_margin_pct": null,
-            "debt_ratio_pct": null,
-            "ocf_to_netprofit_pct": null,
-            "rev_growth_pct": null,
-            "profit_growth_pct": null,
-            "report_date": null,
-            "roe_history": [],
-            "error": "fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")"
-          },
-          "rating": {
-            "circle": "out",
-            "checks": {
-              "Q1_能力圈": "✗ 超出能力圈（高技术壁垒/格局难判断）"
-            },
-            "rating": "灰",
-            "rating_label": "不予评级",
-            "rating_reason": "慧谷新材 属于高技术/半导体/AI算力领域，长期竞争格局超出巴菲特框架与普通投资者能力圈，诚实标注「不知道」，不强行评级。",
-            "score": null
-          }
-        },
-        {
-          "stock_code": "301682",
-          "stock_name": "宏明电子",
-          "ratio_pct": 0.0,
-          "financials": {
-            "roe_pct": null,
-            "gross_margin_pct": null,
-            "net_margin_pct": null,
-            "debt_ratio_pct": null,
-            "ocf_to_netprofit_pct": null,
-            "rev_growth_pct": null,
-            "profit_growth_pct": null,
-            "report_date": null,
-            "roe_history": [],
-            "error": "fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")"
-          },
-          "rating": {
-            "circle": "out",
-            "checks": {
-              "Q1_能力圈": "✗ 超出能力圈（高技术壁垒/格局难判断）"
-            },
-            "rating": "灰",
-            "rating_label": "不予评级",
-            "rating_reason": "宏明电子 属于高技术/半导体/AI算力领域，长期竞争格局超出巴菲特框架与普通投资者能力圈，诚实标注「不知道」，不强行评级。",
-            "score": null
-          }
-        },
-        {
-          "stock_code": "603459",
-          "stock_name": "红板科技",
-          "ratio_pct": 0.0,
-          "financials": {
-            "roe_pct": null,
-            "gross_margin_pct": null,
-            "net_margin_pct": null,
-            "debt_ratio_pct": null,
-            "ocf_to_netprofit_pct": null,
-            "rev_growth_pct": null,
-            "profit_growth_pct": null,
-            "report_date": null,
-            "roe_history": [],
-            "error": "fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")"
-          },
-          "rating": {
-            "circle": "out",
-            "checks": {
-              "Q1_能力圈": "✗ 超出能力圈（高技术壁垒/格局难判断）"
-            },
-            "rating": "灰",
-            "rating_label": "不予评级",
-            "rating_reason": "红板科技 属于高技术/半导体/AI算力领域，长期竞争格局超出巴菲特框架与普通投资者能力圈，诚实标注「不知道」，不强行评级。",
-            "score": null
-          }
-        },
-        {
-          "stock_code": "688809",
-          "stock_name": "强一股份",
-          "ratio_pct": 0.0,
-          "financials": {
-            "roe_pct": null,
-            "gross_margin_pct": null,
-            "net_margin_pct": null,
-            "debt_ratio_pct": null,
-            "ocf_to_netprofit_pct": null,
-            "rev_growth_pct": null,
-            "profit_growth_pct": null,
-            "report_date": null,
-            "roe_history": [],
-            "error": "fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")"
-          },
-          "rating": {
-            "circle": "unknown",
-            "checks": {
-              "Q1_能力圈": "？ 难以判断行业归属",
-              "数据": "✗ 核心财务数据不足（缺3/3，fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")）"
-            },
-            "rating": "灰",
-            "rating_label": "不予评级",
-            "rating_reason": "强一股份 核心财务数据缺失（fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")），无法基于真实数据评估，诚实标注数据不足，不评级。",
-            "score": null
-          }
-        },
-        {
-          "stock_code": "001257",
-          "stock_name": "盛龙股份",
-          "ratio_pct": 0.0,
-          "financials": {
-            "roe_pct": null,
-            "gross_margin_pct": null,
-            "net_margin_pct": null,
-            "debt_ratio_pct": null,
-            "ocf_to_netprofit_pct": null,
-            "rev_growth_pct": null,
-            "profit_growth_pct": null,
-            "report_date": null,
-            "roe_history": [],
-            "error": "fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")"
-          },
-          "rating": {
-            "circle": "unknown",
-            "checks": {
-              "Q1_能力圈": "？ 难以判断行业归属",
-              "数据": "✗ 核心财务数据不足（缺3/3，fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")）"
-            },
-            "rating": "灰",
-            "rating_label": "不予评级",
-            "rating_reason": "盛龙股份 核心财务数据缺失（fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")），无法基于真实数据评估，诚实标注数据不足，不评级。",
-            "score": null
-          }
-        },
-        {
-          "stock_code": "001386",
-          "stock_name": "马可波罗",
-          "ratio_pct": 0.0,
-          "financials": {
-            "roe_pct": null,
-            "gross_margin_pct": null,
-            "net_margin_pct": null,
-            "debt_ratio_pct": null,
-            "ocf_to_netprofit_pct": null,
-            "rev_growth_pct": null,
-            "profit_growth_pct": null,
-            "report_date": null,
-            "roe_history": [],
-            "error": "fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")"
-          },
-          "rating": {
-            "circle": "unknown",
-            "checks": {
-              "Q1_能力圈": "？ 难以判断行业归属",
-              "数据": "✗ 核心财务数据不足（缺3/3，fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")）"
-            },
-            "rating": "灰",
-            "rating_label": "不予评级",
-            "rating_reason": "马可波罗 核心财务数据缺失（fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")），无法基于真实数据评估，诚实标注数据不足，不评级。",
-            "score": null
-          }
-        },
-        {
-          "stock_code": "688807",
-          "stock_name": "优迅股份",
-          "ratio_pct": 0.0,
-          "financials": {
-            "roe_pct": null,
-            "gross_margin_pct": null,
-            "net_margin_pct": null,
-            "debt_ratio_pct": null,
-            "ocf_to_netprofit_pct": null,
-            "rev_growth_pct": null,
-            "profit_growth_pct": null,
-            "report_date": null,
-            "roe_history": [],
-            "error": "fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")"
-          },
-          "rating": {
-            "circle": "unknown",
-            "checks": {
-              "Q1_能力圈": "？ 难以判断行业归属",
-              "数据": "✗ 核心财务数据不足（缺3/3，fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")）"
-            },
-            "rating": "灰",
-            "rating_label": "不予评级",
-            "rating_reason": "优迅股份 核心财务数据缺失（fin_error: AttributeError(\"'NoneType' object has no attribute 'find'\")），无法基于真实数据评估，诚实标注数据不足，不评级。",
-            "score": null
-          }
-        }
-      ],
-      "fund_quality_summary": {
-        "weight_by_rating_in_top10_pct": {
-          "绿": 0.0,
-          "黄": 0.0,
-          "红": 0.0,
-          "灰": 100.0
-        },
-        "top10_disclosed_weight_pct": 0.02,
+        "top10_disclosed_weight_pct": 51.29,
         "verdict": "底层多为超出能力圈/数据不足的标的，质地难判断（诚实保留）"
       }
     }

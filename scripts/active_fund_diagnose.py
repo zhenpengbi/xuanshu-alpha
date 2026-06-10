@@ -12,10 +12,8 @@
 ⑤ 十大重仓股集中度：前5名/前10名占净值比例之和
 ⑥ 重仓股质地：复用 value_compass 的 buffett_eight_questions 穿透逻辑
 
-⚠️ 重要发现（取数即暴露）：
-  014658 官方名称"中欧融享增益一年持有期混合C"，与 portfolio.json "永赢高端装备智选混合C" 不符
-  015897 官方名称"天弘中证细分化工产业主题ETF联接C"，与 portfolio.json "平安高端装备混合C" 不符
-  诊断基于 AKShare 实际数据，name_mismatch=true 时请核实持仓代码。
+标的代码：从 data/portfolio.json 动态读取（assetType=active），禁止硬编码。
+当前 active 标的：015790 永赢高端装备、025647 平安高端装备（校准版代码，name_mismatch=false）。
 
 用法：
     python3 scripts/active_fund_diagnose.py

@@ -1,64 +1,65 @@
 """
 build_fusion.py — 融合决策卡生成器
 
-读取 data/signals.json + value_compass/data/value_compass.json
+读取 data/portfolio.json（权威来源，动态加载）
+    + data/signals.json（技术信号）
+    + value_compass/data/value_compass.json（价值评级）
 生成 value_compass/data/fusion.json
 
-资产分类（asset_type）：
-  trend       — 趋势型资产（黄金/有色/纳指/标普），回测证明信号择时跑输买入持有，
-                建议长期持有/定投，不做短线择时
-  oscillation — 震荡型资产（AI主题/光伏ETF），技术信号×价值面双确认有效（α>0）
+禁止硬编码基金代码；所有标的从 portfolio.json 动态加载。
 
-回测依据（2023-03 ~ 2026-06，3年）：
-  000216 黄金      α -21.8pt（策略+4.9% vs 基准+26.7%）
-  017766 有色金属  α  -2.3pt（策略-0.7% vs 基准+1.6%）
-  513100 纳指100   α -22.0pt（策略+9.9% vs 基准+31.9%）
-  513500 标普500   α -11.6pt（策略+11.9% vs 基准+23.5%）
-  008585 AI主题    α  +8.8pt（策略+36.2% vs 基准+27.4%）← 双确认有效
-  515790 光伏ETF   α  +1.6pt（策略-5.9% vs 基准-7.5%）  ← 减少损失
+资产分类由 portfolio.json 的 assetType 字段决定：
+  trend       — 黄金/有色金属（宏观/大宗），回测证明信号择时跑输买入持有
+  oscillation — AI/科技/光伏（成长型），技术信号×价值面双确认有效
+  active      — 高端制造（主动管理），参考 active_funds.json 诊断结论
+  cash        — 货币基金（子弹），跳过不出现在融合卡
 """
 
 import json
 import os
 from datetime import datetime
 
-# ── 持仓标的清单（6个，硬编码） ────────────────────────────────
-HOLDINGS = [
-    {"code": "000216", "name": "易方达黄金ETF联接C"},
-    {"code": "008585", "name": "天弘AI主题指数C"},
-    {"code": "017766", "name": "南方有色金属ETF联接E"},
-    {"code": "515790", "name": "华夏光伏ETF"},
-    {"code": "513100", "name": "纳指100ETF"},
-    {"code": "513500", "name": "标普500ETF"},
-]
+# ── 路径 ─────────────────────────────────────────────────────
+_BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+_ROOT_DIR = os.path.dirname(_BASE_DIR)
 
-# ── 能力圈分类 ────────────────────────────────────────────────
-# 价值框架【不适用】：宏观/宽基/大宗资产，巴菲特八问无法穿透
-NOT_APPLICABLE = {"000216", "017766", "513100", "513500"}
-# 价值框架【适用·可穿透】：持股基金，可看穿底层持仓质地
-APPLICABLE = {"008585", "515790"}
+def _load_portfolio():
+    path = os.path.join(_ROOT_DIR, "data", "portfolio.json")
+    with open(path, encoding="utf-8") as f:
+        return json.load(f)
 
-# DEMO_VALUE_MAP 已移除 ── value_compass.json 现在直接包含 008585/515790 真实评级
-# build_fusion.py 直接按 fund_code 匹配，不再需要临时映射
+# ── 从 portfolio.json 动态构建配置（禁止硬编码旧代码）────────────
+_pf = _load_portfolio()
+_holdings_raw = [h for h in _pf.get("holdings", []) if h.get("assetType") != "cash"]
 
-# ── 资产类型（用于前端区分展示策略）────────────────────────────
-# trend       : 趋势型，回测证明信号择时跑输买入持有
-# oscillation : 震荡型，技术信号×价值面双确认有效
-ASSET_TYPE = {
-    "000216": "trend",       # 黄金       α -21.8pt
-    "017766": "trend",       # 有色金属   α  -2.3pt
-    "513100": "trend",       # 纳指100    α -22.0pt
-    "513500": "trend",       # 标普500    α -11.6pt
-    "008585": "oscillation", # AI主题     α  +8.8pt
-    "515790": "oscillation", # 光伏ETF    α  +1.6pt
+HOLDINGS = [{"code": h["code"], "name": h["name"]} for h in _holdings_raw]
+
+NOT_APPLICABLE = {h["code"] for h in _holdings_raw if h.get("assetType") == "trend"}
+APPLICABLE     = {h["code"] for h in _holdings_raw if h.get("assetType") in ("oscillation", "active")}
+
+ASSET_TYPE = {h["code"]: h.get("assetType", "unknown") for h in _holdings_raw}
+
+# ── 趋势型资产：回测 Alpha 标注（旧代码参考，新代码写通用结论）────
+_TREND_BACKTEST_NOTE = {
+    # 黄金（两只）
+    "002963": "回测参考：黄金择时长期跑输买入持有（α约-21pt），建议长期持有核心仓位",
+    "000307": "回测参考：黄金择时长期跑输买入持有（α约-21pt），建议长期持有核心仓位",
+    # 有色金属
+    "010990": "回测参考：有色金属择时跑输买入持有（α约-2pt），建议以持有为主",
 }
 
-# 趋势型资产 — 各标的回测 Alpha 标注
-_TREND_BACKTEST_NOTE = {
-    "000216": "回测3年(2023-2026)：信号策略年化+4.9% vs 买入持有+26.7%，少赚21.8pt",
-    "017766": "回测3年(2023-2026)：信号策略年化-0.7% vs 买入持有+1.6%，少赚2.3pt",
-    "513100": "回测3年(2023-2026)：信号策略年化+9.9% vs 买入持有+31.9%，少赚22.0pt",
-    "513500": "回测3年(2023-2026)：信号策略年化+11.9% vs 买入持有+23.5%，少赚11.6pt",
+# ── 信号代理映射（oscillation/active → signals.json 中的代理代码）
+# signals.json 由 data/signals.py 生成，其 FUNDS 列表与 portfolio.json 不完全一致
+# 用最接近的品类代理基金
+_SIGNAL_PROXY = {
+    # AI/科技 → signals.json 的 AI 代理（待 signals.py 更新后可直接匹配）
+    "011840": "011840",  # 直接匹配（若 signals.json 有）
+    "014881": "011840",  # 机器人ETF 用 AI主题 作代理
+    # 光伏
+    "012885": "012885",  # 直接匹配（若 signals.json 有）
+    # active（主动基金不依赖技术信号，此处仅保留以便未来扩展）
+    "015790": None,
+    "025647": None,
 }
 
 
@@ -167,8 +168,10 @@ def build():
         name = h["name"]
 
         # 读取技术信号（实际字段名：signal）
-        sig_entry = sig_map.get(code, {})
-        raw_signal = sig_entry.get("signal", "观望")
+        # 先用信号代理映射查找，再直接查，最后默认观望
+        proxy_code = _SIGNAL_PROXY.get(code, code)
+        sig_entry  = sig_map.get(proxy_code) or sig_map.get(code) or {}
+        raw_signal  = sig_entry.get("signal", "观望")
         tech_signal = normalize_tech(raw_signal)
         tech_reason = sig_entry.get("reason", "")
 
@@ -192,10 +195,31 @@ def build():
             })
 
         elif code in APPLICABLE:
-            # 直接按基金代码匹配真实评级（value_compass.json 已包含真实持仓数据）
+            asset_type_val = ASSET_TYPE.get(code, "oscillation")
             vc_entry = vc_map.get(code)
 
-            if vc_entry and "fund_quality_summary" in vc_entry:
+            # ── active 主动基金：专用逻辑 ──────────────────────────
+            if asset_type_val == "active":
+                # 主动基金不走技术×价值矩阵；建议来自 active_funds.json
+                items.append({
+                    "code": code,
+                    "name": name,
+                    "asset_type": "active",
+                    "applicable": True,
+                    "tech_signal": tech_signal,
+                    "value_rating": "主动管理型",
+                    "action": "见主动基诊断",
+                    "reason": (
+                        f"主动管理型基金，巴菲特穿透框架结论仅供参考。"
+                        f"重仓为高端制造/航天/国防电子，多数超出巴菲特能力圈（灰评）。"
+                        f"详细建议见「主动基诊断」模块。"
+                    ),
+                    "level": "neutral",
+                    "value_source_note": f"真实持仓穿透 {vc_entry.get('latest_quarter', '') if vc_entry else ''}",
+                })
+
+            # ── oscillation 震荡型：技术×价值矩阵 ────────────────────
+            elif vc_entry and "fund_quality_summary" in vc_entry:
                 summary = vc_entry["fund_quality_summary"]
                 value_rating = normalize_value(summary)
                 verdict = summary.get("verdict", "")
@@ -206,7 +230,7 @@ def build():
                 items.append({
                     "code": code,
                     "name": name,
-                    "asset_type": ASSET_TYPE.get(code, "oscillation"),
+                    "asset_type": asset_type_val,
                     "applicable": True,
                     "tech_signal": tech_signal,
                     "value_rating": value_rating,

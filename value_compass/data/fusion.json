@@ -1,44 +1,42 @@
 {
-  "updated_at": "2026-06-10 18:12",
+  "updated_at": "2026-06-10 18:45",
   "items": [
     {
-      "code": "000216",
+      "code": "002963",
       "name": "易方达黄金ETF联接C",
       "asset_type": "trend",
       "applicable": false,
       "tech_signal": "持有",
       "value_rating": "价值框架不适用(宏观/宽基资产)",
       "action": "长期持有",
-      "reason": "回测显示趋势型资产择时跑输买入持有，建议长期持有或定投，不做短线择时。回测3年(2023-2026)：信号策略年化+4.9% vs 买入持有+26.7%，少赚21.8pt。当前技术信号仅供参考：RSI超卖(28.5<30)→买入 · MA5<MA20空头 · MACD柱负向",
+      "reason": "回测显示趋势型资产择时跑输买入持有，建议长期持有或定投，不做短线择时。回测参考：黄金择时长期跑输买入持有（α约-21pt），建议长期持有核心仓位。当前技术信号仅供参考：持有",
       "level": "neutral"
     },
     {
-      "code": "008585",
-      "name": "天弘AI主题指数C",
-      "asset_type": "oscillation",
-      "applicable": true,
+      "code": "000307",
+      "name": "易方达黄金ETF联接A",
+      "asset_type": "trend",
+      "applicable": false,
       "tech_signal": "持有",
-      "value_rating": "瑕疵",
-      "action": "持有但盯紧",
-      "reason": "底层价值存瑕疵，技术面亦无支撑，需盯紧止损线，准备减仓",
-      "level": "yellow",
-      "value_source_note": "真实持仓穿透 2026年1季度股票投资明细",
-      "value_verdict": "前十大重仓中约 50.8% 权重为绿/黄，质地中等，分化明显"
+      "value_rating": "价值框架不适用(宏观/宽基资产)",
+      "action": "长期持有",
+      "reason": "回测显示趋势型资产择时跑输买入持有，建议长期持有或定投，不做短线择时。回测参考：黄金择时长期跑输买入持有（α约-21pt），建议长期持有核心仓位。当前技术信号仅供参考：持有",
+      "level": "neutral"
     },
     {
-      "code": "017766",
+      "code": "010990",
       "name": "南方有色金属ETF联接E",
       "asset_type": "trend",
       "applicable": false,
       "tech_signal": "持有",
       "value_rating": "价值框架不适用(宏观/宽基资产)",
       "action": "长期持有",
-      "reason": "回测显示趋势型资产择时跑输买入持有，建议长期持有或定投，不做短线择时。回测3年(2023-2026)：信号策略年化-0.7% vs 买入持有+1.6%，少赚2.3pt。当前技术信号仅供参考：RSI超卖(25.0<30)→买入 · MA5<MA20空头 · MACD柱负向",
+      "reason": "回测显示趋势型资产择时跑输买入持有，建议长期持有或定投，不做短线择时。回测参考：有色金属择时跑输买入持有（α约-2pt），建议以持有为主。当前技术信号仅供参考：持有",
       "level": "neutral"
     },
     {
-      "code": "515790",
-      "name": "华夏光伏ETF",
+      "code": "012885",
+      "name": "华夏中证光伏产业ETF发起式联接A",
       "asset_type": "oscillation",
       "applicable": true,
       "tech_signal": "持有",
@@ -47,29 +45,57 @@
       "reason": "底层价值存瑕疵，技术面亦无支撑，需盯紧止损线，准备减仓",
       "level": "yellow",
       "value_source_note": "真实持仓穿透 2026年1季度股票投资明细",
-      "value_verdict": "底层质地偏弱或多为回避/不评级标的，需谨慎"
+      "value_verdict": "底层多为超出能力圈/数据不足的标的，质地难判断（诚实保留）"
     },
     {
-      "code": "513100",
-      "name": "纳指100ETF",
-      "asset_type": "trend",
-      "applicable": false,
+      "code": "011840",
+      "name": "天弘中证人工智能C",
+      "asset_type": "oscillation",
+      "applicable": true,
       "tech_signal": "持有",
-      "value_rating": "价值框架不适用(宏观/宽基资产)",
-      "action": "长期持有",
-      "reason": "回测显示趋势型资产择时跑输买入持有，建议长期持有或定投，不做短线择时。回测3年(2023-2026)：信号策略年化+9.9% vs 买入持有+31.9%，少赚22.0pt。当前技术信号仅供参考：MA5>MA20多头 · MACD柱负向",
-      "level": "neutral"
+      "value_rating": "瑕疵",
+      "action": "持有但盯紧",
+      "reason": "底层价值存瑕疵，技术面亦无支撑，需盯紧止损线，准备减仓",
+      "level": "yellow",
+      "value_source_note": "真实持仓穿透 2026年1季度股票投资明细",
+      "value_verdict": "底层多为超出能力圈/数据不足的标的，质地难判断（诚实保留）"
     },
     {
-      "code": "513500",
-      "name": "标普500ETF",
-      "asset_type": "trend",
-      "applicable": false,
+      "code": "015790",
+      "name": "永赢高端装备智选混合发起C",
+      "asset_type": "active",
+      "applicable": true,
       "tech_signal": "持有",
-      "value_rating": "价值框架不适用(宏观/宽基资产)",
-      "action": "长期持有",
-      "reason": "回测显示趋势型资产择时跑输买入持有，建议长期持有或定投，不做短线择时。回测3年(2023-2026)：信号策略年化+11.9% vs 买入持有+23.5%，少赚11.6pt。当前技术信号仅供参考：MA5>MA20多头 · MACD柱负向",
-      "level": "neutral"
+      "value_rating": "主动管理型",
+      "action": "见主动基诊断",
+      "reason": "主动管理型基金，巴菲特穿透框架结论仅供参考。重仓为高端制造/航天/国防电子，多数超出巴菲特能力圈（灰评）。详细建议见「主动基诊断」模块。",
+      "level": "neutral",
+      "value_source_note": "真实持仓穿透 2026年1季度股票投资明细"
+    },
+    {
+      "code": "014881",
+      "name": "天弘中证机器人ETF发起联接C",
+      "asset_type": "oscillation",
+      "applicable": true,
+      "tech_signal": "持有",
+      "value_rating": "瑕疵",
+      "action": "持有但盯紧",
+      "reason": "底层价值存瑕疵，技术面亦无支撑，需盯紧止损线，准备减仓",
+      "level": "yellow",
+      "value_source_note": "真实持仓穿透 2026年1季度股票投资明细",
+      "value_verdict": "底层多为超出能力圈/数据不足的标的，质地难判断（诚实保留）"
+    },
+    {
+      "code": "025647",
+      "name": "平安高端装备混合发起式C",
+      "asset_type": "active",
+      "applicable": true,
+      "tech_signal": "持有",
+      "value_rating": "主动管理型",
+      "action": "见主动基诊断",
+      "reason": "主动管理型基金，巴菲特穿透框架结论仅供参考。重仓为高端制造/航天/国防电子，多数超出巴菲特能力圈（灰评）。详细建议见「主动基诊断」模块。",
+      "level": "neutral",
+      "value_source_note": "真实持仓穿透 2026年1季度股票投资明细"
     }
   ]
 }
