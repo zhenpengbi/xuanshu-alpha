@@ -1,6 +1,6 @@
 {
   "portfolio_updateTime": "2026-06-10",
-  "updated_at": "2026-06-10 18:23",
+  "updated_at": "2026-06-10 18:24",
   "total_value": 52613.47,
   "rebalance_threshold_pct": 5.0,
   "bullet": {
@@ -125,7 +125,7 @@
       "deviation_amount": 126.27,
       "signal": null,
       "action": "待主动基诊断",
-      "reason": "主动型基金（偏差 +0.2pt），需结合基金经理策略判断，技术信号不适用于主动管理型基金。P1 待接 active_funds.json 后细化建议。",
+      "reason": "主动型基金（偏差 +0.2pt），需结合基金经理策略判断。请先运行 python3 scripts/active_fund_diagnose.py 生成诊断报告。",
       "priority": "low",
       "recommend_amount": null,
       "needs_action": false

@@ -13,7 +13,7 @@
   - 三重判定逻辑：
       trend       → 持有/小幅减，附回测结论（择时跑输买入持有）
       oscillation → 结合 signals.json 当前技术信号加减
-      active      → 待主动基诊断（P1 再接 active_funds.json）
+      active      → 读 active_funds.json 真实诊断（P1 已接入）
       待建仓      → actual=0 but target>0，标记缺口金额
 
 用法：
@@ -26,11 +26,12 @@ import json
 import os
 from datetime import datetime
 
-SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-ROOT       = os.path.dirname(SCRIPT_DIR)
-PORTFOLIO  = os.path.join(ROOT, "data", "portfolio.json")
-SIGNALS    = os.path.join(ROOT, "data", "signals.json")
-OUT_PATH   = os.path.join(ROOT, "data", "rebalance.json")
+SCRIPT_DIR   = os.path.dirname(os.path.abspath(__file__))
+ROOT         = os.path.dirname(SCRIPT_DIR)
+PORTFOLIO    = os.path.join(ROOT, "data", "portfolio.json")
+SIGNALS      = os.path.join(ROOT, "data", "signals.json")
+ACTIVE_FUNDS = os.path.join(ROOT, "data", "active_funds.json")
+OUT_PATH     = os.path.join(ROOT, "data", "rebalance.json")
 
 REBALANCE_THRESHOLD = 5.0   # 触发建议的偏差门槛（百分点）
 
@@ -71,6 +72,21 @@ def load_signals() -> dict:
     return {s["code"]: s for s in d.get("signals", [])}
 
 
+def load_active_diagnoses() -> dict:
+    """
+    读取 data/active_funds.json，返回 {code: diagnosis_dict}。
+    active_fund_diagnose.py 未运行时返回 {}。
+    """
+    if not os.path.exists(ACTIVE_FUNDS):
+        return {}
+    try:
+        with open(ACTIVE_FUNDS, encoding="utf-8") as f:
+            d = json.load(f)
+        return {f["code"]: f for f in d.get("funds", [])}
+    except Exception:
+        return {}
+
+
 def get_category_signal(category: str, sig_map: dict) -> str | None:
     """获取某类别对应的技术信号（买入/卖出/观望），找不到返回 None。"""
     proxy = SIGNAL_PROXY.get(category)
@@ -91,6 +107,7 @@ def decide_action(
     deviation: float,
     deviation_amount: float,
     signal: str | None,
+    active_diag: dict | None = None,   # 主动基金诊断结果（来自 active_funds.json）
 ) -> dict:
     """
     返回 {"action", "reason", "priority", "recommend_amount"}
@@ -197,17 +214,57 @@ def decide_action(
                 "recommend_amount": None,
             }
 
-    # ── active 资产 ──────────────────────────────────────────────
+    # ── active 资产（主动基金，优先读 active_funds.json 诊断）────────
     if asset_type == "active":
-        return {
-            "action":   "待主动基诊断",
-            "reason":   (
-                f"主动型基金（偏差 {deviation:+.1f}pt），需结合基金经理策略判断，"
-                f"技术信号不适用于主动管理型基金。P1 待接 active_funds.json 后细化建议。"
-            ),
-            "priority": "low",
-            "recommend_amount": None,
-        }
+        if active_diag:
+            d_action  = active_diag.get("diagnosis", {}).get("action", "持有但关注")
+            d_reasons = active_diag.get("diagnosis", {}).get("reasons", [])
+            d_warns   = active_diag.get("diagnosis", {}).get("warnings", [])
+            official  = active_diag.get("official_name", "")
+            mismatch  = active_diag.get("name_mismatch", False)
+            pct_rank  = active_diag.get("rank_percentile_ytd")
+            alpha     = active_diag.get("alpha_pct")
+
+            parts = []
+            if mismatch:
+                parts.append(f"⚠️ 代码与名称不符（官方:{official}）")
+            if pct_rank:
+                parts.append(f"同类排名前{pct_rank:.0f}%")
+            if isinstance(alpha, (int, float)):
+                parts.append(f"α={alpha:+.1f}pt")
+            parts += d_reasons[:2]
+            reason_str = "；".join(parts) if parts else "已运行主动基诊断，请查看 active_funds.json"
+            if d_warns:
+                reason_str += "  |  警告：" + d_warns[0]
+
+            # 动作映射到再平衡建议
+            if d_action == "建议评估替换":
+                action = "建议调研替换"
+                priority = "medium"
+            elif d_action == "持有但关注":
+                action = "持有观察"
+                priority = "low"
+            else:
+                action = "可持有"
+                priority = "low"
+
+            return {
+                "action":           action,
+                "reason":           reason_str,
+                "priority":         priority,
+                "recommend_amount": None,
+                "active_diag_ref":  True,
+            }
+        else:
+            return {
+                "action":   "待主动基诊断",
+                "reason":   (
+                    f"主动型基金（偏差 {deviation:+.1f}pt），需结合基金经理策略判断。"
+                    f"请先运行 python3 scripts/active_fund_diagnose.py 生成诊断报告。"
+                ),
+                "priority": "low",
+                "recommend_amount": None,
+            }
 
     # ── 其他 ─────────────────────────────────────────────────────
     return {
@@ -274,8 +331,22 @@ def main():
         cat = h["category"]
         cat_amount[cat] = round(cat_amount.get(cat, 0) + h["amount"], 2)
 
-    # 5. 读取技术信号
-    sig_map = load_signals()
+    # 5. 读取技术信号和主动基诊断
+    sig_map      = load_signals()
+    active_diags = load_active_diagnoses()
+
+    # 对每个 active 类别，找最差的诊断结果（代表最需要关注的持仓）
+    def get_active_diag_for_category(cat: str) -> dict | None:
+        """取该类别下诊断评分最低（最需要关注）的持仓诊断。"""
+        fund_codes = [h["code"] for h in invest_holdings
+                      if h.get("category") == cat and h.get("assetType") == "active"]
+        if not fund_codes:
+            return None
+        diags = [active_diags[c] for c in fund_codes if c in active_diags]
+        if not diags:
+            return None
+        # 取诊断 score 最低（最差）的那个
+        return min(diags, key=lambda d: d.get("diagnosis", {}).get("score", 100))
 
     # 6. 对每个目标类别计算偏差并决策
     all_categories = set(list(target_map.keys()) + list(cat_amount.keys()))
@@ -288,16 +359,17 @@ def main():
         target_amount = round(target_pct / 100 * total_value, 2)
         deviation_amount = round(deviation / 100 * total_value, 2)
 
-        asset_type = ASSET_TYPE_MAP.get(cat, "unknown")
-        signal     = get_category_signal(cat, sig_map)
-        decision   = decide_action(
+        asset_type  = ASSET_TYPE_MAP.get(cat, "unknown")
+        signal      = get_category_signal(cat, sig_map)
+        active_diag = get_active_diag_for_category(cat) if asset_type == "active" else None
+        decision    = decide_action(
             cat, asset_type, actual_pct, target_pct,
-            deviation, deviation_amount, signal
+            deviation, deviation_amount, signal, active_diag
         )
 
         needs_action = abs(deviation) >= REBALANCE_THRESHOLD or actual_pct == 0
 
-        actions.append({
+        entry = {
             "category":       cat,
             "asset_type":     asset_type,
             "target_pct":     target_pct,
@@ -312,7 +384,10 @@ def main():
             "priority":       decision["priority"],
             "recommend_amount": decision.get("recommend_amount"),
             "needs_action":   needs_action,
-        })
+        }
+        if decision.get("active_diag_ref"):
+            entry["active_diag_ref"] = True
+        actions.append(entry)
 
     # 按优先级 + 偏差绝对值排序
     prio = {"high": 0, "medium": 1, "low": 2}

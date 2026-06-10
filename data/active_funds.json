@@ -1,0 +1,523 @@
+{
+  "updated_at": "2026-06-10 18:05",
+  "portfolio_updateTime": "2026-06-10",
+  "funds": [
+    {
+      "code": "014658",
+      "portfolio_name": "永赢高端装备智选混合C",
+      "official_name": "中欧融享增益一年持有混合C",
+      "fund_type": "混合型-偏债",
+      "scale_str": "441.18万",
+      "manager_name": "李波",
+      "company": "中欧基金管理有限公司",
+      "inception_date": "2022-01-25",
+      "name_mismatch": true,
+      "manager_tenure_days": 943,
+      "performance_ranking": [
+        {
+          "period": "成立以来",
+          "return_pct": 10.85,
+          "max_dd_pct": 6.41,
+          "rank": "819/1334",
+          "percentile": 61.4
+        },
+        {
+          "period": "今年以来",
+          "return_pct": 2.01,
+          "max_dd_pct": 1.62,
+          "rank": "512/1334",
+          "percentile": 38.4
+        },
+        {
+          "period": "2025",
+          "return_pct": 4.91,
+          "max_dd_pct": 1.8,
+          "rank": "670/1313",
+          "percentile": 51.0
+        },
+        {
+          "period": "2024",
+          "return_pct": 4.98,
+          "max_dd_pct": 3.35,
+          "rank": "727/1329",
+          "percentile": 54.7
+        },
+        {
+          "period": "2023",
+          "return_pct": 0.02,
+          "max_dd_pct": 5.03,
+          "rank": "555/1321",
+          "percentile": 42.0
+        },
+        {
+          "period": "2022",
+          "return_pct": -1.35,
+          "max_dd_pct": null,
+          "rank": "327/1173",
+          "percentile": 27.9
+        },
+        {
+          "period": "近1月",
+          "return_pct": -0.05,
+          "max_dd_pct": null,
+          "rank": "359/1317",
+          "percentile": 27.3
+        },
+        {
+          "period": "近3月",
+          "return_pct": 0.86,
+          "max_dd_pct": 1.15,
+          "rank": "447/1301",
+          "percentile": 34.4
+        },
+        {
+          "period": "近6月",
+          "return_pct": 2.52,
+          "max_dd_pct": 1.62,
+          "rank": "526/1275",
+          "percentile": 41.3
+        },
+        {
+          "period": "近1年",
+          "return_pct": 6.54,
+          "max_dd_pct": 1.62,
+          "rank": "514/1246",
+          "percentile": 41.3
+        },
+        {
+          "period": "近3年",
+          "return_pct": 9.44,
+          "max_dd_pct": 6.41,
+          "rank": "687/1111",
+          "percentile": 61.8
+        }
+      ],
+      "rank_percentile_ytd": 38.4,
+      "max_drawdown_pct": 6.41,
+      "alpha_analysis": {
+        "fund_annual_pct": 3.19,
+        "benchmark_annual_pct": "数据缺失",
+        "alpha_pct": "数据缺失",
+        "benchmark": "沪深300",
+        "period_years": 2.9,
+        "note": "基准数据缺失，alpha 无法计算"
+      },
+      "alpha_pct": "数据缺失",
+      "holdings_analysis": {
+        "status": "ok",
+        "latest_quarter": "2026年1季度股票投资明细",
+        "top5_concentration_pct": 1.56,
+        "top10_concentration_pct": 2.71,
+        "top_holdings": [
+          {
+            "stock_code": "601665",
+            "stock_name": "齐鲁银行",
+            "ratio_pct": 0.47
+          },
+          {
+            "stock_code": "603259",
+            "stock_name": "药明康德",
+            "ratio_pct": 0.35
+          },
+          {
+            "stock_code": "300308",
+            "stock_name": "中际旭创",
+            "ratio_pct": 0.26
+          },
+          {
+            "stock_code": "601166",
+            "stock_name": "兴业银行",
+            "ratio_pct": 0.24
+          },
+          {
+            "stock_code": "002379",
+            "stock_name": "宏桥控股",
+            "ratio_pct": 0.24
+          },
+          {
+            "stock_code": "688180",
+            "stock_name": "君实生物",
+            "ratio_pct": 0.23
+          },
+          {
+            "stock_code": "002948",
+            "stock_name": "青岛银行",
+            "ratio_pct": 0.23
+          },
+          {
+            "stock_code": "600985",
+            "stock_name": "淮北矿业",
+            "ratio_pct": 0.23
+          },
+          {
+            "stock_code": "600426",
+            "stock_name": "华鲁恒升",
+            "ratio_pct": 0.23
+          },
+          {
+            "stock_code": "688777",
+            "stock_name": "中控技术",
+            "ratio_pct": 0.23
+          }
+        ]
+      },
+      "holdings_rated": [
+        {
+          "stock_code": "601665",
+          "stock_name": "齐鲁银行",
+          "ratio_pct": 0.47,
+          "rating": "灰",
+          "rating_label": "不予评级",
+          "score": null,
+          "score_max": null,
+          "reason": "齐鲁银行 核心财务数据缺失（披露不全），无法基于真实数据评估，诚实标注数据不足，不评级。"
+        },
+        {
+          "stock_code": "603259",
+          "stock_name": "药明康德",
+          "ratio_pct": 0.35,
+          "rating": "绿",
+          "rating_label": "优质可持有",
+          "score": 10,
+          "score_max": 10,
+          "reason": "药明康德 质地优秀（质地分 10/10）：高ROE/高毛利/现金成色好，符合巴菲特优质消费股特征。注：未做安全边际估值，是否「便宜」需另判。"
+        },
+        {
+          "stock_code": "300308",
+          "stock_name": "中际旭创",
+          "ratio_pct": 0.26,
+          "rating": "黄",
+          "rating_label": "观察",
+          "score": 10,
+          "score_max": 10,
+          "reason": "中际旭创 生意质地达标（质地分 10/10），但属能力圈边缘的高端制造/工业领域，长期格局不确定性较高，谨慎评「黄-观察」。"
+        },
+        {
+          "stock_code": "601166",
+          "stock_name": "兴业银行",
+          "ratio_pct": 0.24,
+          "rating": "灰",
+          "rating_label": "不予评级",
+          "score": null,
+          "score_max": null,
+          "reason": "兴业银行 核心财务数据缺失（披露不全），无法基于真实数据评估，诚实标注数据不足，不评级。"
+        },
+        {
+          "stock_code": "002379",
+          "stock_name": "宏桥控股",
+          "ratio_pct": 0.24,
+          "rating": "黄",
+          "rating_label": "观察",
+          "score": 6,
+          "score_max": 10,
+          "reason": "宏桥控股 质地中上（6/10），部分指标一般，评「黄-观察」。"
+        },
+        {
+          "stock_code": "688180",
+          "stock_name": "君实生物",
+          "ratio_pct": 0.23,
+          "rating": "红",
+          "rating_label": "回避",
+          "score": 2,
+          "score_max": 10,
+          "reason": "君实生物 质地偏弱（2/10），盈利能力/现金成色不足，评「红-回避」。"
+        },
+        {
+          "stock_code": "002948",
+          "stock_name": "青岛银行",
+          "ratio_pct": 0.23,
+          "rating": "灰",
+          "rating_label": "不予评级",
+          "score": null,
+          "score_max": null,
+          "reason": "青岛银行 核心财务数据缺失（披露不全），无法基于真实数据评估，诚实标注数据不足，不评级。"
+        }
+      ],
+      "quality_summary": {
+        "weight_by_rating_pct": {
+          "绿": 17.3,
+          "黄": 24.8,
+          "红": 11.4,
+          "灰": 46.5
+        },
+        "green_yellow_pct": 42.1,
+        "verdict": "前7大重仓中约 42% 权重为绿/黄评级，质地中等，分化明显"
+      },
+      "diagnosis": {
+        "action": "持有但关注",
+        "score": 55,
+        "reasons": [
+          "今年以来同类排名前 38%，表现一般"
+        ],
+        "warnings": [
+          "⚠️ 代码 014658 官方名称与持仓标注不符，请核实！官方：中欧融享增益一年持有混合C，持仓标注：永赢高端装备智选混合C",
+          "规模 441.18万 偏小（<0.1亿），有清盘风险"
+        ]
+      }
+    },
+    {
+      "code": "015897",
+      "portfolio_name": "平安高端装备混合C",
+      "official_name": "天弘中证细分化工产业主题ETF联接C",
+      "fund_type": "股票型-标准指数",
+      "scale_str": "23.79亿",
+      "manager_name": "祁世超",
+      "company": "天弘基金管理有限公司",
+      "inception_date": "2022-06-17",
+      "name_mismatch": true,
+      "manager_tenure_days": 504,
+      "performance_ranking": [
+        {
+          "period": "成立以来",
+          "return_pct": -13.44,
+          "max_dd_pct": 49.34,
+          "rank": "3679/4190",
+          "percentile": 87.8
+        },
+        {
+          "period": "今年以来",
+          "return_pct": -1.97,
+          "max_dd_pct": 18.18,
+          "rank": "2627/4190",
+          "percentile": 62.7
+        },
+        {
+          "period": "2025",
+          "return_pct": 40.81,
+          "max_dd_pct": 12.37,
+          "rank": "732/3860",
+          "percentile": 19.0
+        },
+        {
+          "period": "2024",
+          "return_pct": -2.67,
+          "max_dd_pct": 23.02,
+          "rank": "2249/2661",
+          "percentile": 84.5
+        },
+        {
+          "period": "2023",
+          "return_pct": -21.32,
+          "max_dd_pct": 32.03,
+          "rank": "1868/2118",
+          "percentile": 88.2
+        },
+        {
+          "period": "2022",
+          "return_pct": -18.11,
+          "max_dd_pct": null,
+          "rank": "791/1722",
+          "percentile": 45.9
+        },
+        {
+          "period": "近1月",
+          "return_pct": -12.09,
+          "max_dd_pct": null,
+          "rank": "3472/4095",
+          "percentile": 84.8
+        },
+        {
+          "period": "近3月",
+          "return_pct": -14.25,
+          "max_dd_pct": 17.22,
+          "rank": "3419/3953",
+          "percentile": 86.5
+        },
+        {
+          "period": "近6月",
+          "return_pct": 7.94,
+          "max_dd_pct": 18.18,
+          "rank": "1403/3795",
+          "percentile": 37.0
+        },
+        {
+          "period": "近1年",
+          "return_pct": 40.7,
+          "max_dd_pct": 18.18,
+          "rank": "1092/3233",
+          "percentile": 33.8
+        },
+        {
+          "period": "近3年",
+          "return_pct": 19.28,
+          "max_dd_pct": 30.67,
+          "rank": "1145/1751",
+          "percentile": 65.4
+        }
+      ],
+      "rank_percentile_ytd": 62.7,
+      "max_drawdown_pct": 49.34,
+      "alpha_analysis": {
+        "fund_annual_pct": 6.08,
+        "benchmark_annual_pct": "数据缺失",
+        "alpha_pct": "数据缺失",
+        "benchmark": "沪深300",
+        "period_years": 2.9,
+        "note": "基准数据缺失，alpha 无法计算"
+      },
+      "alpha_pct": "数据缺失",
+      "holdings_analysis": {
+        "status": "ok",
+        "latest_quarter": "2026年1季度股票投资明细",
+        "top5_concentration_pct": 0.02,
+        "top10_concentration_pct": 0.02,
+        "top_holdings": [
+          {
+            "stock_code": "688783",
+            "stock_name": "西安奕材",
+            "ratio_pct": 0.01
+          },
+          {
+            "stock_code": "688765",
+            "stock_name": "禾元生物",
+            "ratio_pct": 0.01
+          },
+          {
+            "stock_code": "688759",
+            "stock_name": "必贝特",
+            "ratio_pct": 0.0
+          },
+          {
+            "stock_code": "301683",
+            "stock_name": "慧谷新材",
+            "ratio_pct": 0.0
+          },
+          {
+            "stock_code": "301682",
+            "stock_name": "宏明电子",
+            "ratio_pct": 0.0
+          },
+          {
+            "stock_code": "603459",
+            "stock_name": "红板科技",
+            "ratio_pct": 0.0
+          },
+          {
+            "stock_code": "688809",
+            "stock_name": "强一股份",
+            "ratio_pct": 0.0
+          },
+          {
+            "stock_code": "001257",
+            "stock_name": "盛龙股份",
+            "ratio_pct": 0.0
+          },
+          {
+            "stock_code": "001386",
+            "stock_name": "马可波罗",
+            "ratio_pct": 0.0
+          },
+          {
+            "stock_code": "688807",
+            "stock_name": "优迅股份",
+            "ratio_pct": 0.0
+          }
+        ]
+      },
+      "holdings_rated": [
+        {
+          "stock_code": "688783",
+          "stock_name": "西安奕材",
+          "ratio_pct": 0.01,
+          "rating": "灰",
+          "rating_label": "不予评级",
+          "score": null,
+          "score_max": null,
+          "reason": "西安奕材 核心财务数据缺失（no_fin_data），无法基于真实数据评估，诚实标注数据不足，不评级。"
+        },
+        {
+          "stock_code": "688765",
+          "stock_name": "禾元生物",
+          "ratio_pct": 0.01,
+          "rating": "红",
+          "rating_label": "回避",
+          "score": 2,
+          "score_max": 10,
+          "reason": "禾元生物 质地偏弱（2/10），盈利能力/现金成色不足，评「红-回避」。"
+        },
+        {
+          "stock_code": "688759",
+          "stock_name": "必贝特",
+          "ratio_pct": 0.0,
+          "rating": "灰",
+          "rating_label": "不予评级",
+          "score": null,
+          "score_max": null,
+          "reason": "必贝特 核心财务数据缺失（披露不全），无法基于真实数据评估，诚实标注数据不足，不评级。"
+        },
+        {
+          "stock_code": "301683",
+          "stock_name": "慧谷新材",
+          "ratio_pct": 0.0,
+          "rating": "灰",
+          "rating_label": "不予评级",
+          "score": null,
+          "score_max": null,
+          "reason": "慧谷新材 核心财务数据缺失（no_fin_data），无法基于真实数据评估，诚实标注数据不足，不评级。"
+        },
+        {
+          "stock_code": "301682",
+          "stock_name": "宏明电子",
+          "ratio_pct": 0.0,
+          "rating": "灰",
+          "rating_label": "不予评级",
+          "score": null,
+          "score_max": null,
+          "reason": "宏明电子 核心财务数据缺失（no_fin_data），无法基于真实数据评估，诚实标注数据不足，不评级。"
+        },
+        {
+          "stock_code": "603459",
+          "stock_name": "红板科技",
+          "ratio_pct": 0.0,
+          "rating": "灰",
+          "rating_label": "不予评级",
+          "score": null,
+          "score_max": null,
+          "reason": "红板科技 属于高技术/半导体/AI算力领域，长期竞争格局超出巴菲特框架与普通投资者能力圈，诚实标注「不知道」，不强行评级。"
+        },
+        {
+          "stock_code": "688809",
+          "stock_name": "强一股份",
+          "ratio_pct": 0.0,
+          "rating": "灰",
+          "rating_label": "不予评级",
+          "score": null,
+          "score_max": null,
+          "reason": "强一股份 核心财务数据缺失（no_fin_data），无法基于真实数据评估，诚实标注数据不足，不评级。"
+        }
+      ],
+      "quality_summary": {
+        "weight_by_rating_pct": {
+          "绿": 0.0,
+          "黄": 0.0,
+          "红": 50.0,
+          "灰": 50.0
+        },
+        "green_yellow_pct": 0.0,
+        "verdict": "前7大重仓中约 0% 权重为绿/黄评级，底层质地偏弱"
+      },
+      "diagnosis": {
+        "action": "建议评估替换",
+        "score": 20,
+        "reasons": [
+          "今年以来同类排名 63%（落后同类）"
+        ],
+        "warnings": [
+          "⚠️ 代码 015897 官方名称与持仓标注不符，请核实！官方：天弘中证细分化工产业主题ETF联接C，持仓标注：平安高端装备混合C",
+          "⚠️ 排名落后，建议关注是否替换",
+          "最大回撤 49.3%，波动较大"
+        ]
+      }
+    }
+  ],
+  "data_availability": {
+    "manager_name": "✅ fund_individual_basic_info_xq",
+    "manager_tenure_days": "✅ fund_manager_em（全量列表筛选）",
+    "scale_latest": "✅ fund_individual_basic_info_xq.最新规模",
+    "scale_history": "❌ fund_open_fund_info_em规模变动返回空",
+    "performance_ranking": "✅ fund_individual_achievement_xq（同类排名分位）",
+    "alpha_vs_csi300": "✅ 净值走势 + ak.stock_zh_index_daily_em（沪深300）",
+    "holdings_top10": "✅ fund_portfolio_hold_em",
+    "stock_quality": "✅ 复用 value_compass 巴菲特八问（前7大重仓）"
+  }
+}
