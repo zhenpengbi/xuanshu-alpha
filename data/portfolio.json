@@ -7,11 +7,12 @@
       "code": "002963",
       "amount": 19074.41,
       "ratio": 34.35,
-      "dailyReturn": 72.90,
+      "dailyReturn": 72.9,
       "holdingReturn": -2125.59,
       "holdingReturnRate": -10.03,
       "totalReturn": 1775.65,
-      "category": "黄金"
+      "category": "黄金",
+      "assetType": "trend"
     },
     {
       "name": "易方达黄金ETF联接A",
@@ -22,7 +23,8 @@
       "holdingReturn": -1200.15,
       "holdingReturnRate": -12.63,
       "totalReturn": -1200.15,
-      "category": "黄金"
+      "category": "黄金",
+      "assetType": "trend"
     },
     {
       "name": "南方有色金属ETF联接E",
@@ -33,7 +35,8 @@
       "holdingReturn": -1232.34,
       "holdingReturnRate": -13.64,
       "totalReturn": -1232.34,
-      "category": "有色金属"
+      "category": "有色金属",
+      "assetType": "trend"
     },
     {
       "name": "华夏中证光伏产业ETF联接A",
@@ -44,7 +47,8 @@
       "holdingReturn": -345.93,
       "holdingReturnRate": -6.29,
       "totalReturn": -345.93,
-      "category": "光伏/新能源"
+      "category": "光伏/新能源",
+      "assetType": "oscillation"
     },
     {
       "name": "天弘中证人工智能主题指数C",
@@ -52,10 +56,11 @@
       "amount": 4916.27,
       "ratio": 8.86,
       "dailyReturn": 152.37,
-      "holdingReturn": 1268.80,
+      "holdingReturn": 1268.8,
       "holdingReturnRate": 34.79,
       "totalReturn": 2993.77,
-      "category": "AI/科技"
+      "category": "AI/科技",
+      "assetType": "oscillation"
     },
     {
       "name": "永赢高端装备智选混合C",
@@ -66,7 +71,8 @@
       "holdingReturn": -422.87,
       "holdingReturnRate": -10.57,
       "totalReturn": -422.87,
-      "category": "高端制造"
+      "category": "高端制造",
+      "assetType": "active"
     },
     {
       "name": "余额宝",
@@ -77,7 +83,8 @@
       "holdingReturn": 0,
       "holdingReturnRate": 0,
       "totalReturn": 308.85,
-      "category": "货币基金"
+      "category": "货币基金",
+      "assetType": "cash"
     },
     {
       "name": "天弘中证机器人ETF联接C",
@@ -88,7 +95,8 @@
       "holdingReturn": 103.73,
       "holdingReturnRate": 5.53,
       "totalReturn": -108.21,
-      "category": "AI/科技"
+      "category": "AI/科技",
+      "assetType": "oscillation"
     },
     {
       "name": "平安高端装备混合C",
@@ -99,14 +107,17 @@
       "holdingReturn": -190.46,
       "holdingReturnRate": -9.52,
       "totalReturn": -190.46,
-      "category": "高端制造"
+      "category": "高端制造",
+      "assetType": "active"
     }
   ],
   "targetAllocation": {
     "黄金": 24,
-    "AI/科技": 38,
-    "纳指100": 24,
-    "标普500": 10,
-    "有色金属": 4
+    "AI/科技": 28,
+    "纳指100": 18,
+    "标普500": 8,
+    "有色金属": 6,
+    "光伏/新能源": 6,
+    "高端制造": 10
   }
 }

@@ -519,6 +519,42 @@
         .rc-reason { font-size: 11.5px; color: var(--paper-faint); line-height: 1.6; margin-bottom: 8px; }
         .rc-warning { font-size: 10.5px; color: rgba(229,86,79,.7); border-top: 1px solid var(--line); padding-top: 8px; }
         .radar-disclaimer { margin-top: 12px; padding: 10px 14px; background: rgba(229,86,79,.06); border: 1px solid rgba(229,86,79,.15); border-radius: 8px; font-size: 11px; color: rgba(229,86,79,.8); text-align: center; }
+
+        /* ========== AI 操作建议模块（真实数据版） ========== */
+        .advice-data-bar {
+            font-size: 11.5px; color: var(--paper-faint); font-family: var(--mono);
+            padding: 8px 0 10px; letter-spacing: .4px;
+            border-bottom: 1px solid var(--line); margin-bottom: 16px;
+            display: flex; gap: 20px; flex-wrap: wrap;
+        }
+        .advice-data-bar .adb-item { display: flex; align-items: center; gap: 6px; }
+        .adb-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--jade-soft); flex: none; }
+        /* 再平衡行项 */
+        .rb-item { margin-bottom: 11px; line-height: 1.6; }
+        .rb-cat   { font-weight: 700; font-size: 13.5px; }
+        .rb-action{ font-size: 12.5px; font-weight: 600; padding: 2px 8px; border-radius: 12px; margin-left: 6px; }
+        .rb-action-high   { background: rgba(229,86,79,.18); color: #ff6b63; }
+        .rb-action-medium { background: rgba(201,162,39,.15); color: var(--gold-bright); }
+        .rb-action-low    { background: rgba(180,160,120,.12); color: var(--paper-dim); }
+        .rb-action-pending{ background: rgba(80,150,200,.12); color: #7fb8d9; }
+        .rb-reason{ font-size: 11.5px; color: var(--paper-faint); margin-top: 3px; line-height: 1.55; }
+        .rb-amount{ font-size: 12px; color: var(--jade-soft); font-family: var(--mono); font-weight: 600; }
+        /* 子弹分配区 */
+        .bullet-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
+        .bullet-amount { font-size: 26px; font-weight: 700; font-family: var(--mono); color: var(--gold-bright); }
+        .bullet-plan-item { display: flex; justify-content: space-between; align-items: center;
+            padding: 8px 0; border-bottom: 1px solid var(--line); font-size: 13px; }
+        .bullet-plan-item:last-child { border-bottom: none; }
+        /* 美股观测面板 */
+        .us-panel-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-top: 10px; }
+        @media (max-width: 768px) { .us-panel-grid { grid-template-columns: 1fr; } }
+        .us-panel-item { background: rgba(255,255,255,.025); border-radius: 8px; padding: 14px; }
+        .us-label { font-size: 10px; color: var(--paper-faint); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 6px; }
+        .us-val   { font-size: 22px; font-weight: 700; font-family: var(--mono); color: var(--paper); line-height: 1.2; }
+        .us-sub   { font-size: 11px; color: var(--paper-faint); margin-top: 4px; }
+        .tend-enter { color: #2de89a; font-weight: 700; }
+        .tend-wait  { color: var(--gold-bright); font-weight: 700; }
+        .tend-watch { color: var(--paper-dim); font-weight: 600; }
     </style>
 </head>
 <body>
@@ -752,30 +788,35 @@
         </div>
     </section>
 
-    <!-- Section: AI 操作建议 -->
+    <!-- Section: AI 操作建议（真实数据版） -->
     <section class="section">
         <h2 class="section-title">AI 操作建议</h2>
+        <!-- 数据来源栏 -->
+        <div class="advice-data-bar" id="adviceDataBar">
+            <span class="adb-item"><span class="adb-dot"></span>持仓快照加载中...</span>
+        </div>
+        <!-- 双卡：综合信号摘要 + 再平衡清单 -->
         <div class="grid-2">
-            <div class="advice-card"><span class="sweep"></span>
-                <svg class="taiji" viewBox="0 0 100 100" aria-hidden="true">
-                    <circle cx="50" cy="50" r="48" fill="none" stroke="#9c7a1e" stroke-width="1"/>
-                    <path d="M50 2 a24 24 0 0 1 0 48 a24 24 0 0 0 0 48 a48 48 0 0 1 0-96" fill="#9c7a1e"/>
-                    <circle cx="50" cy="26" r="6" fill="#13100c"/><circle cx="50" cy="74" r="6" fill="#9c7a1e"/>
-                </svg>
+            <div class="advice-card" id="adviceSignalCard"><span class="sweep"></span>
                 <div class="advice-action" id="adviceAction">--</div>
                 <div class="advice-reason" id="adviceReason">--</div>
                 <div class="advice-meta" id="adviceMeta">--</div>
             </div>
-            <div class="advice-card"><span class="sweep"></span>
-                <svg class="taiji" viewBox="0 0 100 100" aria-hidden="true">
-                    <circle cx="50" cy="50" r="48" fill="none" stroke="#9c7a1e" stroke-width="1"/>
-                    <path d="M50 2 a24 24 0 0 1 0 48 a24 24 0 0 0 0 48 a48 48 0 0 1 0-96" fill="#9c7a1e"/>
-                    <circle cx="50" cy="26" r="6" fill="#13100c"/><circle cx="50" cy="74" r="6" fill="#9c7a1e"/>
-                </svg>
+            <div class="advice-card" id="adviceRebalanceCard"><span class="sweep"></span>
                 <div class="advice-action">⚡ 再平衡操作清单</div>
                 <div class="advice-reason" id="rebalanceList">--</div>
                 <div class="advice-meta" id="rebalanceMeta">--</div>
             </div>
+        </div>
+        <!-- 子弹分配区 -->
+        <div class="advice-card" id="bulletZoneCard" style="margin-top:16px;"><span class="sweep"></span>
+            <div class="advice-action">💰 子弹分配区</div>
+            <div id="bulletZoneContent" class="advice-reason">--</div>
+        </div>
+        <!-- 美股观测面板 -->
+        <div class="advice-card" id="usMarketCard" style="margin-top:16px;"><span class="sweep"></span>
+            <div class="advice-action">🌐 美股观测面板 · 纳指/标普入场时机</div>
+            <div id="usMarketContent" class="advice-reason">--</div>
         </div>
     </section>
 
@@ -801,7 +842,7 @@ const portfolioData = {
         {"name":"平安高端装备混合C","code":"015897","amount":1714.52,"ratio":3.15,"dailyReturn":11.38,"holdingReturn":-285.48,"holdingReturnRate":-14.27,"totalReturn":-285.48,"category":"高端制造"},
         {"name":"余额宝","code":"000198","amount":132.59,"ratio":0.24,"dailyReturn":0,"holdingReturn":0,"holdingReturnRate":0,"totalReturn":308.85,"category":"货币基金"}
     ],
-    "targetAllocation": {"黄金":24,"AI/科技":38,"纳指100":24,"标普500":10,"有色金属":4}
+    "targetAllocation": {"黄金":24,"AI/科技":28,"纳指100":18,"标普500":8,"有色金属":6,"光伏/新能源":6,"高端制造":10}
 };
 
 // Mock timeline
@@ -1735,6 +1776,243 @@ function renderRadarFallback() {
     if (wrap) wrap.innerHTML = '<div class="radar-empty">暂无基金雷达数据，请先运行 python3 scripts/fund_scanner.py</div>';
 }
 
+// ========== AI 操作建议（真实数据版，读 portfolio.json + rebalance.json）==========
+
+async function loadAndRenderAdviceModule() {
+    // 并发加载 portfolio + rebalance + fusion（signals 已在 loadSignals() 加载）
+    let portfolio = null, rebalance = null, fusion = null;
+    try {
+        [portfolio, rebalance, fusion] = await Promise.all([
+            fetch('data/portfolio.json?t='                 + Date.now()).then(r => r.ok ? r.json() : null),
+            fetch('data/rebalance.json?t='                 + Date.now()).then(r => r.ok ? r.json() : null),
+            fetch('value_compass/data/fusion.json?t='      + Date.now()).then(r => r.ok ? r.json() : null),
+        ]);
+    } catch(e) { console.warn('advice module load failed', e); }
+
+    _renderAdviceDataBar(portfolio, rebalance);
+    _renderAdviceSignalCard(portfolio, rebalance, fusion);
+    _renderAdviceRebalanceCard(rebalance);
+    _renderBulletZone(rebalance, portfolio);
+    _renderUSMarketPanel(rebalance);
+}
+
+function _renderAdviceDataBar(portfolio, rebalance) {
+    const bar = document.getElementById('adviceDataBar');
+    if (!bar) return;
+    const pt = (portfolio && portfolio.updateTime) || '--';
+    const rb = (rebalance && rebalance.portfolio_updateTime) || pt;
+    const tot = (rebalance && rebalance.total_value) ? `¥${rebalance.total_value.toLocaleString('zh-CN',{minimumFractionDigits:2})}` : '--';
+    bar.innerHTML = `
+        <span class="adb-item"><span class="adb-dot"></span>持仓快照: ${escHtml(rb)}</span>
+        <span class="adb-item"><span class="adb-dot" style="background:var(--gold-bright)"></span>投资性资产: ${escHtml(tot)}</span>
+        <span class="adb-item"><span class="adb-dot" style="background:var(--paper-faint)"></span>数据: portfolio.json + rebalance.json + signals.json</span>
+    `;
+}
+
+function _renderAdviceSignalCard(portfolio, rebalance, fusion) {
+    // 综合信号摘要：从 fusion.json 提取 oscillation 资产信号 + 再平衡高优先级动作
+    const actEl  = document.getElementById('adviceAction');
+    const reaEl  = document.getElementById('adviceReason');
+    const metaEl = document.getElementById('adviceMeta');
+    if (!actEl) return;
+
+    const items = (fusion && fusion.items) || [];
+    const oscItems = items.filter(i => i.asset_type === 'oscillation');
+    const actions  = (rebalance && rebalance.actions) || [];
+    const highActs = actions.filter(a => a.priority === 'high');
+    const toEstab  = actions.filter(a => a.action === '待建仓');
+
+    // 确定主行动
+    let mainAction = '📌 持有观察';
+    if (highActs.length > 0)        mainAction = '⚖️ 需要操作 · 见清单';
+    else if (toEstab.length > 0)    mainAction = '🔺 待建仓类别 · 可分批入场';
+    actEl.textContent = mainAction;
+
+    // 理由列表
+    const reasons = [];
+    oscItems.forEach(i => {
+        const s = i.tech_signal === '买入' ? '↑ 买入' : i.tech_signal === '卖出' ? '↓ 卖出' : '→ 观望';
+        reasons.push(`${i.name}：技术${s}，建议「${i.action}」`);
+    });
+    toEstab.forEach(a => reasons.push(`${a.category} 待建仓，缺口 ≈ ¥${Math.abs(a.deviation_amount||0).toLocaleString('zh-CN',{maximumFractionDigits:0})}`));
+    highActs.slice(0, 2).forEach(a => reasons.push(`${a.category} [${a.action}]：${(a.reason||'').slice(0,55)}…`));
+
+    reaEl.innerHTML = reasons.length
+        ? reasons.map(r => `<div style="margin-bottom:6px;">• ${escHtml(r)}</div>`).join('')
+        : '<div style="color:var(--paper-faint);">当前无高优先级操作建议</div>';
+
+    // 元信息（从 signalData.us 读 QQQ 评分，从 signalData.gold 读日期）
+    const u = signalData && signalData.us;
+    const g = signalData && signalData.gold;
+    const qqq = u ? `QQQ评分 ${Math.round(u.qqq_score||0)}` : '';
+    const dt  = (rebalance && rebalance.portfolio_updateTime) || (g && g.date) || '--';
+    metaEl.textContent = `持仓: ${dt} · ${qqq} · signals + fusion 双确认`;
+}
+
+function _renderAdviceRebalanceCard(rebalance) {
+    const listEl = document.getElementById('rebalanceList');
+    const metaEl = document.getElementById('rebalanceMeta');
+    if (!listEl) return;
+
+    if (!rebalance || !rebalance.actions || !rebalance.actions.length) {
+        listEl.innerHTML = '<div style="color:var(--paper-faint);">再平衡数据加载失败，请运行 python3 data/rebalance.py</div>';
+        return;
+    }
+
+    // 按优先级排序，只展示 needs_action=true 的
+    const acts = rebalance.actions.filter(a => a.needs_action);
+    if (!acts.length) {
+        listEl.innerHTML = '<div style="color:var(--paper-faint);">当前配置接近目标，无需调整</div>';
+        if (metaEl) metaEl.textContent = '所有类别偏差在容忍区间内';
+        return;
+    }
+
+    const PRIORITY_CLS = { high: 'rb-action-high', medium: 'rb-action-medium', low: 'rb-action-low' };
+    const PENDING_ACTS = new Set(['待建仓', '待主动基诊断']);
+
+    listEl.innerHTML = acts.map(a => {
+        const pCls = PENDING_ACTS.has(a.action) ? 'rb-action-pending' : (PRIORITY_CLS[a.priority] || 'rb-action-low');
+        const amtHtml = a.recommend_amount
+            ? `<span class="rb-amount"> ≈ ¥${Math.abs(a.recommend_amount).toLocaleString('zh-CN',{maximumFractionDigits:0})}</span>`
+            : '';
+        const sign = a.deviation >= 0 ? '+' : '';
+        return `<div class="rb-item">
+            <span class="rb-cat">${escHtml(a.category)}</span>
+            <span class="rb-action ${pCls}">${escHtml(a.action)}</span>${amtHtml}
+            <span style="color:var(--paper-faint);font-size:11px;"> (${sign}${a.deviation.toFixed(1)}pt)</span>
+            <div class="rb-reason">${escHtml((a.reason||'').slice(0, 90))}${(a.reason||'').length > 90 ? '…' : ''}</div>
+        </div>`;
+    }).join('');
+
+    if (metaEl) {
+        const pt = rebalance.portfolio_updateTime || '--';
+        const tv = rebalance.total_value ? `¥${rebalance.total_value.toLocaleString('zh-CN',{minimumFractionDigits:2})}` : '--';
+        metaEl.textContent = `持仓快照: ${pt} · 投资性资产: ${tv} · 阈值 ±${rebalance.rebalance_threshold_pct||5}pt`;
+    }
+}
+
+function _renderBulletZone(rebalance, portfolio) {
+    const el = document.getElementById('bulletZoneContent');
+    if (!el) return;
+
+    const bullet   = rebalance && rebalance.bullet;
+    const bAmount  = bullet ? bullet.amount : 0;
+    const bPlan    = (bullet && bullet.plan) || [];
+    const holdings = portfolio && portfolio.holdings;
+    const cashH    = holdings && holdings.find(h => h.assetType === 'cash');
+    const cashAmt  = cashH ? cashH.amount : bAmount;
+
+    const amtStr = cashAmt > 0
+        ? `<span class="bullet-amount">¥${cashAmt.toLocaleString('zh-CN',{minimumFractionDigits:2})}</span>`
+        : '<span style="color:var(--paper-faint);">暂无数据</span>';
+
+    const planHtml = bPlan.length
+        ? bPlan.map(p => `<div class="bullet-plan-item">
+            <span>${escHtml(p.category)} <span style="color:var(--gold-bright);font-size:12px;">${escHtml(p.action)}</span></span>
+            <span class="rb-amount">¥${(p.alloc||0).toLocaleString('zh-CN',{maximumFractionDigits:0})}</span>
+          </div>`).join('')
+        : `<div style="color:var(--paper-faint);font-size:13px;margin-top:8px;">
+            ${cashAmt > 500 ? '子弹可用，优先补待建仓类别（纳指100/标普500）定投入场' : '子弹不足 ¥500，建议先积累子弹再操作'}
+           </div>`;
+
+    el.innerHTML = `
+        <div class="bullet-header">
+            <div>
+                <div style="font-size:11px;color:var(--paper-faint);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;">余额宝可用</div>
+                ${amtStr}
+            </div>
+            <div style="font-size:12px;color:var(--paper-faint);text-align:right;line-height:1.8;">
+                优先级：待建仓 → 低配加仓<br>货币基金不计入再平衡盘
+            </div>
+        </div>
+        ${planHtml}
+    `;
+}
+
+function _renderUSMarketPanel(rebalance) {
+    const el = document.getElementById('usMarketContent');
+    if (!el) return;
+
+    // 从 rebalance.json 取纳指/标普动作
+    const acts = (rebalance && rebalance.actions) || [];
+    const qqq  = acts.find(a => a.category === '纳指100');
+    const spy  = acts.find(a => a.category === '标普500');
+
+    // VIX / QQQ 评分 from signalData
+    const usData = signalData && signalData.us;
+    const qqqScore = usData ? Math.round(usData.qqq_score || 0) : null;
+    const spyScore = usData ? Math.round(usData.spy_score || 0) : null;
+
+    // VIX
+    let vix = null;
+    const gData = signalData && signalData.gold;
+    if (gData && gData.score_detail) {
+        for (const k in gData.score_detail) {
+            if (k.includes('VIX')) {
+                const m = String(gData.score_detail[k]).match(/VIX=([\d.]+)/);
+                if (m) { vix = parseFloat(m[1]); break; }
+            }
+        }
+    }
+
+    // 入场倾向
+    function entryTend(score, vixVal, action) {
+        if (action === '待建仓') {
+            if (vixVal != null && vixVal > 25) return { cls: 'tend-enter', txt: '恐慌加深 → 分批建仓机会' };
+            if (score != null && score >= 60) return { cls: 'tend-watch', txt: '信号偏强，等回调再入' };
+            return { cls: 'tend-wait', txt: '定投等待，勿追高' };
+        }
+        return { cls: 'tend-watch', txt: '保持观察' };
+    }
+    const qqqTend = entryTend(qqqScore, vix, qqq && qqq.action);
+    const spyTend = entryTend(spyScore, vix, spy && spy.action);
+
+    // 从 backtest.json 计算距高点回撤（_btData 是全局变量）
+    function calcDrawdown(code) {
+        if (!_btData) return null;
+        const r = _btData.results && _btData.results.find(x => x.code === code);
+        if (!r || !r.nav_curve || !r.nav_curve.benchmark) return null;
+        const bench = r.nav_curve.benchmark;
+        const cur = bench[bench.length - 1];
+        const peak = Math.max(...bench);
+        if (!peak) return null;
+        return round2((peak - cur) / peak * 100);
+    }
+    function round2(v) { return Math.round(v * 100) / 100; }
+
+    const qqqDd = calcDrawdown('513100');
+    const spyDd = calcDrawdown('513500');
+    const ddStr = v => v != null ? `-${v.toFixed(1)}%` : '--';
+    const scoreStr = v => v != null ? `${v}分` : '--';
+    const vixStr = vix != null ? vix.toFixed(1) : '--';
+    const vixCls = vix == null ? '' : vix > 30 ? 'negative' : vix > 20 ? '' : 'positive';
+
+    el.innerHTML = `<div class="us-panel-grid">
+        <div class="us-panel-item">
+            <div class="us-label">纳指100 (QQQ)</div>
+            <div class="us-val">${scoreStr(qqqScore)}</div>
+            <div class="us-sub">信号评分 | 距高点 ${ddStr(qqqDd)}</div>
+            <div class="us-sub" style="margin-top:6px;">建议: ${qqq ? escHtml(qqq.action) : '待建仓'}</div>
+            <div class="us-sub ${qqqTend.cls}" style="margin-top:4px;">→ ${qqqTend.txt}</div>
+        </div>
+        <div class="us-panel-item">
+            <div class="us-label">标普500 (SPY)</div>
+            <div class="us-val">${scoreStr(spyScore)}</div>
+            <div class="us-sub">信号评分 | 距高点 ${ddStr(spyDd)}</div>
+            <div class="us-sub" style="margin-top:6px;">建议: ${spy ? escHtml(spy.action) : '待建仓'}</div>
+            <div class="us-sub ${spyTend.cls}" style="margin-top:4px;">→ ${spyTend.txt}</div>
+        </div>
+        <div class="us-panel-item">
+            <div class="us-label">VIX 恐慌指数</div>
+            <div class="us-val ${vixCls}">${vixStr}</div>
+            <div class="us-sub">${vix == null ? '--' : vix > 30 ? '高恐慌 · 逢恐贪婪入场窗口' : vix > 20 ? '中等波动 · 谨慎' : '低恐慌 · 市场平稳'}</div>
+            <div class="us-sub" style="margin-top:8px;color:var(--paper-faint);font-size:10px;">
+                估值分位 -- (P2 任务5 填入)
+            </div>
+        </div>
+    </div>`;
+}
+
 // ========== Initialize ==========
 document.addEventListener('DOMContentLoaded', async function() {
     renderHeader();
@@ -1758,12 +2036,12 @@ document.addEventListener('DOMContentLoaded', async function() {
     await loadAndRenderBacktest();
     // 融合决策卡（value_compass/data/fusion.json）
     await loadAndRenderFusion();
-    // 再平衡：优先用 rebalance.json，JS 计算作为补充
+    // 再平衡（loadAndRenderRebalanceJson 保留兼容，AI建议模块由下方接管）
     await loadAndRenderRebalanceJson();
-    renderRebalance();
     // 基金雷达（data/fund_recommendations.json）
     await loadAndRenderRadar();
-    renderAdvice();
+    // AI 操作建议：读真实 portfolio.json + rebalance.json（替代旧 renderAdvice/renderRebalance）
+    await loadAndRenderAdviceModule();
 });
 </script>
 </body>

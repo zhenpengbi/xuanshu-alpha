@@ -1,85 +1,150 @@
 {
-  "updated_at": "2026-06-09 11:36",
-  "total_value": 51708.2,
+  "portfolio_updateTime": "2026-06-10",
+  "updated_at": "2026-06-10 17:53",
+  "total_value": 52613.47,
   "rebalance_threshold_pct": 5.0,
+  "bullet": {
+    "code": "000198",
+    "name": "余额宝",
+    "amount": 2909.08,
+    "description": "货币基金作为子弹，不计入再平衡盘，优先补低配/待建仓类别",
+    "plan": [
+      {
+        "category": "纳指100",
+        "action": "待建仓",
+        "alloc": 2909.08,
+        "note": "从余额宝调入 ¥2,909 → 纳指100"
+      }
+    ]
+  },
   "actions": [
     {
-      "code": "000216",
-      "name": "易方达黄金ETF联接C",
-      "category": "黄金",
-      "target_pct": 24.0,
-      "actual_pct": 28.4,
-      "value": 14683.05,
-      "shares": 4500,
-      "price": 3.2629,
-      "deviation": 4.4,
-      "deviation_amount": 2275.16,
-      "needs_rebalance": false
-    },
-    {
-      "code": "008585",
-      "name": "天弘AI主题指数C",
-      "category": "AI/科技",
-      "target_pct": 30.0,
-      "actual_pct": 23.89,
-      "value": 12355.2,
-      "shares": 7200,
-      "price": 1.716,
-      "deviation": -6.11,
-      "deviation_amount": -3159.37,
-      "needs_rebalance": true
-    },
-    {
-      "code": "017766",
-      "name": "南方有色金属ETF联接E",
-      "category": "有色金属",
-      "target_pct": 8.0,
-      "actual_pct": 9.51,
-      "value": 4915.35,
-      "shares": 1350,
-      "price": 3.641,
-      "deviation": 1.51,
-      "deviation_amount": 780.79,
-      "needs_rebalance": false
-    },
-    {
-      "code": "515790",
-      "name": "华夏光伏ETF",
-      "category": "光伏",
-      "target_pct": 4.0,
-      "actual_pct": 2.94,
-      "value": 1521.0,
-      "shares": 1500,
-      "price": 1.014,
-      "deviation": -1.06,
-      "deviation_amount": -548.11,
-      "needs_rebalance": false
-    },
-    {
-      "code": "513100",
-      "name": "纳指100ETF",
       "category": "纳指100",
-      "target_pct": 24.0,
-      "actual_pct": 26.38,
-      "value": 13640.0,
-      "shares": 6200,
-      "price": 2.2,
-      "deviation": 2.38,
-      "deviation_amount": 1230.66,
-      "needs_rebalance": false
+      "asset_type": "trend",
+      "target_pct": 18.0,
+      "actual_pct": 0.0,
+      "actual_amount": 0.0,
+      "target_amount": 9470.42,
+      "deviation": -18.0,
+      "deviation_amount": -9470.42,
+      "signal": null,
+      "action": "待建仓",
+      "reason": "目标配置 18.0%，当前持仓为零，缺口约 ¥9,470。回测3年信号择时α=-22.0pt（策略+9.9% vs 持有+31.9%），建议分批定投建仓",
+      "priority": "medium",
+      "recommend_amount": 9470.42,
+      "needs_action": true
     },
     {
-      "code": "513500",
-      "name": "标普500ETF",
+      "category": "AI/科技",
+      "asset_type": "oscillation",
+      "target_pct": 28.0,
+      "actual_pct": 13.11,
+      "actual_amount": 6895.0,
+      "target_amount": 14731.77,
+      "deviation": -14.89,
+      "deviation_amount": -7834.15,
+      "signal": "观望",
+      "action": "可小幅加仓",
+      "reason": "低配 -14.9pt，技术面观望，可小幅补仓",
+      "priority": "medium",
+      "recommend_amount": 3917.075,
+      "needs_action": true
+    },
+    {
       "category": "标普500",
+      "asset_type": "trend",
+      "target_pct": 8.0,
+      "actual_pct": 0.0,
+      "actual_amount": 0.0,
+      "target_amount": 4209.08,
+      "deviation": -8.0,
+      "deviation_amount": -4209.08,
+      "signal": null,
+      "action": "待建仓",
+      "reason": "目标配置 8.0%，当前持仓为零，缺口约 ¥4,209。回测3年信号择时α=-11.6pt（策略+11.9% vs 持有+23.5%），建议分批定投建仓",
+      "priority": "medium",
+      "recommend_amount": 4209.08,
+      "needs_action": true
+    },
+    {
+      "category": "黄金",
+      "asset_type": "trend",
+      "target_pct": 24.0,
+      "actual_pct": 52.03,
+      "actual_amount": 27373.34,
+      "target_amount": 12627.23,
+      "deviation": 28.03,
+      "deviation_amount": 14747.56,
+      "signal": null,
+      "action": "持有/小幅减",
+      "reason": "超配 +28.0pt（实际 52.0% vs 目标 24.0%），但趋势型资产不建议大幅择时减仓。回测3年信号择时α=-21.8pt（策略+4.9% vs 持有+26.7%），建议长期持有核心仓位。如有资金需求可小幅赎回约 ¥4,424 归位。",
+      "priority": "low",
+      "recommend_amount": 4424.268,
+      "needs_action": true
+    },
+    {
+      "category": "有色金属",
+      "asset_type": "trend",
+      "target_pct": 6.0,
+      "actual_pct": 14.83,
+      "actual_amount": 7804.39,
+      "target_amount": 3156.81,
+      "deviation": 8.83,
+      "deviation_amount": 4645.77,
+      "signal": null,
+      "action": "持有/小幅减",
+      "reason": "超配 +8.8pt（实际 14.8% vs 目标 6.0%），但趋势型资产不建议大幅择时减仓。回测3年信号择时α=-2.3pt，趋势型资产以持有为主。如有资金需求可小幅赎回约 ¥1,394 归位。",
+      "priority": "low",
+      "recommend_amount": 1393.731,
+      "needs_action": true
+    },
+    {
+      "category": "光伏/新能源",
+      "asset_type": "oscillation",
+      "target_pct": 6.0,
+      "actual_pct": 9.8,
+      "actual_amount": 5154.07,
+      "target_amount": 3156.81,
+      "deviation": 3.8,
+      "deviation_amount": 1999.31,
+      "signal": "观望",
+      "action": "持有观察",
+      "reason": "偏差 +3.8pt 在容忍区间内，按技术信号 [观望] 灵活操作",
+      "priority": "low",
+      "recommend_amount": null,
+      "needs_action": false
+    },
+    {
+      "category": "高端制造",
+      "asset_type": "active",
       "target_pct": 10.0,
-      "actual_pct": 8.88,
-      "value": 4593.6,
-      "shares": 1800,
-      "price": 2.552,
-      "deviation": -1.12,
-      "deviation_amount": -579.13,
-      "needs_rebalance": false
+      "actual_pct": 10.24,
+      "actual_amount": 5386.67,
+      "target_amount": 5261.35,
+      "deviation": 0.24,
+      "deviation_amount": 126.27,
+      "signal": null,
+      "action": "待主动基诊断",
+      "reason": "主动型基金（偏差 +0.2pt），需结合基金经理策略判断，技术信号不适用于主动管理型基金。P1 待接 active_funds.json 后细化建议。",
+      "priority": "low",
+      "recommend_amount": null,
+      "needs_action": false
     }
-  ]
+  ],
+  "summary": {
+    "overweight": [
+      "黄金",
+      "有色金属"
+    ],
+    "underweight": [
+      "AI/科技"
+    ],
+    "to_establish": [
+      "纳指100",
+      "标普500"
+    ],
+    "pending_diagnosis": [
+      "高端制造"
+    ]
+  }
 }
