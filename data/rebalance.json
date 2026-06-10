@@ -1,11 +1,11 @@
 {
   "portfolio_updateTime": "2026-06-10",
-  "updated_at": "2026-06-10 18:26",
+  "updated_at": "2026-06-10 18:29",
   "total_value": 52613.47,
   "rebalance_threshold_pct": 5.0,
   "bullet": {
-    "code": "000198",
-    "name": "余额宝",
+    "code": "001812",
+    "name": "嘉实货币E",
     "amount": 2909.08,
     "description": "货币基金作为子弹，不计入再平衡盘，优先补低配/待建仓类别",
     "plan": [
