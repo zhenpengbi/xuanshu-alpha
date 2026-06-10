@@ -555,6 +555,36 @@
         .tend-enter { color: #2de89a; font-weight: 700; }
         .tend-wait  { color: var(--gold-bright); font-weight: 700; }
         .tend-watch { color: var(--paper-dim); font-weight: 600; }
+
+        /* ========== 主动基诊断卡 ========== */
+        .afd-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; }
+        @media (max-width: 768px) { .afd-grid { grid-template-columns: 1fr; } }
+        .afd-card {
+            background: rgba(255,255,255,.035); border: 1px solid rgba(255,255,255,.07);
+            border-radius: 10px; padding: 16px 18px;
+            box-shadow: 0 4px 18px rgba(0,0,0,.3); position: relative;
+        }
+        .afd-card.afd-replace { border-top: 2px solid rgba(229,86,79,.55); }
+        .afd-card.afd-watch   { border-top: 2px solid rgba(201,162,39,.55); }
+        .afd-card.afd-hold    { border-top: 2px solid rgba(31,184,116,.45); }
+        .afd-mismatch {
+            background: rgba(229,86,79,.1); border: 1px solid rgba(229,86,79,.25);
+            border-radius: 6px; padding: 6px 10px; font-size: 11px;
+            color: rgba(229,86,79,.9); margin-bottom: 10px; line-height: 1.5;
+        }
+        .afd-name    { font-size: 13.5px; font-weight: 700; color: var(--paper); margin-bottom: 2px; }
+        .afd-subname { font-size: 11px; color: var(--paper-faint); margin-bottom: 10px; }
+        .afd-metrics { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-bottom: 10px; }
+        .afd-m-label { font-size: 9.5px; color: var(--paper-faint); text-transform: uppercase; letter-spacing: 1px; }
+        .afd-m-val   { font-size: 15px; font-weight: 700; font-family: var(--mono); color: var(--paper); }
+        .afd-action-badge {
+            display: inline-block; padding: 3px 11px; border-radius: 20px;
+            font-size: 12px; font-weight: 700; font-family: var(--mono); margin-bottom: 8px;
+        }
+        .afd-badge-replace { background: rgba(229,86,79,.2); color: #ff6b63; border: 1px solid rgba(229,86,79,.3); }
+        .afd-badge-watch   { background: rgba(201,162,39,.15); color: var(--gold-bright); border: 1px solid rgba(201,162,39,.3); }
+        .afd-badge-hold    { background: rgba(31,184,116,.15); color: #2de89a; border: 1px solid rgba(31,184,116,.28); }
+        .afd-reasons { font-size: 11.5px; color: var(--paper-faint); line-height: 1.65; }
     </style>
 </head>
 <body>
@@ -777,6 +807,14 @@
         <h2 class="section-title">融合决策 · 技术×价值双确认</h2>
         <div class="fusion-grid" id="fusionGrid">
             <div style="color:var(--paper-faint);font-size:13px;padding:16px;">加载中...</div>
+        </div>
+    </section>
+
+    <!-- Section: 主动基诊断 -->
+    <section class="section">
+        <h2 class="section-title">主动基诊断 · 基金经理/规模/排名/持仓质地</h2>
+        <div class="afd-grid" id="activeFundGrid">
+            <div style="color:var(--paper-faint);font-size:13px;padding:16px 0;">加载中...</div>
         </div>
     </section>
 
@@ -2013,6 +2051,88 @@ function _renderUSMarketPanel(rebalance) {
     </div>`;
 }
 
+// ========== 主动基诊断：从 data/active_funds.json 加载 ==========
+async function loadAndRenderActiveFunds() {
+    try {
+        const r = await fetch('data/active_funds.json?t=' + Date.now());
+        if (!r.ok) { renderActiveFundsFallback(); return; }
+        const data = await r.json();
+        renderActiveFunds(data.funds || []);
+    } catch(e) { renderActiveFundsFallback(); }
+}
+
+function renderActiveFunds(funds) {
+    const grid = document.getElementById('activeFundGrid');
+    if (!grid || !funds.length) { renderActiveFundsFallback(); return; }
+
+    const ACTION_CLS = {
+        '建议评估替换': { card: 'afd-replace', badge: 'afd-badge-replace' },
+        '持有但关注':   { card: 'afd-watch',   badge: 'afd-badge-watch'   },
+        '可持有':       { card: 'afd-hold',     badge: 'afd-badge-hold'    },
+    };
+
+    grid.innerHTML = funds.map(f => {
+        const diag   = f.diagnosis || {};
+        const action = diag.action || '待诊断';
+        const cls    = ACTION_CLS[action] || { card: 'afd-watch', badge: 'afd-badge-watch' };
+        const pctYtd = f.rank_percentile_ytd;
+        const alpha  = f.alpha_pct;
+        const tenure = f.manager_tenure_days ? Math.round(f.manager_tenure_days / 365 * 10) / 10 : null;
+
+        // 名称不符警告
+        const mismatchHtml = f.name_mismatch
+            ? `<div class="afd-mismatch">
+                ⚠️ 代码 ${escHtml(f.code)} 官方名称与持仓标注不符<br>
+                官方：${escHtml(f.official_name || '--')}<br>
+                持仓标注：${escHtml(f.portfolio_name || '--')}
+               </div>`
+            : '';
+
+        // 理由 + 警告
+        const reasons = [...(diag.reasons || []), ...(diag.warnings || [])].slice(0, 3);
+        const reasonHtml = reasons.length
+            ? reasons.map(r => `<div>• ${escHtml(r)}</div>`).join('')
+            : '<div>详见 data/active_funds.json</div>';
+
+        // 质地摘要
+        const qs = f.quality_summary;
+        const qualityHtml = qs
+            ? `<div class="afd-m-label" style="margin-top:8px;">持仓质地</div>
+               <div style="font-size:11.5px;color:var(--paper-faint);">${escHtml(qs.verdict || '--')}</div>`
+            : '';
+
+        return `<div class="afd-card ${cls.card}">
+            ${mismatchHtml}
+            <div class="afd-name">${escHtml(f.official_name || f.portfolio_name)}</div>
+            <div class="afd-subname">${escHtml(f.code)} · ${escHtml(f.fund_type || '--')} · ${escHtml(f.company || '--')}</div>
+            <div class="afd-metrics">
+                <div>
+                    <div class="afd-m-label">同类排名</div>
+                    <div class="afd-m-val">${pctYtd != null ? `前${pctYtd.toFixed(0)}%` : '--'}</div>
+                </div>
+                <div>
+                    <div class="afd-m-label">经理年限</div>
+                    <div class="afd-m-val">${tenure != null ? tenure + 'y' : '--'}</div>
+                </div>
+                <div>
+                    <div class="afd-m-label">规模</div>
+                    <div class="afd-m-val" style="font-size:13px;">${escHtml(f.scale_str || '--')}</div>
+                </div>
+            </div>
+            <span class="afd-action-badge ${cls.badge}">${escHtml(action)}</span>
+            <div class="afd-reasons">${reasonHtml}</div>
+            ${qualityHtml}
+        </div>`;
+    }).join('');
+}
+
+function renderActiveFundsFallback() {
+    const grid = document.getElementById('activeFundGrid');
+    if (grid) grid.innerHTML =
+        '<div style="color:var(--paper-faint);font-size:13px;padding:16px 0;">' +
+        '暂无主动基诊断数据，请先运行 python3 scripts/active_fund_diagnose.py</div>';
+}
+
 // ========== Initialize ==========
 document.addEventListener('DOMContentLoaded', async function() {
     renderHeader();
@@ -2036,6 +2156,8 @@ document.addEventListener('DOMContentLoaded', async function() {
     await loadAndRenderBacktest();
     // 融合决策卡（value_compass/data/fusion.json）
     await loadAndRenderFusion();
+    // 主动基诊断（data/active_funds.json）
+    await loadAndRenderActiveFunds();
     // 再平衡（loadAndRenderRebalanceJson 保留兼容，AI建议模块由下方接管）
     await loadAndRenderRebalanceJson();
     // 基金雷达（data/fund_recommendations.json）

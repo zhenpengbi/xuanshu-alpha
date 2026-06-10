@@ -1,6 +1,6 @@
 {
   "portfolio_updateTime": "2026-06-10",
-  "updated_at": "2026-06-10 18:00",
+  "updated_at": "2026-06-10 18:17",
   "total_value": 52613.47,
   "rebalance_threshold_pct": 5.0,
   "bullet": {
@@ -67,6 +67,23 @@
       "needs_action": true
     },
     {
+      "category": "高端制造",
+      "asset_type": "active",
+      "target_pct": 10.0,
+      "actual_pct": 10.24,
+      "actual_amount": 5386.67,
+      "target_amount": 5261.35,
+      "deviation": 0.24,
+      "deviation_amount": 126.27,
+      "signal": null,
+      "action": "建议调研替换",
+      "reason": "⚠️ 代码与名称不符（官方:天弘中证细分化工产业主题ETF联接C）；同类排名前63%；今年以来同类排名 63%（落后同类）  |  警告：⚠️ 代码 015897 官方名称与持仓标注不符，请核实！官方：天弘中证细分化工产业主题ETF联接C，持仓标注：平安高端装备混合C",
+      "priority": "medium",
+      "recommend_amount": null,
+      "needs_action": false,
+      "active_diag_ref": true
+    },
+    {
       "category": "黄金",
       "asset_type": "trend",
       "target_pct": 24.0,
@@ -110,22 +127,6 @@
       "signal": "观望",
       "action": "持有观察",
       "reason": "偏差 +3.8pt 在容忍区间内，按技术信号 [观望] 灵活操作",
-      "priority": "low",
-      "recommend_amount": null,
-      "needs_action": false
-    },
-    {
-      "category": "高端制造",
-      "asset_type": "active",
-      "target_pct": 10.0,
-      "actual_pct": 10.24,
-      "actual_amount": 5386.67,
-      "target_amount": 5261.35,
-      "deviation": 0.24,
-      "deviation_amount": 126.27,
-      "signal": null,
-      "action": "待主动基诊断",
-      "reason": "主动型基金（偏差 +0.2pt），需结合基金经理策略判断，技术信号不适用于主动管理型基金。P1 待接 active_funds.json 后细化建议。",
       "priority": "low",
       "recommend_amount": null,
       "needs_action": false
