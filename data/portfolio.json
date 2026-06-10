@@ -16,7 +16,7 @@
     },
     {
       "name": "易方达黄金ETF联接A",
-      "code": "159934",
+      "code": "000307",
       "amount": 8298.93,
       "ratio": 14.95,
       "dailyReturn": 31.55,
@@ -28,7 +28,7 @@
     },
     {
       "name": "南方有色金属ETF联接E",
-      "code": "020882",
+      "code": "010990",
       "amount": 7804.39,
       "ratio": 14.06,
       "dailyReturn": 211.24,
@@ -39,8 +39,8 @@
       "assetType": "trend"
     },
     {
-      "name": "华夏中证光伏产业ETF联接A",
-      "code": "013301",
+      "name": "华夏中证光伏产业ETF发起式联接A",
+      "code": "012885",
       "amount": 5154.07,
       "ratio": 9.28,
       "dailyReturn": 145.66,
