@@ -1,14 +1,8 @@
 {
-  "updated_at": "2026-06-10 11:53",
-  "triggered": true,
-  "avg_sell_score": 2.0,
+  "updated_at": "2026-06-11 12:26",
+  "triggered": false,
+  "avg_sell_score": 1.83,
   "panic_threshold": 2.0,
-  "scan_params": {
-    "min_scale_bn": 5.0,
-    "drop_threshold_pct": 15.0,
-    "rsi_oversold": 35
-  },
-  "message": "已触发恐慌扫描，但未发现符合条件的超跌 ETF（跌幅/规模条件未满足）",
-  "recommendations": [],
-  "disclaimer": "以上仅为量化扫描结果，不构成投资建议，投资者需自行承担风险"
+  "message": "当前无超跌机会（avg_sell_score=1.83 < 2.0，市场情绪平稳）",
+  "recommendations": []
 }
