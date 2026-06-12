@@ -202,6 +202,8 @@
         .metric-card .sub { font-size: 12px; color: var(--paper-faint); margin-top: 10px; font-family: var(--mono); letter-spacing: .5px; }
 
         /* ========== Table ========== */
+        .holdings-cards { display: none; } /* PC端隐藏卡片，只显示表格 */
+        .capability-grid { display: none; } /* PC端隐藏能力概览入口 */
         .holdings-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
         .holdings-table thead { position: sticky; top: 64px; z-index: 10; }
         .holdings-table th {
@@ -829,8 +831,45 @@
             /* ── 融合卡单列 ── */
             .fusion-grid { grid-template-columns: 1fr !important; }
 
-            /* ── 持仓表格横滚优化 ── */
-            .holdings-table th, .holdings-table td { padding: 8px 8px !important; font-size: 11px !important; }
+            /* ── 持仓：移动端隐藏表格，显示卡片 ── */
+            .holdings-table-wrap { display: none !important; }
+            .holdings-cards { display: flex !important; flex-direction: column; gap: 8px; }
+            .holding-card {
+                display: flex; align-items: center; justify-content: space-between;
+                background: var(--bg-card); background: linear-gradient(150deg, rgba(40,32,23,.7), rgba(26,21,16,.55));
+                border: 1px solid var(--line); border-radius: 12px;
+                padding: 14px 16px; position: relative;
+                border-left: 3px solid rgba(201,162,39,.3);
+            }
+            .holding-card.positive { border-left-color: var(--jade); }
+            .holding-card.negative { border-left-color: var(--red); }
+            .hc-left { flex: 1; min-width: 0; }
+            .hc-name { font-size: 14px; font-weight: 600; color: var(--paper); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 4px; }
+            .hc-meta { font-size: 11px; color: var(--paper-faint); display: flex; align-items: center; gap: 8px; }
+            .hc-tag { font-size: 9px; padding: 1px 6px; border-radius: 4px; background: rgba(201,162,39,.12); color: var(--gold-bright); border: 1px solid rgba(201,162,39,.2); }
+            .hc-right { text-align: right; flex: none; margin-left: 12px; }
+            .hc-amount { font-size: 15px; font-weight: 700; font-family: var(--mono); color: var(--paper); margin-bottom: 3px; }
+            .hc-return { font-size: 13px; font-family: var(--mono); font-weight: 600; }
+            .hc-return.positive { color: var(--jade-soft); }
+            .hc-return.negative { color: var(--red); }
+            .hc-ratio { font-size: 10px; color: var(--paper-faint); margin-top: 2px; }
+
+            /* ── 能力概览入口区 ── */
+            .capability-grid {
+                display: grid !important; grid-template-columns: repeat(5, 1fr); gap: 0;
+                background: rgba(26,21,16,.6); border-radius: 12px;
+                border: 1px solid var(--line); overflow: hidden;
+                margin-bottom: 16px;
+            }
+            .cap-item {
+                display: flex; flex-direction: column; align-items: center;
+                padding: 14px 4px 10px; cursor: pointer;
+                transition: background .15s;
+                -webkit-tap-highlight-color: transparent;
+            }
+            .cap-item:active { background: rgba(201,162,39,.08); }
+            .cap-icon { font-size: 20px; margin-bottom: 4px; }
+            .cap-label { font-size: 9.5px; color: var(--paper-dim); letter-spacing: .3px; text-align: center; white-space: nowrap; }
         }
 
         @media (max-width: 480px) {
@@ -912,6 +951,25 @@
 <!-- ========== MAIN CONTENT ========== -->
 <main class="container">
 
+    <!-- 移动端能力概览入口（PC端隐藏） -->
+    <div class="capability-grid" id="capGrid">
+        <div class="cap-item" data-panel="overview" onclick="switchTabFromCap('overview')">
+            <span class="cap-icon">📈</span><span class="cap-label">行情</span>
+        </div>
+        <div class="cap-item" data-panel="signals" onclick="switchTabFromCap('signals')">
+            <span class="cap-icon">📡</span><span class="cap-label">信号</span>
+        </div>
+        <div class="cap-item" data-panel="strategy" onclick="switchTabFromCap('strategy')">
+            <span class="cap-icon">🧠</span><span class="cap-label">回测</span>
+        </div>
+        <div class="cap-item" data-panel="news" onclick="switchTabFromCap('news')">
+            <span class="cap-icon">📰</span><span class="cap-label">资讯</span>
+        </div>
+        <div class="cap-item" data-panel="advice" onclick="switchTabFromCap('advice')">
+            <span class="cap-icon">🎯</span><span class="cap-label">建议</span>
+        </div>
+    </div>
+
     <!-- Section: 实时行情 -->
     <section class="section" data-panel="overview">
         <h2 class="section-title">实时行情</h2>
@@ -951,7 +1009,10 @@
     <!-- Section: 持仓明细 -->
     <section class="section" data-panel="overview">
         <h2 class="section-title">持仓明细</h2>
-        <div class="card" style="padding:0; overflow-x:auto;"><span class="sweep"></span>
+        <!-- 移动端：卡片列表 -->
+        <div class="holdings-cards" id="holdingsCards"></div>
+        <!-- PC端：表格 -->
+        <div class="card holdings-table-wrap" style="padding:0; overflow-x:auto;"><span class="sweep"></span>
             <table class="holdings-table">
                 <thead>
                     <tr>
@@ -1179,8 +1240,8 @@
 <div class="pwa-banner" id="pwaBanner" role="complementary" aria-label="安装应用">
     <div class="pwa-banner-icon">⚡</div>
     <div class="pwa-banner-text">
-        <div class="pwa-banner-title">添加到主屏幕</div>
-        <div class="pwa-banner-desc">点击 <span style="color:var(--gold-bright);">分享</span> 再选「添加到主屏幕」，享受原生 App 体验</div>
+        <div class="pwa-banner-title">获得 App 体验</div>
+        <div class="pwa-banner-desc">点击浏览器底部 <svg style="display:inline;vertical-align:middle;" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--gold-bright)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg> 分享按钮 → 「添加到主屏幕」</div>
     </div>
     <button class="pwa-banner-close" id="pwaBannerClose" aria-label="关闭">✕</button>
 </div>
@@ -1326,7 +1387,33 @@ function renderBarChart() {
 }
 
 // ========== Render Holdings Table ==========
+function switchTabFromCap(panel) {
+    const nav = document.getElementById('tabNav');
+    if (!nav) return;
+    const btn = nav.querySelector(`[data-panel="${panel}"]`);
+    if (btn) btn.click();
+}
+
 function renderHoldings() {
+    // --- 移动端卡片 ---
+    const cardsEl = document.getElementById('holdingsCards');
+    if (cardsEl) {
+        cardsEl.innerHTML = portfolioData.holdings.map(h => {
+            const cls = h.dailyReturn >= 0 ? 'positive' : 'negative';
+            return `<div class="holding-card ${cls}">
+                <div class="hc-left">
+                    <div class="hc-name">${h.name}</div>
+                    <div class="hc-meta"><span class="hc-tag">${h.category}</span><span>${h.code}</span></div>
+                </div>
+                <div class="hc-right">
+                    <div class="hc-amount">¥${(h.amount).toLocaleString('zh-CN', {minimumFractionDigits:2, maximumFractionDigits:2})}</div>
+                    <div class="hc-return ${cls}">${h.dailyReturn>=0?'+':''}${h.dailyReturn.toFixed(2)}</div>
+                    <div class="hc-ratio">占比 ${h.ratio}%</div>
+                </div>
+            </div>`;
+        }).join('');
+    }
+    // --- PC端表格 ---
     const tbody = document.getElementById('holdingsBody');
     tbody.innerHTML = portfolioData.holdings.map((h,i) => {
         const dailyCls = retClass(h.dailyReturn);
