@@ -1,7 +1,7 @@
 // 玄枢Alpha · Service Worker
 // 策略：data/*.json → 网络优先（金融数据要实时）; 其他 → 缓存优先
 
-const CACHE_NAME = 'xuanshu-v5';
+const CACHE_NAME = 'xuanshu-v6';
 
 const STATIC_ASSETS = [
   '/xuanshu-alpha/',
