@@ -5,6 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>玄枢Alpha - AI-Powered Investment Intelligence</title>
     <link rel="icon" type="image/svg+xml" href="logo.svg">
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#c9a227">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="玄枢">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+    <script>
+      // Service Worker 注册（PWA 离线缓存）
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () =>
+          navigator.serviceWorker.register('/xuanshu-alpha/sw.js')
+            .catch(e => console.warn('[SW] 注册失败', e))
+        );
+      }
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
     <style>
         /* ========== CSS Variables & Reset (新中式 × 金融终端) ========== */
@@ -601,6 +617,44 @@
         .afd-badge-watch   { background: rgba(201,162,39,.15); color: var(--gold-bright); border: 1px solid rgba(201,162,39,.3); }
         .afd-badge-hold    { background: rgba(31,184,116,.15); color: #2de89a; border: 1px solid rgba(31,184,116,.28); }
         .afd-reasons { font-size: 11.5px; color: var(--paper-faint); line-height: 1.65; }
+
+        /* ========== 移动端底部 Tab 导航 ========== */
+        .tab-nav {
+            display: none;  /* 桌面隐藏 */
+        }
+        @media (max-width: 768px) {
+            /* 底部导航栏 */
+            .tab-nav {
+                display: flex;
+                position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
+                background: rgba(22,17,11,.97);
+                border-top: 1px solid rgba(201,162,39,.2);
+                backdrop-filter: blur(12px);
+                padding-bottom: env(safe-area-inset-bottom, 0px);
+            }
+            .tab-btn {
+                flex: 1; display: flex; flex-direction: column; align-items: center;
+                justify-content: center; padding: 8px 2px 6px;
+                background: none; border: none; cursor: pointer;
+                font-family: var(--sans); color: var(--paper-faint);
+                font-size: 10px; letter-spacing: .5px;
+                transition: color .2s;
+                -webkit-tap-highlight-color: transparent;
+            }
+            .tab-btn .tab-icon { font-size: 18px; line-height: 1; margin-bottom: 3px; }
+            .tab-btn.active { color: var(--gold-bright); }
+            .tab-btn.active .tab-icon { filter: drop-shadow(0 0 6px rgba(201,162,39,.6)); }
+
+            /* panel 切换：仅在移动端生效 */
+            .section[data-panel] { display: none; }
+            .section[data-panel].panel-active { display: block; }
+
+            /* 底部 nav 占位，防止内容被遮挡 */
+            .page-bottom-spacer { height: 60px; }
+
+            /* 隐藏桌面专用装饰 */
+            .stars { display: none; }
+        }
     </style>
 </head>
 <body>
@@ -675,7 +729,7 @@
 <main class="container">
 
     <!-- Section: 实时行情 -->
-    <section class="section">
+    <section class="section" data-panel="overview">
         <h2 class="section-title">实时行情</h2>
         <div class="grid-3" id="pricesGrid">
             <div style="color:var(--paper-faint);font-size:13px;padding:16px;">加载中...</div>
@@ -683,7 +737,7 @@
     </section>
 
     <!-- Section: 资产总览 -->
-    <section class="section">
+    <section class="section" data-panel="overview">
         <h2 class="section-title">资产总览</h2>
         <div class="grid-2">
             <div class="card"><span class="sweep"></span><div id="pieChart" style="width:100%;height:320px;"></div></div>
@@ -711,7 +765,7 @@
     </section>
 
     <!-- Section: 持仓明细 -->
-    <section class="section">
+    <section class="section" data-panel="overview">
         <h2 class="section-title">持仓明细</h2>
         <div class="card" style="padding:0; overflow-x:auto;"><span class="sweep"></span>
             <table class="holdings-table">
@@ -733,7 +787,7 @@
     </section>
 
     <!-- Section: 量化信号 -->
-    <section class="section">
+    <section class="section" data-panel="signals">
         <h2 class="section-title">量化信号</h2>
         <div class="grid-3">
             <div class="signal-card"><span class="sweep"></span>
@@ -770,7 +824,7 @@
     </section>
 
     <!-- Section: 技术指标信号 -->
-    <section class="section">
+    <section class="section" data-panel="signals">
         <h2 class="section-title">技术指标信号</h2>
         <div class="card" style="padding:0;overflow-x:auto;"><span class="sweep"></span>
             <table class="holdings-table" id="techSignalsTable">
@@ -791,10 +845,10 @@
     </section>
 
     <!-- Section: 有色金属信号 (附加) -->
-    <section class="section" id="metalsSection" style="display:none;"></section>
+    <section class="section" data-panel="signals" id="metalsSection" style="display:none;"></section>
 
     <!-- Section: 策略回测 -->
-    <section class="section">
+    <section class="section" data-panel="strategy">
         <h2 class="section-title">策略回测 · 信号策略 vs 买入持有</h2>
         <div class="backtest-grid" id="backtestCards">
             <div style="color:var(--paper-faint);font-size:13px;padding:16px 0;">加载中...</div>
@@ -805,13 +859,13 @@
     </section>
 
     <!-- Section: 早晚报 Timeline -->
-    <section class="section">
+    <section class="section" data-panel="news">
         <h2 class="section-title">市场早晚报</h2>
         <div class="timeline" id="timeline"></div>
     </section>
 
     <!-- Section: 新闻情绪 -->
-    <section class="section">
+    <section class="section" data-panel="news">
         <h2 class="section-title">新闻情绪 · 持仓影响速览</h2>
         <div class="sentiment-grid" id="sentimentGrid">
             <div style="color:var(--paper-faint);font-size:13px;padding:16px 0;">加载中...</div>
@@ -819,7 +873,7 @@
     </section>
 
     <!-- Section: 融合决策卡 -->
-    <section class="section">
+    <section class="section" data-panel="signals">
         <h2 class="section-title">融合决策 · 技术×价值双确认</h2>
         <div class="fusion-grid" id="fusionGrid">
             <div style="color:var(--paper-faint);font-size:13px;padding:16px;">加载中...</div>
@@ -827,7 +881,7 @@
     </section>
 
     <!-- Section: 主动基诊断 -->
-    <section class="section">
+    <section class="section" data-panel="strategy">
         <h2 class="section-title">主动基诊断 · 基金经理/规模/排名/持仓质地</h2>
         <div class="afd-grid" id="activeFundGrid">
             <div style="color:var(--paper-faint);font-size:13px;padding:16px 0;">加载中...</div>
@@ -835,7 +889,7 @@
     </section>
 
     <!-- Section: 基金雷达 -->
-    <section class="section">
+    <section class="section" data-panel="news">
         <h2 class="section-title">基金雷达 · 超跌机会扫描</h2>
         <div id="fundRadarSection">
             <div class="radar-empty">加载中...</div>
@@ -843,7 +897,7 @@
     </section>
 
     <!-- Section: AI 操作建议（真实数据版） -->
-    <section class="section">
+    <section class="section" data-panel="advice">
         <h2 class="section-title">AI 操作建议</h2>
         <!-- 数据来源栏 -->
         <div class="advice-data-bar" id="adviceDataBar">
@@ -874,11 +928,33 @@
         </div>
     </section>
 
+    <!-- 底部 Tab 占位（移动端防遮挡） -->
+    <div class="page-bottom-spacer"></div>
+
 </main>
 
 <footer style="text-align:center;padding:40px 0;color:var(--paper-faint);font-size:11.5px;letter-spacing:1.2px;border-top:1px solid var(--line);position:relative;z-index:1;">
     玄枢 Alpha · 北斗为枢，财富有度 &nbsp;<span style="color:var(--paper-faint);">|</span>&nbsp; AI-Powered Investment Intelligence · Data for reference only
 </footer>
+
+<!-- 底部 Tab 导航栏（仅移动端显示） -->
+<nav class="tab-nav" id="tabNav" role="navigation" aria-label="主导航">
+    <button class="tab-btn active" data-panel="overview" aria-label="总览">
+        <span class="tab-icon">📊</span>总览
+    </button>
+    <button class="tab-btn" data-panel="signals" aria-label="信号">
+        <span class="tab-icon">📡</span>信号
+    </button>
+    <button class="tab-btn" data-panel="strategy" aria-label="策略">
+        <span class="tab-icon">⚡</span>策略
+    </button>
+    <button class="tab-btn" data-panel="news" aria-label="资讯">
+        <span class="tab-icon">📰</span>资讯
+    </button>
+    <button class="tab-btn" data-panel="advice" aria-label="建议">
+        <span class="tab-icon">🧭</span>建议
+    </button>
+</nav>
 
 <script>
 // ========== Portfolio Data — fallback inline（页面加载时会被 data/portfolio.json 覆盖）==========
@@ -900,14 +976,9 @@ const portfolioData = {
     "targetAllocation": {"黄金":24,"AI/科技":28,"纳指100":18,"标普500":8,"有色金属":6,"光伏/新能源":6,"高端制造":10}
 };
 
-// Mock timeline
-const mockTimeline = [
-    {time:"08:30",title:"美联储6月维持利率不变概率升至92%，市场定价9月首次降息",tags:[{text:"黄金↑",type:"up"},{text:"美股→",type:"neutral"}]},
-    {time:"09:15",title:"A股三大指数集体高开，AI概念股领涨，机器人板块涨幅居前",tags:[{text:"A股↑",type:"up"},{text:"AI/科技↑",type:"up"}]},
-    {time:"10:00",title:"国际金价回落至$2,340/oz附近，短期均线形成死叉",tags:[{text:"黄金↓",type:"down"}]},
-    {time:"14:30",title:"英伟达Q1财报超预期，盘后涨超5%，AI算力需求持续强劲",tags:[{text:"美股↑",type:"up"},{text:"AI/科技↑",type:"up"}]},
-    {time:"16:00",title:"有色金属板块承压，铜价回落2.3%，需求预期走弱",tags:[{text:"有色金属↓",type:"down"}]}
-];
+// mockTimeline 已移除——早晚报数据统一由 data/news.json 提供（见 renderTimeline）
+// 若 news.json 不可用，显示「暂无资讯」空状态，不用假数据兜底
+const mockTimeline = [];
 
 // ========== Utility Functions ==========
 function fmt(val, decimals=2) {
@@ -1276,16 +1347,10 @@ function renderTimeline() {
         }).join('');
         return;
     }
-    // 兜底：mock 数据
-    el.innerHTML = mockTimeline.map(item => `
-        <div class="timeline-item">
-            <div class="timeline-time">${item.time}</div>
-            <div class="timeline-title">${item.title}</div>
-            <div class="timeline-tags">
-                ${item.tags.map(t=>`<span class="impact-tag impact-${t.type}">${t.text}</span>`).join('')}
-            </div>
-        </div>
-    `).join('');
+    // 暂无资讯：data/news.json 不可用，显示空状态（不用假数据兜底）
+    el.innerHTML = `<div style="color:var(--paper-faint);font-size:13px;padding:20px 0;text-align:center;">
+        暂无资讯数据 · 请运行 <code style="background:rgba(255,255,255,.06);padding:2px 6px;border-radius:4px;">python3 scripts/build_news_impact.py</code>
+    </div>`;
 }
 
 // ========== 再平衡引擎 (基于真实持仓偏离 + 信号) ==========
@@ -2163,6 +2228,60 @@ async function loadPortfolio() {
         console.warn('[portfolio] fetch 失败，使用 inline fallback', e);
     }
 }
+
+// ========== 移动端 Tab 导航 ==========
+(function initTabNav() {
+    const nav = document.getElementById('tabNav');
+    if (!nav) return;
+
+    // 获取所有带 data-panel 的 section
+    const allPanelSections = () =>
+        document.querySelectorAll('.section[data-panel]');
+
+    function switchTab(panel) {
+        // 更新按钮状态
+        nav.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.panel === panel);
+        });
+        // 切换 section 显示
+        allPanelSections().forEach(sec => {
+            sec.classList.toggle('panel-active', sec.dataset.panel === panel);
+        });
+        // 记住当前 tab
+        try { sessionStorage.setItem('activePanel', panel); } catch(_) {}
+        // 滚回顶部（移动端体验）
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Tab 按钮点击
+    nav.addEventListener('click', e => {
+        const btn = e.target.closest('.tab-btn');
+        if (btn) switchTab(btn.dataset.panel);
+    });
+
+    // 初始化：移动端激活第一个 tab，其余隐藏
+    function initMobile() {
+        if (window.innerWidth > 768) return;
+        const saved = (function() {
+            try { return sessionStorage.getItem('activePanel'); } catch(_) { return null; }
+        })();
+        switchTab(saved || 'overview');
+    }
+
+    // 宽度变化时重置（从桌面拉到移动端）
+    window.addEventListener('resize', () => {
+        if (window.innerWidth <= 768) {
+            const activeBtnPanel = (nav.querySelector('.tab-btn.active') || {}).dataset?.panel;
+            if (activeBtnPanel) switchTab(activeBtnPanel);
+        } else {
+            // 桌面：移除所有 panel-active（CSS 不生效，但保持 DOM 干净）
+            allPanelSections().forEach(sec => sec.classList.remove('panel-active'));
+        }
+    });
+
+    // 页面加载后初始化
+    document.addEventListener('DOMContentLoaded', initMobile);
+})();
 
 // ========== Initialize ==========
 document.addEventListener('DOMContentLoaded', async function() {
