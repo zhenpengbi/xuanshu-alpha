@@ -770,12 +770,12 @@
                 gap: 6px !important;
             }
             .price-card {
-                padding: 10px 14px !important;
+                padding: 8px 14px !important;
                 border-radius: 8px !important;
                 display: flex !important;
                 align-items: center !important;
                 min-height: 0 !important;
-                max-height: 64px !important;
+                max-height: 56px !important;
             }
             .price-card .pc-name {
                 flex: 1; font-size: 13px !important; font-weight: 600; margin-bottom: 0 !important;
@@ -863,12 +863,16 @@
             }
             .cap-item {
                 display: flex; flex-direction: column; align-items: center;
-                padding: 14px 4px 10px; cursor: pointer;
+                padding: 10px 4px 8px; cursor: pointer;
                 transition: background .15s;
                 -webkit-tap-highlight-color: transparent;
             }
             .cap-item:active { background: rgba(201,162,39,.08); }
-            .cap-icon { font-size: 20px; margin-bottom: 4px; }
+            .cap-svg {
+                width: 22px; height: 22px; margin-bottom: 4px;
+                stroke: var(--gold); fill: none;
+                stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round;
+            }
             .cap-label { font-size: 9.5px; color: var(--paper-dim); letter-spacing: .3px; text-align: center; white-space: nowrap; }
         }
 
@@ -951,24 +955,7 @@
 <!-- ========== MAIN CONTENT ========== -->
 <main class="container">
 
-    <!-- 移动端能力概览入口（PC端隐藏） -->
-    <div class="capability-grid" id="capGrid">
-        <div class="cap-item" data-panel="overview" onclick="switchTabFromCap('overview')">
-            <span class="cap-icon">📈</span><span class="cap-label">行情</span>
-        </div>
-        <div class="cap-item" data-panel="signals" onclick="switchTabFromCap('signals')">
-            <span class="cap-icon">📡</span><span class="cap-label">信号</span>
-        </div>
-        <div class="cap-item" data-panel="strategy" onclick="switchTabFromCap('strategy')">
-            <span class="cap-icon">🧠</span><span class="cap-label">回测</span>
-        </div>
-        <div class="cap-item" data-panel="news" onclick="switchTabFromCap('news')">
-            <span class="cap-icon">📰</span><span class="cap-label">资讯</span>
-        </div>
-        <div class="cap-item" data-panel="advice" onclick="switchTabFromCap('advice')">
-            <span class="cap-icon">🎯</span><span class="cap-label">建议</span>
-        </div>
-    </div>
+
 
     <!-- Section: 实时行情 -->
     <section class="section" data-panel="overview">
