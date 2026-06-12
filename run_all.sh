@@ -53,7 +53,11 @@ echo "  策略回测：./run_all.sh --backtest（每周）"
 echo "  价值罗盘：python3 value_compass/build_value_compass.py（重仓变动时重跑）"
 echo "=========================================="
 echo ""
-echo "启动本地预览 → http://localhost:8080"
-echo "（按 Ctrl+C 停止服务器）"
-echo ""
-python3 -m http.server 8080
+if [ -z "$CI" ]; then
+    echo "启动本地预览 → http://localhost:8080"
+    echo "（按 Ctrl+C 停止服务器）"
+    echo ""
+    python3 -m http.server 8080
+else
+    echo "CI 环境，跳过 http.server"
+fi

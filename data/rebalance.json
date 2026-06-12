@@ -1,6 +1,6 @@
 {
   "portfolio_updateTime": "2026-06-10",
-  "updated_at": "2026-06-11 12:26",
+  "updated_at": "2026-06-12 12:03",
   "total_value": 52613.47,
   "rebalance_threshold_pct": 5.0,
   "bullet": {
@@ -43,7 +43,7 @@
       "target_amount": 14731.77,
       "deviation": -14.89,
       "deviation_amount": -7834.15,
-      "signal": "观望",
+      "signal": null,
       "action": "可小幅加仓",
       "reason": "低配 -14.9pt，技术面观望，可小幅补仓",
       "priority": "medium",
@@ -124,7 +124,7 @@
       "target_amount": 3156.81,
       "deviation": 3.8,
       "deviation_amount": 1999.31,
-      "signal": "观望",
+      "signal": null,
       "action": "持有观察",
       "reason": "偏差 +3.8pt 在容忍区间内，按技术信号 [观望] 灵活操作",
       "priority": "low",

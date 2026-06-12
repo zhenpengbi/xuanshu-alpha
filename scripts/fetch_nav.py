@@ -3,7 +3,7 @@
 """玄枢Alpha 基金历史净值抓取
 读取 data/portfolio.json 中的持仓基金，抓取最近 N 个交易日单位净值，
 输出 data/nav.json 供前端净值曲线 sparkline 使用。
-货币基金（余额宝等无单位净值走势）跳过。
+货币基金（嘉实货币E 001812 等无单位净值走势）跳过。
 """
 import json
 import os
@@ -17,7 +17,7 @@ OUT = os.path.join(BASE, "data", "nav.json")
 DAYS = 60  # 取最近 N 个交易日
 
 # 货币基金 / 无单位净值走势的 code 跳过
-SKIP_CODES = {"000198"}  # 余额宝
+SKIP_CODES = {"001812"}  # 嘉实货币E（货币基金，无单位净值走势）
 
 
 def fetch_one(code):
