@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="gold1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#F2DFA7"/>
+      <stop offset="45%" style="stop-color:#D4A94B"/>
+      <stop offset="100%" style="stop-color:#8B6914"/>
+    </linearGradient>
+    <linearGradient id="gold2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F2DFA7;stop-opacity:0.8"/>
+      <stop offset="100%" style="stop-color:#B8860B;stop-opacity:0.5"/>
+    </linearGradient>
+    <radialGradient id="bg" cx="50%" cy="45%" r="55%">
+      <stop offset="0%" style="stop-color:#1a1a30"/>
+      <stop offset="70%" style="stop-color:#0e0e1c"/>
+      <stop offset="100%" style="stop-color:#080810"/>
+    </radialGradient>
+    <radialGradient id="centerGlow" cx="50%" cy="45%" r="40%">
+      <stop offset="0%" style="stop-color:#D4A94B;stop-opacity:0.1"/>
+      <stop offset="100%" style="stop-color:#D4A94B;stop-opacity:0"/>
+    </radialGradient>
+    <filter id="glow1">
+      <feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow2">
+      <feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- 方形背景铺满 -->
+  <rect x="0" y="0" width="512" height="512" fill="url(#bg)"/>
+  
+  <!-- 中心光晕 -->
+  <circle cx="256" cy="230" r="120" fill="url(#centerGlow)"/>
+
+  <!-- 太极阴阳鱼 放大居中 -->
+  <circle cx="256" cy="230" r="72" fill="none" stroke="url(#gold1)" stroke-width="2.2" opacity="0.8" filter="url(#glow1)"/>
+  <!-- S 曲线 -->
+  <path d="M 256,158 C 256,158 292,194 256,230 C 220,266 256,302 256,302" 
+    fill="none" stroke="url(#gold1)" stroke-width="2.2" stroke-linecap="round" opacity="0.8" filter="url(#glow1)"/>
+  <!-- 阳鱼眼 -->
+  <circle cx="256" cy="194" r="5.5" fill="#D4A94B" opacity="0.9" filter="url(#glow2)"/>
+  <!-- 阴鱼眼 -->
+  <circle cx="256" cy="266" r="5.5" fill="none" stroke="#D4A94B" stroke-width="1.6" opacity="0.75"/>
+
+  <!-- 八卦短线 -->
+  <g opacity="0.45" filter="url(#glow1)">
+    <line x1="256" y1="134" x2="256" y2="143" stroke="#D4A94B" stroke-width="2" stroke-linecap="round"/>
+    <line x1="316" y1="170" x2="322" y2="177" stroke="#D4A94B" stroke-width="2" stroke-linecap="round"/>
+    <line x1="332" y1="230" x2="340" y2="230" stroke="#D4A94B" stroke-width="2" stroke-linecap="round"/>
+    <line x1="316" y1="290" x2="322" y2="283" stroke="#D4A94B" stroke-width="2" stroke-linecap="round"/>
+    <line x1="256" y1="317" x2="256" y2="326" stroke="#D4A94B" stroke-width="2" stroke-linecap="round"/>
+    <line x1="196" y1="290" x2="190" y2="283" stroke="#D4A94B" stroke-width="2" stroke-linecap="round"/>
+    <line x1="172" y1="230" x2="180" y2="230" stroke="#D4A94B" stroke-width="2" stroke-linecap="round"/>
+    <line x1="196" y1="170" x2="190" y2="177" stroke="#D4A94B" stroke-width="2" stroke-linecap="round"/>
+  </g>
+
+  <!-- K线趋势线 放大 -->
+  <path d="M 100,340 C 130,325 150,315 180,290 C 210,265 240,250 270,220 C 300,190 330,160 360,135 C 385,115 410,105 435,90" 
+    fill="none" stroke="#D4A94B" stroke-width="2.4" stroke-linecap="round" 
+    opacity="0.65" filter="url(#glow2)"/>
+  
+  <!-- 趋势节点 -->
+  <circle cx="180" cy="290" r="3" fill="#F2DFA7" opacity="0.7" filter="url(#glow1)"/>
+  <circle cx="270" cy="220" r="3.5" fill="#F2DFA7" opacity="0.8" filter="url(#glow1)"/>
+  <circle cx="360" cy="135" r="3.5" fill="#F2DFA7" opacity="0.85" filter="url(#glow1)"/>
+  <circle cx="435" cy="90" r="4" fill="#F2DFA7" opacity="0.9" filter="url(#glow2)"/>
+  
+  <!-- 箭头 -->
+  <path d="M 429,96 L 435,90 L 429,84" fill="none" stroke="#F2DFA7" stroke-width="1.6" stroke-linecap="round" opacity="0.7"/>
+
+  <!-- 北斗七星 左上 -->
+  <circle cx="80" cy="80" r="2" fill="#F2DFA7" opacity="0.4" filter="url(#glow1)"/>
+  <circle cx="96" cy="70" r="1.6" fill="#F2DFA7" opacity="0.35"/>
+  <circle cx="107" cy="84" r="1.6" fill="#F2DFA7" opacity="0.35"/>
+  <circle cx="92" cy="92" r="1.6" fill="#F2DFA7" opacity="0.35"/>
+  <circle cx="120" cy="65" r="1.3" fill="#F2DFA7" opacity="0.3"/>
+  <circle cx="136" cy="55" r="1.3" fill="#F2DFA7" opacity="0.3"/>
+  <circle cx="150" cy="46" r="1.6" fill="#F2DFA7" opacity="0.35"/>
+
+  <!-- 品牌文字 -->
+  <text x="256" y="400" text-anchor="middle" 
+    font-family="serif" 
+    font-size="42" font-weight="700" fill="url(#gold1)" letter-spacing="6" opacity="0.95">玄枢</text>
+  <text x="256" y="438" text-anchor="middle" 
+    font-family="serif" 
+    font-size="16" font-weight="300" fill="#C9A96E" letter-spacing="8" opacity="0.6">A L P H A</text>
+</svg>
