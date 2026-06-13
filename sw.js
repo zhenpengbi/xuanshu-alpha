@@ -1,7 +1,7 @@
 // 玄枢Alpha · Service Worker
 // 策略：data/*.json → 网络优先（金融数据要实时）; 其他 → 缓存优先
 
-const CACHE_NAME = 'xuanshu-v6';
+const CACHE_NAME = 'xuanshu-v7';
 
 const STATIC_ASSETS = [
   '/xuanshu-alpha/',
@@ -10,6 +10,8 @@ const STATIC_ASSETS = [
   '/xuanshu-alpha/manifest.json',
   '/xuanshu-alpha/icons/icon-192.png',
   '/xuanshu-alpha/icons/icon-512.png',
+  '/xuanshu-alpha/icons/icon-maskable-192.png',
+  '/xuanshu-alpha/icons/icon-maskable-512.png',
   'https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js',
 ];
 
@@ -17,8 +19,10 @@ const STATIC_ASSETS = [
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache =>
-      cache.addAll(STATIC_ASSETS).catch(err =>
-        console.warn('[SW] pre-cache partial failure', err)
+      Promise.allSettled(
+        STATIC_ASSETS.map(url => cache.add(url).catch(err =>
+          console.warn('[SW] pre-cache skip:', url, err)
+        ))
       )
     ).then(() => self.skipWaiting())
   );
