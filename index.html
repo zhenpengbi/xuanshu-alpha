@@ -13,6 +13,15 @@
     <meta name="apple-mobile-web-app-title" content="玄枢">
     <link rel="apple-touch-icon" href="icons/icon-192.png">
     <script>
+      // ── 防白闪 IIFE：在任何样式解析前立即应用已保存主题 ──
+      (function(){
+        var t = localStorage.getItem('xuanshu-theme') || 'auto';
+        if (t === 'dark' || t === 'light') {
+          document.documentElement.setAttribute('data-theme', t);
+        }
+      })();
+    </script>
+    <script>
       // Service Worker 注册（PWA 离线缓存）
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () =>
@@ -898,8 +907,20 @@
             .section[data-panel] { display: none; }
             .section[data-panel].panel-active { display: block; }
 
-            /* ── 底部 nav 占位，防止内容被遮挡 ── */
-            .page-bottom-spacer { height: 72px; }
+            /* ── 底部 nav 占位，防止内容被遮挡（含 safe-area）── */
+            .page-bottom-spacer { height: calc(72px + env(safe-area-inset-bottom, 0px)); }
+
+            /* ── main 自身也补 padding-bottom 双重保险 ── */
+            main.container { padding-bottom: calc(72px + env(safe-area-inset-bottom, 0px)) !important; }
+
+            /* ── 资讯 Tab：timeline / sentimentGrid / fundRadarSection 防溢出 ── */
+            .timeline { overflow-x: hidden; }
+            .timeline-item { overflow-wrap: break-word; word-break: break-word; }
+            .sentiment-grid { overflow-x: hidden; }
+            #fundRadarSection { overflow-x: hidden; }
+            /* 雷达卡内横向表格滚动 */
+            .radar-card table,
+            .radar-card .radar-table-wrap { overflow-x: auto; display: block; -webkit-overflow-scrolling: touch; }
 
             /* ── 隐藏桌面专用装饰 ── */
             .stars { display: none; }
@@ -2913,7 +2934,7 @@ async function loadPortfolio() {
     }
 
     function savedTheme() {
-        return localStorage.getItem(STORAGE_KEY) || 'dark';
+        return localStorage.getItem(STORAGE_KEY) || 'auto';
     }
 
     // 页面加载立即应用（防止白闪）
