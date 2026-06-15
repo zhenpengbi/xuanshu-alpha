@@ -977,34 +977,25 @@
             /* ── 隐藏桌面专用装饰 ── */
             .stars { display: none; }
 
-            /* ── Header 极度精简：56px 高 ── */
+            /* ── Header 极度精简：48px 高 ── */
             .header { padding: 0; }
             .header-inner {
                 flex-direction: row !important; gap: 0 !important;
-                padding: 0 16px !important;
-                height: 56px; border-radius: 0 !important;
+                padding: 0 12px !important;
+                height: 48px; border-radius: 0 !important;
                 border-left: none !important; border-right: none !important; border-top: none !important;
                 background: var(--bg-secondary) !important;
                 box-shadow: 0 1px 0 var(--accent-line) !important;
                 align-items: center;
                 justify-content: space-between;
             }
-            /* 隐藏Logo SVG、副标题、LIVE 方框 */
-            .logo-svg, .subtitle { display: none !important; }
-            /* 只显示品牌名（用 ::before 伪元素写文字） */
-            .logo-area {
-                gap: 0 !important;
-                font-size: 17px; font-weight: 700;
-                background: linear-gradient(135deg, #7de8ff, var(--accent));
-                -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-                background-clip: text;
-                letter-spacing: 1px;
-            }
-            .logo-area::before { content: '玄枢'; }
-            /* header-stats：横排，数字紧凑 */
+            /* 移动端完全隐藏品牌区域（logo+文字+副标题），只展示 stats + 主题按钮 */
+            .logo-area { display: none !important; }
+            /* header-stats 自适应分配空间，左起排列 */
             .header-stats {
-                gap: 16px !important; flex-wrap: nowrap !important;
-                justify-content: flex-end !important; align-items: center !important;
+                flex: 1;
+                gap: 12px !important; flex-wrap: nowrap !important;
+                justify-content: flex-start !important; align-items: center !important;
             }
             .header-stat { text-align: right; }
             .header-stat-label { font-size: 9px; letter-spacing: 1px; margin-bottom: 2px; }
