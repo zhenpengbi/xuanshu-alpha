@@ -2,8 +2,10 @@ name: 玄枢Alpha 每日数据更新
 
 on:
   schedule:
-    - cron: '30 8 * * 1-5'
-  workflow_dispatch:
+    - cron: '30 8 * * 1-5'    # UTC 08:30 = 北京 16:30
+  workflow_dispatch:           # 手动触发（GitHub Actions 页面）
+  repository_dispatch:         # 外部 cron 兜底：POST /repos/{owner}/{repo}/dispatches
+    types: [daily-update]
 
 permissions:
   contents: write
@@ -24,6 +26,8 @@ jobs:
           pip install akshare==1.18.64 pandas numpy requests ta tabulate yfinance multitasking
       - name: 拉取行情
         run: python3 fetch_prices.py
+      - name: 更新持仓净值
+        run: python3 scripts/update_nav.py
       - name: 计算技术指标
         run: python3 data/indicators.py
       - name: 生成买卖信号
