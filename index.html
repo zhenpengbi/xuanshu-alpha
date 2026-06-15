@@ -1080,10 +1080,19 @@
             }
             .signals-carousel-wrap::-webkit-scrollbar { display: none; }
             .signals-carousel-wrap .signal-card {
-                flex: 0 0 85vw !important;
-                min-width: 85vw !important;
+                flex: 0 0 75vw !important;   /* 75vw 露出右侧卡片边缘，暗示可横滑 */
+                min-width: 75vw !important;
+                padding: 14px 16px !important;
                 scroll-snap-align: start;
                 border-radius: 12px !important;
+            }
+            /* Gauge 图表移动端压缩高度，指针/刻度完整显示 */
+            .signals-carousel-wrap .signal-card [id$="Gauge"] {
+                height: 160px !important;
+            }
+            /* VIX 卡片数字区上间距缩小 */
+            .signals-carousel-wrap .signal-card .vix-indicator {
+                margin-top: 20px;
             }
 
             /* ── grid-2（资产概览图表）移动端单列 ── */
