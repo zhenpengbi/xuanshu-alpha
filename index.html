@@ -450,6 +450,27 @@
         .vix-dot { width: 16px; height: 16px; border-radius: 50%; animation: vixPulse 2s infinite; }
         @keyframes vixPulse { 0%,100%{opacity:1;} 50%{opacity:0.5;} }
 
+        /* ========== DateTabBar — 可复用日期/分类切换胶囊 ========== */
+        .date-tab-bar {
+            display: flex; gap: 6px; margin-bottom: 12px;
+            overflow-x: auto; scrollbar-width: none;
+            padding: 2px 0;
+        }
+        .date-tab-bar::-webkit-scrollbar { display: none; }
+        .date-tab {
+            flex: none; padding: 6px 14px;
+            font-size: 12px; font-weight: 500;
+            border-radius: 20px; border: 1px solid var(--border-color);
+            background: var(--bg-card); color: var(--text-secondary);
+            cursor: pointer; transition: background .2s, color .2s, border-color .2s;
+            white-space: nowrap; font-family: var(--sans);
+        }
+        .date-tab:hover { background: var(--bg-hover); color: var(--text-primary); }
+        .date-tab.active {
+            background: var(--accent); color: #fff;
+            border-color: var(--accent);
+        }
+
         /* ========== Timeline ========== */
         .timeline { position: relative; padding-left: 32px; }
         .timeline::before {
@@ -2020,32 +2041,111 @@ function impactArrow(view){
     if(/利空/.test(view)) return '↓';
     return '→';
 }
+/**
+ * renderDateTabs — 通用日期/分类切换胶囊组件（可复用）
+ * @param {HTMLElement} container  — 将 tab-bar 前置插入此容器
+ * @param {Array<{label:string, value:string}>} dates — tab 数据
+ * @param {Function} onSelect — 选中回调，参数为 value
+ */
+function renderDateTabs(container, dates, onSelect) {
+    // 清除已有 tab-bar，避免重复渲染
+    const existing = container.querySelector('.date-tab-bar');
+    if (existing) existing.remove();
+
+    const tabBar = document.createElement('div');
+    tabBar.className = 'date-tab-bar';
+    dates.forEach((d, i) => {
+        const tab = document.createElement('button');
+        tab.className = 'date-tab' + (i === 0 ? ' active' : '');
+        tab.textContent = d.label;
+        tab.dataset.dateValue = d.value;
+        tab.addEventListener('click', () => {
+            tabBar.querySelectorAll('.date-tab').forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            onSelect(d.value);
+        });
+        tabBar.appendChild(tab);
+    });
+    container.prepend(tabBar);
+}
+
+/**
+ * renderTimelineItems — 将一组 news items 渲染到 #timeline 容器内（保留 tab-bar）
+ */
+function renderTimelineItems(el, items, meta) {
+    // 保留 date-tab-bar（若存在），只替换后面的内容
+    const tabBar = el.querySelector('.date-tab-bar');
+    // 清除非 tab-bar 的子节点
+    Array.from(el.childNodes).forEach(n => {
+        if (n !== tabBar) n.remove ? n.remove() : el.removeChild(n);
+    });
+
+    if (!items || !items.length) {
+        const empty = document.createElement('div');
+        empty.style.cssText = 'color:var(--paper-faint);font-size:13px;padding:20px 0;text-align:center;';
+        empty.textContent = '该期暂无资讯数据';
+        el.appendChild(empty);
+        return;
+    }
+
+    const header = document.createElement('div');
+    header.style.cssText = 'font-size:11px;color:var(--text-muted);margin-bottom:14px;';
+    header.textContent = `数据更新：${meta.date||meta.updated||''} ${meta.period||''} · 每条附 AI 持仓影响判断`;
+    el.appendChild(header);
+
+    items.forEach(item => {
+        const imp = item.impact || {};
+        const tags = Object.keys(IMPACT_META)
+            .filter(k => imp[k])
+            .map(k => {
+                const view = imp[k];
+                return `<span class="impact-tag impact-${impactType(view)}">${IMPACT_META[k].label}${impactArrow(view)} ${view}</span>`;
+            }).join('');
+        const div = document.createElement('div');
+        div.className = 'timeline-item';
+        div.innerHTML = `
+            <div class="timeline-time">${item.time||''}${item.source?` · 来源 ${item.source}`:''}</div>
+            <div class="timeline-title">${item.title||''}</div>
+            ${item.summary?`<div class="timeline-summary">${item.summary}</div>`:''}
+            ${tags?`<div class="timeline-tags">${tags}</div>`:''}
+            ${item.reason?`<div class="timeline-reason">💡 ${item.reason}</div>`:''}`;
+        el.appendChild(div);
+    });
+}
+
 function renderTimeline() {
     const el = document.getElementById('timeline');
     const news = window.newsData;
-    if (news && Array.isArray(news.items) && news.items.length) {
-        // 真实早晚报数据
-        const header = `<div style="font-size:11px;color:var(--text-muted);margin-bottom:14px;">数据更新：${news.updated||''} ${news.period||''} · 每条附 AI 持仓影响判断</div>`;
-        el.innerHTML = header + news.items.map(item => {
-            const imp = item.impact || {};
-            const tags = Object.keys(IMPACT_META)
-                .filter(k => imp[k])
-                .map(k => {
-                    const view = imp[k];
-                    return `<span class="impact-tag impact-${impactType(view)}">${IMPACT_META[k].label}${impactArrow(view)} ${view}</span>`;
-                }).join('');
-            return `
-            <div class="timeline-item">
-                <div class="timeline-time">${item.time||''}${item.source?` · 来源 ${item.source}`:''}</div>
-                <div class="timeline-title">${item.title||''}</div>
-                ${item.summary?`<div class="timeline-summary">${item.summary}</div>`:''}
-                ${tags?`<div class="timeline-tags">${tags}</div>`:''}
-                ${item.reason?`<div class="timeline-reason">💡 ${item.reason}</div>`:''}
-            </div>`;
-        }).join('');
+
+    if (!news) {
+        el.innerHTML = `<div style="color:var(--paper-faint);font-size:13px;padding:20px 0;text-align:center;">
+            暂无资讯数据 · 请运行 <code style="background:rgba(255,255,255,.06);padding:2px 6px;border-radius:4px;">python3 scripts/build_news_impact.py</code>
+        </div>`;
         return;
     }
-    // 暂无资讯：data/news.json 不可用，显示空状态（不用假数据兜底）
+
+    // ── 新格式：history 数组（滚动7天窗口）──
+    if (Array.isArray(news.history) && news.history.length) {
+        const tabs = news.history.map((h, i) => ({
+            label: `${h.date} ${h.period||''}`.trim(),
+            value: String(i)
+        }));
+        // 先渲染第一期内容
+        renderTimelineItems(el, news.history[0].items, news.history[0]);
+        // 再挂 tab-bar（prepend 到最前）
+        renderDateTabs(el, tabs, idx => {
+            const entry = news.history[parseInt(idx)];
+            if (entry) renderTimelineItems(el, entry.items, entry);
+        });
+        return;
+    }
+
+    // ── 旧格式：items 数组（向下兼容）──
+    if (Array.isArray(news.items) && news.items.length) {
+        renderTimelineItems(el, news.items, news);
+        return;
+    }
+
     el.innerHTML = `<div style="color:var(--paper-faint);font-size:13px;padding:20px 0;text-align:center;">
         暂无资讯数据 · 请运行 <code style="background:rgba(255,255,255,.06);padding:2px 6px;border-radius:4px;">python3 scripts/build_news_impact.py</code>
     </div>`;

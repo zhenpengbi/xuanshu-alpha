@@ -6,6 +6,10 @@
 读取 data/news.json 每条新闻的 impact 字段，按持仓标的做渠道映射，
 统计利多/利空/中性条数，计算情绪净值，输出 data/news_impact.json。
 
+news.json 支持两种格式（自动识别）：
+  旧格式: {"updated":"...", "period":"...", "items":[...]}
+  新格式: {"updated":"...", "history":[{"date":"...","period":"...","items":[...]}, ...]}
+
 持仓→新闻渠道映射（impact 字段的 key）：
   000216 黄金       → gold
   513100 纳指100    → nasdaq
@@ -106,6 +110,29 @@ def build_impact(news_items: list, channel: str) -> dict:
     }
 
 
+def extract_latest_items(news_data: dict) -> tuple:
+    """
+    从 news.json 中提取最新一期新闻条目，兼容旧格式和新 history 格式。
+    Returns:
+        (items: list, date_str: str, period_str: str)
+    可复用：任何需要读取 news.json 最新条目的场景均可调用。
+    """
+    # 新格式：history 数组
+    if "history" in news_data and news_data["history"]:
+        latest = news_data["history"][0]  # history[0] 为最新
+        return (
+            latest.get("items", []),
+            latest.get("date", news_data.get("updated", "")),
+            latest.get("period", ""),
+        )
+    # 旧格式：顶层 items
+    return (
+        news_data.get("items", []),
+        news_data.get("updated", ""),
+        news_data.get("period", ""),
+    )
+
+
 def main():
     if not os.path.exists(NEWS_JSON):
         print(f"❌ {NEWS_JSON} 不存在，请先运行新闻更新脚本")
@@ -114,7 +141,7 @@ def main():
     with open(NEWS_JSON, "r", encoding="utf-8") as f:
         news_data = json.load(f)
 
-    news_items = news_data.get("items", [])
+    news_items, news_date, news_period = extract_latest_items(news_data)
     if not news_items:
         print("⚠️  news.json 中无新闻条目")
 
@@ -132,8 +159,8 @@ def main():
 
     output = {
         "updated_at":  datetime.now().strftime("%Y-%m-%d %H:%M"),
-        "news_date":   news_data.get("updated", ""),
-        "news_period": news_data.get("period", ""),
+        "news_date":   news_date,
+        "news_period": news_period,
         "total_news":  len(news_items),
         "items":       results,
     }
