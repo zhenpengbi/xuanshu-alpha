@@ -253,18 +253,20 @@
             background: var(--bg-secondary);
             border: 1px solid var(--accent-line);
             box-shadow: 0 20px 60px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.04), 0 0 40px var(--accent-glow);
-            position: relative; overflow: hidden;
+            position: relative;
             transition: background .3s, border-color .3s;
+            /* overflow:hidden 已移除，避免遮挡主题弹窗等浮层 */
         }
         /* 顶部青蓝装饰线 */
         .header-inner::after {
             content:""; position:absolute; top:0; left:5%; right:5%; height:1px;
             background: linear-gradient(90deg, transparent, var(--accent-dim), var(--accent), var(--accent-dim), transparent);
-            pointer-events:none;
+            pointer-events:none; overflow:hidden;
         }
         .header-inner::before {
             content:""; position:absolute; left:-40px; top:-60px; width:240px; height:240px;
-            background: radial-gradient(circle, var(--accent-glow), transparent 65%); pointer-events:none;
+            background: radial-gradient(circle, var(--accent-glow), transparent 65%);
+            pointer-events:none; overflow:hidden;
         }
         .logo-area { display: flex; align-items: center; gap: 16px; position: relative; }
         .logo-svg { height: 40px; }
@@ -671,6 +673,18 @@
             font-size: 10px; color: var(--paper-faint); font-family: var(--mono);
             border-top: 1px solid var(--line); padding-top: 8px; letter-spacing: .3px;
         }
+        /* 未持仓基金标注 */
+        .backtest-card.not-held {
+            opacity: .75;
+            border-style: dashed;
+        }
+        .bt-not-held-badge {
+            position: absolute; top: 10px; right: 10px;
+            font-size: 10px; font-family: var(--mono); font-weight: 600;
+            padding: 2px 8px; border-radius: 10px;
+            background: rgba(130,120,100,.2); color: var(--paper-faint);
+            border: 1px solid rgba(130,120,100,.35); letter-spacing: .5px;
+        }
         /* 回测图表 card */
         .backtest-chart-card {
             background: var(--bg-card);
@@ -914,10 +928,14 @@
             main.container { padding-bottom: calc(72px + env(safe-area-inset-bottom, 0px)) !important; }
 
             /* ── 资讯 Tab：timeline / sentimentGrid / fundRadarSection 防溢出 ── */
-            .timeline { overflow-x: hidden; }
+            .timeline { overflow-x: hidden; padding-left: 24px; }
             .timeline-item { overflow-wrap: break-word; word-break: break-word; }
-            .sentiment-grid { overflow-x: hidden; }
-            #fundRadarSection { overflow-x: hidden; }
+            .timeline-title { font-size: 13px; }
+            /* 新闻情绪：768px 下强制单列（原本 600px 才单列） */
+            .sentiment-grid { grid-template-columns: 1fr !important; overflow-x: hidden; }
+            /* 雷达区 */
+            #fundRadarSection { overflow-x: hidden; width: 100%; }
+            .radar-grid { grid-template-columns: 1fr !important; }
             /* 雷达卡内横向表格滚动 */
             .radar-card table,
             .radar-card .radar-table-wrap { overflow-x: auto; display: block; -webkit-overflow-scrolling: touch; }
@@ -958,7 +976,11 @@
             .header-stat-label { font-size: 9px; letter-spacing: 1px; margin-bottom: 2px; }
             .header-stat-value { font-size: 16px !important; line-height: 1.15; }
             /* 更新时间缩成极小 */
-            .update-time { font-size: 9px !important; color: var(--paper-faint); }
+            .update-time {
+                font-size: 9px !important; color: var(--paper-faint);
+                white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+                max-width: 72px;
+            }
 
             /* ── Section 间距收紧 ── */
             .section { padding: 16px 0 !important; }
@@ -1542,7 +1564,8 @@ function renderHeader() {
     const el = document.getElementById('headerDailyReturn');
     el.textContent = fmtReturn(totalDaily);
     el.className = 'header-stat-value num ' + retClass(totalDaily);
-    document.getElementById('headerUpdateTime').textContent = '更新: ' + portfolioData.updateTime;
+    document.getElementById('headerUpdateTime').textContent =
+        window.innerWidth <= 768 ? portfolioData.updateTime : ('更新: ' + portfolioData.updateTime);
 }
 
 // ========== Render Metrics ==========
@@ -2048,7 +2071,8 @@ async function loadAndRenderPrices() {
         renderPricesSection(prices);
         // 用最新 updated_at 更新 header 时间
         const latest = prices.reduce((a, b) => a.updated_at > b.updated_at ? a : b);
-        document.getElementById('headerUpdateTime').textContent = '行情更新: ' + latest.updated_at;
+        document.getElementById('headerUpdateTime').textContent =
+            window.innerWidth <= 768 ? latest.updated_at : ('行情更新: ' + latest.updated_at);
     } catch(e) { console.warn('prices.json 加载失败', e); }
 }
 
@@ -2239,6 +2263,8 @@ async function loadAndRenderBacktest() {
 function renderBacktestCards(results) {
     const grid = document.getElementById('backtestCards');
     if (!grid || !results.length) { renderBacktestFallback(); return; }
+    // 当前持仓代码集合，用于标注"未持仓"
+    const heldCodes = new Set((portfolioData.holdings || []).map(h => h.code));
     grid.innerHTML = results.map(r => {
         const s = r.metrics.strategy;
         const b = r.metrics.benchmark;
@@ -2249,8 +2275,12 @@ function renderBacktestCards(results) {
         const retSign  = s.annual_return_pct >= 0 ? '+' : '';
         const ddCls    = s.max_drawdown_pct <= -20 ? 'negative' : '';
         const shpCls   = s.sharpe >= 1 ? 'positive' : s.sharpe < 0 ? 'negative' : '';
-        return `<div class="backtest-card" data-code="${escHtml(r.code)}"
+        const isHeld   = heldCodes.has(r.code);
+        const notHeldBadge = isHeld ? '' : '<span class="bt-not-held-badge">未持仓</span>';
+        const notHeldCls   = isHeld ? '' : ' not-held';
+        return `<div class="backtest-card${notHeldCls}" data-code="${escHtml(r.code)}"
                      onclick="selectBtFund('${escHtml(r.code)}')">
+            ${notHeldBadge}
             <div class="bt-name">${escHtml(r.name)}</div>
             <div class="bt-code num">${escHtml(r.code)}</div>
             <div class="bt-metrics">
@@ -2866,6 +2896,16 @@ async function loadPortfolio() {
         });
         // 记住当前 tab
         try { sessionStorage.setItem('activePanel', panel); } catch(_) {}
+        // ECharts 在 display:none panel 里 init 时宽高=0，切回后需 resize
+        requestAnimationFrame(() => {
+            if (panel === 'strategy' && typeof _btChart !== 'undefined' && _btChart) {
+                _btChart.resize();
+            }
+            if (panel === 'overview') {
+                if (typeof _pieChart !== 'undefined' && _pieChart) _pieChart.resize();
+                if (typeof _barChart !== 'undefined' && _barChart) _barChart.resize();
+            }
+        });
         // 滚回顶部（移动端体验）
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
