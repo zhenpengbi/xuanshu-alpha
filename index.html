@@ -727,9 +727,17 @@
         .sc-bar-bear { background: var(--red); border-radius: 0 3px 3px 0; }
         .sc-counts { font-size: 11px; color: var(--paper-faint); font-family: var(--mono); margin-bottom: 8px; }
         .sc-counts .bull { color: var(--green); } .sc-counts .bear { color: var(--red); }
-        .sc-news { font-size: 11.5px; color: var(--paper-faint); line-height: 1.6; border-top: 1px solid var(--line); padding-top: 8px; }
-        .sc-news-item { display: flex; gap: 6px; margin-bottom: 4px; }
-        .sc-news-dot { flex: none; margin-top: 5px; width: 5px; height: 5px; border-radius: 50%; }
+.sc-news { font-size: 11.5px; color: var(--paper-faint); line-height: 1.6; border-top: 1px solid var(--line); padding-top: 8px; }
+.sc-news-item { display: flex; gap: 6px; margin-bottom: 4px; }
+.sc-news-dot { flex: none; margin-top: 5px; width: 5px; height: 5px; border-radius: 50%; }
+/* 新闻条目标题：PC 端单行省略，移动端覆盖为两行展示 */
+.sc-news-title {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+}
         .dot-bull { background: var(--green); } .dot-bear { background: var(--red); } .dot-neut { background: var(--paper-faint); }
 
         /* ========== 基金雷达卡片 ========== */
@@ -954,6 +962,14 @@
             .sentiment-card {
                 word-break: break-word; overflow-wrap: break-word;
                 overflow: visible !important;
+            }
+            /* 新闻条目标题：移动端最多两行，超出省略 */
+            .sc-news-title {
+                white-space: normal;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                line-height: 1.4;
             }
             /* 雷达区 */
             #fundRadarSection { overflow-x: clip; width: 100%; }
@@ -2488,10 +2504,10 @@ function renderSentiment(items, meta) {
         // Top news (max 3)
         const newsHtml = (item.top_impact_news || []).slice(0, 3).map(n => {
             const dc = n.sentiment === '利多' ? 'dot-bull' : n.sentiment === '利空' ? 'dot-bear' : 'dot-neut';
-            return `<div class="sc-news-item">
-                <span class="sc-news-dot ${dc}"></span>
-                <span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${escHtml(n.title)}">${escHtml(n.title)}</span>
-            </div>`;
+return `<div class="sc-news-item">
+<span class="sc-news-dot ${dc}"></span>
+<span class="sc-news-title" title="${escHtml(n.title)}">${escHtml(n.title)}</span>
+</div>`;
         }).join('');
         return `<div class="sentiment-card ${cardCls}">
             <div class="sc-name">${escHtml(item.name)}</div>
