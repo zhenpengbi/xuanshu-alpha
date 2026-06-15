@@ -1,36 +1,36 @@
 {
-  "updated_at": "2026-06-12 11:57",
-  "news_date": "2026-06-11",
+  "updated_at": "2026-06-15 14:41",
+  "news_date": "2026-06-15",
   "news_period": "晚报",
-  "total_news": 8,
+  "total_news": 7,
   "items": [
     {
       "code": "000216",
       "name": "易方达黄金ETF联接C",
       "channel": "gold",
       "bullish_count": 1,
-      "bearish_count": 3,
-      "neutral_count": 4,
-      "sentiment_score": -2,
-      "sentiment_label": "偏空",
+      "bearish_count": 1,
+      "neutral_count": 5,
+      "sentiment_score": 0,
+      "sentiment_label": "中性",
       "top_impact_news": [
         {
-          "title": "美国5月CPI同比4.2%创三年新高，核心CPI环比超预期回落，美联储按兵不动",
-          "time": "晚报 · 宏观",
-          "summary": "5月CPI同比4.2%为2023年4月以来最高，能源贡献月度涨幅六成；但核心CPI环比仅0.21%大幅低于预期，中金等机构维持年内不降息不加息判断，新任主席沃什鹰派但门槛高。",
+          "title": "美伊达成停战谅解备忘录，A股全线反弹创业板指大涨超5%",
+          "time": "晚报 · 地缘",
+          "summary": "美伊将于6月19日签署停战协议，美国解除霍尔木兹海峡封锁；A股6月15日强势反弹，沪指涨1.61%，创业板指涨5.3%，算力硬件和半导体领涨。",
           "sentiment": "利空"
         },
         {
-          "title": "美伊冲突升级：美军空袭伊朗，霍尔木兹海峡全面关闭，国际油价直线拉升",
-          "time": "晚报 · 宏观",
-          "summary": "美伊在霍尔木兹海峡发生海上冲突，格什姆岛等遭袭，伊朗宣布关闭霍尔木兹，布伦特原油涨至93美元/桶，全球避险情绪急剧升温。",
+          "title": "金价测试4000美元关键支撑后技术性反弹，短线震荡偏多",
+          "time": "晚报 · 黄金",
+          "summary": "国际现货黄金约4210美元/盎司，前期大幅下挫测试4000美元关键支撑位后迎来技术性反弹，市场观望美伊协议最终落地结果。",
           "sentiment": "利多"
         },
         {
-          "title": "美联储主席沃什推\"缩表先行\"新框架，与鲍威尔时代形成根本分野",
-          "time": "晚报 · 货币政策",
-          "summary": "沃什任职后推行\"降息+缩表并行\"组合，重建政策公信力优先，预计强化缩表而非暗示加息；中信证券预判年内维持利率不变，流动性驱动资产将持续面压。",
-          "sentiment": "利空"
+          "title": "美联储6月议息会议前瞻：维持利率不变概率98.5%，点阵图或转鹰",
+          "time": "晚报 · 宏观",
+          "summary": "6月18日美联储会议预计维持利率不变，但可能取消宽松倾向，点阵图指引或由2026-2027年各降息1次转为维持不变，新主席沃什首秀受关注。",
+          "sentiment": "中性"
         }
       ]
     },
@@ -38,29 +38,29 @@
       "code": "008585",
       "name": "天弘AI主题指数C",
       "channel": "ashare",
-      "bullish_count": 0,
-      "bearish_count": 3,
-      "neutral_count": 5,
-      "sentiment_score": -3,
-      "sentiment_label": "偏空",
+      "bullish_count": 3,
+      "bearish_count": 0,
+      "neutral_count": 4,
+      "sentiment_score": 3,
+      "sentiment_label": "偏多",
       "top_impact_news": [
         {
-          "title": "美国5月CPI同比4.2%创三年新高，核心CPI环比超预期回落，美联储按兵不动",
-          "time": "晚报 · 宏观",
-          "summary": "5月CPI同比4.2%为2023年4月以来最高，能源贡献月度涨幅六成；但核心CPI环比仅0.21%大幅低于预期，中金等机构维持年内不降息不加息判断，新任主席沃什鹰派但门槛高。",
-          "sentiment": "利空"
+          "title": "美伊达成停战谅解备忘录，A股全线反弹创业板指大涨超5%",
+          "time": "晚报 · 地缘",
+          "summary": "美伊将于6月19日签署停战协议，美国解除霍尔木兹海峡封锁；A股6月15日强势反弹，沪指涨1.61%，创业板指涨5.3%，算力硬件和半导体领涨。",
+          "sentiment": "利多"
         },
         {
-          "title": "美伊冲突升级：美军空袭伊朗，霍尔木兹海峡全面关闭，国际油价直线拉升",
-          "time": "晚报 · 宏观",
-          "summary": "美伊在霍尔木兹海峡发生海上冲突，格什姆岛等遭袭，伊朗宣布关闭霍尔木兹，布伦特原油涨至93美元/桶，全球避险情绪急剧升温。",
-          "sentiment": "利空"
-        },
-        {
-          "title": "Anthropic CEO呼吁政府强制监管AI，英伟达跌近4%市值破5万亿美元，超微电脑跌28%",
+          "title": "AI巨头密集发布新品：OpenAI GPT-5、Claude 5、苹果Siri重构",
           "time": "晚报 · 科技",
-          "summary": "Anthropic CEO Dario Amodei公开呼吁强制性AI监管；英伟达跌3.73%较近期高点回落15%，市值跌破5万亿；超微电脑因股权融资计划暴跌28%；甲骨文财报后盘后跌超9%。",
-          "sentiment": "利空"
+          "summary": "OpenAI发布GPT-5 Preview（1M上下文+原生多模态），Anthropic推出Claude 5（MMLU-Pro 98.3%），苹果WWDC26 Siri接入Gemini。",
+          "sentiment": "利多"
+        },
+        {
+          "title": "有色金属板块A股领涨，铜铝价格企稳回升",
+          "time": "晚报 · 有色",
+          "summary": "A股有色金属板块今日表现强势，新金路、金钼股份等高开涨停；电解铝现货约24140元/吨，铜价约104110元/吨，库存持续去化。",
+          "sentiment": "利多"
         }
       ]
     },
@@ -68,29 +68,29 @@
       "code": "017766",
       "name": "南方有色金属ETF联接E",
       "channel": "ashare",
-      "bullish_count": 0,
-      "bearish_count": 3,
-      "neutral_count": 5,
-      "sentiment_score": -3,
-      "sentiment_label": "偏空",
+      "bullish_count": 3,
+      "bearish_count": 0,
+      "neutral_count": 4,
+      "sentiment_score": 3,
+      "sentiment_label": "偏多",
       "top_impact_news": [
         {
-          "title": "美国5月CPI同比4.2%创三年新高，核心CPI环比超预期回落，美联储按兵不动",
-          "time": "晚报 · 宏观",
-          "summary": "5月CPI同比4.2%为2023年4月以来最高，能源贡献月度涨幅六成；但核心CPI环比仅0.21%大幅低于预期，中金等机构维持年内不降息不加息判断，新任主席沃什鹰派但门槛高。",
-          "sentiment": "利空"
+          "title": "美伊达成停战谅解备忘录，A股全线反弹创业板指大涨超5%",
+          "time": "晚报 · 地缘",
+          "summary": "美伊将于6月19日签署停战协议，美国解除霍尔木兹海峡封锁；A股6月15日强势反弹，沪指涨1.61%，创业板指涨5.3%，算力硬件和半导体领涨。",
+          "sentiment": "利多"
         },
         {
-          "title": "美伊冲突升级：美军空袭伊朗，霍尔木兹海峡全面关闭，国际油价直线拉升",
-          "time": "晚报 · 宏观",
-          "summary": "美伊在霍尔木兹海峡发生海上冲突，格什姆岛等遭袭，伊朗宣布关闭霍尔木兹，布伦特原油涨至93美元/桶，全球避险情绪急剧升温。",
-          "sentiment": "利空"
-        },
-        {
-          "title": "Anthropic CEO呼吁政府强制监管AI，英伟达跌近4%市值破5万亿美元，超微电脑跌28%",
+          "title": "AI巨头密集发布新品：OpenAI GPT-5、Claude 5、苹果Siri重构",
           "time": "晚报 · 科技",
-          "summary": "Anthropic CEO Dario Amodei公开呼吁强制性AI监管；英伟达跌3.73%较近期高点回落15%，市值跌破5万亿；超微电脑因股权融资计划暴跌28%；甲骨文财报后盘后跌超9%。",
-          "sentiment": "利空"
+          "summary": "OpenAI发布GPT-5 Preview（1M上下文+原生多模态），Anthropic推出Claude 5（MMLU-Pro 98.3%），苹果WWDC26 Siri接入Gemini。",
+          "sentiment": "利多"
+        },
+        {
+          "title": "有色金属板块A股领涨，铜铝价格企稳回升",
+          "time": "晚报 · 有色",
+          "summary": "A股有色金属板块今日表现强势，新金路、金钼股份等高开涨停；电解铝现货约24140元/吨，铜价约104110元/吨，库存持续去化。",
+          "sentiment": "利多"
         }
       ]
     },
@@ -98,29 +98,29 @@
       "code": "515790",
       "name": "华夏光伏ETF",
       "channel": "ashare",
-      "bullish_count": 0,
-      "bearish_count": 3,
-      "neutral_count": 5,
-      "sentiment_score": -3,
-      "sentiment_label": "偏空",
+      "bullish_count": 3,
+      "bearish_count": 0,
+      "neutral_count": 4,
+      "sentiment_score": 3,
+      "sentiment_label": "偏多",
       "top_impact_news": [
         {
-          "title": "美国5月CPI同比4.2%创三年新高，核心CPI环比超预期回落，美联储按兵不动",
-          "time": "晚报 · 宏观",
-          "summary": "5月CPI同比4.2%为2023年4月以来最高，能源贡献月度涨幅六成；但核心CPI环比仅0.21%大幅低于预期，中金等机构维持年内不降息不加息判断，新任主席沃什鹰派但门槛高。",
-          "sentiment": "利空"
+          "title": "美伊达成停战谅解备忘录，A股全线反弹创业板指大涨超5%",
+          "time": "晚报 · 地缘",
+          "summary": "美伊将于6月19日签署停战协议，美国解除霍尔木兹海峡封锁；A股6月15日强势反弹，沪指涨1.61%，创业板指涨5.3%，算力硬件和半导体领涨。",
+          "sentiment": "利多"
         },
         {
-          "title": "美伊冲突升级：美军空袭伊朗，霍尔木兹海峡全面关闭，国际油价直线拉升",
-          "time": "晚报 · 宏观",
-          "summary": "美伊在霍尔木兹海峡发生海上冲突，格什姆岛等遭袭，伊朗宣布关闭霍尔木兹，布伦特原油涨至93美元/桶，全球避险情绪急剧升温。",
-          "sentiment": "利空"
-        },
-        {
-          "title": "Anthropic CEO呼吁政府强制监管AI，英伟达跌近4%市值破5万亿美元，超微电脑跌28%",
+          "title": "AI巨头密集发布新品：OpenAI GPT-5、Claude 5、苹果Siri重构",
           "time": "晚报 · 科技",
-          "summary": "Anthropic CEO Dario Amodei公开呼吁强制性AI监管；英伟达跌3.73%较近期高点回落15%，市值跌破5万亿；超微电脑因股权融资计划暴跌28%；甲骨文财报后盘后跌超9%。",
-          "sentiment": "利空"
+          "summary": "OpenAI发布GPT-5 Preview（1M上下文+原生多模态），Anthropic推出Claude 5（MMLU-Pro 98.3%），苹果WWDC26 Siri接入Gemini。",
+          "sentiment": "利多"
+        },
+        {
+          "title": "有色金属板块A股领涨，铜铝价格企稳回升",
+          "time": "晚报 · 有色",
+          "summary": "A股有色金属板块今日表现强势，新金路、金钼股份等高开涨停；电解铝现货约24140元/吨，铜价约104110元/吨，库存持续去化。",
+          "sentiment": "利多"
         }
       ]
     },
@@ -128,29 +128,29 @@
       "code": "513100",
       "name": "纳指100ETF",
       "channel": "nasdaq",
-      "bullish_count": 0,
-      "bearish_count": 4,
-      "neutral_count": 4,
-      "sentiment_score": -4,
-      "sentiment_label": "偏空",
+      "bullish_count": 2,
+      "bearish_count": 0,
+      "neutral_count": 5,
+      "sentiment_score": 2,
+      "sentiment_label": "偏多",
       "top_impact_news": [
         {
-          "title": "美国5月CPI同比4.2%创三年新高，核心CPI环比超预期回落，美联储按兵不动",
-          "time": "晚报 · 宏观",
-          "summary": "5月CPI同比4.2%为2023年4月以来最高，能源贡献月度涨幅六成；但核心CPI环比仅0.21%大幅低于预期，中金等机构维持年内不降息不加息判断，新任主席沃什鹰派但门槛高。",
-          "sentiment": "利空"
+          "title": "美伊达成停战谅解备忘录，A股全线反弹创业板指大涨超5%",
+          "time": "晚报 · 地缘",
+          "summary": "美伊将于6月19日签署停战协议，美国解除霍尔木兹海峡封锁；A股6月15日强势反弹，沪指涨1.61%，创业板指涨5.3%，算力硬件和半导体领涨。",
+          "sentiment": "利多"
         },
         {
-          "title": "美伊冲突升级：美军空袭伊朗，霍尔木兹海峡全面关闭，国际油价直线拉升",
-          "time": "晚报 · 宏观",
-          "summary": "美伊在霍尔木兹海峡发生海上冲突，格什姆岛等遭袭，伊朗宣布关闭霍尔木兹，布伦特原油涨至93美元/桶，全球避险情绪急剧升温。",
-          "sentiment": "利空"
+          "title": "AI巨头密集发布新品：OpenAI GPT-5、Claude 5、苹果Siri重构",
+          "time": "晚报 · 科技",
+          "summary": "OpenAI发布GPT-5 Preview（1M上下文+原生多模态），Anthropic推出Claude 5（MMLU-Pro 98.3%），苹果WWDC26 Siri接入Gemini。",
+          "sentiment": "利多"
         },
         {
-          "title": "美联储主席沃什推\"缩表先行\"新框架，与鲍威尔时代形成根本分野",
-          "time": "晚报 · 货币政策",
-          "summary": "沃什任职后推行\"降息+缩表并行\"组合，重建政策公信力优先，预计强化缩表而非暗示加息；中信证券预判年内维持利率不变，流动性驱动资产将持续面压。",
-          "sentiment": "利空"
+          "title": "美联储6月议息会议前瞻：维持利率不变概率98.5%，点阵图或转鹰",
+          "time": "晚报 · 宏观",
+          "summary": "6月18日美联储会议预计维持利率不变，但可能取消宽松倾向，点阵图指引或由2026-2027年各降息1次转为维持不变，新主席沃什首秀受关注。",
+          "sentiment": "中性"
         }
       ]
     },
@@ -158,29 +158,29 @@
       "code": "513500",
       "name": "标普500ETF",
       "channel": "nasdaq",
-      "bullish_count": 0,
-      "bearish_count": 4,
-      "neutral_count": 4,
-      "sentiment_score": -4,
-      "sentiment_label": "偏空",
+      "bullish_count": 2,
+      "bearish_count": 0,
+      "neutral_count": 5,
+      "sentiment_score": 2,
+      "sentiment_label": "偏多",
       "top_impact_news": [
         {
-          "title": "美国5月CPI同比4.2%创三年新高，核心CPI环比超预期回落，美联储按兵不动",
-          "time": "晚报 · 宏观",
-          "summary": "5月CPI同比4.2%为2023年4月以来最高，能源贡献月度涨幅六成；但核心CPI环比仅0.21%大幅低于预期，中金等机构维持年内不降息不加息判断，新任主席沃什鹰派但门槛高。",
-          "sentiment": "利空"
+          "title": "美伊达成停战谅解备忘录，A股全线反弹创业板指大涨超5%",
+          "time": "晚报 · 地缘",
+          "summary": "美伊将于6月19日签署停战协议，美国解除霍尔木兹海峡封锁；A股6月15日强势反弹，沪指涨1.61%，创业板指涨5.3%，算力硬件和半导体领涨。",
+          "sentiment": "利多"
         },
         {
-          "title": "美伊冲突升级：美军空袭伊朗，霍尔木兹海峡全面关闭，国际油价直线拉升",
-          "time": "晚报 · 宏观",
-          "summary": "美伊在霍尔木兹海峡发生海上冲突，格什姆岛等遭袭，伊朗宣布关闭霍尔木兹，布伦特原油涨至93美元/桶，全球避险情绪急剧升温。",
-          "sentiment": "利空"
+          "title": "AI巨头密集发布新品：OpenAI GPT-5、Claude 5、苹果Siri重构",
+          "time": "晚报 · 科技",
+          "summary": "OpenAI发布GPT-5 Preview（1M上下文+原生多模态），Anthropic推出Claude 5（MMLU-Pro 98.3%），苹果WWDC26 Siri接入Gemini。",
+          "sentiment": "利多"
         },
         {
-          "title": "美联储主席沃什推\"缩表先行\"新框架，与鲍威尔时代形成根本分野",
-          "time": "晚报 · 货币政策",
-          "summary": "沃什任职后推行\"降息+缩表并行\"组合，重建政策公信力优先，预计强化缩表而非暗示加息；中信证券预判年内维持利率不变，流动性驱动资产将持续面压。",
-          "sentiment": "利空"
+          "title": "美联储6月议息会议前瞻：维持利率不变概率98.5%，点阵图或转鹰",
+          "time": "晚报 · 宏观",
+          "summary": "6月18日美联储会议预计维持利率不变，但可能取消宽松倾向，点阵图指引或由2026-2027年各降息1次转为维持不变，新主席沃什首秀受关注。",
+          "sentiment": "中性"
         }
       ]
     }
