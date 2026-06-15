@@ -308,16 +308,20 @@
             background: var(--accent-glow);
             box-shadow: 0 0 12px var(--accent-glow);
         }
-        /* 主题选择浮层 */
+        /* 主题选择浮层
+         * 使用 position:fixed 脱离 .header 的 backdrop-filter 合成层，
+         * 避免在 iOS 上被困在 header stacking context 内无法穿透显示。
+         * top/right 由 JS 动态根据按钮位置注入，CSS 只作兜底。
+         */
         .theme-popover {
-            position: absolute; top: calc(100% + 8px); right: 0;
+            position: fixed; top: 64px; right: 16px;
             background: var(--bg-secondary);
             border: 1px solid var(--accent-line);
             border-radius: 10px;
             padding: 8px 4px;
             min-width: 140px;
             box-shadow: 0 8px 32px rgba(0,0,0,.5), 0 0 16px var(--accent-glow);
-            z-index: 200;
+            z-index: 9999;
             display: none;
         }
         .theme-popover.open { display: block; animation: popoverIn .18s ease; }
@@ -928,17 +932,47 @@
             main.container { padding-bottom: calc(72px + env(safe-area-inset-bottom, 0px)) !important; }
 
             /* ── 资讯 Tab：timeline / sentimentGrid / fundRadarSection 防溢出 ── */
-            .timeline { overflow-x: hidden; padding-left: 24px; }
-            .timeline-item { overflow-wrap: break-word; word-break: break-word; }
-            .timeline-title { font-size: 13px; }
-            /* 新闻情绪：768px 下强制单列（原本 600px 才单列） */
-            .sentiment-grid { grid-template-columns: 1fr !important; overflow-x: hidden; }
+            /* overflow-x: clip 防止页面横向滚动，但不裁剪子元素高度（不同于 hidden）*/
+            .timeline { overflow-x: clip; padding-left: 24px; }
+            .timeline-item {
+                overflow-wrap: break-word; word-break: break-word;
+                /* 移除可能存在的 ellipsis 截断，允许完整换行展示 */
+                white-space: normal !important;
+                text-overflow: unset !important;
+                overflow: visible !important;
+            }
+            /* timeline-title 移动端允许换行，不截断 */
+            .timeline-title {
+                font-size: 13px;
+                white-space: normal !important;
+                overflow: visible !important;
+                text-overflow: unset !important;
+            }
+            /* 新闻情绪：768px 下强制单列，用 clip 不用 hidden */
+            .sentiment-grid { grid-template-columns: 1fr !important; overflow-x: clip; }
+            /* 情绪卡文字换行 */
+            .sentiment-card {
+                word-break: break-word; overflow-wrap: break-word;
+                overflow: visible !important;
+            }
             /* 雷达区 */
-            #fundRadarSection { overflow-x: hidden; width: 100%; }
+            #fundRadarSection { overflow-x: clip; width: 100%; }
             .radar-grid { grid-template-columns: 1fr !important; }
-            /* 雷达卡内横向表格滚动 */
-            .radar-card table,
-            .radar-card .radar-table-wrap { overflow-x: auto; display: block; -webkit-overflow-scrolling: touch; }
+            /* 雷达卡文字换行 */
+            .radar-card {
+                word-break: break-word; overflow-wrap: break-word;
+                overflow: visible !important;
+            }
+            /* rc-metrics 在移动端改为 2列，3列在 375px 下过挤 */
+            .rc-metrics { grid-template-columns: repeat(2, 1fr) !important; }
+            /* 雷达卡内横向表格：外层限宽 + 内部可横滚 */
+            .radar-card table {
+                max-width: 100%; width: max-content;
+                overflow-x: auto; display: block; -webkit-overflow-scrolling: touch;
+            }
+            .radar-card .radar-table-wrap {
+                max-width: 100%; overflow-x: auto; display: block; -webkit-overflow-scrolling: touch;
+            }
 
             /* ── 隐藏桌面专用装饰 ── */
             .stars { display: none; }
@@ -2988,11 +3022,22 @@ async function loadPortfolio() {
         // 应用已保存主题
         applyTheme(savedTheme());
 
-        // 切换浮层开关
+        // 切换浮层开关：用 getBoundingClientRect 动态定位，兼容任意 header 高度和屏幕宽度
         btn.addEventListener('click', function(e) {
             e.stopPropagation();
             const isOpen = popover.classList.toggle('open');
             btn.setAttribute('aria-expanded', isOpen);
+            if (isOpen) {
+                const rect = btn.getBoundingClientRect();
+                // 弹窗紧贴按钮下方，右对齐按钮右侧
+                const gap = 8;
+                const popoverTop = rect.bottom + gap;
+                // 从视口右边缘量右侧距离，保证弹窗不超出屏幕左边
+                const rightOffset = window.innerWidth - rect.right;
+                popover.style.top   = popoverTop + 'px';
+                popover.style.right = Math.max(4, rightOffset) + 'px';
+                popover.style.left  = 'auto'; // 重置，防止之前设置残留
+            }
         });
 
         // 选择主题
