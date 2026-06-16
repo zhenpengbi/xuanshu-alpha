@@ -36,12 +36,12 @@ DATA_DIR = os.path.join(BASE_DIR, "data")
 os.makedirs(DATA_DIR, exist_ok=True)
 
 FUNDS = [
-    {"code": "000216", "name": "易方达黄金ETF联接C",   "type": "open"},
-    {"code": "008585", "name": "天弘AI主题指数C",       "type": "open"},
-    {"code": "017766", "name": "南方有色金属ETF联接E",  "type": "open"},
-    {"code": "515790", "name": "华夏光伏ETF",           "type": "etf"},
-    {"code": "513100", "name": "纳指100ETF",            "type": "etf"},
-    {"code": "513500", "name": "标普500ETF",            "type": "etf"},
+    {"code": "002963", "name": "易方达黄金ETF联接C",          "type": "open"},
+    {"code": "011840", "name": "天弘中证人工智能C",            "type": "open"},
+    {"code": "010990", "name": "南方有色金属ETF联接E",         "type": "open"},
+    {"code": "012885", "name": "华夏中证光伏产业ETF发起式联接A", "type": "open"},
+    {"code": "513100", "name": "纳指100ETF",                  "type": "etf"},
+    {"code": "513500", "name": "标普500ETF",                  "type": "etf"},
 ]
 
 LOOKBACK_YEARS = 3       # 拉取历史年数
