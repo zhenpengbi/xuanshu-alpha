@@ -848,9 +848,9 @@
             transition: border-color .2s; }
         .cash-edit-input:focus { border-color: var(--gold-bright); }
         .cash-edit-action { display: flex; gap: 5px; align-items: center; }
-        .cash-edit-confirm { background: var(--gold-bright); color: #0a1628; border: none;
-            border-radius: 6px; padding: 4px 10px; font-size: 12px; font-weight: 700;
-            cursor: pointer; transition: opacity .2s; }
+        .cash-edit-confirm { background: var(--gold-bright) !important; color: #1a1f2e !important;
+            border: none !important; border-radius: 6px; padding: 4px 10px; font-size: 12px;
+            font-weight: 700; cursor: pointer; transition: opacity .2s; }
         .cash-edit-confirm:hover { opacity: .85; }
         .cash-edit-cancel { background: none; border: 1px solid rgba(255,255,255,.18);
             border-radius: 6px; padding: 4px 10px; font-size: 12px; color: var(--text-muted);
@@ -1442,19 +1442,26 @@
         }
         /* 更新持仓按钮（section-title 右侧）*/
         .btn-edit-portfolio {
-            background: rgba(124,185,232,.12); border: 1px solid rgba(124,185,232,.3);
-            border-radius: 6px; color: var(--accent, #7cb9e8); font-size: 12px;
-            font-weight: 600; padding: 4px 12px; cursor: pointer; transition: all .2s;
-            white-space: nowrap;
+            background: none; border: none; padding: 4px 2px;
+            display: inline-flex; align-items: center; gap: 5px;
+            font-size: 13px; font-weight: 500; cursor: pointer;
+            color: rgba(255,255,255,.55); transition: color .2s;
+            white-space: nowrap; font-family: var(--sans);
         }
-        .btn-edit-portfolio:hover { background: rgba(124,185,232,.22); }
+        .btn-edit-portfolio:hover { color: var(--gold-bright); background: none; }
+        [data-theme="light"] .btn-edit-portfolio { color: rgba(0,0,0,.45); }
+        [data-theme="light"] .btn-edit-portfolio:hover { color: var(--gold-bright); }
+        @media (prefers-color-scheme: light) {
+            :root:not([data-theme]) .btn-edit-portfolio { color: rgba(0,0,0,.45); }
+            :root:not([data-theme]) .btn-edit-portfolio:hover { color: var(--gold-bright); }
+        }
         /* ========== 浅色主题覆写：余额宝快捷编辑 ========== */
         [data-theme="light"] .cash-edit-btn { color: rgba(0,0,0,.25); }
         [data-theme="light"] .cash-edit-btn:hover { color: var(--gold-bright); }
         [data-theme="light"] .cash-edit-input {
             background: #f0f1f3; border-color: rgba(0,0,0,.12); color: #1a1f2e; }
         [data-theme="light"] .cash-edit-input:focus { border-color: var(--gold-bright); }
-        [data-theme="light"] .cash-edit-confirm { color: #1a1f2e; }
+        [data-theme="light"] .cash-edit-confirm { background: var(--gold-bright) !important; color: #1a1f2e !important; border: none !important; }
         [data-theme="light"] .cash-edit-cancel {
             border-color: rgba(0,0,0,.15); color: rgba(0,0,0,.6); }
         [data-theme="light"] .cash-edit-cancel:hover {
@@ -1496,7 +1503,7 @@
             :root:not([data-theme]) .cash-edit-btn:hover { color: var(--gold-bright); }
             :root:not([data-theme]) .cash-edit-input { background:#f0f1f3; border-color:rgba(0,0,0,.12); color:#1a1f2e; }
             :root:not([data-theme]) .cash-edit-input:focus { border-color: var(--gold-bright); }
-            :root:not([data-theme]) .cash-edit-confirm { color: #1a1f2e; }
+            :root:not([data-theme]) .cash-edit-confirm { background: var(--gold-bright) !important; color: #1a1f2e !important; border: none !important; }
             :root:not([data-theme]) .cash-edit-cancel { border-color:rgba(0,0,0,.15); color:rgba(0,0,0,.6); }
             :root:not([data-theme]) .pe-overlay { background: rgba(0,0,0,.3); }
             :root:not([data-theme]) .pe-panel { background:#ffffff; border-color:rgba(0,0,0,.1); box-shadow:0 0 0 1px rgba(0,0,0,.06),0 8px 32px rgba(0,0,0,.18); }
@@ -1628,7 +1635,7 @@
     <section class="section" data-panel="overview">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
             <h2 class="section-title" style="margin-bottom:0;">持仓明细</h2>
-            <button class="btn-edit-portfolio" onclick="openPortfolioEditor()">✏️ 更新持仓</button>
+            <button class="btn-edit-portfolio" onclick="openPortfolioEditor()"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M11.5 2.5l2 2L5 13H3v-2L11.5 2.5z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M10 4l2 2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>更新持仓</button>
         </div>
         <!-- 移动端：卡片列表 -->
         <div class="holdings-cards" id="holdingsCards"></div>
@@ -2803,6 +2810,8 @@ function renderBacktestCards(results) {
     if (!grid || !results.length) { renderBacktestFallback(); return; }
     // 当前持仓代码集合，用于标注"未持仓"
     const heldCodes = new Set((portfolioData.holdings || []).map(h => h.code));
+    // portfolioData 未就绪时（holdings 为空），不显示未持仓标注，避免误标
+    const noHoldingData = heldCodes.size === 0;
     grid.innerHTML = results.map(r => {
         const s = r.metrics.strategy;
         const b = r.metrics.benchmark;
@@ -2813,7 +2822,7 @@ function renderBacktestCards(results) {
         const retSign  = s.annual_return_pct >= 0 ? '+' : '';
         const ddCls    = s.max_drawdown_pct <= -20 ? 'negative' : '';
         const shpCls   = s.sharpe >= 1 ? 'positive' : s.sharpe < 0 ? 'negative' : '';
-        const isHeld   = heldCodes.has(r.code);
+        const isHeld   = noHoldingData || heldCodes.has(r.code);
         const notHeldBadge = isHeld ? '' : '<span class="bt-not-held-badge">未持仓</span>';
         const notHeldCls   = isHeld ? '' : ' not-held';
         return `<div class="backtest-card${notHeldCls}" data-code="${escHtml(r.code)}"
@@ -2894,14 +2903,14 @@ function renderBtChart(result) {
                 params.map(p => p.marker + p.seriesName + ': ' + (+p.value).toFixed(3)).join('<br>')
         },
         legend: {
-            bottom: 6,
+            bottom: 8,
             textStyle: { color: cc.dim, fontSize: 12 },
             data: ['信号策略', '买入持有(基准)']
         },
-        grid: { left: 56, right: 22, top: 88, bottom: 40 },
+        grid: { left: 56, right: 22, top: 88, bottom: 60 },
         xAxis: {
             type: 'category', data: c.dates,
-            axisLabel: { color: cc.muted, fontSize: 10, rotate: 20 },
+            axisLabel: { color: cc.muted, fontSize: 10, rotate: 30, interval: 'auto' },
             axisLine:  { lineStyle: { color: cc.border } },
             splitLine: { show: false },
         },
