@@ -836,6 +836,26 @@
         /* 子弹分配区 */
         .bullet-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
         .bullet-amount { font-size: 26px; font-weight: 700; font-family: var(--mono); color: var(--gold-bright); }
+        /* 余额宝快捷编辑 */
+        .cash-edit-wrap { display: flex; align-items: center; gap: 6px; }
+        .cash-edit-btn { background: none; border: none; cursor: pointer; padding: 2px;
+            color: rgba(255,255,255,.3); transition: color .2s; line-height: 0; flex-shrink: 0;
+            display: flex; align-items: center; }
+        .cash-edit-btn:hover { color: var(--gold-bright); }
+        .cash-edit-input { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.18);
+            border-radius: 7px; color: var(--text-primary); font-family: var(--mono); font-size: 22px;
+            font-weight: 700; padding: 2px 8px; outline: none; width: 140px;
+            transition: border-color .2s; }
+        .cash-edit-input:focus { border-color: var(--gold-bright); }
+        .cash-edit-action { display: flex; gap: 5px; align-items: center; }
+        .cash-edit-confirm { background: var(--gold-bright); color: #0a1628; border: none;
+            border-radius: 6px; padding: 4px 10px; font-size: 12px; font-weight: 700;
+            cursor: pointer; transition: opacity .2s; }
+        .cash-edit-confirm:hover { opacity: .85; }
+        .cash-edit-cancel { background: none; border: 1px solid rgba(255,255,255,.18);
+            border-radius: 6px; padding: 4px 10px; font-size: 12px; color: var(--text-muted);
+            cursor: pointer; transition: border-color .2s; }
+        .cash-edit-cancel:hover { border-color: rgba(255,255,255,.4); color: var(--text-primary); }
         .bullet-plan-item { display: flex; justify-content: space-between; align-items: center;
             padding: 8px 0; border-bottom: 1px solid var(--line); font-size: 13px; }
         .bullet-plan-item:last-child { border-bottom: none; }
@@ -1299,83 +1319,119 @@
         /* ========== 持仓编辑器 Modal ========== */
         .pe-overlay {
             position: fixed; inset: 0; z-index: 9999;
-            background: rgba(0,0,0,.72); backdrop-filter: blur(4px);
+            background: rgba(0,0,0,.6); backdrop-filter: blur(12px);
             display: flex; align-items: center; justify-content: center;
             padding: 16px; box-sizing: border-box;
         }
+        @keyframes pe-in { from { opacity:0; transform:scale(.95) translateY(8px); } to { opacity:1; transform:scale(1) translateY(0); } }
         .pe-panel {
-            background: var(--bg-secondary, #1c1510);
-            border: 1px solid var(--accent-line, rgba(201,162,39,.22));
-            border-radius: 14px; width: 100%; max-width: 720px;
+            background: #1a1f2e;
+            border: 1px solid rgba(0,200,255,.25);
+            border-radius: 16px; width: 100%; max-width: 720px;
             max-height: 90vh; display: flex; flex-direction: column;
-            box-shadow: 0 24px 64px rgba(0,0,0,.65);
+            box-shadow: 0 0 0 1px rgba(0,200,255,.08), 0 8px 32px rgba(0,0,0,.7), 0 0 48px rgba(0,200,255,.08);
+            animation: pe-in .2s ease;
+        }
+        @media (max-width: 600px) {
+            .pe-overlay { padding: 0; align-items: flex-end; }
+            .pe-panel { border-radius: 16px 16px 0 0; max-height: 96vh; }
         }
         .pe-header {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 16px 20px; border-bottom: 1px solid var(--border-color, rgba(255,255,255,.08));
+            padding: 16px 20px; border-bottom: 1px solid rgba(255,255,255,.07);
             flex-shrink: 0;
         }
+        .pe-header-title { display: flex; align-items: center; gap: 10px; }
+        .pe-header-title::before { content:''; display:block; width:3px; height:16px;
+            background: var(--accent); border-radius: 2px; flex-shrink:0; }
         .pe-header h3 { font-size: 15px; font-weight: 700; color: var(--text-primary, #e6edf3); margin: 0; }
         .pe-close {
-            background: none; border: none; color: var(--text-muted, #8b949e);
-            font-size: 24px; cursor: pointer; padding: 0 2px; line-height: 1;
-            transition: color .2s;
+            background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+            border-radius: 8px; width: 30px; height: 30px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--text-muted, #8b949e); transition: all .2s;
         }
-        .pe-close:hover { color: var(--text-primary, #e6edf3); }
-        .pe-body { overflow-y: auto; padding: 16px 20px; flex: 1; }
+        .pe-close:hover { background: rgba(255,255,255,.12); color: var(--text-primary, #e6edf3); }
+        .pe-body {
+            overflow-y: auto; padding: 16px 20px; flex: 1;
+            scrollbar-width: thin; scrollbar-color: rgba(0,200,255,.3) transparent;
+        }
+        .pe-body::-webkit-scrollbar { width: 5px; }
+        .pe-body::-webkit-scrollbar-track { background: transparent; }
+        .pe-body::-webkit-scrollbar-thumb { background: rgba(0,200,255,.3); border-radius: 4px; }
+        .pe-body::-webkit-scrollbar-thumb:hover { background: rgba(0,200,255,.55); }
         .pe-meta { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; align-items: center; }
         .pe-meta-label { font-size: 11px; color: var(--text-muted, #8b949e); display: flex; align-items: center; gap: 6px; }
         .pe-input {
-            background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12);
-            border-radius: 7px; color: var(--text-primary, #e6edf3);
+            background: #0d1117; border: 1px solid rgba(255,255,255,.08);
+            border-radius: 8px; color: var(--text-primary, #e6edf3);
             font-family: var(--mono, monospace); padding: 7px 10px; font-size: 12px;
-            outline: none; transition: border-color .2s; box-sizing: border-box;
+            outline: none; transition: border-color .2s, box-shadow .2s; box-sizing: border-box;
         }
-        .pe-input:focus { border-color: var(--accent, #7cb9e8); }
+        .pe-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(0,200,255,.1); }
         .pe-input[type="date"] { color-scheme: dark; }
         .pe-row {
-            border: 1px solid rgba(255,255,255,.09); border-radius: 9px;
+            background: #161b22;
+            border: 1px solid rgba(255,255,255,.07); border-radius: 10px;
             padding: 12px 14px; margin-bottom: 10px; position: relative;
-            transition: border-color .2s;
+            transition: border-color .2s, background .2s;
+            padding-left: 18px;
         }
-        .pe-row:hover { border-color: rgba(255,255,255,.15); }
+        .pe-row::before { content:''; position:absolute; left:0; top:10px; bottom:10px;
+            width:3px; background: var(--accent-line); border-radius: 0 2px 2px 0;
+            transition: background .2s; }
+        .pe-row:hover { border-color: rgba(255,255,255,.15); background: #1a2030; }
+        .pe-row:hover::before { background: var(--accent); }
         .pe-row-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
         .pe-row-tag { font-size: 12px; color: var(--text-secondary, #b8ad97); }
         .pe-row-del {
-            background: none; border: none; color: rgba(229,86,79,.6);
-            font-size: 20px; cursor: pointer; padding: 0; line-height: 1;
-            transition: color .2s;
+            background: none; border: none; color: rgba(229,86,79,.5);
+            font-size: 18px; cursor: pointer; padding: 2px 4px; line-height: 1;
+            border-radius: 5px; transition: all .2s;
         }
-        .pe-row-del:hover { color: #e5564f; }
+        .pe-row-del:hover { color: #e5564f; background: rgba(229,86,79,.1); }
         .pe-fields { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; }
         @media (max-width: 600px) { .pe-fields { grid-template-columns: repeat(2,1fr); } }
         .pe-field { display: flex; flex-direction: column; gap: 3px; }
-        .pe-field > label { font-size: 10px; color: var(--text-muted, #8b949e); letter-spacing: .4px; }
+        .pe-field > label { font-size: 10px; color: var(--text-muted, #8b949e); letter-spacing: .4px; text-transform: uppercase; }
         .pe-field .pe-input { width: 100%; }
         .pe-btn-add {
-            background: rgba(255,255,255,.04); border: 1px dashed rgba(255,255,255,.18);
+            background: rgba(255,255,255,.03); border: 1px dashed rgba(255,255,255,.14);
             border-radius: 8px; color: var(--text-muted, #8b949e);
             padding: 9px; width: 100%; cursor: pointer; font-size: 13px;
             margin-bottom: 4px; transition: all .2s;
         }
-        .pe-btn-add:hover { border-color: var(--accent, #7cb9e8); color: var(--accent, #7cb9e8); }
+        .pe-btn-add:hover { border-color: var(--accent); color: var(--accent); background: rgba(0,200,255,.04); }
         .pe-footer {
-            padding: 14px 20px; border-top: 1px solid var(--border-color, rgba(255,255,255,.08));
+            padding: 14px 20px;
+            border-top: 1px solid rgba(255,255,255,.07);
             display: flex; justify-content: space-between; align-items: center; gap: 12px;
             flex-shrink: 0; flex-wrap: wrap;
+            background: rgba(26,31,46,.85); backdrop-filter: blur(8px);
+            border-radius: 0 0 16px 16px;
         }
+        @media (max-width: 600px) { .pe-footer { border-radius: 0; position: sticky; bottom: 0; } }
         .pe-total { font-size: 13px; color: var(--text-secondary, #b8ad97); font-family: var(--mono); }
         .pe-total strong { color: var(--text-primary, #e6edf3); }
         .pe-status { font-size: 11.5px; color: var(--text-muted, #8b949e); margin-top: 3px; }
         .pe-status.ok  { color: #2de89a; }
         .pe-status.err { color: #ff6b63; }
-        .pe-btn-save {
-            background: var(--accent, #7cb9e8); color: #0a1628; font-weight: 700;
-            border: none; border-radius: 8px; padding: 10px 22px; font-size: 13px;
-            cursor: pointer; transition: opacity .2s; white-space: nowrap;
+        .pe-footer-actions { display: flex; gap: 8px; align-items: center; }
+        .pe-btn-cancel {
+            background: none; border: 1px solid rgba(255,255,255,.18); border-radius: 8px;
+            padding: 9px 18px; font-size: 13px; color: var(--text-muted, #8b949e);
+            cursor: pointer; transition: all .2s; white-space: nowrap;
         }
-        .pe-btn-save:hover { opacity: .88; }
-        .pe-btn-save:disabled { opacity: .45; cursor: not-allowed; }
+        .pe-btn-cancel:hover { border-color: rgba(255,255,255,.35); color: var(--text-primary); }
+        .pe-btn-save {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dim) 100%);
+            color: #0a1628; font-weight: 700;
+            border: none; border-radius: 8px; padding: 9px 22px; font-size: 13px;
+            cursor: pointer; transition: opacity .2s, box-shadow .2s; white-space: nowrap;
+            box-shadow: 0 2px 12px rgba(0,200,255,.25);
+        }
+        .pe-btn-save:hover { opacity: .9; box-shadow: 0 4px 20px rgba(0,200,255,.4); }
+        .pe-btn-save:disabled { opacity: .4; cursor: not-allowed; box-shadow: none; }
         /* PAT modal */
         .pat-panel {
             background: var(--bg-secondary, #1c1510);
@@ -2955,8 +3011,9 @@ async function loadAndRenderAdviceModule() {
     _renderAdviceDataBar(portfolio, rebalance);
     _renderAdviceSignalCard(portfolio, rebalance, fusion);
     _renderAdviceRebalanceCard(rebalance);
-    _renderBulletZone(rebalance, portfolio);
-    _renderUSMarketPanel(rebalance);
+window._cachedRebalance = rebalance;
+_renderBulletZone(rebalance, portfolio);
+_renderUSMarketPanel(rebalance);
 }
 
 function _renderAdviceDataBar(portfolio, rebalance) {
@@ -3065,9 +3122,8 @@ function _renderBulletZone(rebalance, portfolio) {
     const cashH    = holdings && holdings.find(h => h.assetType === 'cash');
     const cashAmt  = cashH ? cashH.amount : bAmount;
 
-    const amtStr = cashAmt > 0
-        ? `<span class="bullet-amount">¥${cashAmt.toLocaleString('zh-CN',{minimumFractionDigits:2})}</span>`
-        : '<span style="color:var(--paper-faint);">暂无数据</span>';
+    const SVG_PENCIL = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.5 2.5l2 2L5 13H3v-2L11.5 2.5z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M10 4l2 2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>`;
+    const amtStr = `<div class="cash-edit-wrap" id="cashAmtWrap"><span class="bullet-amount" id="cashAmtDisplay">¥${cashAmt > 0 ? cashAmt.toLocaleString('zh-CN',{minimumFractionDigits:2}) : '--'}</span><button class="cash-edit-btn" title="编辑余额宝可用" onclick="_bulletCashEditStart(${cashAmt})">${SVG_PENCIL}</button></div>`;
 
     const planHtml = bPlan.length
         ? bPlan.map(p => `<div class="bullet-plan-item">
@@ -3754,6 +3810,92 @@ async function savePortfolio() {
     }
 }
 
+// ========== 子弹区余额宝快捷编辑 ==========
+function _bulletCashEditStart(curAmt) {
+    const wrap = document.getElementById('cashAmtWrap');
+    if (!wrap) return;
+    const SVG_PENCIL = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M11.5 2.5l2 2L5 13H3v-2L11.5 2.5z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M10 4l2 2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>`;
+    wrap.innerHTML = `
+      <input class="cash-edit-input" id="cashEditInput" type="number" step="0.01" value="${curAmt > 0 ? curAmt : ''}" placeholder="输入金额">
+      <div class="cash-edit-action">
+        <button class="cash-edit-confirm" onclick="_bulletCashEditConfirm()">确认</button>
+        <button class="cash-edit-cancel" onclick="_bulletCashEditCancel(${curAmt})">取消</button>
+      </div>`;
+    const inp = document.getElementById('cashEditInput');
+    if (inp) { inp.focus(); inp.select(); }
+    inp && inp.addEventListener('keydown', e => {
+        if (e.key === 'Enter') _bulletCashEditConfirm();
+        if (e.key === 'Escape') _bulletCashEditCancel(curAmt);
+    });
+}
+
+async function _bulletCashEditConfirm() {
+    const inp = document.getElementById('cashEditInput');
+    if (!inp) return;
+    const newAmt = parseFloat(inp.value);
+    if (isNaN(newAmt) || newAmt < 0) { inp.focus(); return; }
+
+    const wrap = document.getElementById('cashAmtWrap');
+    wrap.innerHTML = `<span style="color:var(--paper-faint);font-size:13px;">提交中…</span>`;
+
+    try {
+        // 更新内存中的 portfolioData
+        const cashH = portfolioData.holdings && portfolioData.holdings.find(h => h.assetType === 'cash');
+        if (cashH) {
+            cashH.amount = newAmt;
+            // 重算 totalAsset 和 ratio
+            const total = portfolioData.holdings.reduce((s, h) => s + (h.amount || 0), 0);
+            portfolioData.totalAsset = Math.round(total * 100) / 100;
+            portfolioData.holdings.forEach(h => {
+                h.ratio = total > 0 ? Math.round(h.amount / total * 10000) / 100 : 0;
+            });
+        }
+
+        // 持久化到 GitHub
+        let pat = _getPAT();
+        if (!pat) pat = await openPatModal();
+        if (!pat) { _bulletCashEditCancel(newAmt); return; }
+
+        await _ghPut(
+            'data/portfolio.json',
+            JSON.stringify(portfolioData, null, 2) + '\n',
+            `chore: 更新余额宝可用 ¥${newAmt}`,
+            pat
+        );
+        const htmlMeta = await _ghGet('index.html', pat);
+        const rawB64   = (htmlMeta.content || '').replace(/\n/g, '');
+        const htmlText = decodeURIComponent(escape(atob(rawB64)));
+        const newBlock = _buildInlineBlock(portfolioData);
+        const htmlNew  = htmlText.replace(/const portfolioData = \{[\s\S]*?\n\};/, newBlock);
+        if (htmlNew !== htmlText) {
+            await _ghPut('index.html', htmlNew, `chore: 同步 portfolioData 内联 余额宝¥${newAmt}`, pat);
+        }
+
+        // 重渲
+        renderHeader();
+        renderMetrics();
+        renderPieChart();
+        renderBarChart();
+        renderHoldings();
+
+        // 刷新子弹区（会重建 cashAmtWrap）
+        const rebalData = window._cachedRebalance;
+        if (rebalData) _renderBulletZone(rebalData, portfolioData);
+
+    } catch(e) {
+        console.error('[CashEdit]', e);
+        const SVG_PENCIL = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M11.5 2.5l2 2L5 13H3v-2L11.5 2.5z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M10 4l2 2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>`;
+        if (wrap) wrap.innerHTML = `<span class="bullet-amount" id="cashAmtDisplay">¥${newAmt.toLocaleString('zh-CN',{minimumFractionDigits:2})}</span><button class="cash-edit-btn" title="编辑余额宝可用" onclick="_bulletCashEditStart(${newAmt})">${SVG_PENCIL}</button>`;
+    }
+}
+
+function _bulletCashEditCancel(curAmt) {
+    const wrap = document.getElementById('cashAmtWrap');
+    if (!wrap) return;
+    const SVG_PENCIL = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M11.5 2.5l2 2L5 13H3v-2L11.5 2.5z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M10 4l2 2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>`;
+    wrap.innerHTML = `<span class="bullet-amount" id="cashAmtDisplay">¥${curAmt > 0 ? curAmt.toLocaleString('zh-CN',{minimumFractionDigits:2}) : '--'}</span><button class="cash-edit-btn" title="编辑余额宝可用" onclick="_bulletCashEditStart(${curAmt})">${SVG_PENCIL}</button>`;
+}
+
 // ========== Initialize ==========
 document.addEventListener('DOMContentLoaded', async function() {
     // ① 先拉最新持仓数据（覆盖 inline 快照），确保所有后续渲染用真实数据
@@ -3798,8 +3940,12 @@ document.addEventListener('DOMContentLoaded', async function() {
 <div id="portfolioEditorModal" class="pe-overlay" style="display:none;" onclick="peOverlayClick(event)">
   <div class="pe-panel">
     <div class="pe-header">
-      <h3>✏️ 更新持仓</h3>
-      <button class="pe-close" onclick="closePortfolioEditor()" aria-label="关闭">×</button>
+      <div class="pe-header-title"><h3>更新持仓</h3></div>
+      <button class="pe-close" onclick="closePortfolioEditor()" aria-label="关闭">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </button>
     </div>
     <div class="pe-body">
       <div class="pe-meta">
@@ -3815,7 +3961,10 @@ document.addEventListener('DOMContentLoaded', async function() {
         <div class="pe-total" id="pe-total-display">总资产: <strong>¥--</strong></div>
         <div class="pe-status" id="pe-status"></div>
       </div>
-      <button class="pe-btn-save" id="pe-save-btn" onclick="savePortfolio()">🚀 提交到 GitHub</button>
+      <div class="pe-footer-actions">
+        <button class="pe-btn-cancel" onclick="closePortfolioEditor()">取消</button>
+        <button class="pe-btn-save" id="pe-save-btn" onclick="savePortfolio()">提交到 GitHub</button>
+      </div>
     </div>
   </div>
 </div>
