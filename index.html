@@ -2604,9 +2604,9 @@ function renderAdvice(){
     const maxDev = actions.length?actions[0]:null;
 
     // 决策逻辑
-    let action='📌 持有观望', reasons=[];
+    let action='持有观望', reasons=[];
     if(maxDev && Math.abs(maxDev.dev)>20){
-        action = maxDev.dev>0 ? '⚖️ 建议再平衡（减超配）' : '⚖️ 建议再平衡（补低配）';
+        action = maxDev.dev>0 ? '建议再平衡（减超配）' : '建议再平衡（补低配）';
     }
     // 黄金信号解读
     if(goldScore!=null){
