@@ -1448,6 +1448,67 @@
             white-space: nowrap;
         }
         .btn-edit-portfolio:hover { background: rgba(124,185,232,.22); }
+        /* ========== 浅色主题覆写：余额宝快捷编辑 ========== */
+        [data-theme="light"] .cash-edit-btn { color: rgba(0,0,0,.25); }
+        [data-theme="light"] .cash-edit-btn:hover { color: var(--gold-bright); }
+        [data-theme="light"] .cash-edit-input {
+            background: #f0f1f3; border-color: rgba(0,0,0,.12); color: #1a1f2e; }
+        [data-theme="light"] .cash-edit-input:focus { border-color: var(--gold-bright); }
+        [data-theme="light"] .cash-edit-confirm { color: #1a1f2e; }
+        [data-theme="light"] .cash-edit-cancel {
+            border-color: rgba(0,0,0,.15); color: rgba(0,0,0,.6); }
+        [data-theme="light"] .cash-edit-cancel:hover {
+            border-color: rgba(0,0,0,.35); color: #1a1f2e; }
+        /* ========== 浅色主题覆写：持仓编辑器 Modal ========== */
+        [data-theme="light"] .pe-overlay { background: rgba(0,0,0,.3); }
+        [data-theme="light"] .pe-panel {
+            background: #ffffff;
+            border-color: rgba(0,0,0,.1);
+            box-shadow: 0 0 0 1px rgba(0,0,0,.06), 0 8px 32px rgba(0,0,0,.18); }
+        [data-theme="light"] .pe-header { border-bottom-color: rgba(0,0,0,.08); }
+        [data-theme="light"] .pe-input {
+            background: #f0f1f3; border-color: rgba(0,0,0,.12); color: #1a1f2e; }
+        [data-theme="light"] .pe-input:focus {
+            border-color: var(--gold-bright); box-shadow: 0 0 0 3px rgba(0,102,204,.12); }
+        [data-theme="light"] .pe-row {
+            background: #f5f6f8; border-color: rgba(0,0,0,.07); }
+        [data-theme="light"] .pe-row:hover { background: #eef0f3; border-color: rgba(0,0,0,.12); }
+        [data-theme="light"] .pe-field > label { color: rgba(0,0,0,.6); }
+        [data-theme="light"] .pe-body::-webkit-scrollbar-track { background: rgba(0,0,0,.04); }
+        [data-theme="light"] .pe-body::-webkit-scrollbar-thumb { background: rgba(0,0,0,.15); }
+        [data-theme="light"] .pe-body { scrollbar-color: rgba(0,0,0,.15) rgba(0,0,0,.04); }
+        [data-theme="light"] .pe-footer {
+            background: rgba(255,255,255,.9);
+            border-top-color: rgba(0,0,0,.08); }
+        [data-theme="light"] .pe-btn-cancel {
+            border-color: rgba(0,0,0,.15); color: rgba(0,0,0,.6); }
+        [data-theme="light"] .pe-btn-cancel:hover {
+            border-color: rgba(0,0,0,.35); color: #1a1f2e; }
+        [data-theme="light"] .pe-btn-save {
+            box-shadow: 0 2px 12px rgba(0,102,204,.2); }
+        [data-theme="light"] .pe-btn-save:hover {
+            box-shadow: 0 4px 20px rgba(0,102,204,.35); }
+        [data-theme="light"] .pat-panel {
+            background: #ffffff; border-color: rgba(0,0,0,.1);
+            box-shadow: 0 8px 32px rgba(0,0,0,.18); }
+        @media (prefers-color-scheme: light) {
+            :root:not([data-theme]) .cash-edit-btn { color: rgba(0,0,0,.25); }
+            :root:not([data-theme]) .cash-edit-btn:hover { color: var(--gold-bright); }
+            :root:not([data-theme]) .cash-edit-input { background:#f0f1f3; border-color:rgba(0,0,0,.12); color:#1a1f2e; }
+            :root:not([data-theme]) .cash-edit-input:focus { border-color: var(--gold-bright); }
+            :root:not([data-theme]) .cash-edit-confirm { color: #1a1f2e; }
+            :root:not([data-theme]) .cash-edit-cancel { border-color:rgba(0,0,0,.15); color:rgba(0,0,0,.6); }
+            :root:not([data-theme]) .pe-overlay { background: rgba(0,0,0,.3); }
+            :root:not([data-theme]) .pe-panel { background:#ffffff; border-color:rgba(0,0,0,.1); box-shadow:0 0 0 1px rgba(0,0,0,.06),0 8px 32px rgba(0,0,0,.18); }
+            :root:not([data-theme]) .pe-input { background:#f0f1f3; border-color:rgba(0,0,0,.12); color:#1a1f2e; }
+            :root:not([data-theme]) .pe-input:focus { border-color:var(--gold-bright); box-shadow:0 0 0 3px rgba(0,102,204,.12); }
+            :root:not([data-theme]) .pe-row { background:#f5f6f8; border-color:rgba(0,0,0,.07); }
+            :root:not([data-theme]) .pe-row:hover { background:#eef0f3; }
+            :root:not([data-theme]) .pe-field > label { color:rgba(0,0,0,.6); }
+            :root:not([data-theme]) .pe-footer { background:rgba(255,255,255,.9); border-top-color:rgba(0,0,0,.08); }
+            :root:not([data-theme]) .pe-btn-cancel { border-color:rgba(0,0,0,.15); color:rgba(0,0,0,.6); }
+            :root:not([data-theme]) .pat-panel { background:#ffffff; border-color:rgba(0,0,0,.1); }
+        }
     </style>
 </head>
 <body>
@@ -3122,8 +3183,7 @@ function _renderBulletZone(rebalance, portfolio) {
     const cashH    = holdings && holdings.find(h => h.assetType === 'cash');
     const cashAmt  = cashH ? cashH.amount : bAmount;
 
-    const SVG_PENCIL = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.5 2.5l2 2L5 13H3v-2L11.5 2.5z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M10 4l2 2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>`;
-    const amtStr = `<div class="cash-edit-wrap" id="cashAmtWrap"><span class="bullet-amount" id="cashAmtDisplay">¥${cashAmt > 0 ? cashAmt.toLocaleString('zh-CN',{minimumFractionDigits:2}) : '--'}</span><button class="cash-edit-btn" title="编辑余额宝可用" onclick="_bulletCashEditStart(${cashAmt})">${SVG_PENCIL}</button></div>`;
+    const amtStr = `<div class="cash-edit-wrap" id="cashAmtWrap"><span class="bullet-amount" id="cashAmtDisplay">¥${cashAmt > 0 ? cashAmt.toLocaleString('zh-CN',{minimumFractionDigits:2}) : '--'}</span><button class="cash-edit-btn" title="编辑余额宝可用" onclick="_bulletCashEditStart(${cashAmt})">${_SVG_PENCIL}</button></div>`;
 
     const planHtml = bPlan.length
         ? bPlan.map(p => `<div class="bullet-plan-item">
@@ -3811,10 +3871,10 @@ async function savePortfolio() {
 }
 
 // ========== 子弹区余额宝快捷编辑 ==========
+const _SVG_PENCIL = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M11.5 2.5l2 2L5 13H3v-2L11.5 2.5z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M10 4l2 2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>`;
 function _bulletCashEditStart(curAmt) {
     const wrap = document.getElementById('cashAmtWrap');
     if (!wrap) return;
-    const SVG_PENCIL = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M11.5 2.5l2 2L5 13H3v-2L11.5 2.5z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M10 4l2 2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>`;
     wrap.innerHTML = `
       <input class="cash-edit-input" id="cashEditInput" type="number" step="0.01" value="${curAmt > 0 ? curAmt : ''}" placeholder="输入金额">
       <div class="cash-edit-action">
@@ -3884,16 +3944,14 @@ async function _bulletCashEditConfirm() {
 
     } catch(e) {
         console.error('[CashEdit]', e);
-        const SVG_PENCIL = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M11.5 2.5l2 2L5 13H3v-2L11.5 2.5z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M10 4l2 2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>`;
-        if (wrap) wrap.innerHTML = `<span class="bullet-amount" id="cashAmtDisplay">¥${newAmt.toLocaleString('zh-CN',{minimumFractionDigits:2})}</span><button class="cash-edit-btn" title="编辑余额宝可用" onclick="_bulletCashEditStart(${newAmt})">${SVG_PENCIL}</button>`;
+        if (wrap) wrap.innerHTML = `<span class="bullet-amount" id="cashAmtDisplay">¥${newAmt.toLocaleString('zh-CN',{minimumFractionDigits:2})}</span><button class="cash-edit-btn" title="编辑余额宝可用" onclick="_bulletCashEditStart(${newAmt})">${_SVG_PENCIL}</button>`;
     }
 }
 
 function _bulletCashEditCancel(curAmt) {
     const wrap = document.getElementById('cashAmtWrap');
     if (!wrap) return;
-    const SVG_PENCIL = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M11.5 2.5l2 2L5 13H3v-2L11.5 2.5z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M10 4l2 2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>`;
-    wrap.innerHTML = `<span class="bullet-amount" id="cashAmtDisplay">¥${curAmt > 0 ? curAmt.toLocaleString('zh-CN',{minimumFractionDigits:2}) : '--'}</span><button class="cash-edit-btn" title="编辑余额宝可用" onclick="_bulletCashEditStart(${curAmt})">${SVG_PENCIL}</button>`;
+    wrap.innerHTML = `<span class="bullet-amount" id="cashAmtDisplay">¥${curAmt > 0 ? curAmt.toLocaleString('zh-CN',{minimumFractionDigits:2}) : '--'}</span><button class="cash-edit-btn" title="编辑余额宝可用" onclick="_bulletCashEditStart(${curAmt})">${_SVG_PENCIL}</button>`;
 }
 
 // ========== Initialize ==========
