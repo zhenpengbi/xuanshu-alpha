@@ -824,18 +824,34 @@
         .advice-data-bar .adb-item { display: flex; align-items: center; gap: 6px; }
         .adb-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--jade-soft); flex: none; }
         /* 再平衡行项 */
-        .rb-item { margin-bottom: 11px; line-height: 1.6; }
-        .rb-cat   { font-weight: 700; font-size: 13.5px; }
-        .rb-action{ font-size: 12.5px; font-weight: 600; padding: 2px 8px; border-radius: 12px; margin-left: 6px; }
-        .rb-action-high   { background: var(--red-bg); color: var(--red); }
-        .rb-action-medium { background: var(--accent-glow); color: var(--accent); }
-        .rb-action-low    { background: rgba(74,158,255,.08); color: var(--text-secondary); }
-        .rb-action-pending{ background: rgba(80,150,200,.12); color: #7fb8d9; }
-        .rb-reason{ font-size: 11.5px; color: var(--paper-faint); margin-top: 3px; line-height: 1.55; }
+        /* ── 再平衡列表 ── */
+        .rb-item { border-bottom: 1px solid rgba(255,255,255,.05); padding-bottom: 10px; margin-bottom: 10px; line-height: 1.65; }
+        .rb-item:last-child { border-bottom: none; margin-bottom: 0; }
+        .rb-cat   { font-weight: 600; font-size: 13px; }
+        .rb-action{ font-size: 11px; font-weight: 600; padding: 2px 9px; border-radius: 20px; margin-left: 6px; white-space: nowrap; }
+        .rb-action-high   { background: rgba(229,86,79,.15); color: var(--red); }
+        .rb-action-medium { background: rgba(201,162,39,.15); color: var(--gold-bright); }
+        .rb-action-low    { background: rgba(255,255,255,.06); color: var(--text-secondary); }
+        .rb-action-pending{ background: rgba(124,185,232,.12); color: var(--accent); }
+        .rb-reason{ font-size: 11.5px; color: var(--text-muted); margin-top: 3px; line-height: 1.55; }
         .rb-amount{ font-size: 12px; color: var(--jade-soft); font-family: var(--mono); font-weight: 600; }
-        /* 子弹分配区 */
+        /* ── advice-card-panel（再平衡/子弹/美股面板 专用）── */
+        .advice-card-panel {
+            background: rgba(255,255,255,.03); border: none;
+            border-left: 3px solid var(--gold-bright); border-radius: 0;
+            padding: 16px 20px; box-shadow: none;
+        }
+        [data-theme="light"] .advice-card-panel { background: rgba(0,0,0,.02); }
+        .advice-card-panel:hover { border-color: var(--gold-bright) !important; box-shadow: none !important; }
+        .advice-card-panel .advice-action {
+            font-size: 13px; font-weight: 600; letter-spacing: 2px;
+            color: var(--text-secondary); text-shadow: none; margin-bottom: 12px;
+        }
+        .advice-meta { margin-top: 14px; font-size: 11px; color: var(--text-muted); opacity: .6;
+            font-family: var(--mono); letter-spacing: .5px; border-top: 1px solid var(--border-color); padding-top: 10px; }
+        /* ── 子弹分配区 ── */
         .bullet-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
-        .bullet-amount { font-size: 26px; font-weight: 700; font-family: var(--mono); color: var(--gold-bright); }
+        .bullet-amount { font-size: 24px; font-weight: 700; font-family: var(--mono); color: var(--gold-bright); }
         /* 余额宝快捷编辑 */
         .cash-edit-wrap { display: flex; align-items: center; gap: 6px; }
         .cash-edit-btn { background: none; border: none; cursor: pointer; padding: 2px;
@@ -857,18 +873,25 @@
             cursor: pointer; transition: border-color .2s; }
         .cash-edit-cancel:hover { border-color: rgba(255,255,255,.4); color: var(--text-primary); }
         .bullet-plan-item { display: flex; justify-content: space-between; align-items: center;
-            padding: 8px 0; border-bottom: 1px solid var(--line); font-size: 13px; }
+            padding: 8px 0; border-bottom: 1px solid var(--border-color); font-size: 12px; line-height: 1.6; }
         .bullet-plan-item:last-child { border-bottom: none; }
-        /* 美股观测面板 */
-        .us-panel-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-top: 10px; }
+        /* ── 美股观测面板 ── */
+        .us-panel-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-top: 12px; }
         @media (max-width: 768px) { .us-panel-grid { grid-template-columns: 1fr; } }
-        .us-panel-item { background: var(--bg-surface); border-radius: 8px; padding: 14px; border: 1px solid var(--bg-surface-border); }
-        .us-label { font-size: 10px; color: var(--paper-faint); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 6px; }
-        .us-val   { font-size: 22px; font-weight: 700; font-family: var(--mono); color: var(--paper); line-height: 1.2; }
-        .us-sub   { font-size: 11px; color: var(--paper-faint); margin-top: 4px; }
+        .us-panel-item {
+            background: rgba(255,255,255,.04); border-radius: 10px; padding: 16px 14px;
+            border: 1px solid rgba(255,255,255,.06);
+            transition: background .2s, border-color .2s;
+        }
+        .us-panel-item:hover { background: rgba(255,255,255,.07); border-color: var(--gold-bright); }
+        [data-theme="light"] .us-panel-item { background: rgba(0,0,0,.03); border-color: rgba(0,0,0,.06); }
+        [data-theme="light"] .us-panel-item:hover { background: rgba(0,0,0,.06); }
+        .us-label { font-size: 10px; color: var(--text-muted); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+        .us-val   { font-size: 32px; font-weight: 700; font-family: var(--mono); color: var(--text-primary); line-height: 1.15; }
+        .us-sub   { font-size: 12px; color: var(--text-secondary); margin-top: 5px; }
         .tend-enter { color: var(--green); font-weight: 700; }
         .tend-wait  { color: var(--gold-bright); font-weight: 700; }
-        .tend-watch { color: var(--paper-dim); font-weight: 600; }
+        .tend-watch { color: var(--text-secondary); font-weight: 600; }
 
         /* ========== 主动基诊断卡 ========== */
         .afd-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; }
@@ -1666,17 +1689,17 @@
         <!-- 移动端 carousel，桌面 grid-3 -->
         <div class="signals-carousel-wrap grid-3">
             <div class="signal-card"><span class="sweep"></span>
-                <div class="signal-title">🥇 黄金信号</div>
+                <div class="signal-title">黄金信号</div>
                 <div id="goldGauge" style="width:100%;height:200px;"></div>
                 <div id="goldSignalDesc" style="color:var(--text-muted);font-size:12px;margin-top:8px;">--</div>
             </div>
             <div class="signal-card"><span class="sweep"></span>
-                <div class="signal-title">🇺🇸 美股信号 (QQQ)</div>
+                <div class="signal-title">美股信号 (QQQ)</div>
                 <div id="usGauge" style="width:100%;height:200px;"></div>
                 <div id="usSignalDesc" style="color:var(--text-muted);font-size:12px;margin-top:8px;">--</div>
             </div>
             <div class="signal-card"><span class="sweep"></span>
-                <div class="signal-title">📊 VIX 恐慌指数</div>
+                <div class="signal-title">VIX 恐慌指数</div>
                 <div style="margin-top:40px;">
                     <div class="vix-indicator">
                         <div class="vix-dot" id="vixDot" style="background:var(--green);box-shadow:0 0 12px var(--green);"></div>
@@ -1785,20 +1808,20 @@
                 <div class="advice-reason" id="adviceReason">--</div>
                 <div class="advice-meta" id="adviceMeta">--</div>
             </div>
-            <div class="advice-card" id="adviceRebalanceCard"><span class="sweep"></span>
-                <div class="advice-action">⚡ 再平衡操作清单</div>
+            <div class="advice-card advice-card-panel" id="adviceRebalanceCard"><span class="sweep"></span>
+                <div class="advice-action">再平衡操作清单</div>
                 <div class="advice-reason" id="rebalanceList">--</div>
                 <div class="advice-meta" id="rebalanceMeta">--</div>
             </div>
         </div>
         <!-- 子弹分配区 -->
-        <div class="advice-card" id="bulletZoneCard" style="margin-top:16px;"><span class="sweep"></span>
-            <div class="advice-action">💰 子弹分配区</div>
+        <div class="advice-card advice-card-panel" id="bulletZoneCard" style="margin-top:16px;"><span class="sweep"></span>
+            <div class="advice-action">子弹分配区</div>
             <div id="bulletZoneContent" class="advice-reason">--</div>
         </div>
         <!-- 美股观测面板 -->
-        <div class="advice-card" id="usMarketCard" style="margin-top:16px;"><span class="sweep"></span>
-            <div class="advice-action">🌐 美股观测面板 · 纳指/标普入场时机</div>
+        <div class="advice-card advice-card-panel" id="usMarketCard" style="margin-top:16px;"><span class="sweep"></span>
+            <div class="advice-action">美股观测面板 · 纳指/标普入场时机</div>
             <div id="usMarketContent" class="advice-reason">--</div>
         </div>
     </section>
@@ -3114,9 +3137,9 @@ function _renderAdviceSignalCard(portfolio, rebalance, fusion) {
     const toEstab  = actions.filter(a => a.action === '待建仓');
 
     // 确定主行动
-    let mainAction = '📌 持有观察';
-    if (highActs.length > 0)        mainAction = '⚖️ 需要操作 · 见清单';
-    else if (toEstab.length > 0)    mainAction = '🔺 待建仓类别 · 可分批入场';
+    let mainAction = '持有观察';
+    if (highActs.length > 0)        mainAction = '需要操作 · 见清单';
+    else if (toEstab.length > 0)    mainAction = '待建仓类别 · 可分批入场';
     actEl.textContent = mainAction;
 
     // 理由列表
@@ -3888,8 +3911,8 @@ function _bulletCashEditStart(curAmt) {
     wrap.innerHTML = `
       <input class="cash-edit-input" id="cashEditInput" type="number" step="0.01" value="${curAmt > 0 ? curAmt : ''}" placeholder="输入金额">
       <div class="cash-edit-action">
-        <button class="cash-edit-confirm" onclick="_bulletCashEditConfirm()">确认</button>
-        <button class="cash-edit-cancel" onclick="_bulletCashEditCancel(${curAmt})">取消</button>
+        <button class="cash-edit-confirm" onclick="_bulletCashEditConfirm()" style="background:#f0b90b;color:#1a1f2e;border:none;border-radius:6px;padding:4px 12px;font-size:12px;font-weight:600;cursor:pointer;">确认</button>
+        <button class="cash-edit-cancel" onclick="_bulletCashEditCancel(${curAmt})" style="background:none;border:1px solid rgba(0,0,0,0.15);color:rgba(0,0,0,0.6);border-radius:6px;padding:4px 10px;font-size:12px;cursor:pointer;">取消</button>
       </div>`;
     const inp = document.getElementById('cashEditInput');
     if (inp) { inp.focus(); inp.select(); }
@@ -4031,7 +4054,7 @@ document.addEventListener('DOMContentLoaded', async function() {
       </div>
       <div class="pe-footer-actions">
         <button class="pe-btn-cancel" onclick="closePortfolioEditor()">取消</button>
-        <button class="pe-btn-save" id="pe-save-btn" onclick="savePortfolio()">提交到 GitHub</button>
+        <button class="pe-btn-save" id="pe-save-btn" onclick="savePortfolio()" style="background:linear-gradient(135deg,#f7d774,#f0b90b);color:#1a1f2e;border:none;">提交到 GitHub</button>
       </div>
     </div>
   </div>
@@ -4053,7 +4076,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     <div style="display:flex;gap:8px;justify-content:flex-end;">
       <button onclick="closePatModal()"
         style="background:none;border:1px solid var(--border-color,rgba(255,255,255,.12));border-radius:7px;padding:8px 18px;color:var(--text-muted,#8b949e);cursor:pointer;font-size:13px;">取消</button>
-      <button onclick="confirmPat()" class="pe-btn-save" style="padding:8px 18px;font-size:13px;">确认</button>
+      <button onclick="confirmPat()" class="pe-btn-save" style="padding:8px 18px;font-size:13px;background:linear-gradient(135deg,#f7d774,#f0b90b);color:#1a1f2e;border:none;">确认</button>
     </div>
   </div>
 </div>
