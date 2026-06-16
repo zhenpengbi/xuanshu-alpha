@@ -1271,6 +1271,103 @@
             }
             :root:not([data-theme]) .hc-ratio { color: var(--text-muted); }
         }
+
+        /* ========== 持仓编辑器 Modal ========== */
+        .pe-overlay {
+            position: fixed; inset: 0; z-index: 9999;
+            background: rgba(0,0,0,.72); backdrop-filter: blur(4px);
+            display: flex; align-items: center; justify-content: center;
+            padding: 16px; box-sizing: border-box;
+        }
+        .pe-panel {
+            background: var(--bg-secondary, #1c1510);
+            border: 1px solid var(--accent-line, rgba(201,162,39,.22));
+            border-radius: 14px; width: 100%; max-width: 720px;
+            max-height: 90vh; display: flex; flex-direction: column;
+            box-shadow: 0 24px 64px rgba(0,0,0,.65);
+        }
+        .pe-header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 16px 20px; border-bottom: 1px solid var(--border-color, rgba(255,255,255,.08));
+            flex-shrink: 0;
+        }
+        .pe-header h3 { font-size: 15px; font-weight: 700; color: var(--text-primary, #e6edf3); margin: 0; }
+        .pe-close {
+            background: none; border: none; color: var(--text-muted, #8b949e);
+            font-size: 24px; cursor: pointer; padding: 0 2px; line-height: 1;
+            transition: color .2s;
+        }
+        .pe-close:hover { color: var(--text-primary, #e6edf3); }
+        .pe-body { overflow-y: auto; padding: 16px 20px; flex: 1; }
+        .pe-meta { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; align-items: center; }
+        .pe-meta-label { font-size: 11px; color: var(--text-muted, #8b949e); display: flex; align-items: center; gap: 6px; }
+        .pe-input {
+            background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12);
+            border-radius: 7px; color: var(--text-primary, #e6edf3);
+            font-family: var(--mono, monospace); padding: 7px 10px; font-size: 12px;
+            outline: none; transition: border-color .2s; box-sizing: border-box;
+        }
+        .pe-input:focus { border-color: var(--accent, #7cb9e8); }
+        .pe-input[type="date"] { color-scheme: dark; }
+        .pe-row {
+            border: 1px solid rgba(255,255,255,.09); border-radius: 9px;
+            padding: 12px 14px; margin-bottom: 10px; position: relative;
+            transition: border-color .2s;
+        }
+        .pe-row:hover { border-color: rgba(255,255,255,.15); }
+        .pe-row-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .pe-row-tag { font-size: 12px; color: var(--text-secondary, #b8ad97); }
+        .pe-row-del {
+            background: none; border: none; color: rgba(229,86,79,.6);
+            font-size: 20px; cursor: pointer; padding: 0; line-height: 1;
+            transition: color .2s;
+        }
+        .pe-row-del:hover { color: #e5564f; }
+        .pe-fields { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; }
+        @media (max-width: 600px) { .pe-fields { grid-template-columns: repeat(2,1fr); } }
+        .pe-field { display: flex; flex-direction: column; gap: 3px; }
+        .pe-field > label { font-size: 10px; color: var(--text-muted, #8b949e); letter-spacing: .4px; }
+        .pe-field .pe-input { width: 100%; }
+        .pe-btn-add {
+            background: rgba(255,255,255,.04); border: 1px dashed rgba(255,255,255,.18);
+            border-radius: 8px; color: var(--text-muted, #8b949e);
+            padding: 9px; width: 100%; cursor: pointer; font-size: 13px;
+            margin-bottom: 4px; transition: all .2s;
+        }
+        .pe-btn-add:hover { border-color: var(--accent, #7cb9e8); color: var(--accent, #7cb9e8); }
+        .pe-footer {
+            padding: 14px 20px; border-top: 1px solid var(--border-color, rgba(255,255,255,.08));
+            display: flex; justify-content: space-between; align-items: center; gap: 12px;
+            flex-shrink: 0; flex-wrap: wrap;
+        }
+        .pe-total { font-size: 13px; color: var(--text-secondary, #b8ad97); font-family: var(--mono); }
+        .pe-total strong { color: var(--text-primary, #e6edf3); }
+        .pe-status { font-size: 11.5px; color: var(--text-muted, #8b949e); margin-top: 3px; }
+        .pe-status.ok  { color: #2de89a; }
+        .pe-status.err { color: #ff6b63; }
+        .pe-btn-save {
+            background: var(--accent, #7cb9e8); color: #0a1628; font-weight: 700;
+            border: none; border-radius: 8px; padding: 10px 22px; font-size: 13px;
+            cursor: pointer; transition: opacity .2s; white-space: nowrap;
+        }
+        .pe-btn-save:hover { opacity: .88; }
+        .pe-btn-save:disabled { opacity: .45; cursor: not-allowed; }
+        /* PAT modal */
+        .pat-panel {
+            background: var(--bg-secondary, #1c1510);
+            border: 1px solid var(--accent-line, rgba(201,162,39,.22));
+            border-radius: 14px; padding: 26px 24px;
+            width: 100%; max-width: 400px;
+            box-shadow: 0 24px 64px rgba(0,0,0,.65);
+        }
+        /* 更新持仓按钮（section-title 右侧）*/
+        .btn-edit-portfolio {
+            background: rgba(124,185,232,.12); border: 1px solid rgba(124,185,232,.3);
+            border-radius: 6px; color: var(--accent, #7cb9e8); font-size: 12px;
+            font-weight: 600; padding: 4px 12px; cursor: pointer; transition: all .2s;
+            white-space: nowrap;
+        }
+        .btn-edit-portfolio:hover { background: rgba(124,185,232,.22); }
     </style>
 </head>
 <body>
@@ -1388,7 +1485,10 @@
 
     <!-- Section: 持仓明细 -->
     <section class="section" data-panel="overview">
-        <h2 class="section-title">持仓明细</h2>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+            <h2 class="section-title" style="margin-bottom:0;">持仓明细</h2>
+            <button class="btn-edit-portfolio" onclick="openPortfolioEditor()">✏️ 更新持仓</button>
+        </div>
         <!-- 移动端：卡片列表 -->
         <div class="holdings-cards" id="holdingsCards"></div>
         <!-- PC端：表格 -->
@@ -3257,6 +3357,268 @@ window._recolorCharts = function() {
     }, 60);
 };
 
+// ========== 持仓编辑器 ==========
+
+const PE_CATEGORIES = ['黄金','AI/科技','有色金属','光伏/新能源','高端制造','货币基金','纳指100','标普500','其他'];
+const PE_ASSET_BY_CAT = {
+    '黄金':'trend','有色金属':'trend','纳指100':'trend','标普500':'trend',
+    'AI/科技':'oscillation','光伏/新能源':'oscillation',
+    '高端制造':'active','货币基金':'cash','其他':'active',
+};
+const GH_REPO = 'zhenpengbi/xuanshu-alpha';
+let _patResolve = null;
+
+// ── open / close ────────────────────────────────────────────────
+function openPortfolioEditor() {
+    document.getElementById('pe-date').value =
+        portfolioData.updateTime || new Date().toISOString().slice(0, 10);
+    _peRenderRows();
+    _peUpdateTotal();
+    document.getElementById('pe-status').textContent = '';
+    document.getElementById('portfolioEditorModal').style.display = 'flex';
+}
+function closePortfolioEditor() {
+    document.getElementById('portfolioEditorModal').style.display = 'none';
+}
+function peOverlayClick(e) {
+    if (e.target === e.currentTarget) closePortfolioEditor();
+}
+
+// ── row rendering ───────────────────────────────────────────────
+function _peEsc(s) {
+    return String(s ?? '').replace(/[&<>"']/g,
+        c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function _peRenderRows() {
+    const wrap = document.getElementById('pe-rows');
+    wrap.innerHTML = '';
+    (portfolioData.holdings || []).forEach((h, i) => wrap.appendChild(_peBuildRow(h, i)));
+}
+function _peBuildRow(h, idx) {
+    const div = document.createElement('div');
+    div.className = 'pe-row';
+    const catOpts = PE_CATEGORIES.map(c =>
+        `<option value="${_peEsc(c)}"${c === (h.category||'其他') ? ' selected':''}>${_peEsc(c)}</option>`
+    ).join('');
+    div.innerHTML = `
+        <div class="pe-row-top">
+            <span class="pe-row-tag pe-tag-${idx}">
+                <b style="color:var(--text-primary,#e6edf3);">${_peEsc(h.name||'新基金')}</b>
+                <span style="font-size:10px;opacity:.6;margin-left:4px;">${_peEsc(h.code||'')}</span>
+            </span>
+            <button class="pe-row-del" title="删除" onclick="deletePeRow(this)">×</button>
+        </div>
+        <div class="pe-fields">
+            <div class="pe-field"><label>代码</label>
+                <input class="pe-input pe-code" value="${_peEsc(h.code||'')}" placeholder="6位代码"
+                       oninput="_peTagSync(this)">
+            </div>
+            <div class="pe-field"><label>基金名称</label>
+                <input class="pe-input pe-name" value="${_peEsc(h.name||'')}" placeholder="简称"
+                       oninput="_peTagSync(this)">
+            </div>
+            <div class="pe-field"><label>类别</label>
+                <select class="pe-input pe-cat">${catOpts}</select>
+            </div>
+            <div class="pe-field"><label>金额 ¥</label>
+                <input class="pe-input pe-amount" type="number" step="0.01"
+                       value="${h.amount ?? 0}" oninput="_peUpdateTotal()">
+            </div>
+            <div class="pe-field"><label>今日盈亏 ¥</label>
+                <input class="pe-input pe-daily" type="number" step="0.01" value="${h.dailyReturn ?? 0}">
+            </div>
+            <div class="pe-field"><label>持有收益 ¥</label>
+                <input class="pe-input pe-hold" type="number" step="0.01" value="${h.holdingReturn ?? 0}">
+            </div>
+            <div class="pe-field"><label>持有收益率 %</label>
+                <input class="pe-input pe-holdr" type="number" step="0.01" value="${h.holdingReturnRate ?? 0}">
+            </div>
+            <div class="pe-field"><label>累计收益 ¥</label>
+                <input class="pe-input pe-total" type="number" step="0.01" value="${h.totalReturn ?? 0}">
+            </div>
+        </div>`;
+    return div;
+}
+function _peTagSync(input) {
+    const row = input.closest('.pe-row');
+    const name = row.querySelector('.pe-name').value;
+    const code = row.querySelector('.pe-code').value;
+    const tag  = row.querySelector('.pe-row-tag');
+    tag.innerHTML = `<b style="color:var(--text-primary,#e6edf3);">${_peEsc(name||'新基金')}</b>`
+        + `<span style="font-size:10px;opacity:.6;margin-left:4px;">${_peEsc(code)}</span>`;
+}
+function _peUpdateTotal() {
+    const total = [...document.querySelectorAll('#pe-rows .pe-amount')]
+        .reduce((s, el) => s + (parseFloat(el.value) || 0), 0);
+    const el = document.getElementById('pe-total-display');
+    if (el) el.innerHTML = `总资产: <strong>¥${total.toLocaleString('zh-CN',{minimumFractionDigits:2})}</strong>`;
+}
+function deletePeRow(btn) {
+    btn.closest('.pe-row').remove();
+    _peUpdateTotal();
+}
+function addPortfolioRow() {
+    const wrap = document.getElementById('pe-rows');
+    const row  = _peBuildRow({code:'',name:'',amount:0,dailyReturn:0,holdingReturn:0,holdingReturnRate:0,totalReturn:0,category:'其他'}, wrap.children.length);
+    wrap.appendChild(row);
+    row.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+function _peCollect() {
+    const date = document.getElementById('pe-date').value || new Date().toISOString().slice(0, 10);
+    const rows = [...document.querySelectorAll('#pe-rows .pe-row')];
+    const holdings = rows.map(r => {
+        const code  = r.querySelector('.pe-code').value.trim();
+        const name  = r.querySelector('.pe-name').value.trim();
+        const cat   = r.querySelector('.pe-cat').value;
+        const amount          = Math.round((parseFloat(r.querySelector('.pe-amount').value)  || 0) * 100) / 100;
+        const dailyReturn     = Math.round((parseFloat(r.querySelector('.pe-daily').value)   || 0) * 100) / 100;
+        const holdingReturn   = Math.round((parseFloat(r.querySelector('.pe-hold').value)    || 0) * 100) / 100;
+        const holdingReturnRate= Math.round((parseFloat(r.querySelector('.pe-holdr').value)  || 0) * 100) / 100;
+        const totalReturn     = Math.round((parseFloat(r.querySelector('.pe-total').value)   || 0) * 100) / 100;
+        return { name, code, amount, dailyReturn, holdingReturn, holdingReturnRate, totalReturn,
+                 category: cat, assetType: PE_ASSET_BY_CAT[cat] || 'active' };
+    });
+    const totalAsset = Math.round(holdings.reduce((s, h) => s + h.amount, 0) * 100) / 100;
+    // ratio：占比重算
+    holdings.forEach(h => {
+        h.ratio = totalAsset > 0 ? Math.round(h.amount / totalAsset * 10000) / 100 : 0;
+    });
+    // 修正四舍五入误差
+    if (holdings.length && totalAsset > 0) {
+        const ratioSum = Math.round(holdings.reduce((s, h) => s + h.ratio, 0) * 100) / 100;
+        const diff     = Math.round((100 - ratioSum) * 100) / 100;
+        const big      = holdings.reduce((a, b) => a.amount > b.amount ? a : b);
+        big.ratio      = Math.round((big.ratio + diff) * 100) / 100;
+    }
+    return { updateTime: date, totalAsset, holdings, targetAllocation: portfolioData.targetAllocation };
+}
+
+// ── PAT ─────────────────────────────────────────────────────────
+function _getPAT() { return localStorage.getItem('gh_pat') || null; }
+function _setPAT(p) { if (p) localStorage.setItem('gh_pat', p.trim()); }
+function openPatModal() {
+    const cur = _getPAT();
+    document.getElementById('pat-input').value = cur || '';
+    document.getElementById('pat-error').textContent = '';
+    document.getElementById('patInputModal').style.display = 'flex';
+    return new Promise(r => { _patResolve = r; });
+}
+function confirmPat() {
+    const pat = document.getElementById('pat-input').value.trim();
+    if (!pat) { document.getElementById('pat-error').textContent = '请输入 Token'; return; }
+    _setPAT(pat);
+    document.getElementById('patInputModal').style.display = 'none';
+    if (_patResolve) { _patResolve(pat); _patResolve = null; }
+}
+function closePatModal() {
+    document.getElementById('patInputModal').style.display = 'none';
+    if (_patResolve) { _patResolve(null); _patResolve = null; }
+}
+
+// ── GitHub Contents API ──────────────────────────────────────────
+async function _ghGet(path, pat) {
+    const r = await fetch(`https://api.github.com/repos/${GH_REPO}/contents/${path}`, {
+        headers: { 'Authorization': `token ${pat}`, 'Accept': 'application/vnd.github.v3+json' }
+    });
+    if (!r.ok) throw new Error(`GET ${path}: HTTP ${r.status}`);
+    return r.json();
+}
+async function _ghPut(path, content, message, pat) {
+    const meta = await _ghGet(path, pat);
+    const b64  = btoa(unescape(encodeURIComponent(content)));  // UTF-8 safe base64
+    const r    = await fetch(`https://api.github.com/repos/${GH_REPO}/contents/${path}`, {
+        method: 'PUT',
+        headers: {
+            'Authorization': `token ${pat}`,
+            'Accept': 'application/vnd.github.v3+json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message, content: b64, sha: meta.sha }),
+    });
+    if (!r.ok) {
+        const err = await r.json().catch(() => ({}));
+        throw new Error(err.message || `PUT ${path}: HTTP ${r.status}`);
+    }
+    return true;
+}
+function _buildInlineBlock(data) {
+    return `const portfolioData = ${JSON.stringify(data, null, 4)};`;
+}
+
+// ── save ──────────────────────────────────────────────────────────
+async function savePortfolio() {
+    const btn    = document.getElementById('pe-save-btn');
+    const status = document.getElementById('pe-status');
+    btn.disabled = true;
+    status.className = 'pe-status';
+    status.textContent = '⏳ 保存中...';
+    try {
+        const newData = _peCollect();
+
+        // ensure PAT
+        let pat = _getPAT();
+        if (!pat) pat = await openPatModal();
+        if (!pat) { status.textContent = '已取消'; btn.disabled = false; return; }
+
+        // 1. update data/portfolio.json
+        status.textContent = '📤 更新 portfolio.json...';
+        await _ghPut(
+            'data/portfolio.json',
+            JSON.stringify(newData, null, 2) + '\n',
+            `chore: 更新持仓快照 ${newData.updateTime}（总额 ¥${newData.totalAsset}）`,
+            pat
+        );
+
+        // 2. update index.html inline portfolioData block
+        status.textContent = '📤 更新 index.html 内联块...';
+        const htmlMeta = await _ghGet('index.html', pat);
+        // decode base64 (strip line breaks inserted by GitHub API)
+        const rawB64   = (htmlMeta.content || '').replace(/\n/g, '');
+        const htmlText = decodeURIComponent(escape(atob(rawB64)));
+        const newBlock = _buildInlineBlock(newData);
+        // Replace: const portfolioData = { ... }; (top-level, ends at \n};)
+        const htmlNew  = htmlText.replace(
+            /const portfolioData = \{[\s\S]*?\n\};/,
+            newBlock
+        );
+        if (htmlNew === htmlText) {
+            console.warn('[PE] portfolioData 块替换未命中，跳过 index.html 更新');
+        } else {
+            await _ghPut(
+                'index.html',
+                htmlNew,
+                `chore: 同步 portfolioData 内联快照 ${newData.updateTime}`,
+                pat
+            );
+        }
+
+        // 3. update local state and re-render
+        Object.assign(portfolioData, newData);
+        renderHeader();
+        renderMetrics();
+        renderPieChart();
+        renderBarChart();
+        renderHoldings();
+
+        status.className = 'pe-status ok';
+        status.textContent = '✅ 已提交到 GitHub，数据已刷新';
+        setTimeout(() => {
+            if (document.getElementById('portfolioEditorModal').style.display !== 'none')
+                closePortfolioEditor();
+        }, 2200);
+    } catch(e) {
+        console.error('[Portfolio Editor]', e);
+        // If token invalid, ask again
+        if (String(e.message).includes('401') || String(e.message).includes('Bad credentials')) {
+            localStorage.removeItem('gh_pat');
+        }
+        status.className = 'pe-status err';
+        status.textContent = '❌ ' + (e.message || '提交失败，请检查网络或 Token 权限');
+    } finally {
+        btn.disabled = false;
+    }
+}
+
 // ========== Initialize ==========
 document.addEventListener('DOMContentLoaded', async function() {
     // ① 先拉最新持仓数据（覆盖 inline 快照），确保所有后续渲染用真实数据
@@ -3296,5 +3658,52 @@ document.addEventListener('DOMContentLoaded', async function() {
     await loadAndRenderAdviceModule();
 });
 </script>
+
+<!-- ========== 持仓编辑器 Modal ========== -->
+<div id="portfolioEditorModal" class="pe-overlay" style="display:none;" onclick="peOverlayClick(event)">
+  <div class="pe-panel">
+    <div class="pe-header">
+      <h3>✏️ 更新持仓</h3>
+      <button class="pe-close" onclick="closePortfolioEditor()" aria-label="关闭">×</button>
+    </div>
+    <div class="pe-body">
+      <div class="pe-meta">
+        <label class="pe-meta-label">📅 持仓日期
+          <input class="pe-input" id="pe-date" type="date" style="width:148px;">
+        </label>
+      </div>
+      <div id="pe-rows"></div>
+      <button class="pe-btn-add" onclick="addPortfolioRow()">＋ 新增基金</button>
+    </div>
+    <div class="pe-footer">
+      <div>
+        <div class="pe-total" id="pe-total-display">总资产: <strong>¥--</strong></div>
+        <div class="pe-status" id="pe-status"></div>
+      </div>
+      <button class="pe-btn-save" id="pe-save-btn" onclick="savePortfolio()">🚀 提交到 GitHub</button>
+    </div>
+  </div>
+</div>
+
+<!-- PAT 输入 Modal -->
+<div id="patInputModal" class="pe-overlay" style="display:none;">
+  <div class="pat-panel">
+    <h3 style="margin:0 0 10px;font-size:15px;color:var(--text-primary,#e6edf3);">🔑 GitHub Token</h3>
+    <p style="font-size:12px;color:var(--text-muted,#8b949e);margin:0 0 14px;line-height:1.65;">
+      需要 GitHub Personal Access Token（<code>repo</code> 权限）。<br>
+      Token 仅存储在本设备 localStorage，不上传任何服务器。
+    </p>
+    <input class="pe-input" id="pat-input" type="password"
+           placeholder="ghp_xxxxxxxxxxxxxxxxxxxx"
+           style="width:100%;box-sizing:border-box;margin-bottom:4px;"
+           onkeydown="if(event.key==='Enter')confirmPat()">
+    <p style="font-size:11px;color:rgba(229,86,79,.7);margin:6px 0 14px;" id="pat-error"></p>
+    <div style="display:flex;gap:8px;justify-content:flex-end;">
+      <button onclick="closePatModal()"
+        style="background:none;border:1px solid var(--border-color,rgba(255,255,255,.12));border-radius:7px;padding:8px 18px;color:var(--text-muted,#8b949e);cursor:pointer;font-size:13px;">取消</button>
+      <button onclick="confirmPat()" class="pe-btn-save" style="padding:8px 18px;font-size:13px;">确认</button>
+    </div>
+  </div>
+</div>
 </body>
 </html>
