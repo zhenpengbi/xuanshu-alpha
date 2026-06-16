@@ -2907,11 +2907,11 @@ function renderBtChart(result) {
                 params.map(p => p.marker + p.seriesName + ': ' + (+p.value).toFixed(3)).join('<br>')
         },
         legend: {
-            top: 8,
-            textStyle: { color: cc.dim, fontSize: 12 },
+            top: 10, right: 20,
+            textStyle: { color: cc.dim, fontSize: 11 },
             data: ['信号策略', '买入持有(基准)']
         },
-        grid: { left: 56, right: 22, top: 56, bottom: 48 },
+        grid: { left: 56, right: 22, top: 50, bottom: 80 },
         xAxis: {
             type: 'category', data: c.dates,
             axisLabel: { color: cc.muted, fontSize: 10, rotate: 30, interval: 'auto' },
