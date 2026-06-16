@@ -1424,13 +1424,13 @@
         }
         .pe-btn-cancel:hover { border-color: rgba(255,255,255,.35); color: var(--text-primary); }
         .pe-btn-save {
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dim) 100%);
-            color: #0a1628; font-weight: 700;
-            border: none; border-radius: 8px; padding: 9px 22px; font-size: 13px;
+            background: linear-gradient(135deg, #f7d774 0%, #f0b90b 100%) !important;
+            color: #1a1f2e !important; font-weight: 700;
+            border: none !important; border-radius: 8px; padding: 9px 22px; font-size: 13px;
             cursor: pointer; transition: opacity .2s, box-shadow .2s; white-space: nowrap;
-            box-shadow: 0 2px 12px rgba(0,200,255,.25);
+            box-shadow: 0 2px 12px rgba(240,185,11,.3);
         }
-        .pe-btn-save:hover { opacity: .9; box-shadow: 0 4px 20px rgba(0,200,255,.4); }
+        .pe-btn-save:hover { opacity: .9; box-shadow: 0 4px 20px rgba(240,185,11,.5); }
         .pe-btn-save:disabled { opacity: .4; cursor: not-allowed; box-shadow: none; }
         /* PAT modal */
         .pat-panel {
@@ -1492,9 +1492,9 @@
         [data-theme="light"] .pe-btn-cancel:hover {
             border-color: rgba(0,0,0,.35); color: #1a1f2e; }
         [data-theme="light"] .pe-btn-save {
-            box-shadow: 0 2px 12px rgba(0,102,204,.2); }
+            box-shadow: 0 2px 12px rgba(240,185,11,.3); }
         [data-theme="light"] .pe-btn-save:hover {
-            box-shadow: 0 4px 20px rgba(0,102,204,.35); }
+            box-shadow: 0 4px 20px rgba(240,185,11,.5); }
         [data-theme="light"] .pat-panel {
             background: #ffffff; border-color: rgba(0,0,0,.1);
             box-shadow: 0 8px 32px rgba(0,0,0,.18); }
@@ -1514,6 +1514,7 @@
             :root:not([data-theme]) .pe-field > label { color:rgba(0,0,0,.6); }
             :root:not([data-theme]) .pe-footer { background:rgba(255,255,255,.9); border-top-color:rgba(0,0,0,.08); }
             :root:not([data-theme]) .pe-btn-cancel { border-color:rgba(0,0,0,.15); color:rgba(0,0,0,.6); }
+            :root:not([data-theme]) .pe-btn-save { box-shadow: 0 2px 12px rgba(240,185,11,.3); }
             :root:not([data-theme]) .pat-panel { background:#ffffff; border-color:rgba(0,0,0,.1); }
         }
     </style>
