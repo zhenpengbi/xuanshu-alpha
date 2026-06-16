@@ -471,6 +471,30 @@
             border-color: var(--accent);
         }
 
+        /* ========== Period Tab Bar — 早报☀️/晚报🌙 切换 ========== */
+        .period-tab-bar {
+            display: flex; gap: 0; margin-bottom: 14px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .period-tab {
+            flex: none; padding: 8px 20px;
+            font-size: 13px; font-weight: 600;
+            border: none; background: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: color .2s, border-color .2s;
+            font-family: var(--sans);
+            border-bottom: 2px solid transparent;
+            margin-bottom: -1px;
+        }
+        .period-tab:hover { color: var(--text-primary); }
+        .period-tab.active {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+        }
+        .period-tab.empty { opacity: .4; }
+        .period-tab-content { padding-top: 4px; }
+
         /* ========== Timeline ========== */
         .timeline { position: relative; padding-left: 32px; }
         .timeline::before {
@@ -2213,6 +2237,110 @@ function renderTimelineItems(el, items, meta) {
     });
 }
 
+/**
+ * _renderPeriodTab — 早报☀️/晚报🌙 内容切换渲染器
+ * 兼容新格式（morning/evening 双分区）、history 数组格式及旧 items 格式。
+ */
+function _renderTimelinePeriodTabs(el, news) {
+    // 定义两个时段配置
+    const PERIODS = [
+        { key: 'morning', label: '早报 ☀️' },
+        { key: 'evening', label: '晚报 🌙' },
+    ];
+
+    // 提取各时段数据
+    const sections = PERIODS.map(p => {
+        const sec = news[p.key];
+        const items = sec && Array.isArray(sec.items) ? sec.items : [];
+        return {
+            key:    p.key,
+            label:  p.label,
+            period: sec && sec.period ? sec.period : p.label.replace(/ [☀🌙️].*/, '').trim(),
+            date:   news.updated || '',
+            items,
+        };
+    });
+
+    // 默认选最新有数据的时段：
+    //   上午（<13:00）且早报有数据 → 早报；否则晚报有数据 → 晚报；都无数据 → 晚报
+    const hour = new Date().getHours();
+    let defaultKey = 'evening';
+    if (hour < 13 && sections[0].items.length) {
+        defaultKey = 'morning';
+    } else if (sections[1].items.length) {
+        defaultKey = 'evening';
+    } else if (sections[0].items.length) {
+        defaultKey = 'morning';
+    }
+
+    // 构建 Tab 容器
+    const tabWrap = document.createElement('div');
+    tabWrap.className = 'period-tab-bar';
+
+    const contentEl = document.createElement('div');
+    contentEl.className = 'period-tab-content';
+
+    function _showSection(key) {
+        const sec = sections.find(s => s.key === key);
+        // 切换 active 样式
+        tabWrap.querySelectorAll('.period-tab').forEach(t => {
+            t.classList.toggle('active', t.dataset.key === key);
+        });
+        // 清空内容区（保留 tab-bar 外的内容）
+        contentEl.innerHTML = '';
+        if (!sec || !sec.items.length) {
+            const tip = document.createElement('div');
+            tip.style.cssText = 'color:var(--paper-faint);font-size:13px;padding:24px 0;text-align:center;';
+            tip.textContent = sec && sec.key === 'morning'
+                ? '☀️ 今日早报暂未生成，稍后更新'
+                : '🌙 今日晚报暂未生成，稍后更新';
+            contentEl.appendChild(tip);
+            return;
+        }
+        // 渲染信息栏
+        const header = document.createElement('div');
+        header.style.cssText = 'font-size:11px;color:var(--text-muted);margin-bottom:14px;';
+        header.textContent = `数据更新：${sec.date} ${sec.period} · 每条附 AI 持仓影响判断`;
+        contentEl.appendChild(header);
+        // 渲染条目
+        sec.items.forEach(item => {
+            const imp  = item.impact || {};
+            const tags = Object.keys(IMPACT_META)
+                .filter(k => imp[k])
+                .map(k => {
+                    const view = imp[k];
+                    return `<span class="impact-tag impact-${impactType(view)}">${IMPACT_META[k].label}${impactArrow(view)} ${view}</span>`;
+                }).join('');
+            const div = document.createElement('div');
+            div.className = 'timeline-item';
+            div.innerHTML = `
+                <div class="timeline-time">${item.time||''}${item.source?` · 来源 ${item.source}`:''}</div>
+                <div class="timeline-title">${item.title||''}</div>
+                ${item.summary?`<div class="timeline-summary">${item.summary}</div>`:''}
+                ${tags?`<div class="timeline-tags">${tags}</div>`:''}
+                ${item.reason?`<div class="timeline-reason">💡 ${item.reason}</div>`:''}`;
+            contentEl.appendChild(div);
+        });
+    }
+
+    // 渲染 Tabs
+    sections.forEach(sec => {
+        const btn = document.createElement('button');
+        btn.className = 'period-tab' + (sec.key === defaultKey ? ' active' : '');
+        btn.dataset.key = sec.key;
+        // 无数据时 Tab 显示淡化样式
+        if (!sec.items.length) btn.classList.add('empty');
+        btn.textContent = sec.label;
+        btn.addEventListener('click', () => _showSection(sec.key));
+        tabWrap.appendChild(btn);
+    });
+
+    el.innerHTML = '';
+    el.appendChild(tabWrap);
+    el.appendChild(contentEl);
+    _showSection(defaultKey);
+}
+
 function renderTimeline() {
     const el = document.getElementById('timeline');
     const news = window.newsData;
@@ -2224,7 +2352,13 @@ function renderTimeline() {
         return;
     }
 
-    // ── 新格式：history 数组（滚动7天窗口）──
+    // ── 新格式：morning/evening 双分区 ──
+    if (news.morning !== undefined || news.evening !== undefined) {
+        _renderTimelinePeriodTabs(el, news);
+        return;
+    }
+
+    // ── history 数组格式（滚动7天窗口）──
     if (Array.isArray(news.history) && news.history.length) {
         const tabs = news.history.map((h, i) => ({
             label: `${h.date} ${h.period||''}`.trim(),
@@ -2242,6 +2376,7 @@ function renderTimeline() {
 
     // ── 旧格式：items 数组（向下兼容）──
     if (Array.isArray(news.items) && news.items.length) {
+        // 包装成单 period 展示，不加 Tab
         renderTimelineItems(el, news.items, news);
         return;
     }

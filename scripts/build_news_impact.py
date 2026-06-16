@@ -6,9 +6,10 @@
 读取 data/news.json 每条新闻的 impact 字段，按持仓标的做渠道映射，
 统计利多/利空/中性条数，计算情绪净值，输出 data/news_impact.json。
 
-news.json 支持两种格式（自动识别）：
-  旧格式: {"updated":"...", "period":"...", "items":[...]}
-  新格式: {"updated":"...", "history":[{"date":"...","period":"...","items":[...]}, ...]}
+news.json 支持三种格式（自动识别）：
+  旧格式:    {"updated":"...", "period":"...", "items":[...]}
+  history:   {"updated":"...", "history":[{"date":"...","period":"...","items":[...]}, ...]}
+  早晚报:    {"updated":"...", "morning":{"period":"早报","items":[...]}, "evening":{"period":"晚报","items":[...]}}
 
 持仓→新闻渠道映射（impact 字段的 key）：
   000216 黄金       → gold
@@ -112,12 +113,31 @@ def build_impact(news_items: list, channel: str) -> dict:
 
 def extract_latest_items(news_data: dict) -> tuple:
     """
-    从 news.json 中提取最新一期新闻条目，兼容旧格式和新 history 格式。
+    从 news.json 中提取最新一期新闻条目，兼容三种格式：
+      1. 新格式 morning/evening 双分区：合并所有非空分区的条目
+      2. history 数组格式（滚动7天窗口）：取 history[0]
+      3. 旧格式：顶层 items 数组
     Returns:
         (items: list, date_str: str, period_str: str)
     可复用：任何需要读取 news.json 最新条目的场景均可调用。
     """
-    # 新格式：history 数组
+    # ── 新格式：morning/evening 双分区 ──
+    if "morning" in news_data or "evening" in news_data:
+        date_str = news_data.get("updated", "")
+        all_items = []
+        period_parts = []
+        # 优先晚报（更新），其次早报，合并所有有效条目
+        for key in ("evening", "morning"):
+            sec = news_data.get(key, {})
+            if isinstance(sec, dict) and sec.get("items"):
+                all_items = sec["items"] + all_items  # 晚报在前
+                p = sec.get("period", "")
+                if p:
+                    period_parts.append(p)
+        period_str = "/".join(reversed(period_parts)) if period_parts else ""
+        return (all_items, date_str, period_str)
+
+    # ── history 数组格式（滚动7天窗口）──
     if "history" in news_data and news_data["history"]:
         latest = news_data["history"][0]  # history[0] 为最新
         return (
@@ -125,7 +145,8 @@ def extract_latest_items(news_data: dict) -> tuple:
             latest.get("date", news_data.get("updated", "")),
             latest.get("period", ""),
         )
-    # 旧格式：顶层 items
+
+    # ── 旧格式：顶层 items ──
     return (
         news_data.get("items", []),
         news_data.get("updated", ""),
