@@ -1002,25 +1002,30 @@
             .section[data-panel].panel-active { display: block; }
 
             /* ── 今日决策 panel ── */
-            .deci-val-grid { display:flex; flex-wrap:wrap; gap:10px; }
-            .deci-val-chip { flex:1; min-width:110px; padding:12px 8px; border-radius:8px; text-align:center; }
-            .deci-val-chip .dvc-cat { font-size:11px; color:var(--text-secondary); margin-bottom:4px; }
-            .deci-val-chip .dvc-score { font-size:20px; font-weight:700; line-height:1.2; }
+            .deci-block-title { font-size:14px; font-weight:600; color:var(--text-primary); border-left:3px solid var(--accent); padding-left:8px; margin-bottom:12px; line-height:1.4; }
+            .deci-val-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+            @media(max-width:400px){ .deci-val-grid { grid-template-columns:repeat(2,1fr); } }
+            .deci-val-chip { padding:12px 8px; border-radius:8px; text-align:center; border:1px solid transparent; }
+            .deci-val-chip .dvc-cat { font-size:11px; color:var(--text-secondary); margin-bottom:6px; }
+            .deci-val-chip .dvc-score { font-size:22px; font-weight:700; line-height:1.2; }
             .deci-val-chip .dvc-verdict { font-size:11px; margin-top:4px; opacity:.85; }
-            .deci-val-green { background:var(--green-bg); border:1px solid rgba(0,229,160,.3); }
-            .deci-val-yellow { background:rgba(255,190,50,.1); border:1px solid rgba(255,190,50,.3); color:#c8a020; }
-            .deci-val-orange { background:rgba(255,140,0,.1); border:1px solid rgba(255,140,0,.3); color:#d06a00; }
-            .deci-val-red { background:var(--red-bg); border:1px solid rgba(255,79,106,.3); }
+            .deci-val-green  { background:rgba(0,229,160,.1);  border-color:rgba(0,229,160,.35); color:var(--green); }
+            .deci-val-yellow { background:rgba(240,185,11,.1); border-color:rgba(240,185,11,.4);  color:#c8a020; }
+            .deci-val-orange { background:rgba(245,131,42,.1); border-color:rgba(245,131,42,.4);  color:#d06a00; }
+            .deci-val-red    { background:rgba(255,79,106,.1); border-color:rgba(255,79,106,.35); color:var(--red); }
+            .deci-val-na     { background:var(--bg-surface); border-color:var(--line); color:var(--text-muted); }
+            [data-theme="light"] .deci-val-green  { color:#007a52; }
             [data-theme="light"] .deci-val-yellow { color:#8a6a00; }
             [data-theme="light"] .deci-val-orange { color:#9a4800; }
             .deci-tbl { width:100%; border-collapse:collapse; font-size:13px; }
-            .deci-tbl td { padding:8px 6px; border-bottom:1px solid var(--line); vertical-align:top; }
+            .deci-tbl td { padding:8px 6px; border-bottom:1px solid var(--line); vertical-align:middle; }
             .deci-tbl tr:last-child td { border-bottom:none; }
-            .deci-sig-badge { font-size:11px; padding:2px 7px; border-radius:10px; font-weight:600; white-space:nowrap; }
-            .deci-sig-buy { background:var(--green-bg); color:var(--green); }
-            .deci-sig-sell { background:var(--red-bg); color:var(--red); }
+            .deci-name-cell { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:100px; display:block; font-size:12px; font-weight:600; }
+            .deci-sig-badge { display:inline-block; font-size:11px; padding:2px 7px; border-radius:10px; font-weight:600; white-space:nowrap; }
+            .deci-sig-buy  { background:var(--green-bg); color:var(--green); }
+            .deci-sig-sell { background:var(--red-bg);   color:var(--red); }
             .deci-sig-hold { background:var(--bg-surface); color:var(--text-muted); }
-            .deci-risk-card { padding:10px 12px; border-radius:8px; background:var(--red-bg); border:1px solid rgba(255,79,106,.3); margin-bottom:8px; font-size:13px; color:var(--text-primary); }
+            .deci-risk-card { padding:10px 12px; border-radius:0 6px 6px 0; background:var(--red-bg); border-left:3px solid var(--red); margin-bottom:8px; font-size:13px; color:var(--text-primary); }
 
             /* ── 底部 nav 占位，防止内容被遮挡（含 safe-area）── */
             .page-bottom-spacer { height: calc(72px + env(safe-area-inset-bottom, 0px)); }
@@ -1626,7 +1631,7 @@
 
         <!-- 区块1：操作信号 -->
         <div class="card" style="margin-bottom:16px;">
-            <div style="font-size:14px;font-weight:600;margin-bottom:12px;color:var(--text-primary);">🚦 操作信号</div>
+            <div class="deci-block-title">操作信号</div>
             <div id="decisionSignals"><span style="color:var(--text-muted);font-size:13px;">加载中...</span></div>
             <details id="decisionSignalsMore" style="display:none;margin-top:10px;">
                 <summary style="cursor:pointer;color:var(--accent);font-size:13px;user-select:none;">查看全部基金信号</summary>
@@ -1636,14 +1641,14 @@
 
         <!-- 区块2：风险预警（无high alert时隐藏） -->
         <div id="decisionRiskWrap" class="card" style="margin-bottom:16px;display:none;">
-            <div style="font-size:14px;font-weight:600;margin-bottom:12px;color:var(--text-primary);">⚠️ 风险预警</div>
+            <div class="deci-block-title" style="border-left-color:var(--red);">风险预警</div>
             <div id="decisionRiskAlerts"></div>
             <div id="decisionRiskMeta" style="font-size:12px;color:var(--text-secondary);margin-top:8px;"></div>
         </div>
 
         <!-- 区块3：估值温度 -->
         <div class="card">
-            <div style="font-size:14px;font-weight:600;margin-bottom:12px;color:var(--text-primary);">📊 估值温度</div>
+            <div class="deci-block-title">估值温度</div>
             <div id="decisionValuation" class="deci-val-grid"><span style="color:var(--text-muted);font-size:13px;">加载中...</span></div>
         </div>
     </section>
@@ -4055,13 +4060,13 @@ function _renderDeciSignals(data, errHtml) {
     if (!el) return;
     if (!data) { el.innerHTML = errHtml; return; }
     const HOLD = ['持有', '持有观察'];
-    const typeLbl = t => t === 'trend' ? '趋势' : t === 'oscillation' ? '震荡' : (t||'');
+    const typeLbl = t => t === 'trend' ? '趋势' : t === 'oscillation' ? '震荡' : t === 'active' ? '主动' : (t||'');
     const sigCls = s => ['买入','定投'].includes(s) ? 'deci-sig-buy' : ['减仓','卖出','高估警惕'].includes(s) ? 'deci-sig-sell' : 'deci-sig-hold';
     const rowsHtml = arr => arr.map(s => `<tr>
-        <td style="max-width:90px;"><b style="font-size:12px;">${s.name}</b></td>
-        <td style="color:var(--text-secondary);white-space:nowrap;">${typeLbl(s.asset_type)}</td>
+        <td><span class="deci-name-cell" title="${s.name}">${s.name}</span></td>
+        <td style="color:var(--text-secondary);white-space:nowrap;font-size:12px;">${typeLbl(s.asset_type)}</td>
         <td style="white-space:nowrap;"><span class="deci-sig-badge ${sigCls(s.signal)}">${s.signal}</span></td>
-        <td style="font-size:11px;color:var(--text-secondary);line-height:1.5;">${s.action_detail || s.reason || '--'}</td>
+        <td style="font-size:12px;color:var(--text-secondary);line-height:1.5;">${s.action_detail || s.reason || '--'}</td>
     </tr>`).join('');
     const active = (data.signals||[]).filter(s => !HOLD.includes(s.signal));
     const passive = (data.signals||[]).filter(s => HOLD.includes(s.signal));
@@ -4084,7 +4089,7 @@ function _renderDeciRisk(data, errHtml) {
     const highs = (data.concentration?.alerts||[]).filter(a => a.severity === 'high');
     if (!highs.length) { wrap.style.display = 'none'; return; }
     wrap.style.display = '';
-    if (alertsEl) alertsEl.innerHTML = highs.map(a => `<div class="deci-risk-card">⚠️ ${a.message}</div>`).join('');
+    if (alertsEl) alertsEl.innerHTML = highs.map(a => `<div class="deci-risk-card"><span style="color:var(--red);margin-right:6px;font-weight:700;">·</span>${a.message}</div>`).join('');
     const pr = data.portfolio_risk || {};
     if (metaEl && pr.volatility != null) metaEl.textContent = `年化波动率 ${pr.volatility}%　·　风险等级 ${pr.risk_level||'--'}`;
 }
@@ -4092,12 +4097,19 @@ function _renderDeciValuation(data, errHtml) {
     const el = document.getElementById('decisionValuation');
     if (!el) return;
     if (!data) { el.innerHTML = errHtml; return; }
-    const chipCls = score => score <= 40 ? 'deci-val-green' : score <= 60 ? 'deci-val-yellow' : score <= 80 ? 'deci-val-orange' : 'deci-val-red';
-    el.innerHTML = (data.valuations||[]).map(v => `<div class="deci-val-chip ${chipCls(v.verdict_score)}">
+    const NA_VERDICTS = ['数据缺失', '不适用'];
+    const chipCls = v => NA_VERDICTS.includes(v.verdict) ? 'deci-val-na'
+        : v.verdict_score <= 40 ? 'deci-val-green'
+        : v.verdict_score <= 60 ? 'deci-val-yellow'
+        : v.verdict_score <= 80 ? 'deci-val-orange' : 'deci-val-red';
+    el.innerHTML = (data.valuations||[]).map(v => {
+        const isNA = NA_VERDICTS.includes(v.verdict);
+        return `<div class="deci-val-chip ${chipCls(v)}">
         <div class="dvc-cat">${v.category}</div>
-        <div class="dvc-score">${v.verdict_score}</div>
-        <div class="dvc-verdict">${v.verdict}</div>
-    </div>`).join('');
+        <div class="dvc-score">${isNA ? '—' : v.verdict_score}</div>
+        <div class="dvc-verdict">${isNA ? '暂无数据' : v.verdict}</div>
+    </div>`;
+    }).join('');
 }
 
 document.addEventListener('DOMContentLoaded', async function() {
