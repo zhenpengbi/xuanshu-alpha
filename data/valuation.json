@@ -4,8 +4,8 @@
     {
       "category": "AI/科技",
       "index_name": "中证人工智能(930713)",
-      "current_pe": 56.61,
-      "pe_pct_5y": 95.2,
+      "current_pe": 57.09,
+      "pe_pct_5y": 96.2,
       "current_pb": null,
       "pb_pct_5y": null,
       "verdict": "高估",
@@ -15,8 +15,8 @@
     {
       "category": "有色金属",
       "index_name": "中证有色金属(930708)",
-      "current_pe": 20.69,
-      "pe_pct_5y": 64.0,
+      "current_pe": 20.65,
+      "pe_pct_5y": 63.5,
       "current_pb": null,
       "pb_pct_5y": null,
       "verdict": "适中",
@@ -26,8 +26,8 @@
     {
       "category": "光伏/新能源",
       "index_name": "中证新能源(931151)",
-      "current_pe": 36.27,
-      "pe_pct_5y": 78.4,
+      "current_pe": 36.11,
+      "pe_pct_5y": 78.0,
       "current_pb": null,
       "pb_pct_5y": null,
       "verdict": "偏贵",
@@ -48,24 +48,24 @@
     {
       "category": "纳指100",
       "index_name": "纳斯达克100(NDX/QQQ)",
-      "current_pe": null,
+      "current_pe": 33.51,
       "pe_pct_5y": null,
       "current_pb": null,
       "pb_pct_5y": null,
-      "verdict": "数据缺失",
-      "verdict_score": 50,
-      "pe_note": null
+      "verdict": "偏贵",
+      "verdict_score": 70,
+      "pe_note": "绝对PE估算(无5年序列)"
     },
     {
       "category": "标普500",
       "index_name": "标普500(SPX/SPY)",
-      "current_pe": null,
+      "current_pe": 26.87,
       "pe_pct_5y": null,
       "current_pb": null,
       "pb_pct_5y": null,
-      "verdict": "数据缺失",
+      "verdict": "适中",
       "verdict_score": 50,
-      "pe_note": null
+      "pe_note": "绝对PE估算(无5年序列)"
     },
     {
       "category": "黄金",

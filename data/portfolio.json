@@ -1,5 +1,5 @@
 {
-  "updateTime": "2026-06-16",
+  "updateTime": "2026-06-17",
   "totalAsset": 55522.55,
   "holdings": [
     {
@@ -7,7 +7,7 @@
       "code": "002963",
       "amount": 19074.41,
       "ratio": 34.35,
-      "dailyReturn": 621.27,
+      "dailyReturn": -25.48,
       "holdingReturn": -2125.59,
       "holdingReturnRate": -10.03,
       "totalReturn": 1775.65,
@@ -19,7 +19,7 @@
       "code": "000307",
       "amount": 8298.93,
       "ratio": 14.95,
-      "dailyReturn": 270.71,
+      "dailyReturn": -11.02,
       "holdingReturn": -1200.15,
       "holdingReturnRate": -12.63,
       "totalReturn": -1200.15,
@@ -120,5 +120,5 @@
     "光伏/新能源": 6,
     "高端制造": 10
   },
-  "dailyReturn": 979.95
+  "dailyReturn": 51.47
 }
