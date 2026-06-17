@@ -1001,6 +1001,27 @@
             .section[data-panel] { display: none; }
             .section[data-panel].panel-active { display: block; }
 
+            /* ── 今日决策 panel ── */
+            .deci-val-grid { display:flex; flex-wrap:wrap; gap:10px; }
+            .deci-val-chip { flex:1; min-width:110px; padding:12px 8px; border-radius:8px; text-align:center; }
+            .deci-val-chip .dvc-cat { font-size:11px; color:var(--text-secondary); margin-bottom:4px; }
+            .deci-val-chip .dvc-score { font-size:20px; font-weight:700; line-height:1.2; }
+            .deci-val-chip .dvc-verdict { font-size:11px; margin-top:4px; opacity:.85; }
+            .deci-val-green { background:var(--green-bg); border:1px solid rgba(0,229,160,.3); }
+            .deci-val-yellow { background:rgba(255,190,50,.1); border:1px solid rgba(255,190,50,.3); color:#c8a020; }
+            .deci-val-orange { background:rgba(255,140,0,.1); border:1px solid rgba(255,140,0,.3); color:#d06a00; }
+            .deci-val-red { background:var(--red-bg); border:1px solid rgba(255,79,106,.3); }
+            [data-theme="light"] .deci-val-yellow { color:#8a6a00; }
+            [data-theme="light"] .deci-val-orange { color:#9a4800; }
+            .deci-tbl { width:100%; border-collapse:collapse; font-size:13px; }
+            .deci-tbl td { padding:8px 6px; border-bottom:1px solid var(--line); vertical-align:top; }
+            .deci-tbl tr:last-child td { border-bottom:none; }
+            .deci-sig-badge { font-size:11px; padding:2px 7px; border-radius:10px; font-weight:600; white-space:nowrap; }
+            .deci-sig-buy { background:var(--green-bg); color:var(--green); }
+            .deci-sig-sell { background:var(--red-bg); color:var(--red); }
+            .deci-sig-hold { background:var(--bg-surface); color:var(--text-muted); }
+            .deci-risk-card { padding:10px 12px; border-radius:8px; background:var(--red-bg); border:1px solid rgba(255,79,106,.3); margin-bottom:8px; font-size:13px; color:var(--text-primary); }
+
             /* ── 底部 nav 占位，防止内容被遮挡（含 safe-area）── */
             .page-bottom-spacer { height: calc(72px + env(safe-area-inset-bottom, 0px)); }
 
@@ -1599,6 +1620,34 @@
 
 
 
+    <!-- Section: 今日决策 -->
+    <section class="section" data-panel="decision">
+        <h2 class="section-title">今日决策 <span id="decisionUpdated" style="font-size:12px;color:var(--text-muted);font-weight:400;"></span></h2>
+
+        <!-- 区块1：操作信号 -->
+        <div class="card" style="margin-bottom:16px;">
+            <div style="font-size:14px;font-weight:600;margin-bottom:12px;color:var(--text-primary);">🚦 操作信号</div>
+            <div id="decisionSignals"><span style="color:var(--text-muted);font-size:13px;">加载中...</span></div>
+            <details id="decisionSignalsMore" style="display:none;margin-top:10px;">
+                <summary style="cursor:pointer;color:var(--accent);font-size:13px;user-select:none;">查看全部基金信号</summary>
+                <div id="decisionSignalsAll"></div>
+            </details>
+        </div>
+
+        <!-- 区块2：风险预警（无high alert时隐藏） -->
+        <div id="decisionRiskWrap" class="card" style="margin-bottom:16px;display:none;">
+            <div style="font-size:14px;font-weight:600;margin-bottom:12px;color:var(--text-primary);">⚠️ 风险预警</div>
+            <div id="decisionRiskAlerts"></div>
+            <div id="decisionRiskMeta" style="font-size:12px;color:var(--text-secondary);margin-top:8px;"></div>
+        </div>
+
+        <!-- 区块3：估值温度 -->
+        <div class="card">
+            <div style="font-size:14px;font-weight:600;margin-bottom:12px;color:var(--text-primary);">📊 估值温度</div>
+            <div id="decisionValuation" class="deci-val-grid"><span style="color:var(--text-muted);font-size:13px;">加载中...</span></div>
+        </div>
+    </section>
+
     <!-- Section: 实时行情 -->
     <section class="section" data-panel="overview">
         <h2 class="section-title">实时行情</h2>
@@ -1817,7 +1866,15 @@
 
 <!-- 底部 Tab 导航栏（仅移动端显示） -->
 <nav class="tab-nav" id="tabNav" role="navigation" aria-label="主导航">
-    <button class="tab-btn active" data-panel="overview" aria-label="总览">
+    <button class="tab-btn active" data-panel="decision" aria-label="今日决策">
+        <!-- 决策：闪电 icon -->
+        <svg class="tab-svg" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M13 2L3 14h9l-1 8 10-12h-9z" fill="currentColor" opacity=".18"/>
+            <path d="M13 2L3 14h9l-1 8 10-12h-9z"/>
+        </svg>
+        决策
+    </button>
+    <button class="tab-btn" data-panel="overview" aria-label="总览">
         <!-- 总览：折线图 icon -->
         <svg class="tab-svg" viewBox="0 0 24 24" aria-hidden="true">
             <polyline points="3 17 8 12 13 15 19 7"/>
@@ -3472,7 +3529,7 @@ async function loadPortfolio() {
         const saved = (function() {
             try { return sessionStorage.getItem('activePanel'); } catch(_) { return null; }
         })();
-        switchTab(saved || 'overview');
+        switchTab(saved || 'decision');
     }
 
     // 宽度变化时重置（从桌面拉到移动端）
@@ -3968,6 +4025,81 @@ function _bulletCashEditCancel(curAmt) {
 }
 
 // ========== Initialize ==========
+// ========== 今日决策 Panel ==========
+async function loadAndRenderDecision() {
+    const errHtml = '<div style="color:var(--red);padding:8px;font-size:13px;">数据加载失败，请重新运行 run_all.sh</div>';
+    try {
+        const t = Date.now();
+        const [sR, rR, vR] = await Promise.all([
+            fetch('data/signals.json?t=' + t),
+            fetch('data/risk.json?t=' + t),
+            fetch('data/valuation.json?t=' + t)
+        ]);
+        const [sD, rD, vD] = await Promise.all([sR.ok?sR.json():null, rR.ok?rR.json():null, vR.ok?vR.json():null]);
+        const tsEl = document.getElementById('decisionUpdated');
+        if (tsEl) tsEl.textContent = sD?.updated_at || rD?.updated_at || '';
+        _renderDeciSignals(sD, errHtml);
+        _renderDeciRisk(rD, errHtml);
+        _renderDeciValuation(vD, errHtml);
+    } catch(e) {
+        ['decisionSignals','decisionRiskAlerts','decisionValuation'].forEach(id => {
+            const el = document.getElementById(id); if (el) el.innerHTML = errHtml;
+        });
+        const w = document.getElementById('decisionRiskWrap'); if (w) w.style.display = '';
+    }
+}
+function _renderDeciSignals(data, errHtml) {
+    const el = document.getElementById('decisionSignals');
+    const moreWrap = document.getElementById('decisionSignalsMore');
+    const moreBody = document.getElementById('decisionSignalsAll');
+    if (!el) return;
+    if (!data) { el.innerHTML = errHtml; return; }
+    const HOLD = ['持有', '持有观察'];
+    const typeLbl = t => t === 'trend' ? '趋势' : t === 'oscillation' ? '震荡' : (t||'');
+    const sigCls = s => ['买入','定投'].includes(s) ? 'deci-sig-buy' : ['减仓','卖出','高估警惕'].includes(s) ? 'deci-sig-sell' : 'deci-sig-hold';
+    const rowsHtml = arr => arr.map(s => `<tr>
+        <td style="max-width:90px;"><b style="font-size:12px;">${s.name}</b></td>
+        <td style="color:var(--text-secondary);white-space:nowrap;">${typeLbl(s.asset_type)}</td>
+        <td style="white-space:nowrap;"><span class="deci-sig-badge ${sigCls(s.signal)}">${s.signal}</span></td>
+        <td style="font-size:11px;color:var(--text-secondary);line-height:1.5;">${s.action_detail || s.reason || '--'}</td>
+    </tr>`).join('');
+    const active = (data.signals||[]).filter(s => !HOLD.includes(s.signal));
+    const passive = (data.signals||[]).filter(s => HOLD.includes(s.signal));
+    if (!active.length) {
+        el.innerHTML = '<div style="color:var(--green);padding:8px 0;font-size:15px;">✅ 今日无需操作</div>';
+    } else {
+        el.innerHTML = `<table class="deci-tbl"><tbody>${rowsHtml(active)}</tbody></table>`;
+    }
+    if (passive.length && moreWrap && moreBody) {
+        moreBody.innerHTML = `<table class="deci-tbl" style="margin-top:6px;"><tbody>${rowsHtml(passive)}</tbody></table>`;
+        moreWrap.style.display = '';
+    }
+}
+function _renderDeciRisk(data, errHtml) {
+    const wrap = document.getElementById('decisionRiskWrap');
+    const alertsEl = document.getElementById('decisionRiskAlerts');
+    const metaEl = document.getElementById('decisionRiskMeta');
+    if (!wrap) return;
+    if (!data) { wrap.style.display = ''; if (alertsEl) alertsEl.innerHTML = errHtml; return; }
+    const highs = (data.concentration?.alerts||[]).filter(a => a.severity === 'high');
+    if (!highs.length) { wrap.style.display = 'none'; return; }
+    wrap.style.display = '';
+    if (alertsEl) alertsEl.innerHTML = highs.map(a => `<div class="deci-risk-card">⚠️ ${a.message}</div>`).join('');
+    const pr = data.portfolio_risk || {};
+    if (metaEl && pr.volatility != null) metaEl.textContent = `年化波动率 ${pr.volatility}%　·　风险等级 ${pr.risk_level||'--'}`;
+}
+function _renderDeciValuation(data, errHtml) {
+    const el = document.getElementById('decisionValuation');
+    if (!el) return;
+    if (!data) { el.innerHTML = errHtml; return; }
+    const chipCls = score => score <= 40 ? 'deci-val-green' : score <= 60 ? 'deci-val-yellow' : score <= 80 ? 'deci-val-orange' : 'deci-val-red';
+    el.innerHTML = (data.valuations||[]).map(v => `<div class="deci-val-chip ${chipCls(v.verdict_score)}">
+        <div class="dvc-cat">${v.category}</div>
+        <div class="dvc-score">${v.verdict_score}</div>
+        <div class="dvc-verdict">${v.verdict}</div>
+    </div>`).join('');
+}
+
 document.addEventListener('DOMContentLoaded', async function() {
     // ① 先拉最新持仓数据（覆盖 inline 快照），确保所有后续渲染用真实数据
     await loadPortfolio();
@@ -3981,6 +4113,8 @@ document.addEventListener('DOMContentLoaded', async function() {
     renderTimeline();
 
     // ③ 并发/顺序加载各数据模块
+    // 今日决策（signals/risk/valuation 并行）
+    loadAndRenderDecision();
     // 新闻情绪（data/news_impact.json）
     await loadAndRenderSentiment();
     // 实时行情（prices.json）
