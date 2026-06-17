@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-16 13:09",
+  "updated_at": "2026-06-17 19:44",
   "signals": [
     {
       "code": "002963",
@@ -9,10 +9,16 @@
       "ma20": 3.076225,
       "macd_hist": -0.03064433,
       "macd_trend": "bearish",
-      "signal": "观望",
-      "reason": "RSI偏低(39.1) · MA5<MA20空头 · MACD柱负向",
+      "signal": "持有",
+      "reason": "虽超配10.4pt但估值无阻力，暂不减仓",
       "buy_score": 1,
-      "sell_score": 2
+      "sell_score": 2,
+      "asset_type": "trend",
+      "signal_type": "trend_hold",
+      "valuation_verdict": "不适用",
+      "valuation_score": 50,
+      "deviation_pt": 10.4,
+      "action_detail": "易方达黄金ETF联接C 虽超配10.4pt（当前34.4%/目标24.0%），但估值无阻力(score=50)；回测优于择时，维持持有"
     },
     {
       "code": "000307",
@@ -22,10 +28,16 @@
       "ma20": 3.17251,
       "macd_hist": -0.03161897,
       "macd_trend": "bearish",
-      "signal": "观望",
-      "reason": "RSI偏低(39.2) · MA5<MA20空头 · MACD柱负向",
+      "signal": "定投补仓",
+      "reason": "低配9.1pt，估值无阻力，可分批补入",
       "buy_score": 1,
-      "sell_score": 2
+      "sell_score": 2,
+      "asset_type": "trend",
+      "signal_type": "trend_dca",
+      "valuation_verdict": "不适用",
+      "valuation_score": 50,
+      "deviation_pt": -9.1,
+      "action_detail": "易方达黄金ETF联接A 当前14.9% 低于目标24.0%，缺口9.1pt；估值无阻力(score=50)，建议分批定投补仓"
     },
     {
       "code": "010990",
@@ -35,10 +47,16 @@
       "ma20": 1.914165,
       "macd_hist": 0.02471443,
       "macd_trend": "bullish",
-      "signal": "观望",
-      "reason": "MA5<MA20空头 · MACD柱正向",
+      "signal": "持有",
+      "reason": "虽超配8.1pt但估值适中，暂不减仓",
       "buy_score": 1,
-      "sell_score": 1
+      "sell_score": 1,
+      "asset_type": "trend",
+      "signal_type": "trend_hold",
+      "valuation_verdict": "适中",
+      "valuation_score": 50,
+      "deviation_pt": 8.1,
+      "action_detail": "南方有色金属ETF联接E 虽超配8.1pt（当前14.1%/目标6.0%），但估值适中(score=50)；回测优于择时，维持持有"
     },
     {
       "code": "012885",
@@ -48,10 +66,16 @@
       "ma20": 0.67195,
       "macd_hist": -0.00647236,
       "macd_trend": "bearish",
-      "signal": "观望",
-      "reason": "MA5<MA20空头 · MACD柱负向",
+      "signal": "持有观察",
+      "reason": "MA5<MA20空头 · MACD柱负向；信号中性，持仓观察",
       "buy_score": 0,
-      "sell_score": 2
+      "sell_score": 2,
+      "asset_type": "oscillation",
+      "signal_type": "oscillation_hold",
+      "valuation_verdict": "偏贵",
+      "valuation_score": 70,
+      "deviation_pt": 3.3,
+      "action_detail": "华夏中证光伏产业ETF发起式联接A 技术中性(buy=0/sell=2)，估值偏贵(score=70)，仓位偏离+3.3pt，继续持仓观察"
     },
     {
       "code": "011840",
@@ -61,10 +85,16 @@
       "ma20": 1.961895,
       "macd_hist": -0.02984214,
       "macd_trend": "bearish",
-      "signal": "观望",
-      "reason": "MA5<MA20空头 · MACD柱负向",
+      "signal": "高估警惕",
+      "reason": "估值高估(score=88)，注意高估风险",
       "buy_score": 0,
-      "sell_score": 2
+      "sell_score": 2,
+      "asset_type": "oscillation",
+      "signal_type": "oscillation_val_high",
+      "valuation_verdict": "高估",
+      "valuation_score": 88,
+      "deviation_pt": -19.1,
+      "action_detail": "天弘中证人工智能C 估值偏高(score=88，高估)，持仓需谨慎，等待回调"
     },
     {
       "code": "015790",
@@ -74,10 +104,16 @@
       "ma20": 1.409825,
       "macd_hist": -0.00327178,
       "macd_trend": "bearish",
-      "signal": "观望",
-      "reason": "RSI偏低(41.1) · MA5<MA20空头 · MACD柱负向",
+      "signal": "高估警惕",
+      "reason": "估值高估(score=88)，注意高估风险",
       "buy_score": 1,
-      "sell_score": 2
+      "sell_score": 2,
+      "asset_type": "active",
+      "signal_type": "oscillation_val_high",
+      "valuation_verdict": "高估",
+      "valuation_score": 88,
+      "deviation_pt": -3.6,
+      "action_detail": "永赢高端装备智选混合发起C 估值偏高(score=88，高估)，持仓需谨慎，等待回调"
     },
     {
       "code": "014881",
@@ -87,10 +123,16 @@
       "ma20": 1.34929,
       "macd_hist": -0.01980462,
       "macd_trend": "bearish",
-      "signal": "观望",
-      "reason": "MA5<MA20空头 · MACD柱负向",
+      "signal": "高估警惕",
+      "reason": "估值高估(score=88)，注意高估风险",
       "buy_score": 0,
-      "sell_score": 2
+      "sell_score": 2,
+      "asset_type": "oscillation",
+      "signal_type": "oscillation_val_high",
+      "valuation_verdict": "高估",
+      "valuation_score": 88,
+      "deviation_pt": -24.4,
+      "action_detail": "天弘中证机器人ETF发起联接C 估值偏高(score=88，高估)，持仓需谨慎，等待回调"
     },
     {
       "code": "025647",
@@ -100,10 +142,16 @@
       "ma20": 1.29006,
       "macd_hist": -0.00807467,
       "macd_trend": "bearish",
-      "signal": "观望",
-      "reason": "RSI偏低(44.5) · MA5<MA20空头 · MACD柱负向",
+      "signal": "高估警惕",
+      "reason": "估值高估(score=88)，注意高估风险",
       "buy_score": 1,
-      "sell_score": 2
+      "sell_score": 2,
+      "asset_type": "active",
+      "signal_type": "oscillation_val_high",
+      "valuation_verdict": "高估",
+      "valuation_score": 88,
+      "deviation_pt": -6.7,
+      "action_detail": "平安高端装备混合发起式C 估值偏高(score=88，高估)，持仓需谨慎，等待回调"
     }
   ]
 }
