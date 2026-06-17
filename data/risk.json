@@ -1,0 +1,99 @@
+{
+  "updated_at": "2026-06-17",
+  "portfolio_risk": {
+    "volatility": 27.62,
+    "volatility_note": "加权日收益率实算",
+    "drawdown": 23.76,
+    "sharpe": 0.47,
+    "risk_level": "高"
+  },
+  "concentration": {
+    "categories": {
+      "黄金": 49.3,
+      "有色金属": 14.1,
+      "AI/科技": 12.4,
+      "高端制造": 9.7,
+      "光伏/新能源": 9.3
+    },
+    "alerts": [
+      {
+        "type": "concentration_single",
+        "severity": "high",
+        "category": "黄金",
+        "ratio": 49.3,
+        "message": "黄金占比49.3%，超过安全线40%"
+      },
+      {
+        "type": "concentration_bulk",
+        "severity": "high",
+        "category": "黄金+有色金属",
+        "ratio": 63.4,
+        "message": "大宗商品（黄金+有色）占比63.4%，超过安全线50%"
+      }
+    ]
+  },
+  "correlation_matrix": {
+    "categories": [
+      "AI/科技",
+      "光伏/新能源",
+      "有色金属",
+      "高端制造",
+      "黄金"
+    ],
+    "matrix": [
+      [
+        1.0,
+        0.584,
+        0.486,
+        0.555,
+        0.353
+      ],
+      [
+        0.584,
+        1.0,
+        0.526,
+        0.54,
+        0.367
+      ],
+      [
+        0.486,
+        0.526,
+        1.0,
+        0.34,
+        0.66
+      ],
+      [
+        0.555,
+        0.54,
+        0.34,
+        1.0,
+        0.245
+      ],
+      [
+        0.353,
+        0.367,
+        0.66,
+        0.245,
+        1.0
+      ]
+    ],
+    "high_correlation_pairs": []
+  },
+  "stress_test": [
+    {
+      "name": "黄金回调10%",
+      "description": "假设黄金价格下跌10%",
+      "portfolio_impact_pct": -4.93
+    },
+    {
+      "name": "A股整体回调15%",
+      "description": "AI+光伏+高端制造+有色金属同步下跌15%",
+      "portfolio_impact_pct": -6.82
+    },
+    {
+      "name": "大宗全面走弱20%",
+      "description": "黄金+有色金属同步下跌20%",
+      "portfolio_impact_pct": -12.68
+    }
+  ]
+}

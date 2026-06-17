@@ -1,0 +1,82 @@
+{
+  "updated_at": "2026-06-17",
+  "valuations": [
+    {
+      "category": "AI/科技",
+      "index_name": "中证人工智能(930713)",
+      "current_pe": 56.61,
+      "pe_pct_5y": 95.2,
+      "current_pb": null,
+      "pb_pct_5y": null,
+      "verdict": "高估",
+      "verdict_score": 88,
+      "pe_note": null
+    },
+    {
+      "category": "有色金属",
+      "index_name": "中证有色金属(930708)",
+      "current_pe": 20.69,
+      "pe_pct_5y": 64.0,
+      "current_pb": null,
+      "pb_pct_5y": null,
+      "verdict": "适中",
+      "verdict_score": 50,
+      "pe_note": null
+    },
+    {
+      "category": "光伏/新能源",
+      "index_name": "中证新能源(931151)",
+      "current_pe": 36.27,
+      "pe_pct_5y": 78.4,
+      "current_pb": null,
+      "pb_pct_5y": null,
+      "verdict": "偏贵",
+      "verdict_score": 70,
+      "pe_note": null
+    },
+    {
+      "category": "高端制造",
+      "index_name": "中证高端装备(399377)",
+      "current_pe": null,
+      "pe_pct_5y": 90.8,
+      "current_pb": null,
+      "pb_pct_5y": null,
+      "verdict": "高估",
+      "verdict_score": 88,
+      "pe_note": "价格5年分位(无PE历史)"
+    },
+    {
+      "category": "纳指100",
+      "index_name": "纳斯达克100(NDX/QQQ)",
+      "current_pe": null,
+      "pe_pct_5y": null,
+      "current_pb": null,
+      "pb_pct_5y": null,
+      "verdict": "数据缺失",
+      "verdict_score": 50,
+      "pe_note": null
+    },
+    {
+      "category": "标普500",
+      "index_name": "标普500(SPX/SPY)",
+      "current_pe": null,
+      "pe_pct_5y": null,
+      "current_pb": null,
+      "pb_pct_5y": null,
+      "verdict": "数据缺失",
+      "verdict_score": 50,
+      "pe_note": null
+    },
+    {
+      "category": "黄金",
+      "index_name": "黄金(XAUUSD)",
+      "current_pe": null,
+      "pe_pct_5y": null,
+      "current_pb": null,
+      "pb_pct_5y": null,
+      "verdict": "不适用",
+      "verdict_score": 50,
+      "pe_note": null
+    }
+  ]
+}

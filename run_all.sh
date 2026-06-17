@@ -34,7 +34,15 @@ echo "【第6步】计算再平衡建议..."
 python3 data/rebalance.py
 
 echo ""
-echo "【第5步】价值罗盘（可选：仅在重仓股变动时重跑）..."
+echo "【第7步】组合风险度量（波动率/回撤/夏普/集中度预警）..."
+python3 data/risk.py
+
+echo ""
+echo "【第8步】估值分位（7品类PE历史分位，回答贵不贵）..."
+python3 data/valuation.py
+
+echo ""
+echo "【第8步】价值罗盘（可选：仅在重仓股变动时重跑）..."
 # python3 value_compass/build_value_compass.py
 # python3 value_compass/build_fusion.py
 
