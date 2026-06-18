@@ -4391,7 +4391,6 @@ document.addEventListener('DOMContentLoaded', async function() {
     renderPieChart();
     renderBarChart();
     renderHoldings();
-    renderTimeline();
 
     // ③ 并发/顺序加载各数据模块
     // 今日决策（signals/risk/valuation 并行）
@@ -4400,11 +4399,13 @@ document.addEventListener('DOMContentLoaded', async function() {
     await loadAndRenderSentiment();
     // 实时行情（prices.json）
     await loadAndRenderPrices();
-    // 量化信号（gold/us/metals signal JSON）
+    // 量化信号（gold/us/metals signal JSON + news.json）
     await loadSignals();
     renderGauges();
     renderVix();
     renderSignalDetail();
+    // 早晚报（依赖 window.newsData，必须在 loadSignals 之后）
+    renderTimeline();
     // 技术指标信号（signals.json）
     await loadAndRenderTechSignals();
     // 策略回测（backtest/data/backtest.json）
