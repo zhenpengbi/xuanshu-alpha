@@ -663,6 +663,26 @@
             grid-template-columns: 1fr 1fr 1fr;
             gap: 20px;
         }
+        /* ========== 顶部锚点导航条（仅PC端） ========== */
+        .anchor-nav {
+            display: flex; align-items: center;
+            position: sticky; top: 0; z-index: 99;
+            background: var(--bg-secondary); border-bottom: 1px solid var(--accent-line);
+            backdrop-filter: blur(10px);
+            padding: 0 32px; gap: 4px; height: 38px;
+            overflow-x: auto; scrollbar-width: none;
+        }
+        .anchor-nav::-webkit-scrollbar { display: none; }
+        .anav-btn {
+            flex: none; font-size: 12px; font-weight: 500; color: var(--text-secondary);
+            padding: 4px 12px; border-radius: 6px; cursor: pointer; border: none;
+            background: transparent; transition: color .2s, background .2s;
+            white-space: nowrap; line-height: 1;
+        }
+        .anav-btn:hover { color: var(--text-primary); background: var(--bg-hover); }
+        .anav-btn.anav-active { color: var(--accent); background: var(--accent-glow); }
+        @media (max-width: 768px) { .anchor-nav { display: none; } }
+
         @media (max-width: 1024px) {
             .grid-2, .grid-3 { grid-template-columns: 1fr; }
             .grid-4 { grid-template-columns: repeat(2, 1fr); }
@@ -1701,13 +1721,26 @@
     </div>
 </header>
 
+<!-- ========== 顶部锚点导航条 ========== -->
+<nav class="anchor-nav" id="anchorNav" aria-label="快捷导航">
+    <button class="anav-btn" data-anchor="sec-decision">决策</button>
+    <button class="anav-btn" data-anchor="sec-market">行情</button>
+    <button class="anav-btn" data-anchor="sec-holdings">持仓</button>
+    <button class="anav-btn" data-anchor="sec-signals">信号</button>
+    <button class="anav-btn" data-anchor="sec-backtest">回测</button>
+    <button class="anav-btn" data-anchor="sec-news">早晚报</button>
+    <button class="anav-btn" data-anchor="sec-fusion">融合</button>
+    <button class="anav-btn" data-anchor="sec-radar">雷达</button>
+    <button class="anav-btn" data-anchor="sec-advice">操作</button>
+</nav>
+
 <!-- ========== MAIN CONTENT ========== -->
 <main class="container">
 
 
 
     <!-- Section: 今日决策 -->
-    <section class="section" data-panel="decision">
+    <section class="section" data-panel="decision" id="sec-decision">
         <h2 class="section-title">今日决策 <span id="decisionUpdated" style="font-size:12px;color:var(--text-muted);font-weight:400;"></span></h2>
 
         <!-- 区块1：操作信号 -->
@@ -1753,7 +1786,7 @@
     </section>
 
     <!-- Section: 实时行情 -->
-    <section class="section" data-panel="overview">
+    <section class="section" data-panel="overview" id="sec-market">
         <h2 class="section-title">实时行情</h2>
         <div class="grid-3" id="pricesGrid">
             <div style="color:var(--paper-faint);font-size:13px;padding:16px;">加载中...</div>
@@ -1789,7 +1822,7 @@
     </section>
 
     <!-- Section: 持仓明细 -->
-    <section class="section" data-panel="overview">
+    <section class="section" data-panel="overview" id="sec-holdings">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
             <h2 class="section-title" style="margin-bottom:0;">持仓明细</h2>
             <button class="btn-edit-portfolio" onclick="openPortfolioEditor()"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M11.5 2.5l2 2L5 13H3v-2L11.5 2.5z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M10 4l2 2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>更新持仓</button>
@@ -1814,10 +1847,16 @@
                 <tbody id="holdingsBody"></tbody>
             </table>
         </div>
+        <!-- 组合净值曲线 -->
+        <div class="card backtest-chart-card" style="margin-top:16px;" id="portfolioHistoryWrap">
+            <span class="sweep"></span>
+            <div id="portfolioHistoryMeta" style="display:flex;gap:24px;padding:14px 20px 0;font-size:13px;flex-wrap:wrap;"></div>
+            <div id="portfolioHistoryChart" style="width:100%;height:260px;"></div>
+        </div>
     </section>
 
     <!-- Section: 量化信号 -->
-    <section class="section" data-panel="signals">
+    <section class="section" data-panel="signals" id="sec-signals">
         <h2 class="section-title">量化信号</h2>
         <!-- 移动端 carousel，桌面 grid-3 -->
         <div class="signals-carousel-wrap grid-3">
@@ -1879,7 +1918,7 @@
     <section class="section" data-panel="signals" id="metalsSection" style="display:none;"></section>
 
     <!-- Section: 策略回测 -->
-    <section class="section" data-panel="strategy">
+    <section class="section" data-panel="strategy" id="sec-backtest">
         <h2 class="section-title">策略回测 · 信号策略 vs 买入持有</h2>
         <div class="backtest-grid" id="backtestCards">
             <div style="color:var(--paper-faint);font-size:13px;padding:16px 0;">加载中...</div>
@@ -1890,7 +1929,7 @@
     </section>
 
     <!-- Section: 早晚报 Timeline -->
-    <section class="section" data-panel="news">
+    <section class="section" data-panel="news" id="sec-news">
         <h2 class="section-title">市场早晚报</h2>
         <div class="timeline" id="timeline"></div>
     </section>
@@ -1904,7 +1943,7 @@
     </section>
 
     <!-- Section: 融合决策卡 -->
-    <section class="section" data-panel="signals">
+    <section class="section" data-panel="signals" id="sec-fusion">
         <h2 class="section-title">融合决策 · 技术×价值双确认</h2>
         <div class="fusion-grid" id="fusionGrid">
             <div style="color:var(--paper-faint);font-size:13px;padding:16px;">加载中...</div>
@@ -1920,7 +1959,7 @@
     </section>
 
     <!-- Section: 基金雷达 -->
-    <section class="section" data-panel="news">
+    <section class="section" data-panel="news" id="sec-radar">
         <h2 class="section-title">基金雷达 · 超跌机会扫描</h2>
         <div id="fundRadarSection">
             <div class="radar-empty">加载中...</div>
@@ -1928,7 +1967,7 @@
     </section>
 
     <!-- Section: AI 操作建议（真实数据版） -->
-    <section class="section" data-panel="advice">
+    <section class="section" data-panel="advice" id="sec-advice">
         <h2 class="section-title">AI 操作建议</h2>
         <!-- 数据来源栏 -->
         <div class="advice-data-bar" id="adviceDataBar">
@@ -4141,6 +4180,93 @@ function _bulletCashEditCancel(curAmt) {
     wrap.innerHTML = `<span class="bullet-amount" id="cashAmtDisplay">¥${curAmt > 0 ? curAmt.toLocaleString('zh-CN',{minimumFractionDigits:2}) : '--'}</span><button class="cash-edit-btn" title="编辑余额宝可用" onclick="_bulletCashEditStart(${curAmt})">${_SVG_PENCIL}</button>`;
 }
 
+// ========== 顶部锚点导航 ==========
+(function initAnchorNav() {
+    const nav = document.getElementById('anchorNav');
+    if (!nav) return;
+
+    // 点击平滑滚动
+    nav.addEventListener('click', e => {
+        const btn = e.target.closest('.anav-btn');
+        if (!btn) return;
+        const target = document.getElementById(btn.dataset.anchor);
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // IntersectionObserver 滚动高亮
+    const btns = nav.querySelectorAll('.anav-btn');
+    const anchors = [...btns].map(b => document.getElementById(b.dataset.anchor)).filter(Boolean);
+    if (!anchors.length) return;
+
+    let _active = null;
+    const obs = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.id;
+                if (_active === id) return;
+                _active = id;
+                btns.forEach(b => b.classList.toggle('anav-active', b.dataset.anchor === id));
+            }
+        });
+    }, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
+
+    anchors.forEach(el => obs.observe(el));
+})();
+
+// ========== 组合净值曲线 ==========
+let _phChart = null;
+async function loadPortfolioHistory() {
+    const meta = document.getElementById('portfolioHistoryMeta');
+    const wrap = document.getElementById('portfolioHistoryWrap');
+    try {
+        const r = await fetch('data/portfolio_history.json?t=' + Date.now());
+        if (!r.ok) { if (wrap) wrap.style.display = 'none'; return; }
+        const d = await r.json();
+        const series = d.series || [];
+        if (!series.length) { if (wrap) wrap.style.display = 'none'; return; }
+
+        // 元数据行
+        if (meta) {
+            const retCls = d.return_pct >= 0 ? 'color:var(--green)' : 'color:var(--red)';
+            const retSign = d.return_pct >= 0 ? '+' : '';
+            meta.innerHTML =
+                `<span style="color:var(--text-secondary);">组合净值曲线（近60日）</span>` +
+                `<span style="color:var(--text-muted);">起始 <b style="color:var(--text-primary);">¥${d.start_value.toLocaleString('zh-CN',{maximumFractionDigits:0})}</b></span>` +
+                `<span style="color:var(--text-muted);">当前 <b style="color:var(--text-primary);">¥${d.current_value.toLocaleString('zh-CN',{maximumFractionDigits:0})}</b></span>` +
+                `<span style="color:var(--text-muted);">区间 <b style="${retCls}">${retSign}${d.return_pct.toFixed(2)}%</b></span>`;
+        }
+
+        const el = document.getElementById('portfolioHistoryChart');
+        if (!el) return;
+        if (!_phChart) {
+            _phChart = echarts.init(el);
+            window.addEventListener('resize', () => _phChart && _phChart.resize());
+        }
+        const cc = getChartColors();
+        const dates = series.map(p => p.date);
+        const vals  = series.map(p => p.value);
+        _phChart.setOption({
+            backgroundColor: 'transparent',
+            grid: { top: 12, right: 20, bottom: 32, left: 60 },
+            tooltip: {
+                trigger: 'axis',
+                backgroundColor: cc.bgTooltip, borderColor: cc.lineColor,
+                textStyle: { color: cc.textPrimary, fontSize: 12 },
+                formatter: p => p[0].axisValue + '<br>组合市值: ¥' + (+p[0].value).toLocaleString('zh-CN', {maximumFractionDigits: 0})
+            },
+            xAxis: { type: 'category', data: dates, axisLabel: { color: cc.muted, fontSize: 10 },
+                     axisLine: { lineStyle: { color: cc.lineColor } }, splitLine: { show: false } },
+            yAxis: { type: 'value', axisLabel: { color: cc.muted, fontSize: 10,
+                     formatter: v => '¥' + (v/1e4).toFixed(0) + 'w' },
+                     splitLine: { lineStyle: { color: cc.lineColor, type: 'dashed' } } },
+            series: [{ type: 'line', data: vals, smooth: true, symbol: 'none',
+                lineStyle: { color: cc.accent, width: 2 },
+                areaStyle: { color: { type: 'linear', x: 0, y: 0, x2: 0, y2: 1,
+                    colorStops: [{ offset: 0, color: 'rgba(0,200,255,.22)' }, { offset: 1, color: 'rgba(0,200,255,.01)' }] } } }]
+        });
+    } catch(e) { if (wrap) wrap.style.display = 'none'; }
+}
+
 // ========== Initialize ==========
 // ========== 今日决策 Panel ==========
 async function loadAndRenderDecision() {
@@ -4410,6 +4536,8 @@ document.addEventListener('DOMContentLoaded', async function() {
     await loadAndRenderTechSignals();
     // 策略回测（backtest/data/backtest.json）
     await loadAndRenderBacktest();
+    // 组合净值曲线（data/portfolio_history.json）
+    loadPortfolioHistory();
     // 融合决策卡（value_compass/data/fusion.json）
     await loadAndRenderFusion();
     // 主动基诊断（data/active_funds.json）

@@ -24,6 +24,7 @@ const PRECACHE_URLS = [
     './data/active_funds.json',
     './data/fund_recommendations.json',
     './data/positions.json',
+    './data/portfolio_history.json',
 ];
 
 // 安装：预缓存核心资源

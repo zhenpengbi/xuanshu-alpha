@@ -30,6 +30,8 @@ jobs:
         run: python3 scripts/fetch_nav.py
       - name: 更新持仓日收益
         run: python3 scripts/update_nav.py
+      - name: 组合净值曲线
+        run: python3 data/portfolio_history.py
       - name: 计算技术指标
         run: python3 data/indicators.py
       - name: 生成买卖信号
