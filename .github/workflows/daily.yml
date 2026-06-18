@@ -36,6 +36,10 @@ jobs:
         run: python3 scripts/build_news_impact.py
       - name: 基金雷达扫描
         run: python3 scripts/fund_scanner.py
+      - name: 主动基金诊断
+        run: python3 scripts/active_fund_diagnose.py
+      - name: 持仓止盈止损跟踪
+        run: python3 scripts/position_tracker.py
       - name: 计算再平衡建议
         run: python3 data/rebalance.py
       - name: 组合风险度量

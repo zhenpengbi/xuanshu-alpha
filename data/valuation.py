@@ -200,6 +200,9 @@ _US_FALLBACK_PE = {
     "SPY": 24.0,   # 标普500 2026Q2 校准值
 }
 
+# 校准值有效期：当前校准值为2026Q2数据，有效期到Q3初
+CALIBRATION_EXPIRY = "2026-09-30"
+
 
 def _fetch_yfinance_pe(ticker: str):
     """
@@ -393,10 +396,24 @@ def main():
         valuations.append(row)
         time.sleep(0.3)
 
+    # 校准值过期检测
+    warnings = []
+    used_fallback = any(
+        v.get("pe_note") and "fallback_calibration" in v.get("pe_note", "")
+        for v in valuations
+    )
+    today_str = datetime.today().strftime("%Y-%m-%d")
+    if used_fallback and today_str > CALIBRATION_EXPIRY:
+        warn_msg = f"PE校准值已过期（2026Q2），请更新US_PE_FALLBACK（有效期至{CALIBRATION_EXPIRY}）"
+        warnings.append(warn_msg)
+        print(f"\n  !!! 警告: {warn_msg}")
+
     output = {
         "updated_at": datetime.today().strftime("%Y-%m-%d"),
         "valuations": valuations,
     }
+    if warnings:
+        output["warnings"] = warnings
     with open(OUT_PATH, "w", encoding="utf-8") as f:
         json.dump(output, f, ensure_ascii=False, indent=2)
 

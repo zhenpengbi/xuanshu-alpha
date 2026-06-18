@@ -620,6 +620,25 @@
         .ops-reason { font-size:11.5px; color:var(--text-secondary); line-height:1.5; }
         .ops-disclaimer { font-size:11px; color:var(--text-muted); margin-top:10px; padding-top:8px; border-top:1px solid var(--line); }
 
+        /* 持仓跟踪区块 */
+        .pt-list { display:flex; flex-direction:column; gap:10px; }
+        .pt-row { background:var(--bg-surface); border:1px solid var(--bg-surface-border); border-radius:10px; padding:12px 14px; transition:border-color .2s; }
+        .pt-row.pt-alert { border-color:var(--red); background:var(--red-bg); }
+        .pt-row-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; gap:8px; }
+        .pt-name { font-size:13px; font-weight:600; color:var(--text-primary); }
+        .pt-code { font-size:10px; color:var(--text-muted); }
+        .pt-return-pos { font-size:14px; font-weight:700; color:var(--green); }
+        .pt-return-neg { font-size:14px; font-weight:700; color:var(--red); }
+        .pt-return-zero { font-size:14px; font-weight:700; color:var(--text-secondary); }
+        .pt-alert-badge { font-size:10px; font-weight:700; padding:2px 8px; border-radius:8px; background:var(--red); color:#fff; white-space:nowrap; }
+        .pt-meta { font-size:11px; color:var(--text-muted); display:flex; gap:14px; flex-wrap:wrap; margin-bottom:8px; }
+        .pt-bar-wrap { background:var(--bg-hover); border-radius:4px; height:4px; overflow:hidden; margin-top:4px; }
+        .pt-bar-inner { height:100%; border-radius:4px; transition:width .4s; }
+        .pt-bar-pos { background:var(--green); }
+        .pt-bar-neg { background:var(--red); }
+        .pt-dist { font-size:11px; color:var(--text-secondary); display:flex; justify-content:space-between; margin-top:4px; }
+        .pt-disclaimer { font-size:11px; color:var(--text-muted); margin-top:10px; padding-top:8px; border-top:1px solid var(--line); }
+
         /* 低估机会区块 */
         .uv-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:10px; }
         .uv-card { background:var(--bg-surface); border:1px solid var(--bg-surface-border); border-radius:10px; padding:12px 14px; transition:border-color .2s; }
@@ -1705,6 +1724,12 @@
         <div id="decisionOpsWrap" class="card" style="margin-bottom:16px;">
             <div class="deci-block-title" style="border-left-color:var(--green);">操作清单</div>
             <div id="decisionOps"><span style="color:var(--text-muted);font-size:13px;">加载中...</span></div>
+        </div>
+
+        <!-- 区块2.5：持仓跟踪 -->
+        <div class="card" style="margin-bottom:16px;">
+            <div class="deci-block-title" style="border-left-color:var(--accent);">持仓跟踪</div>
+            <div id="decisionPositions"><span style="color:var(--text-muted);font-size:13px;">加载中...</span></div>
         </div>
 
         <!-- 区块3：风险预警（无high alert时隐藏） -->
@@ -4122,27 +4147,29 @@ async function loadAndRenderDecision() {
     const errHtml = '<div style="color:var(--red);padding:8px;font-size:13px;">数据加载失败，请重新运行 run_all.sh</div>';
     try {
         const t = Date.now();
-        const [sR, rR, vR, bR, frR] = await Promise.all([
+        const [sR, rR, vR, bR, frR, ptR] = await Promise.all([
             fetch('data/signals.json?t=' + t),
             fetch('data/risk.json?t=' + t),
             fetch('data/valuation.json?t=' + t),
             fetch('data/rebalance.json?t=' + t),
-            fetch('data/fund_recommendations.json?t=' + t)
+            fetch('data/fund_recommendations.json?t=' + t),
+            fetch('data/positions.json?t=' + t)
         ]);
-        const [sD, rD, vD, bD, frD] = await Promise.all([
+        const [sD, rD, vD, bD, frD, ptD] = await Promise.all([
             sR.ok?sR.json():null, rR.ok?rR.json():null,
             vR.ok?vR.json():null, bR.ok?bR.json():null,
-            frR.ok?frR.json():null
+            frR.ok?frR.json():null, ptR.ok?ptR.json():null
         ]);
         const tsEl = document.getElementById('decisionUpdated');
         if (tsEl) tsEl.textContent = sD?.updated_at || rD?.updated_at || '';
         _renderDeciSignals(sD, errHtml);
         _renderDeciOps(bD, errHtml);
+        _renderDeciPositions(ptD, errHtml);
         _renderDeciRisk(rD, errHtml);
         _renderDeciValuation(vD, errHtml);
         _renderDeciUndervalued(frD, errHtml);
     } catch(e) {
-        ['decisionSignals','decisionOps','decisionRiskAlerts','decisionValuation','decisionUndervalued'].forEach(id => {
+        ['decisionSignals','decisionOps','decisionPositions','decisionRiskAlerts','decisionValuation','decisionUndervalued'].forEach(id => {
             const el = document.getElementById(id); if (el) el.innerHTML = errHtml;
         });
         const w = document.getElementById('decisionRiskWrap'); if (w) w.style.display = '';
@@ -4205,6 +4232,68 @@ function _renderDeciOps(data, errHtml) {
     const rows  = [...sells, ...buys].map(rowHtml).join('');
     el.innerHTML = `<table class="ops-tbl"><tbody>${rows}</tbody></table>
         <div class="ops-disclaimer">基于持仓偏离度计算，建议分批执行，非实时交易指令</div>`;
+}
+function _renderDeciPositions(data, errHtml) {
+    const el = document.getElementById('decisionPositions');
+    if (!el) return;
+    if (!data) {
+        el.innerHTML = '<div style="color:var(--text-muted);font-size:13px;">暂无跟踪中的持仓，请先运行 position_tracker.py</div>';
+        return;
+    }
+    const cfg  = data.config || {};
+    const defSL  = cfg.stop_loss_pct     ?? -8;
+    const defTP  = cfg.take_profit_pct   ?? 15;
+    const defTSL = cfg.trailing_stop_pct ?? -5;
+    const positions = (data.positions || []).filter(p => p.status !== 'closed');
+    if (!positions.length) {
+        el.innerHTML = '<div style="color:var(--text-muted);font-size:13px;">暂无跟踪中的持仓</div>';
+        return;
+    }
+    const rowHtml = pos => {
+        const ret     = pos.current_return_pct ?? 0;
+        const isAlert = pos.status === 'alert';
+        const sl  = pos.stop_loss_pct     ?? defSL;
+        const tp  = pos.take_profit_pct   ?? defTP;
+        const tsl = pos.trailing_stop_pct ?? defTSL;
+        const retCls  = ret > 0 ? 'pt-return-pos' : ret < 0 ? 'pt-return-neg' : 'pt-return-zero';
+        const retSign = ret > 0 ? '+' : '';
+        // 收益率进度条：[-sl, 0, tp] 区间映射到 [0,100]
+        const range   = tp - sl;                              // e.g. 15-(-8)=23
+        const barPct  = Math.min(100, Math.max(0, Math.round((ret - sl) / range * 100)));
+        const barCls  = ret >= 0 ? 'pt-bar-pos' : 'pt-bar-neg';
+        const distSL  = (ret - sl).toFixed(1);               // 距止损还有多少 pt
+        const distTP  = (tp - ret).toFixed(1);               // 距止盈还有多少 pt
+        const trigLabel = {
+            stop_loss:      '触发止损 ' + sl + '%',
+            take_profit:    '触发止盈 +' + tp + '%',
+            trailing_stop:  '移动止损触发'
+        }[pos.triggered] || '';
+        return `<div class="pt-row${isAlert ? ' pt-alert' : ''}">
+            <div class="pt-row-head">
+                <div>
+                    <span class="pt-name">${escHtml(pos.fund_name)}</span>
+                    <span class="pt-code" style="margin-left:6px;">${escHtml(pos.fund_code)}</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:8px;">
+                    ${isAlert ? `<span class="pt-alert-badge">${escHtml(trigLabel)}</span>` : ''}
+                    <span class="${retCls}">${retSign}${ret.toFixed(2)}%</span>
+                </div>
+            </div>
+            <div class="pt-meta">
+                <span>建仓日: ${escHtml(pos.entry_date || '--')}</span>
+                <span>止损: ${sl}%</span>
+                <span>止盈: +${tp}%</span>
+                ${pos.current_nav ? `<span>现净值: ${pos.current_nav}</span>` : ''}
+            </div>
+            <div class="pt-bar-wrap"><div class="pt-bar-inner ${barCls}" style="width:${barPct}%;"></div></div>
+            <div class="pt-dist"><span>距止损 +${distSL}pt</span><span>距止盈 -${distTP}pt</span></div>
+        </div>`;
+    };
+    // alert 持仓排在前面
+    const sorted = [...positions].sort((a,b) => (b.status==='alert'?1:0) - (a.status==='alert'?1:0));
+    const updAt  = data.updated_at ? ` · 更新: ${data.updated_at}` : '';
+    el.innerHTML = `<div class="pt-list">${sorted.map(rowHtml).join('')}</div>
+        <div class="pt-disclaimer">止损 ${defSL}% / 止盈 +${defTP}% / 移动止损 ${defTSL}%（全局默认）${updAt}</div>`;
 }
 function _renderDeciUndervalued(data, errHtml) {
     const el = document.getElementById('decisionUndervalued');
@@ -4283,6 +4372,13 @@ function _renderDeciValuation(data, errHtml) {
             <div class="val-chip-verdict">${verdictText}</div>
         </div>`;
     }).join('');
+    // PE校准值过期警告
+    if (data.warnings && data.warnings.length) {
+        const warnDiv = document.createElement('div');
+        warnDiv.style.cssText = 'margin-top:10px;padding:8px 12px;border-radius:8px;background:rgba(255,152,0,0.12);border:1px solid rgba(255,152,0,0.3);color:#ff9800;font-size:12px;line-height:1.5;';
+        warnDiv.textContent = data.warnings.join(' | ');
+        el.appendChild(warnDiv);
+    }
 }
 
 document.addEventListener('DOMContentLoaded', async function() {
@@ -4323,6 +4419,16 @@ document.addEventListener('DOMContentLoaded', async function() {
     await loadAndRenderRadar();
     // AI 操作建议：读真实 portfolio.json + rebalance.json（替代旧 renderAdvice/renderRebalance）
     await loadAndRenderAdviceModule();
+
+    // 注册 Service Worker（PWA 离线访问）
+    if ('serviceWorker' in navigator) {
+        try {
+            const swReg = await navigator.serviceWorker.register('./sw.js');
+            console.log('[SW] registered, scope:', swReg.scope);
+        } catch(e) {
+            console.warn('[SW] registration failed:', e);
+        }
+    }
 });
 </script>
 

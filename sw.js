@@ -1,93 +1,71 @@
-// 玄枢Alpha · Service Worker
-// 策略：data/*.json → 网络优先（金融数据要实时）; 其他 → 缓存优先
+/**
+ * 玄枢Alpha · Service Worker
+ * ==========================
+ * 策略：Network First + Cache Fallback
+ * - 优先走网络拿最新数据
+ * - 网络不通时从缓存返回上次成功的响应
+ * - 缓存范围：index.html + data/*.json + manifest.json
+ */
 
-const CACHE_NAME = 'xuanshu-v7';
+const CACHE_NAME = 'xuanshu-alpha-v1';
 
-const STATIC_ASSETS = [
-  '/xuanshu-alpha/',
-  '/xuanshu-alpha/index.html',
-  '/xuanshu-alpha/logo.svg',
-  '/xuanshu-alpha/manifest.json',
-  '/xuanshu-alpha/icons/icon-192.png',
-  '/xuanshu-alpha/icons/icon-512.png',
-  '/xuanshu-alpha/icons/icon-maskable-192.png',
-  '/xuanshu-alpha/icons/icon-maskable-512.png',
-  'https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js',
+const PRECACHE_URLS = [
+    './',
+    './index.html',
+    './manifest.json',
+    './data/signals.json',
+    './data/risk.json',
+    './data/valuation.json',
+    './data/rebalance.json',
+    './data/portfolio.json',
+    './data/nav.json',
+    './data/indicators.json',
+    './data/news_impact.json',
+    './data/active_funds.json',
+    './data/fund_recommendations.json',
+    './data/positions.json',
 ];
 
-// ── install：预缓存静态资产 ────────────────────────────────────
+// 安装：预缓存核心资源
 self.addEventListener('install', event => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then(cache =>
-      Promise.allSettled(
-        STATIC_ASSETS.map(url => cache.add(url).catch(err =>
-          console.warn('[SW] pre-cache skip:', url, err)
-        ))
-      )
-    ).then(() => self.skipWaiting())
-  );
+    event.waitUntil(
+        caches.open(CACHE_NAME).then(cache => {
+            return cache.addAll(PRECACHE_URLS);
+        }).then(() => self.skipWaiting())
+    );
 });
 
-// ── activate：清除旧缓存 ──────────────────────────────────────
+// 激活：清理旧缓存
 self.addEventListener('activate', event => {
-  event.waitUntil(
-    caches.keys().then(keys =>
-      Promise.all(keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k)))
-    ).then(() => self.clients.claim())
-  );
+    event.waitUntil(
+        caches.keys().then(keys => {
+            return Promise.all(
+                keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k))
+            );
+        }).then(() => self.clients.claim())
+    );
 });
 
-// ── fetch：双策略路由 ─────────────────────────────────────────
+// 请求拦截：Network First + Cache Fallback
 self.addEventListener('fetch', event => {
-  const { request } = event;
-  const url = new URL(request.url);
+    // 只处理同源 GET 请求
+    if (event.request.method !== 'GET') return;
 
-  // 非 GET 请求直接透传
-  if (request.method !== 'GET') return;
-
-  // data/*.json → 网络优先（失败降级缓存）
-  if (url.pathname.match(/\/data\/[^/]+\.json$/) ||
-      url.pathname.match(/\/value_compass\/data\/[^/]+\.json$/) ||
-      url.pathname.match(/\/backtest\/data\/[^/]+\.json$/)) {
-    event.respondWith(networkFirst(request));
-    return;
-  }
-
-  // 其他资源 → 缓存优先（失败降级网络）
-  event.respondWith(cacheFirst(request));
+    event.respondWith(
+        fetch(event.request).then(response => {
+            // 网络成功：缓存后返回
+            if (response.ok) {
+                const cloned = response.clone();
+                caches.open(CACHE_NAME).then(cache => {
+                    cache.put(event.request, cloned);
+                });
+            }
+            return response;
+        }).catch(() => {
+            // 网络失败：从缓存返回
+            return caches.match(event.request).then(cached => {
+                return cached || new Response('Offline', { status: 503, statusText: 'Service Unavailable' });
+            });
+        })
+    );
 });
-
-async function networkFirst(request) {
-  const cache = await caches.open(CACHE_NAME);
-  try {
-    const response = await fetch(request);
-    if (response.ok) {
-      cache.put(request, response.clone());
-    }
-    return response;
-  } catch {
-    const cached = await cache.match(request);
-    return cached || new Response('{"error":"offline"}',
-      { headers: { 'Content-Type': 'application/json' } });
-  }
-}
-
-async function cacheFirst(request) {
-  const cached = await caches.match(request);
-  if (cached) return cached;
-  try {
-    const response = await fetch(request);
-    if (response.ok) {
-      const cache = await caches.open(CACHE_NAME);
-      cache.put(request, response.clone());
-    }
-    return response;
-  } catch {
-    // 离线时对主页面返回缓存的 index.html
-    if (request.mode === 'navigate') {
-      const cached = await caches.match('/xuanshu-alpha/index.html');
-      if (cached) return cached;
-    }
-    return new Response('Offline', { status: 503 });
-  }
-}

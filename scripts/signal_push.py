@@ -20,8 +20,12 @@ from datetime import datetime
 SIGNALS_URL = "https://zhenpengbi.github.io/xuanshu-alpha/data/signals.json"
 FUSION_URL = "https://zhenpengbi.github.io/xuanshu-alpha/value_compass/data/fusion.json"
 
-SNAPSHOT_DIR = os.path.expanduser("~/.openclaw/xuanshu-alpha")
-SNAPSHOT_FILE = os.path.join(SNAPSHOT_DIR, "last_snapshot.json")
+SNAPSHOT_DIR   = os.path.expanduser("~/.openclaw/xuanshu-alpha")
+SNAPSHOT_FILE  = os.path.join(SNAPSHOT_DIR, "last_snapshot.json")
+
+# 本地 positions.json（与脚本同仓库）
+_SCRIPT_DIR    = os.path.dirname(os.path.abspath(__file__))
+POSITIONS_FILE = os.path.join(os.path.dirname(_SCRIPT_DIR), "data", "positions.json")
 
 LEVEL_EMOJI = {"red": "🔴", "yellow": "🟡", "green": "🟢", "neutral": "⚪"}
 SIGNAL_EMOJI = {"买入": "📈", "卖出": "📉", "持有": "➡️", "观望": "👀"}
@@ -135,6 +139,37 @@ def main():
 
     lines.append("─" * 12)
     lines.append("🔗 详情：https://zhenpengbi.github.io/xuanshu-alpha/")
+
+    # 止盈止损提醒（读取本地 positions.json）
+    try:
+        if os.path.exists(POSITIONS_FILE):
+            with open(POSITIONS_FILE, "r", encoding="utf-8") as _f:
+                pos_data = json.load(_f)
+            triggered_list = [
+                p for p in pos_data.get("positions", [])
+                if p.get("triggered") and p.get("status") == "alert"
+            ]
+            if triggered_list:
+                cfg    = pos_data.get("config", {})
+                lines.append("")
+                lines.append("─" * 12)
+                lines.append("⚠️ 止盈止损提醒")
+                for p in triggered_list:
+                    trig = p.get("triggered", "")
+                    sl   = p.get("stop_loss_pct")   or cfg.get("stop_loss_pct",   -8)
+                    tp   = p.get("take_profit_pct") or cfg.get("take_profit_pct", 15)
+                    label = {
+                        "stop_loss":     f"触发止损({sl}%)",
+                        "take_profit":   f"触发止盈(+{tp}%)",
+                        "trailing_stop": "移动止损触发",
+                    }.get(trig, trig)
+                    ret = p.get("current_return_pct", 0)
+                    lines.append(
+                        f"  {p.get('fund_name','')}（{p.get('fund_code','')}）"
+                        f" — {label}，当前收益率 {ret:+.2f}%"
+                    )
+    except Exception as _e:
+        pass  # 推送不因本地文件问题中断
 
     text = "\n".join(lines)
     print(text)
