@@ -506,6 +506,15 @@
         }
         .period-tab.empty { opacity: .4; }
         .period-tab-content { padding-top: 4px; }
+        /* 早晚报日期选择器 */
+        .news-select {
+            font-size: 12px; font-family: var(--sans); font-weight: 500;
+            color: var(--text-secondary); background: var(--bg-surface);
+            border: 1px solid var(--border-color); border-radius: 6px;
+            padding: 4px 10px; cursor: pointer; outline: none;
+            transition: border-color .2s, color .2s;
+        }
+        .news-select:hover, .news-select:focus { border-color: var(--accent); color: var(--text-primary); }
 
         /* ========== Timeline ========== */
         .timeline { position: relative; padding-left: 32px; }
@@ -1930,7 +1939,10 @@
 
     <!-- Section: 早晚报 Timeline -->
     <section class="section" data-panel="news" id="sec-news">
-        <h2 class="section-title">市场早晚报</h2>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;gap:12px;flex-wrap:wrap;">
+            <h2 class="section-title" style="margin-bottom:0;">市场早晚报</h2>
+            <select class="news-select" id="newsDateSelect" style="display:none;"><option>加载中...</option></select>
+        </div>
         <div class="timeline" id="timeline"></div>
     </section>
 
@@ -2669,59 +2681,69 @@ function _renderTimelinePeriodTabs(el, news) {
     _showSection(defaultKey);
 }
 
-function renderTimeline() {
-    const el = document.getElementById('timeline');
-    const news = window.newsData;
+// ── 把单条 history record 包装成 _renderTimelinePeriodTabs 所需结构 ──
+function _recordToNewsObj(rec) {
+    const isMorning = (rec.period || '').includes('早');
+    const key = isMorning ? 'morning' : 'evening';
+    return {
+        updated: rec.date || '',
+        [key]: { period: rec.period || '', items: rec.items || [] },
+    };
+}
 
+async function renderTimeline() {
+    const el  = document.getElementById('timeline');
+    const sel = document.getElementById('newsDateSelect');
+
+    // ── 优先尝试加载 news_history.json（有历史记录时启用下拉选择器）──
+    let historyData = null;
+    try {
+        const r = await fetch('data/news_history.json?t=' + Date.now());
+        if (r.ok) historyData = await r.json();
+    } catch(e) { /* 静默回退 */ }
+
+    if (historyData && Array.isArray(historyData.records) && historyData.records.length) {
+        const records = historyData.records; // 最新在前
+
+        // 填充下拉选项
+        if (sel) {
+            sel.innerHTML = records.map((rec, i) => {
+                const periodShort = (rec.period || '').replace('报', '');
+                return `<option value="${i}">${rec.date} ${periodShort}</option>`;
+            }).join('');
+            sel.style.display = '';
+            sel.value = '0';
+
+            const showRecord = idx => {
+                const rec = records[idx];
+                if (!rec) return;
+                _renderTimelinePeriodTabs(el, _recordToNewsObj(rec));
+            };
+            sel.onchange = () => showRecord(parseInt(sel.value));
+            showRecord(0);
+        }
+        return;
+    }
+
+    // ── 回退：用 window.newsData（保持原有逻辑不变）──
+    const news = window.newsData;
     if (!news) {
         el.innerHTML = `<div style="color:var(--paper-faint);font-size:13px;padding:20px 0;text-align:center;">
             暂无资讯数据 · 请运行 <code style="background:rgba(255,255,255,.06);padding:2px 6px;border-radius:4px;">python3 scripts/build_news_impact.py</code>
         </div>`;
         return;
     }
-
-    // ── 新格式：morning/evening 双分区 ──
     if (news.morning !== undefined || news.evening !== undefined) {
-        _renderTimelinePeriodTabs(el, news);
-        return;
+        _renderTimelinePeriodTabs(el, news); return;
     }
-
-    // ── 扁平格式兼容：{updated, period, items:[...]}（cron 实际输出格式）──
-    // 按 period 字段判断是早报还是晚报，包装成双分区结构后走统一渲染逻辑
     if (Array.isArray(news.items) && news.items.length && news.period) {
-        const isMorning = news.period.includes('早');
-        const key = isMorning ? 'morning' : 'evening';
-        const wrapped = {
-            updated: news.updated || news.updated_at || '',
-            [key]: { period: news.period, items: news.items },
-        };
-        _renderTimelinePeriodTabs(el, wrapped);
+        const key = news.period.includes('早') ? 'morning' : 'evening';
+        _renderTimelinePeriodTabs(el, { updated: news.updated || '', [key]: { period: news.period, items: news.items } });
         return;
     }
-
-    // ── history 数组格式（滚动7天窗口）──
-    if (Array.isArray(news.history) && news.history.length) {
-        const tabs = news.history.map((h, i) => ({
-            label: `${h.date} ${h.period||''}`.trim(),
-            value: String(i)
-        }));
-        // 先渲染第一期内容
-        renderTimelineItems(el, news.history[0].items, news.history[0]);
-        // 再挂 tab-bar（prepend 到最前）
-        renderDateTabs(el, tabs, idx => {
-            const entry = news.history[parseInt(idx)];
-            if (entry) renderTimelineItems(el, entry.items, entry);
-        });
-        return;
-    }
-
-    // ── 旧格式：items 数组（向下兼容，无 period 字段）──
     if (Array.isArray(news.items) && news.items.length) {
-        // 包装成单 period 展示，不加 Tab
-        renderTimelineItems(el, news.items, news);
-        return;
+        renderTimelineItems(el, news.items, news); return;
     }
-
     el.innerHTML = `<div style="color:var(--paper-faint);font-size:13px;padding:20px 0;text-align:center;">
         暂无资讯数据 · 请运行 <code style="background:rgba(255,255,255,.06);padding:2px 6px;border-radius:4px;">python3 scripts/build_news_impact.py</code>
     </div>`;

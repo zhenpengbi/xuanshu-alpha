@@ -34,10 +34,11 @@ import json
 import os
 from datetime import datetime
 
-SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-ROOT       = os.path.dirname(SCRIPT_DIR)
-NEWS_JSON  = os.path.join(ROOT, "data", "news.json")
-OUT_PATH   = os.path.join(ROOT, "data", "news_impact.json")
+SCRIPT_DIR        = os.path.dirname(os.path.abspath(__file__))
+ROOT              = os.path.dirname(SCRIPT_DIR)
+NEWS_JSON         = os.path.join(ROOT, "data", "news.json")
+OUT_PATH          = os.path.join(ROOT, "data", "news_impact.json")
+NEWS_HISTORY_JSON = os.path.join(ROOT, "data", "news_history.json")
 
 # 持仓标的清单
 HOLDINGS = [
@@ -154,6 +155,50 @@ def extract_latest_items(news_data: dict) -> tuple:
     )
 
 
+def _append_to_history(news_data: dict, date_str: str, period_str: str, items: list,
+                       max_records: int = 60):
+    """
+    把当期新闻记录追加到 news_history.json。
+    按 date + period 去重，最多保留 max_records 条（最新在前）。
+    """
+    if not items:
+        return
+
+    # 读取现有历史
+    if os.path.exists(NEWS_HISTORY_JSON):
+        try:
+            with open(NEWS_HISTORY_JSON, "r", encoding="utf-8") as f:
+                history_data = json.load(f)
+        except Exception:
+            history_data = {"records": []}
+    else:
+        history_data = {"records": []}
+
+    records = history_data.get("records", [])
+
+    # 去重 key：date + period
+    dedup_key = f"{date_str}|{period_str}"
+    records = [r for r in records if f"{r.get('date','')}|{r.get('period','')}" != dedup_key]
+
+    # 新记录插到最前（最新在前）
+    records.insert(0, {
+        "date":   date_str,
+        "period": period_str,
+        "items":  items,
+    })
+
+    # 保留最近 max_records 条
+    records = records[:max_records]
+
+    history_data["records"]    = records
+    history_data["updated_at"] = datetime.now().strftime("%Y-%m-%d %H:%M")
+
+    with open(NEWS_HISTORY_JSON, "w", encoding="utf-8") as f:
+        json.dump(history_data, f, ensure_ascii=False, indent=2)
+
+    print(f"  news_history.json: {len(records)} 条历史记录")
+
+
 def main():
     if not os.path.exists(NEWS_JSON):
         print(f"❌ {NEWS_JSON} 不存在，请先运行新闻更新脚本")
@@ -188,6 +233,9 @@ def main():
 
     with open(OUT_PATH, "w", encoding="utf-8") as f:
         json.dump(output, f, ensure_ascii=False, indent=2)
+
+    # ── 追加到 news_history.json（按 date+period 去重，保留最近 60 条）──
+    _append_to_history(news_data, news_date, news_period, news_items)
 
     # ── 打印摘要 ──────────────────────────────────────────────
     print(f"✅ news_impact.json → {OUT_PATH}")
