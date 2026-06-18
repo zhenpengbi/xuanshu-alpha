@@ -120,11 +120,11 @@
       "stop_loss_pct": null,
       "take_profit_pct": null,
       "trailing_stop_pct": null,
-      "current_nav": 1.3034,
-      "highest_nav": 1.3034,
-      "current_return_pct": 0.0,
+      "current_nav": 1.3343,
+      "highest_nav": 1.3343,
+      "current_return_pct": 2.37,
       "triggered": null
     }
   ],
-  "updated_at": "2026-06-18 08:58"
+  "updated_at": "2026-06-18 12:05"
 }

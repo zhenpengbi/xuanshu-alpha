@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-18 08:58",
+  "updated_at": "2026-06-18 12:05",
   "portfolio_updateTime": "2026-06-18",
   "funds": [
     {
@@ -314,7 +314,7 @@
       "rank_percentile_ytd": 62.0,
       "max_drawdown_pct": 25.46,
       "alpha_analysis": {
-        "fund_annual_pct": 56.54,
+        "fund_annual_pct": 62.34,
         "benchmark_annual_pct": "数据缺失",
         "alpha_pct": "数据缺失",
         "benchmark": "沪深300",
