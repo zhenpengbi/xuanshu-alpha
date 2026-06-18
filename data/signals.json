@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-18 07:06",
+  "updated_at": "2026-06-18 08:42",
   "signals": [
     {
       "code": "002963",
@@ -180,16 +180,16 @@
       "ma20": null,
       "macd_hist": null,
       "macd_trend": "",
-      "signal": "低估可建仓",
-      "reason": "标普500当前持仓为0(目标8%)，适中偏低(score=35)",
+      "signal": "估值适中可试水",
+      "reason": "标普500当前持仓为0(目标8%)，适中(score=50)",
       "buy_score": 0,
       "sell_score": 0,
       "asset_type": "pending",
       "signal_type": "pending_build",
-      "valuation_verdict": "适中偏低",
-      "valuation_score": 35,
+      "valuation_verdict": "适中",
+      "valuation_score": 50,
       "deviation_pt": -8.0,
-      "action_detail": "估值低位(score=35，适中偏低)，标普500目标仓位8%，可开始分批建仓"
+      "action_detail": "估值适中(score=50，适中)，标普500目标仓位8%，可小额开始建仓"
     }
   ]
 }
