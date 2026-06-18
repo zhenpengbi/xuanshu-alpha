@@ -48,7 +48,9 @@
             --accent:       #00c8ff;
             --accent-dim:   #0099cc;
             --accent-glow:  rgba(0,200,255,.18);
-            --accent-line:  rgba(0,200,255,.22);
+            --accent-line:  #f0b90b;
+            --orange:       #f5832a;
+            --yellow:       #f0b90b;
 
             /* 辅助强调：科技蓝紫 */
             --blue:         #4a9eff;
@@ -76,6 +78,8 @@
             --bg-surface-border: rgba(255,255,255,.07);
             --bg-bar-track:  rgba(255,255,255,.08);    /* 进度条轨道 */
             --bg-hover:      rgba(0,200,255,.04);
+            --border:        rgba(48,54,61,.9);
+            --card-bg:       #0f1929;
             --border-color:  var(--line);
 
             /* 向后兼容旧变量名 */
@@ -110,7 +114,9 @@
             --accent:       #0066cc;
             --accent-dim:   #004fa3;
             --accent-glow:  rgba(0,102,204,.12);
-            --accent-line:  rgba(0,102,204,.2);
+            --accent-line:  #f0b90b;
+            --orange:       #c85a00;
+            --yellow:       #c8920b;
 
             --blue:         #1a6fd4;
             --purple:       #6d3fd6;
@@ -133,6 +139,8 @@
             --bg-surface-border: rgba(0,102,204,.14);
             --bg-bar-track:  rgba(0,102,204,.1);       /* 日间进度条轨道 */
             --bg-hover:      rgba(0,102,204,.04);
+            --border:        rgba(0,102,204,.18);
+            --card-bg:       #f8faff;
             --border-color:  var(--line);
 
             --paper:       var(--text-primary);
@@ -160,7 +168,9 @@
                 --accent:       #0066cc;
                 --accent-dim:   #004fa3;
                 --accent-glow:  rgba(0,102,204,.12);
-                --accent-line:  rgba(0,102,204,.2);
+                --accent-line:  #f0b90b;
+                --orange:       #c85a00;
+                --yellow:       #c8920b;
                 --blue:         #1a6fd4;
                 --purple:       #6d3fd6;
                 --green:        #007a52;
@@ -178,6 +188,8 @@
                 --bg-surface-border: rgba(0,102,204,.14);
                 --bg-bar-track:  rgba(0,102,204,.1);
                 --bg-hover:      rgba(0,102,204,.04);
+                --border:        rgba(0,102,204,.18);
+                --card-bg:       #f8faff;
                 --border-color:  var(--line);
                 --paper:       var(--text-primary);
                 --paper-dim:   var(--text-secondary);
@@ -1001,55 +1013,46 @@
             .section[data-panel] { display: none; }
             .section[data-panel].panel-active { display: block; }
 
-            /* ===== 决策区块卡片 ===== */
-            .deci-card { background:var(--bg-card); border:1px solid var(--border); border-radius:12px; padding:20px; margin-bottom:16px; }
-
-            /* ===== 标题 ===== */
-            .deci-title { font-size:16px; font-weight:600; display:flex; align-items:center; gap:8px; margin-bottom:16px; }
-            .deci-title::before { content:''; width:3px; height:18px; border-radius:2px; background:var(--accent-line); display:inline-block; }
-            .deci-title.red::before { background:var(--red); }
-
-            /* ===== 操作信号表格 ===== */
-            .sig-table { width:100%; border-collapse:collapse; font-size:13px; }
-            .sig-table thead { display:none; }
-            .sig-table tr { border-bottom:1px solid var(--border); transition: background .2s; }
-            .sig-table tr:hover { background:var(--bg-hover); }
-            .sig-table tr:last-child { border-bottom:none; }
-            .sig-table td { padding:12px 8px; vertical-align:middle; }
-            .sig-table td:first-child { padding-left:0; width:120px; }
-            .sig-table td:last-child { padding-right:0; }
-            .sig-name { font-size:13px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; display:block; max-width:120px; }
-            .sig-type { font-size:11px; color:var(--text-secondary); background:rgba(139,163,183,.1); border-radius:4px; padding:2px 6px; white-space:nowrap; }
-            .sig-badge { display:inline-block; padding:3px 10px; border-radius:4px; font-size:12px; font-weight:600; }
-            .sig-dca   { background:rgba(0,229,160,.15); color:var(--green); }
-            .sig-warn  { background:rgba(255,79,106,.15); color:var(--red); }
-            .sig-hold  { background:rgba(139,163,183,.12); color:var(--text-secondary); }
-            .sig-detail { font-size:11px; color:var(--text-secondary); line-height:1.5; }
-            .sig-none { color:var(--text-muted); font-size:13px; padding:8px 0; }
-
-            /* ===== 风险预警 ===== */
-            .risk-alert { display:flex; align-items:center; gap:8px; background:rgba(255,79,106,.06); border-left:3px solid var(--red); border-radius:0 8px 8px 0; padding:10px 14px; margin-bottom:8px; font-size:13px; }
-            .risk-dot { width:8px; height:8px; border-radius:50%; background:var(--red); flex-shrink:0; }
-            .risk-msg { font-weight:500; }
-            .risk-sub { color:var(--text-muted); font-size:12px; margin-top:12px; }
-
-            /* ===== 估值温度卡片 ===== */
-            .val-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
-            @media(max-width:600px){ .val-grid { grid-template-columns:repeat(2,1fr); } }
-            .val-chip { border-radius:10px; padding:16px 8px; text-align:center; border:1px solid transparent; }
-            .val-chip .val-cat { font-size:11px; color:var(--text-muted); margin-bottom:8px; }
-            .val-chip .val-num { font-size:28px; font-weight:700; line-height:1; margin-bottom:6px; }
-            .val-chip .val-text { font-size:12px; }
-            .val-green  { background:rgba(0,229,160,.08); border-color:rgba(0,229,160,.3); }
-            .val-green .val-num { color:var(--green); }
-            .val-yellow { background:rgba(240,185,11,.08); border-color:rgba(240,185,11,.3); }
-            .val-yellow .val-num { color:var(--yellow); }
-            .val-orange { background:rgba(245,131,42,.08); border-color:rgba(245,131,42,.3); }
-            .val-orange .val-num { color:var(--orange); }
-            .val-red    { background:rgba(255,79,106,.08); border-color:rgba(255,79,106,.3); }
-            .val-red    .val-num { color:var(--red); }
-            .val-na     { background:rgba(139,163,183,.06); border-color:rgba(139,163,183,.2); }
-            .val-na     .val-num { color:var(--text-muted); }
+            /* ===== 今日决策 Panel ===== */
+            .deci-card{background:var(--card-bg,#0f1929);border:1px solid var(--border,#30363d);border-radius:12px;padding:20px;margin-bottom:16px}
+            .deci-title{font-size:16px;font-weight:600;display:flex;align-items:center;gap:8px;margin-bottom:16px;color:var(--text-primary,#e6edf3)}
+            .deci-title::before{content:'';width:3px;height:18px;border-radius:2px;background:var(--accent-line,#f0b90b);display:inline-block;flex-shrink:0}
+            .deci-title.red::before{background:var(--red,#ff4f6a)}
+            .sig-table{width:100%;border-collapse:collapse;font-size:13px;table-layout:fixed}
+            .sig-table .col-name{width:130px}
+            .sig-table .col-type{width:50px}
+            .sig-table .col-sig{width:80px}
+            .sig-table thead th{text-align:left;padding:8px;color:var(--text-secondary,#8b949e);font-weight:500;font-size:12px;border-bottom:1px solid var(--border,#30363d)}
+            .sig-table tbody tr{border-bottom:1px solid rgba(48,54,61,.5);transition:background .15s}
+            .sig-table tbody tr:hover{background:var(--bg-hover,rgba(255,255,255,.03))}
+            .sig-table tbody tr:last-child{border-bottom:none}
+            .sig-table td{padding:10px 8px;vertical-align:top;color:var(--text-primary,#e6edf3)}
+            .sig-name{font-weight:600;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+            .sig-type{font-size:11px;color:var(--text-secondary,#8b949e);background:rgba(139,163,183,.1);border-radius:4px;padding:2px 6px;display:inline-block;white-space:nowrap}
+            .sig-badge{display:inline-block;padding:3px 10px;border-radius:4px;font-size:12px;font-weight:600;white-space:nowrap}
+            .sig-dca{background:rgba(0,229,160,.15);color:#00e5a0}
+            .sig-warn{background:rgba(255,79,106,.15);color:#ff4f6a}
+            .sig-hold{background:rgba(139,163,183,.12);color:var(--text-secondary,#8b949e)}
+            .sig-detail{font-size:11px;color:var(--text-secondary,#8b949e);line-height:1.5;word-break:break-all}
+            .risk-alert{display:flex;align-items:flex-start;gap:10px;background:rgba(255,79,106,.06);border-left:3px solid #ff4f6a;border-radius:0 8px 8px 0;padding:12px 14px;margin-bottom:8px;font-size:13px;color:var(--text-primary,#e6edf3)}
+            .risk-dot{width:8px;height:8px;border-radius:50%;background:#ff4f6a;flex-shrink:0;margin-top:5px}
+            .risk-sub{color:var(--text-secondary,#8b949e);font-size:12px;margin-top:14px;padding-top:10px;border-top:1px solid var(--border,#30363d)}
+            .val-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+            @media(max-width:600px){.val-grid{grid-template-columns:repeat(2,1fr)}}
+            .val-chip{border-radius:10px;padding:16px 8px;text-align:center;border:1px solid transparent}
+            .val-chip .vc-cat{font-size:11px;color:var(--text-secondary,#8b949e);margin-bottom:8px}
+            .val-chip .vc-num{font-size:28px;font-weight:700;line-height:1;margin-bottom:6px}
+            .val-chip .vc-txt{font-size:12px}
+            .vc-green{background:rgba(0,229,160,.08);border-color:rgba(0,229,160,.3)}
+            .vc-green .vc-num,.vc-green .vc-txt{color:#00e5a0}
+            .vc-yellow{background:rgba(240,185,11,.08);border-color:rgba(240,185,11,.3)}
+            .vc-yellow .vc-num,.vc-yellow .vc-txt{color:#f0b90b}
+            .vc-orange{background:rgba(245,131,42,.08);border-color:rgba(245,131,42,.3)}
+            .vc-orange .vc-num,.vc-orange .vc-txt{color:#f5832a}
+            .vc-red{background:rgba(255,79,106,.08);border-color:rgba(255,79,106,.3)}
+            .vc-red .vc-num,.vc-red .vc-txt{color:#ff4f6a}
+            .vc-na{background:rgba(139,163,183,.06);border-color:rgba(139,163,183,.2)}
+            .vc-na .vc-num,.vc-na .vc-txt{color:var(--text-secondary,#8b949e)}
 
             /* ── 底部 nav 占位，防止内容被遮挡（含 safe-area）── */
             .page-bottom-spacer { height: calc(72px + env(safe-area-inset-bottom, 0px)); }
@@ -1651,24 +1654,22 @@
 
     <!-- Section: 今日决策 -->
     <section class="section" data-panel="decision">
-        <h2 class="section-title">今日决策 <span id="decisionUpdated" style="font-size:12px;color:var(--text-muted);font-weight:400;"></span></h2>
+        <h2 class="section-title">今日决策 <span id="decisionUpdated" style="font-size:12px;color:var(--text-secondary);font-weight:400;"></span></h2>
 
-        <!-- 卡片1：操作信号 -->
         <div class="deci-card">
             <div class="deci-title">操作信号</div>
-            <table class="sig-table" id="deciSignalTable">
+            <table class="sig-table">
+                <colgroup><col class="col-name"><col class="col-type"><col class="col-sig"><col></colgroup>
                 <thead><tr><th>基金</th><th>类型</th><th>信号</th><th>详情</th></tr></thead>
-                <tbody></tbody>
+                <tbody id="deciSigBody"></tbody>
             </table>
         </div>
 
-        <!-- 卡片2：风险预警 -->
         <div class="deci-card">
             <div class="deci-title red">风险预警</div>
-            <div id="deciRiskAlerts"></div>
+            <div id="deciRiskBox"></div>
         </div>
 
-        <!-- 卡片3：估值温度 -->
         <div class="deci-card" style="margin-bottom:0;">
             <div class="deci-title">估值温度</div>
             <div class="val-grid" id="deciValGrid"></div>
@@ -4053,78 +4054,92 @@ function _bulletCashEditCancel(curAmt) {
 
 // ========== 今日决策 Panel ==========
 async function loadAndRenderDecision() {
-    const errHtml = '<div style="color:var(--red);padding:8px;font-size:13px;">数据加载失败，请重新运行 run_all.sh</div>';
     try {
-        const t = Date.now();
-        const [sR, rR, vR] = await Promise.all([
+        var t = Date.now();
+        var [sR, rR, vR] = await Promise.all([
             fetch('data/signals.json?t=' + t),
             fetch('data/risk.json?t=' + t),
             fetch('data/valuation.json?t=' + t)
         ]);
-        const [sD, rD, vD] = await Promise.all([sR.ok?sR.json():null, rR.ok?rR.json():null, vR.ok?vR.json():null]);
-        const tsEl = document.getElementById('decisionUpdated');
-        if (tsEl) tsEl.textContent = sD?.updated_at || rD?.updated_at || '';
-        _renderDeciSignals(sD?.signals || []);
-        _renderDeciRisk(rD);
-        _renderDeciValuation(vD?.valuations || []);
+        var [sD, rD, vD] = await Promise.all([sR.ok?sR.json():null, rR.ok?rR.json():null, vR.ok?vR.json():null]);
+        var tsEl = document.getElementById('decisionUpdated');
+        if (tsEl) tsEl.textContent = (sD && sD.updated_at) || (rD && rD.updated_at) || '';
+        renderDeciSignals(sD && sD.signals || []);
+        renderDeciRisk(rD || {});
+        renderDeciValuation(vD && vD.valuations || []);
     } catch(e) {
-        const tbl = document.querySelector('#deciSignalTable tbody');
-        if (tbl) tbl.innerHTML = `<tr><td colspan="4" style="color:var(--red);padding:12px 0;">${errHtml}</td></tr>`;
+        var tb = document.getElementById('deciSigBody');
+        if (tb) tb.innerHTML = '<tr><td colspan="4" style="color:#ff4f6a;padding:12px 0;">数据加载失败，请重新运行 run_all.sh</td></tr>';
     }
 }
-function _renderDeciSignals(signals) {
-    const tbody = document.querySelector('#deciSignalTable tbody');
-    if (!tbody) return;
+function renderDeciSignals(signals) {
+    var tb = document.getElementById('deciSigBody');
+    if (!tb) return;
     if (!signals || !signals.length) {
-        tbody.innerHTML = '<tr><td colspan="4"><p class="sig-none">暂无信号数据</p></td></tr>';
+        tb.innerHTML = '<tr><td colspan="4" style="color:var(--text-secondary);padding:16px 0">暂无信号数据</td></tr>';
         return;
     }
-    const typeLbl = t => t === 'trend' ? '趋势' : t === 'oscillation' ? '震荡' : t === 'active' ? '主动' : (t||'');
-    const sigCls = s => /买入|定投补仓|可加/.test(s) ? 'sig-dca' : /高估|减仓|警惕/.test(s) ? 'sig-warn' : 'sig-hold';
-    tbody.innerHTML = signals.map(s => `<tr>
-        <td><span class="sig-name" title="${s.name}">${s.name}</span></td>
-        <td><span class="sig-type">${typeLbl(s.asset_type)}</span></td>
-        <td><span class="sig-badge ${sigCls(s.signal)}">${s.signal}</span></td>
-        <td><span class="sig-detail">${s.action_detail || s.reason || '--'}</span></td>
-    </tr>`).join('');
+    var typeMap = {trend:'趋势',oscillation:'震荡',active:'主动'};
+    var html = '';
+    signals.forEach(function(s) {
+        var sig = s.signal || '—';
+        var cls = 'sig-hold';
+        if (/买入|定投补仓|可加|低估/.test(sig)) cls = 'sig-dca';
+        else if (/高估|减仓|警惕/.test(sig)) cls = 'sig-warn';
+        html += '<tr>'
+            + '<td><span class="sig-name">' + (s.name||'') + '</span></td>'
+            + '<td><span class="sig-type">' + (typeMap[s.asset_type] || s.asset_type || '') + '</span></td>'
+            + '<td><span class="sig-badge ' + cls + '">' + sig + '</span></td>'
+            + '<td><span class="sig-detail">' + (s.action_detail || '') + '</span></td>'
+            + '</tr>';
+    });
+    tb.innerHTML = html;
 }
-function _renderDeciRisk(riskData) {
-    const el = document.getElementById('deciRiskAlerts');
-    if (!el) return;
-    const alerts = riskData?.concentration?.alerts || [];
-    const pr = riskData?.portfolio_risk || {};
+function renderDeciRisk(data) {
+    var box = document.getElementById('deciRiskBox');
+    if (!box) return;
+    var alerts = (data.concentration && data.concentration.alerts) || [];
+    var pr = data.portfolio_risk || {};
+    var html = '';
     if (!alerts.length) {
-        el.innerHTML = '<div class="risk-alert"><span class="risk-dot" style="background:var(--green);"></span><span class="risk-msg" style="color:var(--text-secondary);">暂无风险预警</span></div>';
+        html = '<div class="risk-alert"><span class="risk-dot" style="background:#00e5a0"></span><span>暂无风险预警</span></div>';
     } else {
-        el.innerHTML = alerts.map(a => `<div class="risk-alert"><span class="risk-dot"></span><span class="risk-msg">${a.message}</span></div>`).join('');
+        alerts.forEach(function(a) {
+            html += '<div class="risk-alert"><span class="risk-dot"></span><span>' + a.message + '</span></div>';
+        });
     }
-    const parts = [];
-    if (pr.volatility != null) parts.push(`波动率 ${pr.volatility}%`);
-    if (pr.max_drawdown != null) parts.push(`最大回撤 ${pr.max_drawdown}%`);
-    if (pr.sharpe != null) parts.push(`夏普 ${pr.sharpe}`);
-    if (parts.length) el.insertAdjacentHTML('afterend', `<div class="risk-sub">${parts.join(' · ')}</div>`);
+    var parts = [];
+    if (pr.volatility != null) parts.push('波动率 ' + (+pr.volatility).toFixed(1) + '%');
+    if (pr.max_drawdown != null) parts.push('最大回撤 ' + (+pr.max_drawdown).toFixed(1) + '%');
+    if (pr.sharpe != null) parts.push('夏普 ' + (+pr.sharpe).toFixed(2));
+    if (parts.length) html += '<div class="risk-sub">' + parts.join(' · ') + '</div>';
+    box.innerHTML = html;
 }
-function _renderDeciValuation(valuations) {
-    const el = document.getElementById('deciValGrid');
-    if (!el) return;
+function renderDeciValuation(valuations) {
+    var grid = document.getElementById('deciValGrid');
+    if (!grid) return;
     if (!valuations || !valuations.length) {
-        el.innerHTML = '<p class="sig-none">暂无估值数据</p>';
+        grid.innerHTML = '<div style="color:var(--text-secondary)">暂无估值数据</div>';
         return;
     }
-    const NA_VERDICTS = ['数据缺失', '不适用'];
-    const chipCls = v => NA_VERDICTS.includes(v.verdict) ? 'val-na'
-        : v.verdict_score <= 40 ? 'val-green'
-        : v.verdict_score <= 60 ? 'val-yellow'
-        : v.verdict_score <= 80 ? 'val-orange' : 'val-red';
-    el.innerHTML = valuations.map(v => {
-        const isNA = NA_VERDICTS.includes(v.verdict) || v.category === '黄金';
-        const num = isNA ? '—' : (v.pe_pct_5y != null ? v.pe_pct_5y : (v.verdict_score != null ? v.verdict_score : '—'));
-        return `<div class="val-chip ${chipCls(v)}">
-            <div class="val-cat">${v.category}</div>
-            <div class="val-num">${num}</div>
-            <div class="val-text">${isNA ? '暂无数据' : v.verdict}</div>
-        </div>`;
-    }).join('');
+    var html = '';
+    valuations.forEach(function(v) {
+        var score = v.verdict_score;
+        var verdict = v.verdict || '';
+        var cls = 'vc-na';
+        if (verdict === '不适用' || verdict === '数据缺失') cls = 'vc-na';
+        else if (score <= 40) cls = 'vc-green';
+        else if (score <= 60) cls = 'vc-yellow';
+        else if (score <= 80) cls = 'vc-orange';
+        else cls = 'vc-red';
+        var num = v.category === '黄金' ? '—' : (v.pe_pct_5y != null ? (+v.pe_pct_5y).toFixed(1) : '—');
+        html += '<div class="val-chip ' + cls + '">'
+            + '<div class="vc-cat">' + v.category + '</div>'
+            + '<div class="vc-num">' + num + '</div>'
+            + '<div class="vc-txt">' + verdict + '</div>'
+            + '</div>';
+    });
+    grid.innerHTML = html;
 }
 
 document.addEventListener('DOMContentLoaded', async function() {
