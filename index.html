@@ -1748,51 +1748,9 @@
 
 
 
-    <!-- Section: 今日决策 -->
-    <section class="section" data-panel="decision" id="sec-decision">
-        <h2 class="section-title">今日决策 <span id="decisionUpdated" style="font-size:12px;color:var(--text-muted);font-weight:400;"></span></h2>
-
-        <!-- 区块1：操作信号 -->
-        <div class="card" style="margin-bottom:16px;">
-            <div class="deci-block-title">操作信号</div>
-            <div id="decisionSignals"><span style="color:var(--text-muted);font-size:13px;">加载中...</span></div>
-            <details id="decisionSignalsMore" style="display:none;margin-top:10px;">
-                <summary style="cursor:pointer;color:var(--accent);font-size:13px;user-select:none;">查看全部基金信号</summary>
-                <div id="decisionSignalsAll"></div>
-            </details>
-        </div>
-
-        <!-- 区块2：操作清单 -->
-        <div id="decisionOpsWrap" class="card" style="margin-bottom:16px;">
-            <div class="deci-block-title" style="border-left-color:var(--green);">操作清单</div>
-            <div id="decisionOps"><span style="color:var(--text-muted);font-size:13px;">加载中...</span></div>
-        </div>
-
-        <!-- 区块2.5：持仓跟踪 -->
-        <div class="card" style="margin-bottom:16px;">
-            <div class="deci-block-title" style="border-left-color:var(--accent);">持仓跟踪</div>
-            <div id="decisionPositions"><span style="color:var(--text-muted);font-size:13px;">加载中...</span></div>
-        </div>
-
-        <!-- 区块3：风险预警（无high alert时隐藏） -->
-        <div id="decisionRiskWrap" class="card" style="margin-bottom:16px;display:none;">
-            <div class="deci-block-title" style="border-left-color:var(--red);">风险预警</div>
-            <div id="decisionRiskAlerts"></div>
-            <div id="decisionRiskMeta" style="font-size:12px;color:var(--text-secondary);margin-top:8px;"></div>
-        </div>
-
-        <!-- 区块4：估值温度 -->
-        <div class="card" style="margin-bottom:16px;">
-            <div class="deci-block-title">估值温度</div>
-            <div id="decisionValuation"><span style="color:var(--text-muted);font-size:13px;">加载中...</span></div>
-        </div>
-
-        <!-- 区块5：低估机会 -->
-        <div class="card">
-            <div class="deci-block-title" style="border-left-color:var(--green);">低估机会</div>
-            <div id="decisionUndervalued"><span style="color:var(--text-muted);font-size:13px;">加载中...</span></div>
-        </div>
-    </section>
+    <!-- ═══════════════════════════════════════════════════════
+         第一层：现状（先看"我有什么，表现如何"）
+         ═══════════════════════════════════════════════════════ -->
 
     <!-- Section: 实时行情 -->
     <section class="section" data-panel="overview" id="sec-market">
@@ -1864,6 +1822,10 @@
         </div>
     </section>
 
+    <!-- ═══════════════════════════════════════════════════════
+         第二层：分析（再看"市场怎么说，信号靠不靠谱"）
+         ═══════════════════════════════════════════════════════ -->
+
     <!-- Section: 量化信号 -->
     <section class="section" data-panel="signals" id="sec-signals">
         <h2 class="section-title">量化信号</h2>
@@ -1926,6 +1888,14 @@
     <!-- Section: 有色金属信号 (附加) -->
     <section class="section" data-panel="signals" id="metalsSection" style="display:none;"></section>
 
+    <!-- Section: 融合决策卡 -->
+    <section class="section" data-panel="signals" id="sec-fusion">
+        <h2 class="section-title">融合决策 · 技术×价值双确认</h2>
+        <div class="fusion-grid" id="fusionGrid">
+            <div style="color:var(--paper-faint);font-size:13px;padding:16px;">加载中...</div>
+        </div>
+    </section>
+
     <!-- Section: 策略回测 -->
     <section class="section" data-panel="strategy" id="sec-backtest">
         <h2 class="section-title">策略回测 · 信号策略 vs 买入持有</h2>
@@ -1954,19 +1924,53 @@
         </div>
     </section>
 
-    <!-- Section: 融合决策卡 -->
-    <section class="section" data-panel="signals" id="sec-fusion">
-        <h2 class="section-title">融合决策 · 技术×价值双确认</h2>
-        <div class="fusion-grid" id="fusionGrid">
-            <div style="color:var(--paper-faint);font-size:13px;padding:16px;">加载中...</div>
-        </div>
-    </section>
+    <!-- ═══════════════════════════════════════════════════════
+         第三层：决策（最后"我该怎么做"）
+         ═══════════════════════════════════════════════════════ -->
 
-    <!-- Section: 主动基诊断 -->
-    <section class="section" data-panel="strategy">
-        <h2 class="section-title">主动基诊断 · 基金经理/规模/排名/持仓质地</h2>
-        <div class="afd-grid" id="activeFundGrid">
-            <div style="color:var(--paper-faint);font-size:13px;padding:16px 0;">加载中...</div>
+    <!-- Section: 今日决策 -->
+    <section class="section" data-panel="decision" id="sec-decision">
+        <h2 class="section-title">今日决策 <span id="decisionUpdated" style="font-size:12px;color:var(--text-muted);font-weight:400;"></span></h2>
+
+        <!-- 区块1：操作信号 -->
+        <div class="card" style="margin-bottom:16px;">
+            <div class="deci-block-title">操作信号</div>
+            <div id="decisionSignals"><span style="color:var(--text-muted);font-size:13px;">加载中...</span></div>
+            <details id="decisionSignalsMore" style="display:none;margin-top:10px;">
+                <summary style="cursor:pointer;color:var(--accent);font-size:13px;user-select:none;">查看全部基金信号</summary>
+                <div id="decisionSignalsAll"></div>
+            </details>
+        </div>
+
+        <!-- 区块2：操作清单 -->
+        <div id="decisionOpsWrap" class="card" style="margin-bottom:16px;">
+            <div class="deci-block-title" style="border-left-color:var(--green);">操作清单</div>
+            <div id="decisionOps"><span style="color:var(--text-muted);font-size:13px;">加载中...</span></div>
+        </div>
+
+        <!-- 区块2.5：持仓跟踪 -->
+        <div class="card" style="margin-bottom:16px;">
+            <div class="deci-block-title" style="border-left-color:var(--accent);">持仓跟踪</div>
+            <div id="decisionPositions"><span style="color:var(--text-muted);font-size:13px;">加载中...</span></div>
+        </div>
+
+        <!-- 区块3：风险预警（无high alert时隐藏） -->
+        <div id="decisionRiskWrap" class="card" style="margin-bottom:16px;display:none;">
+            <div class="deci-block-title" style="border-left-color:var(--red);">风险预警</div>
+            <div id="decisionRiskAlerts"></div>
+            <div id="decisionRiskMeta" style="font-size:12px;color:var(--text-secondary);margin-top:8px;"></div>
+        </div>
+
+        <!-- 区块4：估值温度 -->
+        <div class="card" style="margin-bottom:16px;">
+            <div class="deci-block-title">估值温度</div>
+            <div id="decisionValuation"><span style="color:var(--text-muted);font-size:13px;">加载中...</span></div>
+        </div>
+
+        <!-- 区块5：低估机会 -->
+        <div class="card">
+            <div class="deci-block-title" style="border-left-color:var(--green);">低估机会</div>
+            <div id="decisionUndervalued"><span style="color:var(--text-muted);font-size:13px;">加载中...</span></div>
         </div>
     </section>
 
@@ -2008,6 +2012,23 @@
             <div class="advice-action">美股观测面板 · 纳指/标普入场时机</div>
             <div id="usMarketContent" class="advice-reason">--</div>
         </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         第四层：跟踪与诊断（操作后跟踪，可按需展开）
+         ═══════════════════════════════════════════════════════ -->
+
+    <!-- Section: 主动基诊断（折叠，当前持仓均为指数基金，按需展开）-->
+    <section class="section" data-panel="strategy">
+        <details id="activeFundDetails">
+            <summary style="cursor:pointer;list-style:none;display:flex;align-items:center;gap:10px;padding:2px 0;user-select:none;">
+                <h2 class="section-title" style="margin-bottom:0;pointer-events:none;">主动基诊断 · 基金经理/规模/排名/持仓质地</h2>
+                <span id="afdToggleIcon" style="font-size:11px;color:var(--text-muted);white-space:nowrap;transition:opacity .2s;">▶ 点击展开</span>
+            </summary>
+            <div class="afd-grid" id="activeFundGrid" style="margin-top:16px;">
+                <div style="color:var(--paper-faint);font-size:13px;padding:16px 0;">加载中...</div>
+            </div>
+        </details>
     </section>
 
     <!-- 底部 Tab 占位（移动端防遮挡） -->
@@ -4564,6 +4585,15 @@ document.addEventListener('DOMContentLoaded', async function() {
     await loadAndRenderFusion();
     // 主动基诊断（data/active_funds.json）
     await loadAndRenderActiveFunds();
+    // 主动基诊断折叠图标联动
+    (function() {
+        const det = document.getElementById('activeFundDetails');
+        const ico = document.getElementById('afdToggleIcon');
+        if (!det || !ico) return;
+        const update = () => { ico.textContent = det.open ? '▼ 点击收起' : '▶ 点击展开'; };
+        det.addEventListener('toggle', update);
+        update();
+    })();
     // 再平衡（loadAndRenderRebalanceJson 保留兼容，AI建议模块由下方接管）
     await loadAndRenderRebalanceJson();
     // 基金雷达（data/fund_recommendations.json）
