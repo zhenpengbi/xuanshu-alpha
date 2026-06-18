@@ -549,6 +549,52 @@
         /* ========== Footer ========== */
         footer { font-family: var(--sans); }
 
+        /* ========== 今日决策 panel ========== */
+        .deci-block-title { font-size:14px; font-weight:600; color:var(--text-primary); border-left:3px solid var(--accent); padding-left:8px; margin-bottom:12px; line-height:1.4; }
+        /* 信号卡片 */
+        .sig-item { display:flex; align-items:flex-start; gap:12px; padding:12px 0; border-bottom:1px solid var(--line); }
+        .sig-item:last-child { border-bottom:none; padding-bottom:0; }
+        .sig-item:first-child { padding-top:0; }
+        .sig-bar { width:3px; border-radius:2px; flex-shrink:0; margin-top:3px; align-self:stretch; min-height:36px; }
+        .sig-bar-buy  { background:var(--green); }
+        .sig-bar-sell { background:var(--red); }
+        .sig-bar-hold { background:var(--text-muted); }
+        .sig-body { flex:1; min-width:0; }
+        .sig-headline { display:flex; align-items:baseline; gap:8px; flex-wrap:wrap; margin-bottom:4px; }
+        .sig-action { font-size:14px; font-weight:700; white-space:nowrap; }
+        .sig-action-buy  { color:var(--green); }
+        .sig-action-sell { color:var(--red); }
+        .sig-action-hold { color:var(--text-muted); }
+        .sig-fname { font-size:13px; font-weight:500; color:var(--text-primary); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:160px; }
+        .sig-type-tag { font-size:10px; color:var(--text-muted); background:var(--bg-surface); border-radius:4px; padding:1px 5px; white-space:nowrap; }
+        .sig-reason { font-size:12px; color:var(--text-secondary); line-height:1.55; }
+        /* 风险横幅 */
+        .deci-risk-banner { display:flex; align-items:flex-start; gap:10px; padding:12px 14px; border-radius:var(--radius-sm); background:var(--red-bg); border:1px solid rgba(255,79,106,.25); margin-bottom:8px; }
+        .deci-risk-dot { width:7px; height:7px; border-radius:50%; background:var(--red); flex-shrink:0; margin-top:5px; }
+        .deci-risk-msg { font-size:13px; color:var(--text-primary); line-height:1.5; }
+        .deci-risk-meta { font-size:12px; color:var(--text-secondary); margin-top:10px; padding-top:8px; border-top:1px solid var(--line); }
+        /* 估值温度条 */
+        .val-row { display:flex; align-items:center; gap:10px; padding:8px 0; border-bottom:1px solid var(--line); }
+        .val-row:last-child { border-bottom:none; padding-bottom:0; }
+        .val-row:first-child { padding-top:0; }
+        .val-cat { font-size:12px; color:var(--text-secondary); width:68px; flex-shrink:0; white-space:nowrap; }
+        .val-bar-wrap { flex:1; height:6px; background:var(--bg-bar-track); border-radius:3px; overflow:hidden; }
+        .val-bar-fill { height:100%; border-radius:3px; transition:width .4s ease; }
+        .val-bar-green  { background:var(--green); }
+        .val-bar-yellow { background:#d4a017; }
+        .val-bar-orange { background:#d06030; }
+        .val-bar-red    { background:var(--red); }
+        .val-bar-na     { background:var(--text-muted); }
+        .val-score { font-size:13px; font-weight:700; width:30px; text-align:right; flex-shrink:0; }
+        .val-score-green  { color:var(--green); }
+        .val-score-yellow { color:#d4a017; }
+        .val-score-orange { color:#d06030; }
+        .val-score-red    { color:var(--red); }
+        .val-score-na     { color:var(--text-muted); }
+        .val-verdict { font-size:11px; color:var(--text-muted); width:34px; flex-shrink:0; text-align:right; }
+        [data-theme="light"] .val-bar-yellow { background:#b08010; }
+        [data-theme="light"] .val-score-yellow { color:#b08010; }
+
         /* ========== Responsive ========== */
         /* signals-carousel-wrap 在桌面 / 1025px+ 保持 grid 布局 */
         .signals-carousel-wrap {
@@ -1000,55 +1046,6 @@
             /* ── panel 切换：仅在移动端生效 ── */
             .section[data-panel] { display: none; }
             .section[data-panel].panel-active { display: block; }
-
-            /* ── 今日决策 panel ── */
-            .deci-block-title { font-size:14px; font-weight:600; color:var(--text-primary); border-left:3px solid var(--accent); padding-left:8px; margin-bottom:12px; line-height:1.4; }
-
-            /* 信号卡片 */
-            .sig-item { display:flex; align-items:flex-start; gap:12px; padding:12px 0; border-bottom:1px solid var(--line); }
-            .sig-item:last-child { border-bottom:none; padding-bottom:0; }
-            .sig-item:first-child { padding-top:0; }
-            .sig-bar { width:3px; border-radius:2px; flex-shrink:0; margin-top:3px; align-self:stretch; min-height:36px; }
-            .sig-bar-buy  { background:var(--green); }
-            .sig-bar-sell { background:var(--red); }
-            .sig-bar-hold { background:var(--text-muted); }
-            .sig-body { flex:1; min-width:0; }
-            .sig-headline { display:flex; align-items:baseline; gap:8px; flex-wrap:wrap; margin-bottom:4px; }
-            .sig-action { font-size:14px; font-weight:700; white-space:nowrap; }
-            .sig-action-buy  { color:var(--green); }
-            .sig-action-sell { color:var(--red); }
-            .sig-action-hold { color:var(--text-muted); }
-            .sig-fname { font-size:13px; font-weight:500; color:var(--text-primary); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:160px; }
-            .sig-type-tag { font-size:10px; color:var(--text-muted); background:var(--bg-surface); border-radius:4px; padding:1px 5px; white-space:nowrap; }
-            .sig-reason { font-size:12px; color:var(--text-secondary); line-height:1.55; }
-
-            /* 风险横幅（有预警时显示） */
-            .deci-risk-banner { display:flex; align-items:flex-start; gap:10px; padding:12px 14px; border-radius:var(--radius-sm); background:var(--red-bg); border:1px solid rgba(255,79,106,.25); margin-bottom:8px; }
-            .deci-risk-dot { width:7px; height:7px; border-radius:50%; background:var(--red); flex-shrink:0; margin-top:5px; }
-            .deci-risk-msg { font-size:13px; color:var(--text-primary); line-height:1.5; }
-            .deci-risk-meta { font-size:12px; color:var(--text-secondary); margin-top:10px; padding-top:8px; border-top:1px solid var(--line); }
-
-            /* 估值温度条 */
-            .val-row { display:flex; align-items:center; gap:10px; padding:8px 0; border-bottom:1px solid var(--line); }
-            .val-row:last-child { border-bottom:none; padding-bottom:0; }
-            .val-row:first-child { padding-top:0; }
-            .val-cat { font-size:12px; color:var(--text-secondary); width:68px; flex-shrink:0; white-space:nowrap; }
-            .val-bar-wrap { flex:1; height:6px; background:var(--bg-bar-track); border-radius:3px; overflow:hidden; }
-            .val-bar-fill { height:100%; border-radius:3px; transition:width .4s ease; }
-            .val-bar-green  { background:var(--green); }
-            .val-bar-yellow { background:#d4a017; }
-            .val-bar-orange { background:#d06030; }
-            .val-bar-red    { background:var(--red); }
-            .val-bar-na     { background:var(--text-muted); }
-            .val-score { font-size:13px; font-weight:700; width:30px; text-align:right; flex-shrink:0; }
-            .val-score-green  { color:var(--green); }
-            .val-score-yellow { color:#d4a017; }
-            .val-score-orange { color:#d06030; }
-            .val-score-red    { color:var(--red); }
-            .val-score-na     { color:var(--text-muted); }
-            .val-verdict { font-size:11px; color:var(--text-muted); width:34px; flex-shrink:0; text-align:right; }
-            [data-theme="light"] .val-bar-yellow { background:#b08010; }
-            [data-theme="light"] .val-score-yellow { color:#b08010; }
 
             /* ── 底部 nav 占位，防止内容被遮挡（含 safe-area）── */
             .page-bottom-spacer { height: calc(72px + env(safe-area-inset-bottom, 0px)); }
