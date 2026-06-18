@@ -48,24 +48,24 @@
     {
       "category": "纳指100",
       "index_name": "纳斯达克100(NDX/QQQ)",
-      "current_pe": 35.0,
+      "current_pe": 33.17,
       "pe_pct_5y": 75.0,
       "current_pb": null,
       "pb_pct_5y": null,
       "verdict": "偏贵",
       "verdict_score": 70,
-      "pe_note": "fallback_calibration(2026Q2参考值)"
+      "pe_note": "绝对PE估算(无5年序列)"
     },
     {
       "category": "标普500",
       "index_name": "标普500(SPX/SPY)",
-      "current_pe": 24.0,
-      "pe_pct_5y": 45.0,
+      "current_pe": 26.54,
+      "pe_pct_5y": 60.0,
       "current_pb": null,
       "pb_pct_5y": null,
-      "verdict": "适中偏低",
-      "verdict_score": 35,
-      "pe_note": "fallback_calibration(2026Q2参考值)"
+      "verdict": "适中",
+      "verdict_score": 50,
+      "pe_note": "绝对PE估算(无5年序列)"
     },
     {
       "category": "黄金",
