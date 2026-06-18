@@ -603,6 +603,23 @@
         .val-chip-na     { background:var(--bg-surface); border-color:var(--bg-surface-border); }
         .val-chip-na .val-chip-score, .val-chip-na .val-chip-verdict { color:var(--text-muted); }
 
+        /* 操作清单 — ops 行表格 */
+        .ops-tbl { width:100%; border-collapse:collapse; font-size:13px; }
+        .ops-tbl tbody tr { transition:background .15s; }
+        .ops-tbl tbody tr:hover { background:var(--bg-hover); }
+        .ops-tbl td { padding:9px 8px; border-bottom:1px solid var(--line); vertical-align:middle; }
+        .ops-tbl tr:last-child td { border-bottom:none; }
+        .ops-tbl td:first-child { padding-left:4px; }
+        .ops-dir-sell { display:inline-block; font-size:11px; font-weight:700; padding:2px 8px; border-radius:10px; background:var(--red-bg); color:var(--red); border:1px solid rgba(255,79,106,.3); white-space:nowrap; }
+        .ops-dir-buy  { display:inline-block; font-size:11px; font-weight:700; padding:2px 8px; border-radius:10px; background:var(--green-bg); color:var(--green); border:1px solid rgba(0,229,160,.3); white-space:nowrap; }
+        .ops-fname { font-weight:600; color:var(--text-primary); display:block; max-width:120px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+        .ops-code { font-size:10px; color:var(--text-muted); }
+        .ops-amount { font-size:13px; font-weight:700; white-space:nowrap; }
+        .ops-amount-sell { color:var(--red); }
+        .ops-amount-buy  { color:var(--green); }
+        .ops-reason { font-size:11.5px; color:var(--text-secondary); line-height:1.5; }
+        .ops-disclaimer { font-size:11px; color:var(--text-muted); margin-top:10px; padding-top:8px; border-top:1px solid var(--line); }
+
         /* ========== Responsive ========== */
         /* signals-carousel-wrap 在桌面 / 1025px+ 保持 grid 布局 */
         .signals-carousel-wrap {
@@ -1667,14 +1684,20 @@
             </details>
         </div>
 
-        <!-- 区块2：风险预警（无high alert时隐藏） -->
+        <!-- 区块2：操作清单 -->
+        <div id="decisionOpsWrap" class="card" style="margin-bottom:16px;">
+            <div class="deci-block-title" style="border-left-color:var(--green);">操作清单</div>
+            <div id="decisionOps"><span style="color:var(--text-muted);font-size:13px;">加载中...</span></div>
+        </div>
+
+        <!-- 区块3：风险预警（无high alert时隐藏） -->
         <div id="decisionRiskWrap" class="card" style="margin-bottom:16px;display:none;">
             <div class="deci-block-title" style="border-left-color:var(--red);">风险预警</div>
             <div id="decisionRiskAlerts"></div>
             <div id="decisionRiskMeta" style="font-size:12px;color:var(--text-secondary);margin-top:8px;"></div>
         </div>
 
-        <!-- 区块3：估值温度 -->
+        <!-- 区块4：估值温度 -->
         <div class="card">
             <div class="deci-block-title">估值温度</div>
             <div id="decisionValuation"><span style="color:var(--text-muted);font-size:13px;">加载中...</span></div>
@@ -4063,19 +4086,24 @@ async function loadAndRenderDecision() {
     const errHtml = '<div style="color:var(--red);padding:8px;font-size:13px;">数据加载失败，请重新运行 run_all.sh</div>';
     try {
         const t = Date.now();
-        const [sR, rR, vR] = await Promise.all([
+        const [sR, rR, vR, bR] = await Promise.all([
             fetch('data/signals.json?t=' + t),
             fetch('data/risk.json?t=' + t),
-            fetch('data/valuation.json?t=' + t)
+            fetch('data/valuation.json?t=' + t),
+            fetch('data/rebalance.json?t=' + t)
         ]);
-        const [sD, rD, vD] = await Promise.all([sR.ok?sR.json():null, rR.ok?rR.json():null, vR.ok?vR.json():null]);
+        const [sD, rD, vD, bD] = await Promise.all([
+            sR.ok?sR.json():null, rR.ok?rR.json():null,
+            vR.ok?vR.json():null, bR.ok?bR.json():null
+        ]);
         const tsEl = document.getElementById('decisionUpdated');
         if (tsEl) tsEl.textContent = sD?.updated_at || rD?.updated_at || '';
         _renderDeciSignals(sD, errHtml);
+        _renderDeciOps(bD, errHtml);
         _renderDeciRisk(rD, errHtml);
         _renderDeciValuation(vD, errHtml);
     } catch(e) {
-        ['decisionSignals','decisionRiskAlerts','decisionValuation'].forEach(id => {
+        ['decisionSignals','decisionOps','decisionRiskAlerts','decisionValuation'].forEach(id => {
             const el = document.getElementById(id); if (el) el.innerHTML = errHtml;
         });
         const w = document.getElementById('decisionRiskWrap'); if (w) w.style.display = '';
@@ -4090,7 +4118,7 @@ function _renderDeciSignals(data, errHtml) {
     const HOLD_SET = new Set(['持有', '持有观察']);
     const BUY_SET  = new Set(['买入', '定投', '定投补仓', '可加仓']);
     const SELL_SET = new Set(['减仓', '卖出', '高估警惕']);
-    const typeLbl  = t => t === 'trend' ? '趋势' : t === 'oscillation' ? '震荡' : t === 'active' ? '主动' : (t || '');
+    const typeLbl  = t => t === 'trend' ? '趋势' : t === 'oscillation' ? '震荡' : t === 'active' ? '主动' : t === 'pending' ? '待建仓' : (t || '');
     const badgeCls = s => BUY_SET.has(s) ? 'sig-badge-buy' : SELL_SET.has(s) ? 'sig-badge-sell' : 'sig-badge-hold';
     const rowHtml  = s => `<tr>
         <td><span class="sig-name" title="${s.name}">${s.name}</span></td>
@@ -4109,6 +4137,35 @@ function _renderDeciSignals(data, errHtml) {
         moreBody.innerHTML = `<table class="sig-tbl" style="margin-top:6px;"><tbody>${passive.map(rowHtml).join('')}</tbody></table>`;
         moreWrap.style.display = '';
     }
+}
+function _renderDeciOps(data, errHtml) {
+    const el = document.getElementById('decisionOps');
+    if (!el) return;
+    if (!data) { el.innerHTML = errHtml; return; }
+    const ops = data.operations || [];
+    if (!ops.length) {
+        el.innerHTML = '<div style="color:var(--text-muted);font-size:13px;">当前无操作建议</div>';
+        return;
+    }
+    const fmtAmt = n => '¥' + Number(n).toLocaleString('zh-CN');
+    const rowHtml = o => {
+        const isSell = o.action === 'sell';
+        const dirCls = isSell ? 'ops-dir-sell' : 'ops-dir-buy';
+        const dirLbl = isSell ? '卖出' : '买入';
+        const amtCls = isSell ? 'ops-amount ops-amount-sell' : 'ops-amount ops-amount-buy';
+        const amtPfx = isSell ? '-' : '+';
+        return `<tr>
+            <td><span class="${dirCls}">${dirLbl}</span></td>
+            <td><span class="ops-fname" title="${o.fund_name}">${o.fund_name}</span><span class="ops-code">${o.fund_code}</span></td>
+            <td><span class="${amtCls}">${amtPfx}${fmtAmt(o.amount)}</span></td>
+            <td class="ops-reason">${o.reason}</td>
+        </tr>`;
+    };
+    const sells = ops.filter(o => o.action === 'sell');
+    const buys  = ops.filter(o => o.action === 'buy');
+    const rows  = [...sells, ...buys].map(rowHtml).join('');
+    el.innerHTML = `<table class="ops-tbl"><tbody>${rows}</tbody></table>
+        <div class="ops-disclaimer">基于持仓偏离度计算，建议分批执行，非实时交易指令</div>`;
 }
 function _renderDeciRisk(data, errHtml) {
     const wrap     = document.getElementById('decisionRiskWrap');

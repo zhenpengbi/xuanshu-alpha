@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-18 12:01",
+  "updated_at": "2026-06-18 14:48",
   "signals": [
     {
       "code": "002963",
@@ -152,6 +152,44 @@
       "valuation_score": 88,
       "deviation_pt": -6.7,
       "action_detail": "平安高端装备混合发起式C 技术趋弱(sell=2)且估值偏高(score=88，高估)，建议谨慎持有，不加仓"
+    },
+    {
+      "code": "022525",
+      "name": "华宝纳斯达克精选混合C",
+      "rsi14": null,
+      "ma5": null,
+      "ma20": null,
+      "macd_hist": null,
+      "macd_trend": "",
+      "signal": "估值偏贵等回调",
+      "reason": "纳指100当前持仓为0(目标18%)，偏贵(score=70)",
+      "buy_score": 0,
+      "sell_score": 0,
+      "asset_type": "pending",
+      "signal_type": "pending_build",
+      "valuation_verdict": "偏贵",
+      "valuation_score": 70,
+      "deviation_pt": -18.0,
+      "action_detail": "估值偏高(score=70，偏贵)，建议等待纳指100估值回落再建仓"
+    },
+    {
+      "code": "007722",
+      "name": "天弘标普500A",
+      "rsi14": null,
+      "ma5": null,
+      "ma20": null,
+      "macd_hist": null,
+      "macd_trend": "",
+      "signal": "低估可建仓",
+      "reason": "标普500当前持仓为0(目标8%)，适中偏低(score=35)",
+      "buy_score": 0,
+      "sell_score": 0,
+      "asset_type": "pending",
+      "signal_type": "pending_build",
+      "valuation_verdict": "适中偏低",
+      "valuation_score": 35,
+      "deviation_pt": -8.0,
+      "action_detail": "估值低位(score=35，适中偏低)，标普500目标仓位8%，可开始分批建仓"
     }
   ]
 }

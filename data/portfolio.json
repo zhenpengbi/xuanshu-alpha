@@ -120,7 +120,6 @@
     "光伏/新能源": 6,
     "高端制造": 10
   },
-  "dailyReturn": 51.47,
   "pendingFunds": {
     "纳指100": {
       "primary": {
@@ -146,5 +145,6 @@
         "channel": "场内（需券商）"
       }
     }
-  }
+  },
+  "dailyReturn": 51.47
 }

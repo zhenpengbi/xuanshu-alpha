@@ -54,6 +54,15 @@ def _load_portfolio_map():
         return {}
 
 
+def _load_portfolio_raw() -> dict:
+    """返回完整的 portfolio.json 原始数据，读取失败返回 {}。"""
+    try:
+        with open(_PORTFOLIO_PATH, encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return {}
+
+
 # ── 技术评分（原逻辑，不变）────────────────────────────────────
 def _tech_score(item: dict):
     """计算买入/卖出技术评分及原因，返回 (buy_score, sell_score, reasons)。"""
@@ -258,15 +267,18 @@ def _build_category_deviation(portfolio_map: dict) -> dict:
 
 
 # ── 主生成函数 ────────────────────────────────────────────────
-def generate_signals(indicators, portfolio_map=None, valuation_map=None):
+def generate_signals(indicators, portfolio_map=None, valuation_map=None, portfolio_raw=None):
     """
     向后兼容：portfolio_map/valuation_map 可为 None（兜底纯技术逻辑）。
     同品类合并逻辑：趋势型资产按品类整体偏离决定统一方向。
+    portfolio_raw: 完整 portfolio.json 数据，用于扫描待建仓品类（pendingFunds）。
     """
     if portfolio_map is None:
         portfolio_map = {}
     if valuation_map is None:
         valuation_map = {}
+    if portfolio_raw is None:
+        portfolio_raw = {}
 
     # 预计算品类整体偏离
     cat_deviation_map = _build_category_deviation(portfolio_map)
@@ -376,6 +388,67 @@ def generate_signals(indicators, portfolio_map=None, valuation_map=None):
             "action_detail":     action,
         })
 
+    # ── 待建仓品类扫描 ────────────────────────────────────────
+    # 找出 targetAllocation 中实际持仓为0但目标>0的品类，生成建仓建议信号
+    target_alloc  = portfolio_raw.get("targetAllocation", {})
+    pending_funds = portfolio_raw.get("pendingFunds", {})
+    holdings      = portfolio_raw.get("holdings", [])
+
+    # 已持仓品类集合
+    held_categories = {h.get("category", "") for h in holdings if h.get("assetType") != "cash"}
+
+    for cat, target_pct in target_alloc.items():
+        if target_pct <= 0:
+            continue
+        if cat in held_categories:
+            continue  # 已有持仓，跳过
+        # 该品类无任何持仓 → 生成待建仓信号
+        val_info    = valuation_map.get(cat, {})
+        val_score   = val_info.get("verdict_score", 50) if val_info else 50
+        val_verdict = val_info.get("verdict", "数据缺失") if val_info else "数据缺失"
+
+        # 从 pendingFunds 读取备选基金
+        pf_entry    = pending_funds.get(cat, {})
+        primary     = pf_entry.get("primary", {})
+        fund_code   = primary.get("code", "TBD")
+        fund_name   = primary.get("name", cat + "（待选）")
+
+        # 按估值分位决定信号文字
+        if val_score <= 40:
+            signal      = "低估可建仓"
+            action      = f"估值低位(score={val_score}，{val_verdict})，{cat}目标仓位{target_pct}%，可开始分批建仓"
+        elif val_score <= 60:
+            signal      = "估值适中可试水"
+            action      = f"估值适中(score={val_score}，{val_verdict})，{cat}目标仓位{target_pct}%，可小额开始建仓"
+        elif val_score <= 80:
+            signal      = "估值偏贵等回调"
+            action      = f"估值偏高(score={val_score}，{val_verdict})，建议等待{cat}估值回落再建仓"
+        else:
+            signal      = "高估暂缓建仓"
+            action      = f"估值过高(score={val_score}，{val_verdict})，暂不建仓{cat}，等候回调"
+
+        reason = f"{cat}当前持仓为0(目标{target_pct}%)，{val_verdict}(score={val_score})"
+
+        signals.append({
+            "code":              fund_code,
+            "name":              fund_name,
+            "rsi14":             None,
+            "ma5":               None,
+            "ma20":              None,
+            "macd_hist":         None,
+            "macd_trend":        "",
+            "signal":            signal,
+            "reason":            reason,
+            "buy_score":         0,
+            "sell_score":        0,
+            "asset_type":        "pending",
+            "signal_type":       "pending_build",
+            "valuation_verdict": val_verdict,
+            "valuation_score":   val_score,
+            "deviation_pt":      -float(target_pct),  # 完全空仓 = 目标全缺口
+            "action_detail":     action,
+        })
+
     return signals
 
 
@@ -387,13 +460,16 @@ if __name__ == "__main__":
     indicators    = data.get("indicators", [])
     portfolio_map = _load_portfolio_map()
     valuation_map = _load_valuation_map()
+    portfolio_raw = _load_portfolio_raw()
 
     if not portfolio_map:
-        print("  ⚠ portfolio.json 读取失败，使用纯技术逻辑")
+        print("  portfolio.json 读取失败，使用纯技术逻辑")
     if not valuation_map:
-        print("  ⚠ valuation.json 读取失败，估值字段为 null")
+        print("  valuation.json 读取失败，估值字段为 null")
+    if not portfolio_raw:
+        print("  portfolio_raw 读取失败，跳过待建仓品类扫描")
 
-    signals = generate_signals(indicators, portfolio_map, valuation_map)
+    signals = generate_signals(indicators, portfolio_map, valuation_map, portfolio_raw)
 
     output = {
         "updated_at": datetime.now().strftime("%Y-%m-%d %H:%M"),
