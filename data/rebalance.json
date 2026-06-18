@@ -1,6 +1,6 @@
 {
   "portfolio_updateTime": "2026-06-17",
-  "updated_at": "2026-06-17 12:33",
+  "updated_at": "2026-06-18 12:03",
   "total_value": 52613.47,
   "rebalance_threshold_pct": 5.0,
   "bullet": {
@@ -17,6 +17,43 @@
       }
     ]
   },
+  "operations": [
+    {
+      "action": "buy",
+      "fund_code": "TBD",
+      "fund_name": "纳指100（待选基金）",
+      "amount": 2800,
+      "reason": "纳指100品类低配18.0pt（目标18%/实际0.0%），分批建仓约¥2,800"
+    },
+    {
+      "action": "buy",
+      "fund_code": "014881",
+      "fund_name": "天弘中证机器人ETF发起联接C",
+      "amount": 2400,
+      "reason": "AI/科技品类低配14.9pt（目标28%/实际13.1%），分批建仓约¥2,400"
+    },
+    {
+      "action": "buy",
+      "fund_code": "TBD",
+      "fund_name": "标普500（待选基金）",
+      "amount": 1300,
+      "reason": "标普500品类低配8.0pt（目标8%/实际0.0%），分批建仓约¥1,300"
+    },
+    {
+      "action": "sell",
+      "fund_code": "002963",
+      "fund_name": "易方达黄金ETF联接C",
+      "amount": 7400,
+      "reason": "黄金品类超配28.0pt，赎回持仓最大的基金约¥7,400以归位"
+    },
+    {
+      "action": "sell",
+      "fund_code": "010990",
+      "fund_name": "南方有色金属ETF联接E",
+      "amount": 2300,
+      "reason": "有色金属品类超配8.8pt，赎回持仓最大的基金约¥2,300以归位"
+    }
+  ],
   "actions": [
     {
       "category": "纳指100",

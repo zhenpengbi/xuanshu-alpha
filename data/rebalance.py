@@ -306,6 +306,106 @@ def build_bullet_plan(bullet_amount: float, actions: list) -> list:
     return plan
 
 
+# ── 具体操作指令生成 ──────────────────────────────────────────
+def build_operations(actions: list, invest_holdings: list, total_value: float, portfolio: dict) -> list:
+    """
+    生成具体可执行的操作指令（operations 数组）。
+
+    卖出：品类超配 → 赎回持仓最大的基金，金额 = 超配比例 × 总资产 × 50%（取整到百）
+    买入：品类低配/待建仓 → 买入持仓最小的基金（待建仓从 target/fund_recommendations.json 取），
+          金额 = 低配比例 × 总资产 × 30%（取整到百）
+    """
+    operations = []
+
+    # 按持仓金额建索引：{category: [(amount, code, name), ...]}
+    cat_holdings: dict = {}
+    for h in invest_holdings:
+        cat = h.get("category", "")
+        if not cat:
+            continue
+        cat_holdings.setdefault(cat, []).append((h.get("amount", 0), h["code"], h["name"]))
+
+    # 加载可选推荐基金（待建仓用）
+    fund_rec_path = os.path.join(ROOT, "data", "fund_recommendations.json")
+    fund_rec: dict = {}
+    if os.path.exists(fund_rec_path):
+        try:
+            with open(fund_rec_path, encoding="utf-8") as f:
+                fund_rec = json.load(f)
+        except Exception:
+            pass
+
+    target_alloc = portfolio.get("targetAllocation", {})
+
+    for a in actions:
+        cat         = a["category"]
+        deviation   = a["deviation"]          # 正=超配，负=低配
+        asset_type  = a["asset_type"]
+        action_str  = a["action"]
+
+        # ── 卖出（超配 > 5pt）──────────────────────────────────
+        if deviation > 5 and asset_type in ("trend", "oscillation"):
+            holdings_in_cat = cat_holdings.get(cat, [])
+            if not holdings_in_cat:
+                continue
+            # 选持仓金额最大的基金
+            holdings_in_cat_sorted = sorted(holdings_in_cat, key=lambda x: -x[0])
+            sell_fund_amount, sell_code, sell_name = holdings_in_cat_sorted[0]
+
+            raw_amount = (deviation / 100) * total_value * 0.5
+            amount = max(int(round(raw_amount / 100) * 100), 100)
+
+            # 不卖超过持仓本身
+            amount = min(amount, int(sell_fund_amount // 100 * 100))
+            if amount <= 0:
+                continue
+
+            operations.append({
+                "action":     "sell",
+                "fund_code":  sell_code,
+                "fund_name":  sell_name,
+                "amount":     amount,
+                "reason":     f"{cat}品类超配{deviation:.1f}pt，赎回持仓最大的基金约¥{amount:,}以归位",
+            })
+
+        # ── 买入（低配 < -5pt 或待建仓）────────────────────────
+        elif (deviation < -5 or a.get("actual_pct", 0) == 0) and asset_type in ("trend", "oscillation"):
+            holdings_in_cat = cat_holdings.get(cat, [])
+            low_deviation   = abs(deviation) if deviation < 0 else float(target_alloc.get(cat, 0))
+
+            if holdings_in_cat:
+                # 选持仓最小的
+                holdings_in_cat_sorted = sorted(holdings_in_cat, key=lambda x: x[0])
+                _, buy_code, buy_name = holdings_in_cat_sorted[0]
+            else:
+                # 待建仓：从 portfolio.json target 里找，再到 fund_recommendations.json
+                buy_code = None
+                buy_name = None
+                # 先尝试 fund_recommendations
+                rec_entry = fund_rec.get(cat)
+                if rec_entry:
+                    buy_code = rec_entry.get("code")
+                    buy_name = rec_entry.get("name", cat + "推荐基金")
+                if not buy_code:
+                    # 没有推荐，标注待选
+                    buy_code = "TBD"
+                    buy_name = f"{cat}（待选基金）"
+
+            raw_amount = (low_deviation / 100) * total_value * 0.3
+            amount = max(int(round(raw_amount / 100) * 100), 100)
+
+            operations.append({
+                "action":     "buy",
+                "fund_code":  buy_code,
+                "fund_name":  buy_name,
+                "amount":     amount,
+                "reason":     (f"{cat}品类低配{abs(deviation):.1f}pt（目标{target_alloc.get(cat,0)}%/实际{a.get('actual_pct',0):.1f}%），"
+                               f"分批建仓约¥{amount:,}"),
+            })
+
+    return operations
+
+
 # ── 主流程 ────────────────────────────────────────────────────
 
 def main():
@@ -396,6 +496,9 @@ def main():
     # 7. 子弹分配建议
     bullet_plan = build_bullet_plan(bullet_amount, actions)
 
+    # 7b. 具体操作指令
+    operations = build_operations(actions, invest_holdings, total_value, portfolio)
+
     # 8. 构造输出
     output = {
         "portfolio_updateTime": update_time,
@@ -409,6 +512,7 @@ def main():
             "description":   "货币基金作为子弹，不计入再平衡盘，优先补低配/待建仓类别",
             "plan":          bullet_plan,
         },
+        "operations": operations,
         "actions": actions,
         "summary": {
             "overweight":          [a["category"] for a in actions if a["deviation"] > REBALANCE_THRESHOLD],

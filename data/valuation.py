@@ -193,11 +193,18 @@ def _fetch_cnindex_price_pct(code: str):
     return current_close, price_pct
 
 
-# ── 美股：yfinance trailingPE ──────────────────────────────────
+# ── 美股：三级降级策略 ────────────────────────────────────────
+# 兜底校准值（2026Q2 参考，季度更新）
+_US_FALLBACK_PE = {
+    "QQQ": 35.0,   # 纳指100 2026Q2 校准值
+    "SPY": 24.0,   # 标普500 2026Q2 校准值
+}
+
+
 def _fetch_yfinance_pe(ticker: str):
     """
-    返回 (current_pe, None) 或 None。
-    yfinance 无5年 PE 序列，分位用绝对阈值估算。
+    Level-1：yfinance trailingPE。
+    返回 (current_pe, source) 或 None。
     """
     try:
         import yfinance as yf
@@ -205,10 +212,67 @@ def _fetch_yfinance_pe(ticker: str):
         pe   = info.get("trailingPE") or info.get("forwardPE")
         if pe is None:
             return None
-        return round(float(pe), 2), None
+        return round(float(pe), 2), "yfinance"
     except Exception as e:
         print(f"    yfinance({ticker}) 失败: {e}")
         return None
+
+
+def _fetch_akshare_us_pe(ticker: str):
+    """
+    Level-2：AKShare 美股实时行情 stock_us_spot_em，尝试获取 PE。
+    返回 (current_pe, source) 或 None。
+    """
+    try:
+        import akshare as ak
+        # stock_us_spot_em 返回全量美股，含市盈率列
+        df = ak.stock_us_spot_em()
+        if df is None or df.empty:
+            return None
+        # 列名可能是"市盈率"或"动态市盈率"
+        pe_col = next((c for c in df.columns if "市盈率" in c), None)
+        name_col = next((c for c in df.columns if "名称" in c or "代码" in c), None)
+        code_col = next((c for c in df.columns if c in ("代码", "symbol", "Symbol")), None)
+        if pe_col is None or code_col is None:
+            return None
+        # ticker 映射：QQQ/SPY 在 AKShare 里通常带后缀
+        row = df[df[code_col].str.upper().str.contains(ticker.upper(), na=False)]
+        if row.empty:
+            return None
+        pe_val = row.iloc[0][pe_col]
+        import pandas as pd
+        pe_val = pd.to_numeric(pe_val, errors="coerce")
+        if pe_val is None or pe_val != pe_val:  # NaN check
+            return None
+        return round(float(pe_val), 2), "akshare"
+    except Exception as e:
+        print(f"    akshare_us_pe({ticker}) 失败: {e}")
+        return None
+
+
+def _fetch_us_pe_with_fallback(ticker: str):
+    """
+    三级降级：yfinance → AKShare → 硬编码校准值。
+    返回 (current_pe, source_note)，source_note 写入 pe_note。
+    """
+    # Level-1
+    result = _fetch_yfinance_pe(ticker)
+    if result:
+        return result[0], "绝对PE估算(无5年序列)"
+
+    # Level-2
+    result = _fetch_akshare_us_pe(ticker)
+    if result:
+        print(f"    akshare({ticker}) 补救成功: PE={result[0]}")
+        return result[0], "AKShare实时PE(无5年序列)"
+
+    # Level-3：硬编码校准值
+    fallback = _US_FALLBACK_PE.get(ticker)
+    if fallback:
+        print(f"    使用兜底校准值 {ticker} PE={fallback}")
+        return fallback, "fallback_calibration(2026Q2参考值)"
+
+    return None, None
 
 
 def _pe_to_pct_us(pe: float) -> float:
@@ -276,14 +340,14 @@ def _process_category(cat: dict) -> dict:
             print(f"    cnindex({cat['index_code']}) 失败: {e}")
         return base
 
-    # 美股（yfinance）
+    # 美股（三级降级：yfinance → AKShare → 硬编码校准值）
     if source == "yfinance":
-        result = _fetch_yfinance_pe(cat["index_code"])
-        if result:
-            current_pe, _ = result
+        current_pe, pe_note = _fetch_us_pe_with_fallback(cat["index_code"])
+        if current_pe is not None:
             base["current_pe"] = current_pe
-            base["pe_note"]    = "绝对PE估算(无5年序列)"
+            base["pe_note"]    = pe_note
             pct_proxy = _pe_to_pct_us(current_pe)
+            base["pe_pct_5y"]  = pct_proxy
             verdict, score = _verdict_from_pct(pct_proxy)
             base["verdict"]       = verdict
             base["verdict_score"] = score

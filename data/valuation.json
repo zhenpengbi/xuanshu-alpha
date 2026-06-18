@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-17",
+  "updated_at": "2026-06-18",
   "valuations": [
     {
       "category": "AI/科技",
@@ -38,7 +38,7 @@
       "category": "高端制造",
       "index_name": "中证高端装备(399377)",
       "current_pe": null,
-      "pe_pct_5y": 90.8,
+      "pe_pct_5y": 90.3,
       "current_pb": null,
       "pb_pct_5y": null,
       "verdict": "高估",
@@ -48,24 +48,24 @@
     {
       "category": "纳指100",
       "index_name": "纳斯达克100(NDX/QQQ)",
-      "current_pe": 33.51,
-      "pe_pct_5y": null,
+      "current_pe": 35.0,
+      "pe_pct_5y": 75.0,
       "current_pb": null,
       "pb_pct_5y": null,
       "verdict": "偏贵",
       "verdict_score": 70,
-      "pe_note": "绝对PE估算(无5年序列)"
+      "pe_note": "fallback_calibration(2026Q2参考值)"
     },
     {
       "category": "标普500",
       "index_name": "标普500(SPX/SPY)",
-      "current_pe": 26.87,
-      "pe_pct_5y": null,
+      "current_pe": 24.0,
+      "pe_pct_5y": 45.0,
       "current_pb": null,
       "pb_pct_5y": null,
-      "verdict": "适中",
-      "verdict_score": 50,
-      "pe_note": "绝对PE估算(无5年序列)"
+      "verdict": "适中偏低",
+      "verdict_score": 35,
+      "pe_note": "fallback_calibration(2026Q2参考值)"
     },
     {
       "category": "黄金",
