@@ -676,20 +676,37 @@
         .anchor-nav {
             display: flex; align-items: center; justify-content: center;
             position: sticky; top: 0; z-index: 99;
-            background: var(--bg-primary); border-bottom: 1px solid var(--line);
+            background: rgba(var(--bg-primary-rgb, 13,13,20), .92);
+            backdrop-filter: blur(16px) saturate(1.6);
+            -webkit-backdrop-filter: blur(16px) saturate(1.6);
+            border-bottom: 1px solid var(--line);
             padding: 0 max(40px, calc((100% - 1400px) / 2 + 40px));
-            gap: 4px; height: 38px;
+            gap: 2px; height: 42px;
             overflow-x: auto; scrollbar-width: none;
         }
         .anchor-nav::-webkit-scrollbar { display: none; }
         .anav-btn {
             flex: none; font-size: 12px; font-weight: 500; color: var(--text-secondary);
-            padding: 4px 12px; border-radius: 6px; cursor: pointer; border: none;
+            padding: 5px 13px; border-radius: 7px; cursor: pointer; border: none;
             background: transparent; transition: color .2s, background .2s;
             white-space: nowrap; line-height: 1;
         }
         .anav-btn:hover { color: var(--text-primary); background: var(--bg-hover); }
-        .anav-btn.anav-active { color: var(--accent); background: var(--accent-glow); }
+        .anav-btn.anav-active {
+            color: var(--accent);
+            background: var(--accent-glow);
+            box-shadow: 0 0 0 1px var(--accent-line);
+        }
+        /* 分组分隔文字 */
+        .anav-divider {
+            flex: none;
+            font-size: 9.5px; font-weight: 600; letter-spacing: 1px;
+            color: var(--text-muted); text-transform: uppercase;
+            padding: 0 6px 0 10px; white-space: nowrap;
+            opacity: .55;
+            pointer-events: none;
+        }
+        .anav-divider:first-child { padding-left: 0; }
         @media (max-width: 768px) { .anchor-nav { display: none; } }
 
         @media (max-width: 1024px) {
@@ -1098,40 +1115,40 @@
                 padding-bottom: env(safe-area-inset-bottom, 0px);
                 height: calc(56px + env(safe-area-inset-bottom, 0px));
             }
+            /* 4个Tab，比原来6个更宽，字体和图标均加大 */
             .tab-btn {
                 flex: 1; display: flex; flex-direction: column; align-items: center;
-                justify-content: center; padding: 0 2px 4px;
+                justify-content: center; padding: 0 4px 4px;
                 background: none; border: none; cursor: pointer;
                 font-family: var(--sans); color: var(--text-muted);
-                font-size: 9.5px; letter-spacing: .3px;
+                font-size: 11px; font-weight: 500; letter-spacing: .2px;
                 transition: color .18s;
                 -webkit-tap-highlight-color: transparent;
                 position: relative;
-                /* 顶部激活指示线 */
             }
-            /* 顶部2px金色指示线（默认隐藏） */
+            /* 顶部3px金色指示线（默认隐藏） */
             .tab-btn::before {
                 content: '';
                 position: absolute; top: 0; left: 50%; transform: translateX(-50%) scaleX(0);
-                width: 24px; height: 2px; border-radius: 0 0 2px 2px;
+                width: 32px; height: 3px; border-radius: 0 0 3px 3px;
                 background: linear-gradient(90deg, var(--gold-bright), var(--gold));
-                transition: transform .22s cubic-bezier(.32,.72,0,1);
+                transition: transform .24s cubic-bezier(.32,.72,0,1);
             }
             .tab-btn.active::before { transform: translateX(-50%) scaleX(1); }
             .tab-btn .tab-svg {
-                width: 22px; height: 22px; margin-bottom: 3px;
+                width: 24px; height: 24px; margin-bottom: 4px;
                 stroke: var(--text-muted);
-                fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round;
-                transition: stroke .18s, filter .18s, transform .22s cubic-bezier(.32,.72,0,1);
+                fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
+                transition: stroke .18s, filter .2s, transform .24s cubic-bezier(.32,.72,0,1);
             }
             .tab-btn.active { color: var(--accent); }
             .tab-btn.active .tab-svg {
                 stroke: var(--accent);
-                filter: drop-shadow(0 0 5px var(--accent-glow));
-                transform: translateY(-1px) scale(1.08);
+                filter: drop-shadow(0 0 6px color-mix(in srgb, var(--accent) 70%, transparent));
+                transform: translateY(-2px) scale(1.1);
             }
             /* 点击瞬间弹动 */
-            .tab-btn:active .tab-svg { transform: scale(.88); }
+            .tab-btn:active .tab-svg { transform: scale(.84); }
 
             /* ── panel 切换：仅在移动端生效 ── */
             .section[data-panel] { display: none; }
@@ -1732,15 +1749,21 @@
 
 <!-- ========== 顶部锚点导航条 ========== -->
 <nav class="anchor-nav" id="anchorNav" aria-label="快捷导航">
-    <button class="anav-btn" data-anchor="sec-decision">决策</button>
-    <button class="anav-btn" data-anchor="sec-market">行情</button>
-    <button class="anav-btn" data-anchor="sec-holdings">持仓</button>
-    <button class="anav-btn" data-anchor="sec-signals">信号</button>
-    <button class="anav-btn" data-anchor="sec-backtest">回测</button>
+    <!-- 第一层：现状 -->
+    <span class="anav-divider">现状</span>
+    <button class="anav-btn" data-anchor="sec-market">实时行情</button>
+    <button class="anav-btn" data-anchor="sec-holdings">持仓明细</button>
+    <!-- 第二层：分析 -->
+    <span class="anav-divider">分析</span>
+    <button class="anav-btn" data-anchor="sec-signals">量化信号</button>
+    <button class="anav-btn" data-anchor="sec-fusion">融合决策</button>
+    <button class="anav-btn" data-anchor="sec-backtest">策略回测</button>
     <button class="anav-btn" data-anchor="sec-news">早晚报</button>
-    <button class="anav-btn" data-anchor="sec-fusion">融合</button>
-    <button class="anav-btn" data-anchor="sec-radar">雷达</button>
-    <button class="anav-btn" data-anchor="sec-advice">操作</button>
+    <!-- 第三层：决策 -->
+    <span class="anav-divider">决策</span>
+    <button class="anav-btn" data-anchor="sec-decision">今日决策</button>
+    <button class="anav-btn" data-anchor="sec-radar">基金雷达</button>
+    <button class="anav-btn" data-anchor="sec-advice">AI建议</button>
 </nav>
 
 <!-- ========== MAIN CONTENT ========== -->
@@ -1897,7 +1920,7 @@
     </section>
 
     <!-- Section: 策略回测 -->
-    <section class="section" data-panel="strategy" id="sec-backtest">
+    <section class="section" data-panel="signals" id="sec-backtest">
         <h2 class="section-title">策略回测 · 信号策略 vs 买入持有</h2>
         <div class="backtest-grid" id="backtestCards">
             <div style="color:var(--paper-faint);font-size:13px;padding:16px 0;">加载中...</div>
@@ -1983,7 +2006,7 @@
     </section>
 
     <!-- Section: AI 操作建议（真实数据版） -->
-    <section class="section" data-panel="advice" id="sec-advice">
+    <section class="section" data-panel="decision" id="sec-advice">
         <h2 class="section-title">AI 操作建议</h2>
         <!-- 数据来源栏 -->
         <div class="advice-data-bar" id="adviceDataBar">
@@ -2019,8 +2042,8 @@
          ═══════════════════════════════════════════════════════ -->
 
     <!-- Section: 主动基诊断（折叠，当前持仓均为指数基金，按需展开）-->
-    <section class="section" data-panel="strategy">
-        <details id="activeFundDetails">
+<section class="section" data-panel="signals">
+<details id="activeFundDetails">
             <summary style="cursor:pointer;list-style:none;display:flex;align-items:center;gap:10px;padding:2px 0;user-select:none;">
                 <h2 class="section-title" style="margin-bottom:0;pointer-events:none;">主动基诊断 · 基金经理/规模/排名/持仓质地</h2>
                 <span id="afdToggleIcon" style="font-size:11px;color:var(--text-muted);white-space:nowrap;transition:opacity .2s;">▶ 点击展开</span>
@@ -2042,63 +2065,55 @@
 
 <!-- 底部 Tab 导航栏（仅移动端显示） -->
 <nav class="tab-nav" id="tabNav" role="navigation" aria-label="主导航">
-    <button class="tab-btn active" data-panel="decision" aria-label="今日决策">
-        <!-- 决策：闪电 icon -->
+
+    <!-- Tab 1: 总览（默认激活） -->
+    <button class="tab-btn active" data-panel="overview" aria-label="总览">
+        <!-- 折线+基准线 -->
         <svg class="tab-svg" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M13 2L3 14h9l-1 8 10-12h-9z" fill="currentColor" opacity=".18"/>
+            <polyline points="3 17 8 11 13 14 19 6"/>
+            <line x1="3" y1="20" x2="21" y2="20" stroke-width="1.2"/>
+            <circle cx="3"  cy="17" r="1.5" fill="currentColor" stroke="none"/>
+            <circle cx="8"  cy="11" r="1.5" fill="currentColor" stroke="none"/>
+            <circle cx="13" cy="14" r="1.5" fill="currentColor" stroke="none"/>
+            <circle cx="19" cy="6"  r="1.5" fill="currentColor" stroke="none"/>
+        </svg>
+        总览
+    </button>
+
+    <!-- Tab 2: 分析（含量化信号+技术面+融合决策+回测） -->
+    <button class="tab-btn" data-panel="signals" aria-label="分析">
+        <!-- 雷达脉冲 -->
+        <svg class="tab-svg" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="2"/>
+            <path d="M6.3 6.3a8.5 8.5 0 0 0 0 11.4"/>
+            <path d="M17.7 6.3a8.5 8.5 0 0 1 0 11.4"/>
+            <path d="M3.5 3.5a15 15 0 0 0 0 17"/>
+            <path d="M20.5 3.5a15 15 0 0 1 0 17"/>
+        </svg>
+        分析
+    </button>
+
+    <!-- Tab 3: 资讯（早晚报+新闻情绪+基金雷达） -->
+    <button class="tab-btn" data-panel="news" aria-label="资讯">
+        <!-- 报纸 -->
+        <svg class="tab-svg" viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="4" y="4" width="16" height="16" rx="2.5"/>
+            <line x1="8" y1="9"  x2="16" y2="9"  stroke-width="1.8"/>
+            <line x1="8" y1="13" x2="16" y2="13" stroke-width="1.4"/>
+            <line x1="8" y1="17" x2="13" y2="17" stroke-width="1.4"/>
+        </svg>
+        资讯
+    </button>
+
+    <!-- Tab 4: 决策（今日决策+AI操作建议） -->
+    <button class="tab-btn" data-panel="decision" aria-label="决策">
+        <!-- 闪电 -->
+        <svg class="tab-svg" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M13 2L3 14h9l-1 8 10-12h-9z"/>
         </svg>
         决策
     </button>
-    <button class="tab-btn" data-panel="overview" aria-label="总览">
-        <!-- 总览：折线图 icon -->
-        <svg class="tab-svg" viewBox="0 0 24 24" aria-hidden="true">
-            <polyline points="3 17 8 12 13 15 19 7"/>
-            <rect x="3" y="19" width="18" height="1.5" rx=".75"/>
-        </svg>
-        总览
-    </button>
-    <button class="tab-btn" data-panel="signals" aria-label="信号">
-        <!-- 信号：雷达/脉冲 icon -->
-        <svg class="tab-svg" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M12 12m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/>
-            <path d="M6.7 6.7a8 8 0 0 0 0 10.6"/>
-            <path d="M17.3 6.7a8 8 0 0 1 0 10.6"/>
-            <path d="M4 4a13.5 13.5 0 0 0 0 16"/>
-            <path d="M20 4a13.5 13.5 0 0 1 0 16"/>
-        </svg>
-        信号
-    </button>
-    <button class="tab-btn" data-panel="strategy" aria-label="策略">
-        <!-- 策略：回测/齿轮 icon -->
-        <svg class="tab-svg" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M12 2l2 3h3l-1.5 3 2 2.5-3 .5-.5 3h-4l-.5-3-3-.5 2-2.5-1.5-3h3z"/>
-            <circle cx="12" cy="12" r="2.5"/>
-        </svg>
-        策略
-    </button>
-    <button class="tab-btn" data-panel="news" aria-label="资讯">
-        <!-- 资讯：报纸/文章 icon -->
-        <svg class="tab-svg" viewBox="0 0 24 24" aria-hidden="true">
-            <rect x="4" y="4" width="16" height="16" rx="2"/>
-            <line x1="8" y1="9"  x2="16" y2="9"/>
-            <line x1="8" y1="13" x2="16" y2="13"/>
-            <line x1="8" y1="17" x2="12" y2="17"/>
-        </svg>
-        资讯
-    </button>
-    <button class="tab-btn" data-panel="advice" aria-label="建议">
-        <!-- 建议：指南针/方向 icon -->
-        <svg class="tab-svg" viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="12" cy="12" r="9"/>
-            <polygon points="16,8 8,12 12,16 16,8" fill="currentColor" opacity=".6"/>
-            <line x1="12" y1="3" x2="12" y2="5"/>
-            <line x1="12" y1="19" x2="12" y2="21"/>
-            <line x1="3" y1="12" x2="5" y2="12"/>
-            <line x1="19" y1="12" x2="21" y2="12"/>
-        </svg>
-        建议
-    </button>
+
 </nav>
 
 <!-- iOS PWA 安装引导 Banner -->
@@ -3704,8 +3719,11 @@ async function loadPortfolio() {
         try { sessionStorage.setItem('activePanel', panel); } catch(_) {}
         // ECharts 在 display:none panel 里 init 时宽高=0，切回后需 resize
         requestAnimationFrame(() => {
-            if (panel === 'strategy' && typeof _btChart !== 'undefined' && _btChart) {
-                _btChart.resize();
+            if (panel === 'signals') {
+                // 回测图（原 strategy）+ 信号仪表盘
+                if (typeof _btChart   !== 'undefined' && _btChart)   _btChart.resize();
+                if (typeof _goldChart !== 'undefined' && _goldChart) _goldChart.resize();
+                if (typeof _usChart   !== 'undefined' && _usChart)   _usChart.resize();
             }
             if (panel === 'overview') {
                 if (typeof _pieChart !== 'undefined' && _pieChart) _pieChart.resize();
@@ -3728,7 +3746,7 @@ async function loadPortfolio() {
         const saved = (function() {
             try { return sessionStorage.getItem('activePanel'); } catch(_) { return null; }
         })();
-        switchTab(saved || 'decision');
+        switchTab(saved || 'overview');
     }
 
     // 宽度变化时重置（从桌面拉到移动端）
