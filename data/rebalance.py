@@ -387,9 +387,15 @@ def build_operations(actions: list, invest_holdings: list, total_value: float, p
                     buy_code = rec_entry.get("code")
                     buy_name = rec_entry.get("name", cat + "推荐基金")
                 if not buy_code:
-                    # 没有推荐，标注待选
-                    buy_code = "TBD"
-                    buy_name = f"{cat}（待选基金）"
+                    # 从 pendingFunds 读取场外优先基金
+                    pending = portfolio.get('pendingFunds', {}).get(cat, {})
+                    primary = pending.get('primary', {})
+                    if primary.get('code'):
+                        buy_code = primary['code']
+                        buy_name = primary.get('name', cat + '推荐基金')
+                    else:
+                        buy_code = "TBD"
+                        buy_name = f"{cat}（待选基金）"
 
             raw_amount = (low_deviation / 100) * total_value * 0.3
             amount = max(int(round(raw_amount / 100) * 100), 100)

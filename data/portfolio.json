@@ -120,5 +120,31 @@
     "光伏/新能源": 6,
     "高端制造": 10
   },
-  "dailyReturn": 51.47
+  "dailyReturn": 51.47,
+  "pendingFunds": {
+    "纳指100": {
+      "primary": {
+        "code": "022525",
+        "name": "华宝纳斯达克精选混合C",
+        "channel": "场外（支付宝可买）"
+      },
+      "alternative": {
+        "code": "513100",
+        "name": "纳指100ETF",
+        "channel": "场内（需券商）"
+      }
+    },
+    "标普500": {
+      "primary": {
+        "code": "007722",
+        "name": "天弘标普500A",
+        "channel": "场外（支付宝可买）"
+      },
+      "alternative": {
+        "code": "513500",
+        "name": "标普500ETF",
+        "channel": "场内（需券商）"
+      }
+    }
+  }
 }
