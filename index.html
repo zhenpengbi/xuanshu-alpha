@@ -667,9 +667,9 @@
         .anchor-nav {
             display: flex; align-items: center; justify-content: center;
             position: sticky; top: 0; z-index: 99;
-            background: var(--bg-secondary); border-bottom: 1px solid var(--accent-line);
-            backdrop-filter: blur(10px);
-            padding: 0 32px; gap: 4px; height: 38px;
+            background: var(--bg-primary); border-bottom: 1px solid var(--line);
+            padding: 0 max(40px, calc((100% - 1400px) / 2 + 40px));
+            gap: 4px; height: 38px;
             overflow-x: auto; scrollbar-width: none;
         }
         .anchor-nav::-webkit-scrollbar { display: none; }
