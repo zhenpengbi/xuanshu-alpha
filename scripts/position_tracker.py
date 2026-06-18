@@ -121,7 +121,17 @@ def update_positions(data: dict, funds_nav: dict) -> tuple[dict, list]:
         code      = str(pos.get("fund_code", "")).strip()
         entry_nav = pos.get("entry_nav")
         if not entry_nav:
-            continue
+            # 尝试从 nav.json 补填 entry_nav
+            latest = get_latest_nav(funds_nav, code)
+            if latest:
+                pos["entry_nav"] = latest
+                pos["current_nav"] = latest
+                pos["highest_nav"] = latest
+                entry_nav = latest
+                print(f"  补填 entry_nav: {code} = {latest}")
+            else:
+                print(f"  entry_nav 缺失且 nav 无数据: {code}，跳过")
+                continue
 
         current_nav = get_latest_nav(funds_nav, code)
         if current_nav is None:

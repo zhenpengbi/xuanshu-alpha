@@ -26,7 +26,9 @@ jobs:
           pip install akshare==1.18.64 pandas numpy requests ta tabulate yfinance multitasking
       - name: 拉取行情
         run: python3 fetch_prices.py
-      - name: 更新持仓净值
+      - name: 拉取60日历史净值
+        run: python3 scripts/fetch_nav.py
+      - name: 更新持仓日收益
         run: python3 scripts/update_nav.py
       - name: 计算技术指标
         run: python3 data/indicators.py
