@@ -40,22 +40,30 @@ NEWS_JSON         = os.path.join(ROOT, "data", "news.json")
 OUT_PATH          = os.path.join(ROOT, "data", "news_impact.json")
 NEWS_HISTORY_JSON = os.path.join(ROOT, "data", "news_history.json")
 
-# 持仓标的清单
+# 持仓标的清单（与 positions.json 同步）
 HOLDINGS = [
-    {"code": "000216", "name": "易方达黄金ETF联接C"},
-    {"code": "008585", "name": "天弘AI主题指数C"},
-    {"code": "017766", "name": "南方有色金属ETF联接E"},
-    {"code": "515790", "name": "华夏光伏ETF"},
+    {"code": "002963", "name": "易方达黄金ETF联接C"},
+    {"code": "000307", "name": "易方达黄金ETF联接A"},
+    {"code": "011840", "name": "天弘中证人工智能C"},
+    {"code": "010990", "name": "南方有色金属ETF联接E"},
+    {"code": "012885", "name": "华夏光伏ETF联接A"},
     {"code": "513100", "name": "纳指100ETF"},
     {"code": "513500", "name": "标普500ETF"},
+    {"code": "015790", "name": "永赢高端装备混合C"},
+    {"code": "014881", "name": "天弘机器人ETF联接C"},
+    {"code": "025647", "name": "平安高端装备混合C"},
 ]
 
 # 持仓代码 → 新闻 impact 渠道
 CHANNEL_MAP = {
-    "000216": "gold",
-    "017766": "ashare",
-    "515790": "ashare",
-    "008585": "ashare",
+    "002963": "gold",
+    "000307": "gold",
+    "011840": "ashare",
+    "010990": "ashare",
+    "012885": "ashare",
+    "015790": "ashare",
+    "014881": "ashare",
+    "025647": "ashare",
     "513100": "nasdaq",
     "513500": "nasdaq",
 }

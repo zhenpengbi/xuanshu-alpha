@@ -22,27 +22,31 @@ echo "【第3步】生成买卖信号..."
 python3 data/signals.py
 
 echo ""
-echo "【第4步】新闻情绪→持仓影响分析..."
+echo "【第4步】自动抓取新闻（东方财富 + 新闻联播）..."
+python3 scripts/fetch_news.py
+
+echo ""
+echo "【第5步】新闻情绪→持仓影响分析..."
 python3 scripts/build_news_impact.py
 
 echo ""
-echo "【第5步】基金雷达（超跌扫描，avg_sell_score>=2时触发）..."
+echo "【第6步】基金雷达（超跌扫描，avg_sell_score>=2时触发）..."
 python3 scripts/fund_scanner.py
 
 echo ""
-echo "【第6步】计算再平衡建议..."
+echo "【第7步】计算再平衡建议..."
 python3 data/rebalance.py
 
 echo ""
-echo "【第7步】组合风险度量（波动率/回撤/夏普/集中度预警）..."
+echo "【第8步】组合风险度量（波动率/回撤/夏普/集中度预警）..."
 python3 data/risk.py
 
 echo ""
-echo "【第8步】估值分位（7品类PE历史分位，回答贵不贵）..."
+echo "【第9步】估值分位（7品类PE历史分位，回答贵不贵）..."
 python3 data/valuation.py
 
 echo ""
-echo "【第8步】价值罗盘（可选：仅在重仓股变动时重跑）..."
+echo "【第10步】价值罗盘（可选：仅在重仓股变动时重跑）..."
 # python3 value_compass/build_value_compass.py
 # python3 value_compass/build_fusion.py
 
@@ -50,7 +54,7 @@ echo "【第8步】价值罗盘（可选：仅在重仓股变动时重跑）..."
 # 加 --backtest 参数时执行，例如：  ./run_all.sh --backtest
 if [[ "${1}" == "--backtest" ]]; then
     echo ""
-    echo "【第8步】策略回测（--backtest 模式）..."
+    echo "【第10步】策略回测（--backtest 模式）..."
     python3 backtest/backtest_engine.py
 fi
 
