@@ -29,7 +29,20 @@ import re
 import sys
 import time
 import argparse
-from datetime import date, datetime, timedelta
+from datetime import date, datetime, timedelta, timezone
+try:
+    from zoneinfo import ZoneInfo
+except ImportError:
+    from backports.zoneinfo import ZoneInfo
+
+# ─── 时区配置（始终使用北京时间判断时段）────────────────────────────────────
+BEIJING_TZ = ZoneInfo("Asia/Shanghai")
+
+
+def _beijing_now() -> datetime:
+    """返回当前北京时间（无论运行在哪个时区的服务器上）"""
+    return datetime.now(tz=timezone.utc).astimezone(BEIJING_TZ)
+
 
 # ─── 路径配置 ────────────────────────────────────────────────────────────────
 _SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -176,8 +189,8 @@ def fetch_topic_news() -> list:
 
             # 过滤：只保留最近 3 天的新闻（覆盖周末场景）
             try:
-                news_date = datetime.strptime(pub_time[:10], "%Y-%m-%d")
-                if (datetime.now() - news_date).days > 2:
+                news_date = datetime.strptime(pub_time[:10], "%Y-%m-%d").date()
+                if (_beijing_now().date() - news_date).days > 2:
                     continue
             except (ValueError, IndexError):
                 pass
@@ -198,7 +211,7 @@ def fetch_topic_news() -> list:
             impact[actual_channel] = sentiment
 
             # 分类标签
-            period_label = "早报" if datetime.now().hour < 13 else "晚报"
+            period_label = "早报" if _beijing_now().hour < 13 else "晚报"
             time_tag = f"{period_label} · {ch_label}"
 
             item = {
@@ -249,7 +262,7 @@ def fetch_cctv_news() -> list:
         if df is None or df.empty:
             continue
 
-        period_label = "早报" if datetime.now().hour < 13 else "晚报"
+        period_label = "早报" if _beijing_now().hour < 13 else "晚报"
 
         for _, row in df.iterrows():
             title = str(row.get("title", "")).strip()
@@ -312,7 +325,7 @@ def fetch_all_news(period: str = None) -> list:
     抓取全部新闻并返回合并去重后的 items 列表。
     """
     if period is None:
-        period = "morning" if datetime.now().hour < 13 else "evening"
+        period = "morning" if _beijing_now().hour < 13 else "evening"
 
     period_label = "早报" if period == "morning" else "晚报"
     print(f"\n📡 玄枢Alpha 新闻抓取 — {period_label}")
@@ -378,7 +391,7 @@ def main():
 
     args = parser.parse_args()
 
-    period = args.period or ("morning" if datetime.now().hour < 13 else "evening")
+    period = args.period or ("morning" if _beijing_now().hour < 13 else "evening")
     items = fetch_all_news(period)
     write_news(period, items, dry_run=args.dry_run)
 
