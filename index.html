@@ -676,7 +676,7 @@
         .anchor-nav {
             display: flex; align-items: center; justify-content: center;
             position: sticky; top: 0; z-index: 99;
-            background: rgba(var(--bg-primary-rgb, 13,13,20), .92);
+            background: var(--bg-secondary);
             backdrop-filter: blur(16px) saturate(1.6);
             -webkit-backdrop-filter: blur(16px) saturate(1.6);
             border-bottom: 1px solid var(--line);
@@ -1120,7 +1120,7 @@
                 flex: 1; display: flex; flex-direction: column; align-items: center;
                 justify-content: center; padding: 0 4px 4px;
                 background: none; border: none; cursor: pointer;
-                font-family: var(--sans); color: var(--text-muted);
+                font-family: var(--sans); color: var(--text-secondary);
                 font-size: 11px; font-weight: 500; letter-spacing: .2px;
                 transition: color .18s;
                 -webkit-tap-highlight-color: transparent;
@@ -1137,7 +1137,7 @@
             .tab-btn.active::before { transform: translateX(-50%) scaleX(1); }
             .tab-btn .tab-svg {
                 width: 24px; height: 24px; margin-bottom: 4px;
-                stroke: var(--text-muted);
+                stroke: var(--text-secondary);
                 fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
                 transition: stroke .18s, filter .2s, transform .24s cubic-bezier(.32,.72,0,1);
             }
@@ -1431,6 +1431,10 @@
             border-color: rgba(0,102,204,.12);
         }
         [data-theme="light"] .hc-ratio { color: var(--text-muted); }
+        /* 日间模式：锚点导航条文字颜色 */
+        [data-theme="light"] .anav-btn { color: var(--text-secondary); }
+        [data-theme="light"] .anav-btn:hover { color: var(--text-primary); }
+        [data-theme="light"] .anav-divider { color: var(--text-muted); }
         /* 跟随系统日间：同步上述修复 */
         @media (prefers-color-scheme: light) {
             :root:not([data-theme]) .card::after,
@@ -1470,6 +1474,10 @@
                 border-color: rgba(0,102,204,.12);
             }
             :root:not([data-theme]) .hc-ratio { color: var(--text-muted); }
+            /* 跟随系统日间：锚点导航条文字颜色 */
+            :root:not([data-theme]) .anav-btn { color: var(--text-secondary); }
+            :root:not([data-theme]) .anav-btn:hover { color: var(--text-primary); }
+            :root:not([data-theme]) .anav-divider { color: var(--text-muted); }
         }
 
         /* ========== 持仓编辑器 Modal ========== */
@@ -1999,7 +2007,7 @@
 
     <!-- Section: 基金雷达 -->
     <section class="section" data-panel="news" id="sec-radar">
-        <h2 class="section-title">基金雷达 · 超跌机会扫描</h2>
+        <h2 class="section-title">基金雷达 · 全市场扫描</h2>
         <div id="fundRadarSection">
             <div class="radar-empty">加载中...</div>
         </div>
@@ -3289,9 +3297,13 @@ async function loadAndRenderRadar() {
 function renderRadar(data) {
     const wrap = document.getElementById('fundRadarSection');
     if (!wrap) return;
-    const recs = data.recommendations || [];
-    if (!data.triggered || !recs.length) {
-        const msg = data.message || '当前市场情绪平稳，暂无超跌机会';
+
+    const recs       = data.recommendations || [];   // 恐慌触发扫描
+    const undervalued = data.undervalued   || [];    // 低位常态扫描
+
+    // 两个列表都空 → 显示空状态
+    if (!recs.length && !undervalued.length) {
+        const msg = data.message || '当前市场情绪平稳，暂无扫描结果';
         wrap.innerHTML = `<div class="radar-empty">
             <div style="font-size:28px;margin-bottom:12px;">📡</div>
             <div style="font-size:14px;color:var(--paper-dim);margin-bottom:6px;">${escHtml(msg)}</div>
@@ -3299,39 +3311,106 @@ function renderRadar(data) {
         </div>`;
         return;
     }
-    const cardsHtml = recs.map(r => {
+
+    // ---- 卡片渲染函数（超跌恐慌 & 低位观察共用）----
+    function buildCard(r, isPanic) {
         const isBounce = r.signal === '超跌反弹';
         const cardCls  = isBounce ? 'signal-rebound' : 'signal-watch';
         const badgeCls = isBounce ? 'badge-rebound'  : 'badge-watch';
-        const dropCls  = 'negative';
-        return `<div class="radar-card ${cardCls}">
-            <div class="rc-header">
-                <div>
-                    <div class="rc-name">${escHtml(r.name)}</div>
-                    <div class="rc-code num">${escHtml(r.code)}</div>
+
+        if (isPanic) {
+            // 超跌恐慌：展示 20日跌幅 + RSI + 规模
+            return `<div class="radar-card ${cardCls}">
+                <div class="rc-header">
+                    <div>
+                        <div class="rc-name">${escHtml(r.name)}</div>
+                        <div class="rc-code num">${escHtml(r.code)}</div>
+                    </div>
+                    <span class="rc-signal-badge ${badgeCls}">${escHtml(r.signal)}</span>
                 </div>
-                <span class="rc-signal-badge ${badgeCls}">${escHtml(r.signal)}</span>
-            </div>
-            <div class="rc-metrics">
-                <div class="rc-metric">
-                    <span class="rc-metric-label">20日跌幅</span>
-                    <span class="rc-metric-val ${dropCls}">-${r.drop_20d_pct.toFixed(1)}%</span>
+                <div class="rc-metrics">
+                    <div class="rc-metric">
+                        <span class="rc-metric-label">20日跌幅</span>
+                        <span class="rc-metric-val negative">-${r.drop_20d_pct != null ? r.drop_20d_pct.toFixed(1) : '--'}%</span>
+                    </div>
+                    <div class="rc-metric">
+                        <span class="rc-metric-label">RSI(14)</span>
+                        <span class="rc-metric-val" style="color:var(--gold-bright);">${r.rsi14 != null ? r.rsi14.toFixed(1) : '--'}</span>
+                    </div>
+                    <div class="rc-metric">
+                        <span class="rc-metric-label">规模(亿)</span>
+                        <span class="rc-metric-val">${r.scale_bn > 0 ? r.scale_bn.toFixed(1) : '--'}</span>
+                    </div>
                 </div>
-                <div class="rc-metric">
-                    <span class="rc-metric-label">RSI(14)</span>
-                    <span class="rc-metric-val" style="color:var(--gold-bright);">${r.rsi14 != null ? r.rsi14.toFixed(1) : '--'}</span>
+                <div class="rc-reason">${escHtml(r.reason)}</div>
+                ${r.risk_warning ? `<div class="rc-warning">${escHtml(r.risk_warning)}</div>` : ''}
+            </div>`;
+        } else {
+            // 低位观察：展示 60日跌幅 + RSI + 今日涨跌
+            const drop60   = r.drop_60d_pct  != null ? r.drop_60d_pct.toFixed(1)  : '--';
+            const rsi      = r.rsi14         != null ? r.rsi14.toFixed(1)          : '--';
+            const todayChg = r.today_chg_pct != null ? r.today_chg_pct.toFixed(2) : '--';
+            const todayCls = r.today_chg_pct >= 0 ? 'positive' : 'negative';
+            const todayStr = r.today_chg_pct >= 0 ? `+${todayChg}%` : `${todayChg}%`;
+            return `<div class="radar-card signal-watch">
+                <div class="rc-header">
+                    <div>
+                        <div class="rc-name">${escHtml(r.name)}</div>
+                        <div class="rc-code num">${escHtml(r.code)}</div>
+                    </div>
+                    <span class="rc-signal-badge badge-watch">${escHtml(r.signal || '低位观察')}</span>
                 </div>
-                <div class="rc-metric">
-                    <span class="rc-metric-label">规模(亿)</span>
-                    <span class="rc-metric-val">${r.scale_bn > 0 ? r.scale_bn.toFixed(1) : '--'}</span>
+                <div class="rc-metrics">
+                    <div class="rc-metric">
+                        <span class="rc-metric-label">60日跌幅</span>
+                        <span class="rc-metric-val negative">-${drop60}%</span>
+                    </div>
+                    <div class="rc-metric">
+                        <span class="rc-metric-label">RSI(14)</span>
+                        <span class="rc-metric-val" style="color:var(--gold-bright);">${rsi}</span>
+                    </div>
+                    <div class="rc-metric">
+                        <span class="rc-metric-label">今日涨跌</span>
+                        <span class="rc-metric-val ${todayCls}">${todayStr}</span>
+                    </div>
                 </div>
-            </div>
-            <div class="rc-reason">${escHtml(r.reason)}</div>
-            <div class="rc-warning">${escHtml(r.risk_warning || '')}</div>
+                <div class="rc-reason">${escHtml(r.reason || '')}</div>
+            </div>`;
+        }
+    }
+
+    let html = '';
+
+    // ---- 超跌恐慌扫描（仅 triggered 时展示）----
+    if (data.triggered && recs.length) {
+        html += `<div class="radar-section-label" style="grid-column:1/-1;display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+            <span style="font-size:11px;font-weight:700;color:var(--red);letter-spacing:.5px;text-transform:uppercase;">🚨 超跌恐慌扫描</span>
+            <span style="font-size:10px;color:var(--paper-faint);">avg_sell_score=${data.avg_sell_score || 0} ≥ ${data.panic_threshold || 2.0}</span>
         </div>`;
-    }).join('');
+        html += recs.map(r => buildCard(r, true)).join('');
+    }
+
+    // ---- 低位常态扫描（始终展示）----
+    if (undervalued.length) {
+        const separator = (data.triggered && recs.length)
+            ? `<div style="grid-column:1/-1;border-top:1px solid var(--line);margin:8px 0;"></div>` : '';
+        html += `${separator}<div class="radar-section-label" style="grid-column:1/-1;display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+            <span style="font-size:11px;font-weight:700;color:var(--accent);letter-spacing:.5px;text-transform:uppercase;">📉 低位观察</span>
+            <span style="font-size:10px;color:var(--paper-faint);">近60日回调 · RSI偏低</span>
+        </div>`;
+        html += undervalued.map(r => buildCard(r, false)).join('');
+    }
+
+    // ---- 情绪状态条（无超跌时也显示市场温度）----
+    if (!data.triggered) {
+        html += `<div style="grid-column:1/-1;margin-top:6px;padding:8px 12px;background:var(--bg-hover);border-radius:8px;border:1px solid var(--line);display:flex;align-items:center;gap:8px;">
+            <span style="font-size:11px;color:var(--paper-faint);">📡 市场情绪平稳</span>
+            <span style="font-size:11px;color:var(--paper-faint);">avg_sell_score = ${data.avg_sell_score || 0} · 未达超跌阈值（≥${data.panic_threshold || 2.0}）</span>
+        </div>`;
+    }
+
     const disc = escHtml(data.disclaimer || '以上仅为量化扫描结果，不构成投资建议');
-    wrap.innerHTML = `<div class="radar-grid">${cardsHtml}</div>
+    wrap.innerHTML = `<div class="radar-grid">${html}</div>
         <div class="radar-disclaimer">⚠️ ${disc}</div>`;
 }
 
@@ -4487,34 +4566,47 @@ function _renderDeciUndervalued(data, errHtml) {
     if (!el) return;
     if (!data) { el.innerHTML = '<div style="color:var(--text-muted);font-size:13px;">数据未就绪，请先运行 fund_scanner.py</div>'; return; }
     const uvList = data.undervalued || [];
-    if (!uvList.length) {
-        el.innerHTML = '<div style="color:var(--text-muted);font-size:13px;">当前无低估机会（近60日跌幅<10% 或 RSI≥40）</div>';
+    const recs   = data.recommendations || [];
+    if (!uvList.length && !recs.length) {
+        el.innerHTML = '<div style="color:var(--text-muted);font-size:13px;">当前市场情绪平稳，暂无低估或超跌机会</div>';
         return;
     }
-    const cardHtml = uv => {
-        const isBounce = uv.signal === '超跌反弹';
-        const badgeCls = isBounce ? 'uv-badge-rebound' : 'uv-badge-watch';
-        const drop60 = uv.drop_60d_pct != null ? uv.drop_60d_pct.toFixed(1) : '--';
-        const rsi    = uv.rsi14 != null ? uv.rsi14.toFixed(1) : '--';
-        return `<div class="uv-card">
-            <div class="uv-card-head">
-                <div>
-                    <div class="uv-name" title="${escHtml(uv.name)}">${escHtml(uv.name)}</div>
-                    <div class="uv-code">${escHtml(uv.code)}</div>
-                </div>
-                <span class="${badgeCls}">${escHtml(uv.signal)}</span>
-            </div>
-            <div class="uv-metrics">
-                <div><span class="uv-metric-label">60日跌幅</span><span class="uv-metric-val negative">-${drop60}%</span></div>
-                <div><span class="uv-metric-label">RSI(14)</span><span class="uv-metric-val rsi-low">${rsi}</span></div>
-                <div><span class="uv-metric-label">规模(亿)</span><span class="uv-metric-val">${uv.scale_bn > 0 ? uv.scale_bn.toFixed(1) : '--'}</span></div>
-            </div>
-            <div class="uv-reason">${escHtml(uv.reason || '')}</div>
-        </div>`;
-    };
-    const updatedAt = data.updated_at ? `· 更新：${data.updated_at}` : '';
-    el.innerHTML = `<div class="uv-grid">${uvList.map(cardHtml).join('')}</div>
-        <div class="uv-disclaimer">筛选条件：近60日跌幅≥10% 且 RSI<40，规模≥3亿 ${updatedAt}。以上仅为量化扫描，不构成投资建议。</div>`;
+    let html = '';
+    // 超跌恐慌摘要（如有）
+    if (data.triggered && recs.length) {
+        html += `<div style="margin-bottom:8px;">
+            <div style="font-size:11px;font-weight:700;color:var(--red);margin-bottom:4px;">🚨 超跌恐慌触发（${recs.length}只）</div>`;
+        recs.forEach(r => {
+            const drop = r.drop_20d_pct != null ? r.drop_20d_pct.toFixed(1) : '--';
+            html += `<div style="display:flex;align-items:center;gap:6px;padding:3px 0;font-size:12px;">
+                <span style="color:var(--paper);font-weight:600;">${escHtml(r.name)}</span>
+                <span class="num" style="color:var(--paper-faint);font-size:10px;">${escHtml(r.code)}</span>
+                <span class="negative num" style="margin-left:auto;">-${drop}%</span>
+            </div>`;
+        });
+        html += '</div>';
+    }
+    // 低估常态摘要（如有）
+    if (uvList.length) {
+        html += `<div>
+            <div style="font-size:11px;font-weight:700;color:var(--accent);margin-bottom:4px;">📉 低位观察（${uvList.length}只）</div>`;
+        uvList.forEach(uv => {
+            const drop60 = uv.drop_60d_pct != null ? uv.drop_60d_pct.toFixed(1) : '--';
+            const rsi    = uv.rsi14 != null ? uv.rsi14.toFixed(1) : '--';
+            html += `<div style="display:flex;align-items:center;gap:6px;padding:3px 0;font-size:12px;">
+                <span style="color:var(--paper);font-weight:600;">${escHtml(uv.name)}</span>
+                <span class="num" style="color:var(--paper-faint);font-size:10px;">${escHtml(uv.code)}</span>
+                <span class="negative num" style="margin-left:auto;">-${drop60}%</span>
+                <span class="num" style="color:var(--gold-bright);font-size:11px;">RSI ${rsi}</span>
+            </div>`;
+        });
+        html += '</div>';
+    }
+    // 跳转提示
+    html += `<div style="margin-top:8px;padding-top:6px;border-top:1px solid var(--line);font-size:11px;color:var(--paper-faint);cursor:pointer;" onclick="document.querySelector('[data-panel=\\'news\\']')&&document.querySelector('[data-panel=\\'news\\']').click();setTimeout(()=>document.getElementById('sec-radar')&&document.getElementById('sec-radar').scrollIntoView({behavior:'smooth',block:'start'}),300);">
+        → 查看完整扫描结果：资讯 · 基金雷达
+    </div>`;
+    el.innerHTML = html;
 }
 function _renderDeciRisk(data, errHtml) {
     const wrap     = document.getElementById('decisionRiskWrap');
