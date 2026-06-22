@@ -242,8 +242,17 @@ def main():
     with open(OUT_PATH, "w", encoding="utf-8") as f:
         json.dump(output, f, ensure_ascii=False, indent=2)
 
-    # ── 追加到 news_history.json（按 date+period 去重，保留最近 60 条）──
-    _append_to_history(news_data, news_date, news_period, news_items)
+    # ── 追加到 news_history.json（早报和晚报分别写入，按 date+period 去重）──
+    # 优先从 morning/evening 双分区格式中分别提取，确保每期独立记录
+    if "morning" in news_data or "evening" in news_data:
+        date_str = news_data.get("updated", news_date)
+        for key, label in (("morning", "早报"), ("evening", "晚报")):
+            sec = news_data.get(key, {})
+            if isinstance(sec, dict) and sec.get("items"):
+                _append_to_history(news_data, date_str, label, sec["items"])
+    else:
+        # 旧格式/history 格式，沿用原逻辑
+        _append_to_history(news_data, news_date, news_period, news_items)
 
     # ── 打印摘要 ──────────────────────────────────────────────
     print(f"✅ news_impact.json → {OUT_PATH}")
