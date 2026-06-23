@@ -39,6 +39,26 @@
 </head>
 <body>
 
+<!-- ========== 锁屏层（最先渲染，验证通过后移除）========== -->
+<div id="lockScreen" class="lock-screen">
+    <div class="lock-card">
+        <div class="lock-logo">
+            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" style="height:40px;width:40px;">
+                <circle cx="32" cy="32" r="29" stroke="#00c8ff" stroke-width="1.4" opacity="0.7"/>
+                <text x="32" y="44" text-anchor="middle" font-family="sans-serif" font-size="22" fill="#00c8ff" font-weight="700">枢</text>
+            </svg>
+            <span>玄枢Alpha</span>
+        </div>
+        <p class="lock-subtitle">请输入访问密码</p>
+        <div class="lock-input-wrap">
+            <input type="password" id="pinInput" class="lock-input"
+                   placeholder="PIN 码" maxlength="32" autocomplete="current-password">
+            <button id="pinSubmit" class="lock-btn">进入</button>
+        </div>
+        <p id="pinError" class="lock-error"></p>
+        <p id="pinStatus" class="lock-status"></p>
+    </div>
+</div>
 
 <!-- ========== HEADER ========== -->
 <header class="header">
@@ -87,6 +107,8 @@
             <div class="header-stat">
                 <div class="update-time" id="headerUpdateTime">--</div>
             </div>
+            <!-- 锁定按钮 -->
+            <button class="lock-toggle-btn" id="lockBtn" title="锁定页面" aria-label="锁定">🔒</button>
             <!-- 主题切换按钮 -->
             <div style="position:relative;flex:none;">
                 <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="切换主题" aria-haspopup="true" aria-expanded="false">
@@ -528,6 +550,13 @@
 <script src="js/editors.js"></script>
 <script src="js/nav-curve.js"></script>
 <script src="js/app.js"></script>
+<script src="js/auth.js"></script>
+<script>
+  // 锁定按钮绑定（依赖 AUTH 已定义）
+  document.getElementById('lockBtn')?.addEventListener('click', () => {
+    if (confirm('确认锁定页面？')) AUTH.lock();
+  });
+</script>
 
 <!-- ========== 持仓编辑器 Modal ========== -->
 <div id="portfolioEditorModal" class="pe-overlay" style="display:none;" onclick="peOverlayClick(event)">
