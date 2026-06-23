@@ -383,6 +383,16 @@
         .holdings-table td.negative { color: var(--red); font-weight: 600; }
         .fund-name { font-weight: 500; color: var(--text-primary); }
         .fund-code { color: var(--text-muted); font-size: 11px; font-family: var(--mono); }
+        /* 持仓健康体检徽章 */
+        .health-badge {
+            display: inline-block; font-size: 9.5px; font-weight: 700;
+            padding: 1px 5px; border-radius: 6px;
+            vertical-align: middle; margin-left: 4px; white-space: nowrap;
+        }
+        .health-warn   { background: var(--orange-bg); color: var(--orange); }
+        .health-danger { background: var(--red-bg);    color: var(--red); }
+        .health-sell   { background: var(--red-bg);    color: var(--red); }
+        .health-buy    { background: var(--green-bg);  color: var(--green); }
         .tag {
             display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 500;
             letter-spacing: .5px; border: 1px solid transparent;
@@ -622,6 +632,65 @@
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
             gap: 20px;
+        }
+        /* ========== 目标进度条 ========== */
+        .perf-bar {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--line);
+            padding: 8px 0;
+        }
+        .perf-bar-inner {
+            display: flex; align-items: center; gap: 0;
+            flex-wrap: wrap;
+        }
+        .perf-item {
+            display: flex; align-items: center; gap: 8px;
+            padding: 4px 20px;
+            flex: none;
+        }
+        .perf-status-item { flex: 1; justify-content: flex-end; }
+        .perf-divider {
+            width: 1px; height: 20px;
+            background: var(--line);
+            flex: none;
+        }
+        .perf-label {
+            font-size: 10.5px; color: var(--text-muted);
+            letter-spacing: 1.5px; text-transform: uppercase;
+            white-space: nowrap;
+        }
+        .perf-value {
+            font-size: 15px; font-weight: 700;
+            font-family: var(--mono); color: var(--text-primary);
+            white-space: nowrap;
+        }
+        .perf-value.positive { color: var(--green); }
+        .perf-value.negative { color: var(--red); }
+        .perf-value.warn     { color: var(--orange); }
+        .perf-sub {
+            font-size: 11px; color: var(--text-muted);
+            white-space: nowrap;
+        }
+        .perf-badge {
+            font-size: 10px; font-weight: 700; padding: 2px 7px;
+            border-radius: 10px; white-space: nowrap;
+        }
+        .perf-badge.ok   { background: var(--green-bg);  color: var(--green); }
+        .perf-badge.warn { background: var(--orange-bg); color: var(--orange); }
+        .perf-badge.bad  { background: var(--red-bg);    color: var(--red); }
+        .perf-status {
+            font-size: 12px; font-weight: 600;
+            padding: 4px 12px; border-radius: 20px;
+            white-space: nowrap;
+        }
+        .perf-status.on-track  { background: var(--green-bg);  color: var(--green); }
+        .perf-status.behind    { background: var(--orange-bg); color: var(--orange); }
+        .perf-status.at-risk   { background: var(--red-bg);    color: var(--red); }
+        @media (max-width: 768px) {
+            .perf-bar-inner { gap: 0; justify-content: space-around; }
+            .perf-item { padding: 4px 10px; }
+            .perf-divider { display: none; }
+            .perf-status-item { display: none; }
         }
         /* ========== 顶部锚点导航条（仅PC端） ========== */
         .anchor-nav {

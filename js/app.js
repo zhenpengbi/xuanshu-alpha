@@ -271,6 +271,11 @@ document.addEventListener('DOMContentLoaded', async function() {
     renderHoldings();
 
     // ③ 并发/顺序加载各数据模块
+    // 目标进度条（history + risk 并行加载后计算年化/回撤/夏普）
+    Promise.all([
+        loadJSON('data/portfolio_history.json', d => d),
+        loadJSON('data/risk.json', d => d)
+    ]).then(([hist, risk]) => renderPerfBar(hist, risk));
     // 今日决策（signals/risk/valuation 并行）
     loadAndRenderDecision();
     // 新闻情绪（data/news_impact.json）
@@ -286,6 +291,8 @@ document.addEventListener('DOMContentLoaded', async function() {
     renderTimeline();
     // 技术指标信号（signals.json）
     await loadAndRenderTechSignals();
+    // 持仓健康体检（signals.json 已缓存到 window.techSignalsData）
+    renderHoldingsHealth(window.techSignalsData || []);
     // 策略回测（backtest/data/backtest.json）
     await loadAndRenderBacktest();
     // 组合净值曲线（data/portfolio_history.json）

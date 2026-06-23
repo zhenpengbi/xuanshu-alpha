@@ -109,6 +109,33 @@
     </div>
 </header>
 
+<!-- ========== 目标进度条（年化/回撤/夏普） ========== -->
+<div class="perf-bar" id="perfBar" style="display:none;">
+    <div class="container perf-bar-inner">
+        <div class="perf-item" id="perfAnnual">
+            <span class="perf-label">年化推算</span>
+            <span class="perf-value" id="perfAnnualVal">--</span>
+            <span class="perf-sub" id="perfAnnualSub"></span>
+        </div>
+        <div class="perf-divider"></div>
+        <div class="perf-item" id="perfDrawdown">
+            <span class="perf-label">最大回撤</span>
+            <span class="perf-value" id="perfDrawdownVal">--</span>
+            <span class="perf-badge" id="perfDrawdownBadge"></span>
+        </div>
+        <div class="perf-divider"></div>
+        <div class="perf-item">
+            <span class="perf-label">夏普比率</span>
+            <span class="perf-value" id="perfSharpe">--</span>
+            <span class="perf-sub" id="perfSharpeSub"></span>
+        </div>
+        <div class="perf-divider"></div>
+        <div class="perf-item perf-status-item">
+            <span class="perf-status" id="perfStatus"></span>
+        </div>
+    </div>
+</div>
+
 <!-- ========== 顶部锚点导航条 ========== -->
 <nav class="anchor-nav" id="anchorNav" aria-label="快捷导航">
     <!-- 第一层：现状 -->

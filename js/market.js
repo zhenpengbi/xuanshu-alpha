@@ -32,10 +32,10 @@ function renderPricesSection(prices) {
 
 // ========== 技术指标信号：从 signals.json 加载 ==========
 async function loadAndRenderTechSignals() {
-    await loadJSON('data/signals.json',
-        data => renderTechSignals(data.signals || []),
-        renderTechSignalsFallback
-    );
+    await loadJSON('data/signals.json', data => {
+        window.techSignalsData = data.signals || [];   // 缓存供健康体检复用
+        renderTechSignals(window.techSignalsData);
+    }, renderTechSignalsFallback);
 }
 
 function renderTechSignals(signals) {

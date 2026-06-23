@@ -226,3 +226,166 @@ function drawSparkline(canvas, isPositive, navs) {
     ctx.stroke();
 }
 
+// ========== 目标进度条渲染 ==========
+// GOAL: 10% 年化、夏普 ≥ 1、最大回撤 ≤ 20%
+const GOAL_ANNUAL_PCT  = 10;   // 年化目标 %
+const WARN_DRAWDOWN    = 20;   // 回撤警戒线 %
+const DANGER_DRAWDOWN  = 30;   // 回撤危险线 %
+const GOOD_SHARPE      = 1.0;  // 夏普良好阈值
+
+/**
+ * renderPerfBar — 渲染目标进度条
+ * @param {object} history - portfolio_history.json 数据
+ * @param {object} risk    - risk.json 数据
+ */
+function renderPerfBar(history, risk) {
+    const bar = document.getElementById('perfBar');
+    if (!bar) return;
+
+    // ── 年化收益推算 ──
+    const series = (history && history.series) || [];
+    let annualPct = null;
+    if (series.length >= 7 && history.return_pct != null) {
+        const d0  = new Date(series[0].date);
+        const d1  = new Date(series[series.length - 1].date);
+        const days = Math.max(1, Math.round((d1 - d0) / 86400000));
+        const ret  = history.return_pct / 100;           // e.g. 0.0305
+        annualPct  = (Math.pow(1 + ret, 365 / days) - 1) * 100;
+    }
+
+    // ── 最大回撤 / 夏普 ──
+    const drawdown = risk?.portfolio_risk?.drawdown ?? null;
+    const sharpe   = risk?.portfolio_risk?.sharpe   ?? null;
+    const days     = series.length;
+
+    // ── 渲染：年化 ──
+    const annualEl  = document.getElementById('perfAnnualVal');
+    const annualSub = document.getElementById('perfAnnualSub');
+    if (annualEl) {
+        if (annualPct === null) {
+            annualEl.textContent = '积累中';
+            annualEl.className = 'perf-value';
+            if (annualSub) annualSub.textContent = `已记录 ${days} 天`;
+        } else {
+            const sign = annualPct >= 0 ? '+' : '';
+            annualEl.textContent = `${sign}${annualPct.toFixed(1)}%`;
+            annualEl.className   = 'perf-value ' + (annualPct >= GOAL_ANNUAL_PCT ? 'positive' : annualPct >= 0 ? 'warn' : 'negative');
+            if (annualSub) annualSub.textContent = `目标 ${GOAL_ANNUAL_PCT}% | ${days}天基准`;
+        }
+    }
+
+    // ── 渲染：最大回撤 ──
+    const ddEl    = document.getElementById('perfDrawdownVal');
+    const ddBadge = document.getElementById('perfDrawdownBadge');
+    if (ddEl) {
+        if (drawdown === null) {
+            ddEl.textContent = '--';
+            ddEl.className = 'perf-value';
+        } else {
+            ddEl.textContent = `-${drawdown.toFixed(1)}%`;
+            if (drawdown > DANGER_DRAWDOWN) {
+                ddEl.className = 'perf-value negative';
+                if (ddBadge) { ddBadge.textContent = '危险'; ddBadge.className = 'perf-badge bad'; }
+            } else if (drawdown > WARN_DRAWDOWN) {
+                ddEl.className = 'perf-value warn';
+                if (ddBadge) { ddBadge.textContent = '偏高'; ddBadge.className = 'perf-badge warn'; }
+            } else {
+                ddEl.className = 'perf-value positive';
+                if (ddBadge) { ddBadge.textContent = '安全'; ddBadge.className = 'perf-badge ok'; }
+            }
+        }
+    }
+
+    // ── 渲染：夏普 ──
+    const shpEl  = document.getElementById('perfSharpe');
+    const shpSub = document.getElementById('perfSharpeSub');
+    if (shpEl) {
+        if (sharpe === null) {
+            shpEl.textContent = '--';
+            shpEl.className = 'perf-value';
+        } else {
+            shpEl.textContent = sharpe.toFixed(2);
+            shpEl.className   = 'perf-value ' + (sharpe >= GOOD_SHARPE ? 'positive' : sharpe >= 0.5 ? 'warn' : 'negative');
+            if (shpSub) shpSub.textContent = `目标 ≥ ${GOOD_SHARPE}`;
+        }
+    }
+
+    // ── 渲染：综合状态 ──
+    const statusEl = document.getElementById('perfStatus');
+    if (statusEl) {
+        const drawdownOk  = drawdown === null || drawdown <= WARN_DRAWDOWN;
+        const annualOk    = annualPct === null || annualPct >= GOAL_ANNUAL_PCT;
+        const sharpeOk    = sharpe === null || sharpe >= 0.5;
+        const isAtRisk    = drawdown !== null && drawdown > DANGER_DRAWDOWN;
+
+        if (isAtRisk) {
+            statusEl.textContent = '⚠️ 回撤超警戒，控制仓位';
+            statusEl.className   = 'perf-status at-risk';
+        } else if (annualOk && drawdownOk && sharpeOk) {
+            statusEl.textContent = '✅ 策略在轨';
+            statusEl.className   = 'perf-status on-track';
+        } else {
+            statusEl.textContent = '📊 关注回撤 / 年化偏低';
+            statusEl.className   = 'perf-status behind';
+        }
+    }
+
+    bar.style.display = '';
+}
+
+// ========== 持仓健康体检 ==========
+// 在 renderHoldings() + loadSignals() 均完成后调用，为问题持仓打标签
+const HEALTH_LOSS_WARN   = -15;  // 持仓亏损警戒线 %
+const HEALTH_LOSS_DANGER = -30;  // 持仓亏损危险线 %
+
+function renderHoldingsHealth(signals) {
+    if (!signals || !signals.length) return;
+
+    // code → signal 映射
+    const sigMap = {};
+    signals.forEach(s => { if (s.code) sigMap[s.code] = s; });
+
+    const SELL_SET = new Set(['减仓', '卖出', '高估警惕']);
+    const BUY_SET  = new Set(['买入', '定投', '定投补仓', '可加仓']);
+
+    portfolioData.holdings.forEach((h, i) => {
+        const sig     = sigMap[h.code];
+        const rate    = h.holdingReturnRate;
+        const badges  = [];
+
+        // 亏损程度
+        if (rate <= HEALTH_LOSS_DANGER) {
+            badges.push(`<span class="health-badge health-danger">亏损${rate.toFixed(0)}%</span>`);
+        } else if (rate <= HEALTH_LOSS_WARN) {
+            badges.push(`<span class="health-badge health-warn">亏损${rate.toFixed(0)}%</span>`);
+        }
+
+        // 信号方向
+        if (sig) {
+            if (SELL_SET.has(sig.signal)) {
+                badges.push(`<span class="health-badge health-sell">${sig.signal}</span>`);
+            } else if (BUY_SET.has(sig.signal)) {
+                badges.push(`<span class="health-badge health-buy">${sig.signal}</span>`);
+            }
+        }
+
+        if (!badges.length) return;
+
+        // PC 表格：在基金名称旁注入
+        const nameEl = document.querySelector(`#holdingsBody tr:nth-child(${i+1}) .fund-name`);
+        if (nameEl && !nameEl.querySelector('.health-badge')) {
+            nameEl.insertAdjacentHTML('beforeend', ' ' + badges.join(''));
+        }
+
+        // 移动端卡片：在名称旁注入
+        const cards = document.querySelectorAll('#holdingsCards .holding-card');
+        const card  = cards[i];
+        if (card) {
+            const nameDiv = card.querySelector('.hc-name');
+            if (nameDiv && !nameDiv.querySelector('.health-badge')) {
+                nameDiv.insertAdjacentHTML('beforeend', ' ' + badges.join(''));
+            }
+        }
+    });
+}
+
