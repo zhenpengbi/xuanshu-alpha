@@ -5,7 +5,7 @@
 const AUTH = (function () {
 
     // ── 配置区 ──────────────────────────────────────────────────
-    const CORRECT_HASH = '';          // ← 填入 SHA-256 哈希值（空=不启用密码）
+    const CORRECT_HASH = '8242f1ad6f41ed06355584e4d2bc4271e19aa445ce0b5e0ecb0b2e60bbe04edf';
     const STORAGE_KEY  = 'xuanshu_auth_v2';
     const MAX_ATTEMPTS = 5;           // 连续错误次数上限
     const LOCKOUT_MS   = 60 * 1000;  // 锁定时长（毫秒）
