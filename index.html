@@ -174,7 +174,8 @@
     <span class="anav-divider">决策</span>
     <button class="anav-btn" data-anchor="sec-decision">今日决策</button>
     <button class="anav-btn" data-anchor="sec-radar">基金雷达</button>
-    <button class="anav-btn" data-anchor="sec-advice">AI建议</button>
+    <button class="anav-btn" data-anchor="sec-ai">AI分析</button>
+    <button class="anav-btn" data-anchor="sec-advice">规则建议</button>
 </nav>
 
 <!-- ========== MAIN CONTENT ========== -->
@@ -300,22 +301,11 @@
 
     <!-- Section: 技术指标信号 -->
     <section class="section" data-panel="signals">
-        <h2 class="section-title">技术指标信号</h2>
-        <div class="card" style="padding:0;overflow-x:auto;"><span class="sweep"></span>
-            <table class="holdings-table" id="techSignalsTable">
-                <thead><tr>
-                    <th>标的</th>
-                    <th style="text-align:right;">RSI(14)</th>
-                    <th style="text-align:right;">MA5</th>
-                    <th style="text-align:right;">MA20</th>
-                    <th style="text-align:center;">MACD</th>
-                    <th style="text-align:center;">综合信号</th>
-                    <th>信号说明</th>
-                </tr></thead>
-                <tbody id="techSignalsBody">
-                    <tr><td colspan="7" style="text-align:center;color:var(--paper-faint);padding:24px;">暂无数据，请先运行 indicators.py + signals.py</td></tr>
-                </tbody>
-            </table>
+        <h2 class="section-title">技术指标信号
+            <span style="font-size:11px;font-weight:400;color:var(--text-muted);margin-left:10px;letter-spacing:0;">信号值 · 含义 · 参考操作</span>
+        </h2>
+        <div class="sig-cards-wrap" id="techSignalsCards">
+            <div style="text-align:center;color:var(--text-muted);padding:32px;">加载中...</div>
         </div>
     </section>
 
@@ -416,7 +406,53 @@
         </div>
     </section>
 
-    <!-- Section: AI 操作建议（真实数据版） -->
+    <!-- Section: AI 智能分析（DeepSeek 直连） -->
+    <section class="section" data-panel="decision" id="sec-ai">
+        <h2 class="section-title">AI 智能分析</h2>
+        <div class="card ai-card"><span class="sweep"></span>
+            <!-- 模型选择 + 控制栏 -->
+            <div class="ai-ctrl-bar">
+                <div class="ai-model-tabs" id="aiModelTabs">
+                    <button class="ai-model-tab active" data-model="deepseek-chat" data-provider="deepseek">
+                        DeepSeek-V3<span class="ai-model-desc">速度快 · 日常分析</span>
+                    </button>
+                    <button class="ai-model-tab" data-model="deepseek-reasoner" data-provider="deepseek">
+                        DeepSeek-R1<span class="ai-model-desc">深度推理 · 复杂决策</span>
+                    </button>
+                </div>
+                <div class="ai-ctrl-right">
+                    <button class="ai-key-btn" id="aiKeyBtn">🔑 <span id="aiKeyStatus">未配置</span></button>
+                    <button class="ai-run-btn" id="aiRunBtn">▶ 立即分析</button>
+                </div>
+            </div>
+            <!-- API Key 配置面板（默认折叠）-->
+            <div class="ai-key-panel" id="aiKeyPanel" style="display:none;">
+                <div class="ai-key-row">
+                    <input type="password" id="aiKeyInput" class="ai-key-input"
+                           placeholder="输入 DeepSeek API Key（sk-...）" autocomplete="off">
+                    <button class="ai-key-save" id="aiKeySave">保存</button>
+                    <button class="ai-key-clear" id="aiKeyClear">清除</button>
+                </div>
+                <div class="ai-key-hint">
+                    Key 仅存在你的浏览器（localStorage），不上传任何服务器 ·
+                    <a href="https://platform.deepseek.com/api_keys" target="_blank" rel="noopener"
+                       style="color:var(--accent);">获取 DeepSeek Key →</a>
+                </div>
+            </div>
+            <!-- 输出区 -->
+            <div class="ai-output-wrap" id="aiOutputWrap" style="display:none;">
+                <div class="ai-output-meta" id="aiOutputMeta"></div>
+                <div class="ai-output" id="aiOutput"></div>
+            </div>
+            <!-- 空态提示 -->
+            <div class="ai-empty" id="aiEmpty">
+                <div>🤖 配置 API Key 后点击「立即分析」</div>
+                <div style="font-size:12px;color:var(--text-muted);">AI 将基于你的真实持仓 + 当日量化信号，生成个性化操作建议</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: AI 操作建议（规则引擎版） -->
     <section class="section" data-panel="decision" id="sec-advice">
         <h2 class="section-title">AI 操作建议</h2>
         <!-- 数据来源栏 -->
@@ -550,6 +586,7 @@
 <script src="js/editors.js"></script>
 <script src="js/nav-curve.js"></script>
 <script src="js/app.js"></script>
+<script src="js/ai.js"></script>
 <script src="js/auth.js"></script>
 <script>
   // 锁定按钮绑定（依赖 AUTH 已定义）

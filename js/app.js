@@ -296,6 +296,9 @@ document.addEventListener('DOMContentLoaded', async function() {
     // 策略回测（backtest/data/backtest.json）
     await loadAndRenderBacktest();
     // 组合净值曲线（data/portfolio_history.json）
+    loadJSON('data/portfolio_history.json', d => {
+        window._portfolioHistCache = d; // 供 AI Prompt 使用
+    });
     loadPortfolioHistory();
     // 融合决策卡（value_compass/data/fusion.json）
     await loadAndRenderFusion();

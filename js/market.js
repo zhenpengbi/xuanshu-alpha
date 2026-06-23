@@ -38,35 +38,117 @@ async function loadAndRenderTechSignals() {
     }, renderTechSignalsFallback);
 }
 
+// ── 信号翻译辅助函数 ──
+function _rsiInfo(rsi) {
+    if (rsi == null) return null;
+    if (rsi < 20) return { label:'严重超卖', cls:'positive', tip:'跌幅很大，历史上强烈反弹信号，但需结合趋势判断' };
+    if (rsi < 30) return { label:'超卖',     cls:'positive', tip:'近期跌幅明显，历史上此区间反弹概率偏高' };
+    if (rsi < 40) return { label:'弱超卖',   cls:'warn',     tip:'有一定跌幅，可考虑少量介入，不宜重仓' };
+    if (rsi < 60) return { label:'中性',     cls:'neutral',  tip:'涨跌均衡，无明显超买或超卖信号，观望为主' };
+    if (rsi < 70) return { label:'弱超买',   cls:'warn',     tip:'近期涨幅较大，注意追高风险，可等回调' };
+    if (rsi < 80) return { label:'超买',     cls:'negative', tip:'近期涨幅明显，建议等待回调后再介入' };
+    return             { label:'严重超买',   cls:'negative', tip:'涨幅过大，回调风险高，不建议此时买入' };
+}
+
+function _maInfo(ma5, ma20) {
+    if (ma5 == null || ma20 == null) return null;
+    return ma5 > ma20
+        ? { label:'金叉', cls:'positive', tip:'短期均线在长期均线上方，短期走势偏强，动能向好' }
+        : { label:'死叉', cls:'negative', tip:'短期均线在长期均线下方，短期走势偏弱，动能不足' };
+}
+
+function _macdInfo(trend) {
+    if (!trend) return null;
+    return trend === 'bullish'
+        ? { label:'多头', cls:'positive', tip:'趋势动能向上，有助于持续上涨' }
+        : { label:'空头', cls:'negative', tip:'趋势动能向下，建议分批介入而非一次重仓' };
+}
+
+function _sigConclusion(s) {
+    const TYPE = { trend:'趋势型', oscillation:'震荡型', active:'主动型', pending:'待建仓' };
+    const ACTION = {
+        '买入':'信号较强，可以买入',        '定投':'适合定期定额投入',
+        '定投补仓':'逢低分批补仓',           '可加仓':'有加仓机会，量力而行',
+        '持有':'维持现有仓位，不追涨不杀跌', '持有观察':'观望为主，等待更清晰信号',
+        '减仓':'建议分批降低仓位',            '卖出':'信号偏空，考虑减仓',
+        '高估警惕':'估值偏高，避免追高',      '待建仓':'尚未建仓，可考虑分批定投建仓'
+    };
+    return `${TYPE[s.asset_type] || ''}　${ACTION[s.signal] || s.signal}`;
+}
+
+function _amountHint(s) {
+    const BUY  = new Set(['买入','定投','定投补仓','可加仓','待建仓']);
+    const SELL = new Set(['减仓','卖出']);
+    if (!BUY.has(s.signal) && !SELL.has(s.signal)) return '';
+    if (!portfolioData || !portfolioData.totalAsset) return '';
+    // 余额宝 = 货币基金持仓
+    const cashH  = (portfolioData.holdings||[]).find(h => h.category==='货币基金');
+    const cash   = cashH ? cashH.amount : 0;
+    const devAmt = Math.abs((s.deviation_pt||0)/100 * portfolioData.totalAsset);
+    if (devAmt < 200) return '';
+    if (BUY.has(s.signal) && (s.deviation_pt||0) <= 0) {
+        const suggest = Math.min(devAmt * 0.5, cash * 0.5);
+        if (suggest < 200) return '';
+        return `💰 参考：从余额宝转入约 ¥${(Math.round(suggest/100)*100).toLocaleString('zh-CN')}`;
+    }
+    if (SELL.has(s.signal) && (s.deviation_pt||0) > 0) {
+        const suggest = devAmt * 0.3;
+        if (suggest < 200) return '';
+        return `💰 参考：可减仓约 ¥${(Math.round(suggest/100)*100).toLocaleString('zh-CN')}（超配 ${s.deviation_pt.toFixed(1)}pt）`;
+    }
+    return '';
+}
+
 function renderTechSignals(signals) {
-    const tbody = document.getElementById('techSignalsBody');
-    if (!tbody || !signals.length) { renderTechSignalsFallback(); return; }
-    tbody.innerHTML = signals.map(s => {
-        const rsiVal = s.rsi14 != null ? s.rsi14.toFixed(1) : '--';
-        const rsiCls = s.rsi14 < 30 ? 'positive' : s.rsi14 > 70 ? 'negative' : '';
-        const maCls = (s.ma5 != null && s.ma20 != null)
-            ? (s.ma5 > s.ma20 ? 'positive' : 'negative') : '';
-        const macdLabel = s.macd_trend === 'bullish' ? '▲ 多头' : '▼ 空头';
-        const macdCls = s.macd_trend === 'bullish' ? 'positive' : 'negative';
-        let badgeCls = 'signal-hold', badgeText = '— 观望';
-        if (s.signal === '买入') { badgeCls = 'signal-buy'; badgeText = '▲ 买入'; }
-        else if (s.signal === '卖出') { badgeCls = 'signal-sell'; badgeText = '▼ 卖出'; }
-        const rowCls = s.signal === '买入' ? 'has-signal-buy' : s.signal === '卖出' ? 'has-signal-sell' : '';
-        return `<tr class="${rowCls}">
-            <td><div class="fund-name">${s.name}</div><div class="fund-code num">${s.code}</div></td>
-            <td style="text-align:right;" class="num ${rsiCls}">${rsiVal}</td>
-            <td style="text-align:right;" class="num">${s.ma5 != null ? s.ma5.toFixed(4) : '--'}</td>
-            <td style="text-align:right;" class="num ${maCls}">${s.ma20 != null ? s.ma20.toFixed(4) : '--'}</td>
-            <td style="text-align:center;" class="${macdCls}">${s.macd_hist != null ? macdLabel : '--'}</td>
-            <td style="text-align:center;"><span class="signal-badge ${badgeCls}">${badgeText}</span></td>
-            <td style="font-size:12px;color:var(--text-secondary);line-height:1.6;">${s.reason || '--'}</td>
-        </tr>`;
+    // 改用卡片容器，id 从 techSignalsBody 改为 techSignalsCards
+    const wrap = document.getElementById('techSignalsCards');
+    if (!wrap || !signals.length) { renderTechSignalsFallback(); return; }
+
+    const BUY_SIG  = new Set(['买入','定投','定投补仓','可加仓','待建仓']);
+    const SELL_SIG = new Set(['减仓','卖出','高估警惕']);
+
+    wrap.innerHTML = signals.map(s => {
+        const rsi  = _rsiInfo(s.rsi14);
+        const ma   = _maInfo(s.ma5, s.ma20);
+        const macd = _macdInfo(s.macd_trend);
+        const amtH = _amountHint(s);
+        const isBuy  = BUY_SIG.has(s.signal);
+        const isSell = SELL_SIG.has(s.signal);
+        const badgeCls = isBuy ? 'sig-badge-buy' : isSell ? 'sig-badge-sell' : 'sig-badge-hold';
+        const cardGlow = isBuy ? 'sig-card-buy' : isSell ? 'sig-card-sell' : '';
+
+        const rowHtml = (icon, label, val, info) => info ? `
+        <div class="sig-exp-row">
+            <span class="sig-exp-icon">${icon}</span>
+            <span class="sig-exp-label">${label} <b class="num">${val}</b></span>
+            <span class="sig-exp-tag sig-exp-${info.cls}">${info.label}</span>
+            <span class="sig-exp-tip">${info.tip}</span>
+        </div>` : '';
+
+        return `<div class="sig-card ${cardGlow}"><span class="sweep"></span>
+            <div class="sig-card-head">
+                <div>
+                    <div class="sig-card-name">${escHtml(s.name)}</div>
+                    <div class="sig-card-code num">${escHtml(s.code)}</div>
+                </div>
+                <span class="sig-badge ${badgeCls}">${escHtml(s.signal)}</span>
+            </div>
+            <div class="sig-exp-body">
+                ${rowHtml('📊','RSI', s.rsi14!=null?s.rsi14.toFixed(1):'--', rsi)}
+                ${rowHtml('📈','均线', ma?(s.ma5>s.ma20?'金叉':'死叉'):'--', ma)}
+                ${rowHtml('📉','MACD', s.macd_trend==='bullish'?'多头':'空头', macd)}
+            </div>
+            <div class="sig-card-foot">
+                <span class="sig-conclusion">${_sigConclusion(s)}</span>
+                ${amtH ? `<span class="sig-amount">${amtH}</span>` : ''}
+            </div>
+        </div>`;
     }).join('');
 }
 
 function renderTechSignalsFallback() {
-    const tbody = document.getElementById('techSignalsBody');
-    if (tbody) tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:var(--text-muted);padding:24px;">暂无技术指标数据，请先运行 run_all.sh</td></tr>';
+    const wrap = document.getElementById('techSignalsCards');
+    if (wrap) wrap.innerHTML = '<div style="text-align:center;color:var(--text-muted);padding:32px;">暂无技术指标数据，请先运行 run_all.sh</div>';
 }
 
 // ========== 再平衡：优先从 rebalance.json 加载 ==========
