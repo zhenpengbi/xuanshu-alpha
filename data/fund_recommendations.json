@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-06-24 05:05",
+  "updated_at": "2026-06-24 13:12",
   "triggered": false,
-  "avg_sell_score": 0.7,
+  "avg_sell_score": 0.8,
   "panic_threshold": 2.0,
   "scan_params": {
     "panic_scan": {
@@ -15,78 +15,58 @@
       "rsi_threshold": 40
     }
   },
-  "message": "当前无超跌机会（avg_sell_score=0.70 < 2.0，市场情绪平稳）",
+  "message": "当前无超跌机会（avg_sell_score=0.80 < 2.0，市场情绪平稳）",
   "recommendations": [],
   "undervalued": [
     {
       "code": "560210",
       "name": "农牧渔ETF景顺",
-      "drop_60d_pct": 20.09,
-      "today_chg_pct": -1.91,
-      "scale_bn": 4.1,
-      "rsi14": 21.57,
+      "drop_60d_pct": 21.41,
+      "today_chg_pct": -2.73,
+      "scale_bn": 4.06,
+      "rsi14": 18.03,
       "signal": "超跌反弹",
-      "reason": "近60日跌幅 20.1%，RSI=21.6<30（深度超卖），关注反弹机会"
+      "reason": "近60日跌幅 21.4%，RSI=18.0<30（深度超卖），关注反弹机会"
     },
     {
-      "code": "159768",
-      "name": "房地产ETF银华",
-      "drop_60d_pct": 19.8,
-      "today_chg_pct": -3.17,
-      "scale_bn": 3.28,
-      "rsi14": 22.6,
+      "code": "512690",
+      "name": "酒ETF鹏华",
+      "drop_60d_pct": 19.75,
+      "today_chg_pct": -2.26,
+      "scale_bn": 133.9,
+      "rsi14": 22.07,
       "signal": "超跌反弹",
-      "reason": "近60日跌幅 19.8%，RSI=22.6<30（深度超卖），关注反弹机会"
-    },
-    {
-      "code": "159707",
-      "name": "地产ETF华宝",
-      "drop_60d_pct": 19.57,
-      "today_chg_pct": -2.84,
-      "scale_bn": 5.08,
-      "rsi14": 24.26,
-      "signal": "超跌反弹",
-      "reason": "近60日跌幅 19.6%，RSI=24.3<30（深度超卖），关注反弹机会"
+      "reason": "近60日跌幅 19.8%，RSI=22.1<30（深度超卖），关注反弹机会"
     },
     {
       "code": "516670",
       "name": "畜牧养殖ETF招商",
-      "drop_60d_pct": 18.93,
-      "today_chg_pct": -1.81,
-      "scale_bn": 16.6,
-      "rsi14": 21.18,
+      "drop_60d_pct": 19.37,
+      "today_chg_pct": -2.35,
+      "scale_bn": 16.51,
+      "rsi14": 20.51,
       "signal": "超跌反弹",
-      "reason": "近60日跌幅 18.9%，RSI=21.2<30（深度超卖），关注反弹机会"
+      "reason": "近60日跌幅 19.4%，RSI=20.5<30（深度超卖），关注反弹机会"
     },
     {
-      "code": "512200",
-      "name": "房地产ETF南方",
-      "drop_60d_pct": 11.23,
-      "today_chg_pct": -1.78,
-      "scale_bn": 32.95,
-      "rsi14": 24.16,
-      "signal": "超跌反弹",
-      "reason": "近60日跌幅 11.2%，RSI=24.2<30（深度超卖），关注反弹机会"
-    },
-    {
-      "code": "515060",
-      "name": "房地产ETF华夏",
-      "drop_60d_pct": 10.27,
-      "today_chg_pct": -2.02,
-      "scale_bn": 5.39,
-      "rsi14": 26.84,
-      "signal": "超跌反弹",
-      "reason": "近60日跌幅 10.3%，RSI=26.8<30（深度超卖），关注反弹机会"
+      "code": "562510",
+      "name": "旅游ETF华夏",
+      "drop_60d_pct": 18.5,
+      "today_chg_pct": -1.91,
+      "scale_bn": 6.04,
+      "rsi14": 31.39,
+      "signal": "低位观察",
+      "reason": "近60日跌幅 18.5%，RSI=31.4（低位区间），可小仓位试探"
     },
     {
       "code": "515220",
       "name": "煤炭ETF国泰",
-      "drop_60d_pct": 11.79,
-      "today_chg_pct": -3.0,
-      "scale_bn": 122.69,
-      "rsi14": 33.28,
+      "drop_60d_pct": 11.87,
+      "today_chg_pct": -3.09,
+      "scale_bn": 128.32,
+      "rsi14": 33.19,
       "signal": "低位观察",
-      "reason": "近60日跌幅 11.8%，RSI=33.3（低位区间），可小仓位试探"
+      "reason": "近60日跌幅 11.9%，RSI=33.2（低位区间），可小仓位试探"
     }
   ],
   "disclaimer": "以上仅为量化扫描结果，不构成投资建议，投资者需自行承担风险"
