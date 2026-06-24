@@ -418,6 +418,9 @@
                 </div>
                 <div class="ai-ctrl-right">
                     <button class="ai-key-btn" id="aiKeyBtn">🔑 <span id="aiKeyStatus">未配置</span></button>
+                    <button class="ai-hist-btn" id="aiHistBtn" title="查看历史分析记录">
+                        📋 历史<span class="ai-hist-count" id="aiHistCount" style="display:none;"></span>
+                    </button>
                     <button class="ai-run-btn" id="aiRunBtn">▶ 立即分析</button>
                 </div>
             </div>
@@ -644,5 +647,25 @@
     </div>
   </div>
 </div>
+<!-- ========== AI 历史记录抽屉 ========== -->
+<div class="ai-hist-overlay" id="aiHistOverlay" style="display:none;" onclick="aiHistClose()"></div>
+<div class="ai-hist-drawer" id="aiHistDrawer" style="display:none;">
+    <div class="ai-hist-header">
+        <span class="ai-hist-title">📋 历史分析记录</span>
+        <button class="ai-hist-close" onclick="aiHistClose()">✕</button>
+    </div>
+    <!-- 列表视图 -->
+    <div class="ai-hist-list" id="aiHistList"></div>
+    <!-- 详情视图（默认隐藏）-->
+    <div class="ai-hist-detail" id="aiHistDetail" style="display:none;">
+        <button class="ai-hist-back" id="aiHistBack">← 返回列表</button>
+        <div class="ai-hist-detail-meta" id="aiHistDetailMeta"></div>
+        <div class="ai-hist-detail-text" id="aiHistDetailText"></div>
+    </div>
+    <div class="ai-hist-footer">
+        <button class="ai-hist-clear" id="aiHistClear">🗑 清空历史</button>
+    </div>
+</div>
+
 </body>
 </html>

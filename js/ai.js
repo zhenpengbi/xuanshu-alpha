@@ -4,12 +4,104 @@
 const AI_CFG = {
     KEY_STORE:   'xuanshu_ai_key',
     MODEL_STORE: 'xuanshu_ai_model',
+    HIST_STORE:  'xuanshu_ai_history',
+    HIST_MAX:    30,   // 最多保留条数
     // 以下由 loadAIConfig() 动态填充，这里保留兜底默认值
     BASE_URLS:   { deepseek: 'https://api.deepseek.com' },
     DEFAULT_MODEL:    'deepseek-v4-flash',
     DEFAULT_PROVIDER: 'deepseek',
     MODELS: [],   // 从 ai_config.json 加载后填充
 };
+
+// ── 历史记录存取 ──
+function aiHistLoad() {
+    try { return JSON.parse(localStorage.getItem(AI_CFG.HIST_STORE) || '[]'); }
+    catch { return []; }
+}
+function aiHistSave(list) {
+    localStorage.setItem(AI_CFG.HIST_STORE, JSON.stringify(list));
+}
+function aiHistAdd(modelId, text) {
+    const list = aiHistLoad();
+    const now  = new Date();
+    const pad  = n => String(n).padStart(2, '0');
+    list.unshift({
+        id:    now.getTime(),
+        ts:    `${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())} ${pad(now.getHours())}:${pad(now.getMinutes())}`,
+        model: modelDisplayName(modelId),
+        model_id: modelId,
+        text,
+    });
+    // 超出上限时丢弃最旧的
+    if (list.length > AI_CFG.HIST_MAX) list.splice(AI_CFG.HIST_MAX);
+    aiHistSave(list);
+    return list.length;
+}
+function aiHistClear() {
+    localStorage.removeItem(AI_CFG.HIST_STORE);
+}
+
+// ── 历史抽屉渲染 ──
+function aiHistRenderList() {
+    const listEl = document.getElementById('aiHistList');
+    if (!listEl) return;
+    const list = aiHistLoad();
+    if (!list.length) {
+        listEl.innerHTML = '<div class="ai-hist-empty">📭 暂无历史记录<br>分析完成后自动保存</div>';
+        return;
+    }
+    listEl.innerHTML = list.map((item, idx) => `
+        <div class="ai-hist-item" data-idx="${idx}">
+            <div class="ai-hist-item-meta">
+                <span class="ai-hist-item-time">${escHtml(item.ts)}</span>
+                <span class="ai-hist-item-model">${escHtml(item.model)}</span>
+            </div>
+            <div class="ai-hist-item-preview">${escHtml(item.text.slice(0, 120))}</div>
+        </div>
+    `).join('');
+}
+
+function aiHistRenderDetail(idx) {
+    const list = aiHistLoad();
+    const item = list[idx];
+    if (!item) return;
+    const detailMeta = document.getElementById('aiHistDetailMeta');
+    const detailText = document.getElementById('aiHistDetailText');
+    if (detailMeta) detailMeta.textContent = `${item.ts}　${item.model}`;
+    if (detailText) detailText.innerHTML = renderAIMarkdown(item.text);
+    // 切换视图
+    const listEl   = document.getElementById('aiHistList');
+    const detailEl = document.getElementById('aiHistDetail');
+    if (listEl)   listEl.style.display   = 'none';
+    if (detailEl) detailEl.style.display = '';
+}
+
+// ── 历史抽屉开关（全局函数，供 HTML onclick 调用）──
+function aiHistOpen() {
+    const overlay = document.getElementById('aiHistOverlay');
+    const drawer  = document.getElementById('aiHistDrawer');
+    const listEl  = document.getElementById('aiHistList');
+    const detailEl= document.getElementById('aiHistDetail');
+    // 每次打开都回到列表视图
+    if (listEl)   listEl.style.display   = '';
+    if (detailEl) detailEl.style.display = 'none';
+    aiHistRenderList();
+    if (overlay) overlay.style.display = '';
+    if (drawer)  drawer.style.display  = '';
+}
+function aiHistClose() {
+    document.getElementById('aiHistOverlay').style.display = 'none';
+    document.getElementById('aiHistDrawer').style.display  = 'none';
+}
+
+// 更新「历史」按钮上的计数徽章
+function aiHistSyncBadge() {
+    const count = aiHistLoad().length;
+    const badge = document.getElementById('aiHistCount');
+    if (!badge) return;
+    if (count > 0) { badge.textContent = count; badge.style.display = ''; }
+    else            { badge.style.display = 'none'; }
+}
 
 // ── 从 data/ai_config.json 动态加载模型配置 ──
 async function loadAIConfig() {
@@ -213,6 +305,37 @@ async function initAIModule() {
     // 动态渲染模型 Tab
     renderModelTabs(modelTabs);
 
+    // 历史徽章初始化
+    aiHistSyncBadge();
+
+    // 历史按钮
+    const histBtn = document.getElementById('aiHistBtn');
+    if (histBtn) histBtn.addEventListener('click', aiHistOpen);
+
+    // 历史详情返回按钮
+    const histBack = document.getElementById('aiHistBack');
+    if (histBack) histBack.addEventListener('click', () => {
+        document.getElementById('aiHistDetail').style.display = 'none';
+        document.getElementById('aiHistList').style.display   = '';
+    });
+
+    // 历史列表点击（事件委托）
+    const histList = document.getElementById('aiHistList');
+    if (histList) histList.addEventListener('click', e => {
+        const item = e.target.closest('.ai-hist-item');
+        if (!item) return;
+        aiHistRenderDetail(Number(item.dataset.idx));
+    });
+
+    // 清空历史
+    const histClear = document.getElementById('aiHistClear');
+    if (histClear) histClear.addEventListener('click', () => {
+        if (!confirm('确认清空所有历史记录？')) return;
+        aiHistClear();
+        aiHistRenderList();
+        aiHistSyncBadge();
+    });
+
     // 同步 Key 状态显示
     function syncKeyStatus() {
         const k = aiGetKey();
@@ -301,6 +424,11 @@ async function initAIModule() {
                 outputMeta.textContent = `${modelDisplayName(model.id)} · ${hh}:${mm} · 基于实时持仓数据`;
                 runBtn.disabled      = false;
                 runBtn.textContent   = '▶ 再次分析';
+                // 自动保存到历史，更新徽章
+                if (full.trim()) {
+                    aiHistAdd(model.id, full.trim());
+                    aiHistSyncBadge();
+                }
             },
             err => {
                 outputEl.innerHTML = `<span style="color:var(--red);">❌ ${escHtml(err)}</span>
