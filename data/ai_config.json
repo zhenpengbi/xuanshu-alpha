@@ -1,0 +1,28 @@
+{
+  "_comment": "AI 模型配置 — 更新模型时只需修改此文件，无需改代码",
+  "_note": "deepseek-chat / deepseek-reasoner 于 2026-07-24 停服，已更新为 V4 接口",
+  "updated_at": "2026-06-24",
+  "default_provider": "deepseek",
+  "providers": {
+    "deepseek": {
+      "base_url": "https://api.deepseek.com",
+      "key_placeholder": "sk-..."
+    }
+  },
+  "models": [
+    {
+      "id": "deepseek-v4-flash",
+      "name": "DeepSeek-V4 Flash",
+      "desc": "速度快 · 日常分析",
+      "provider": "deepseek",
+      "default": true
+    },
+    {
+      "id": "deepseek-v4-pro",
+      "name": "DeepSeek-V4 Pro",
+      "desc": "深度推理 · 复杂决策",
+      "provider": "deepseek",
+      "default": false
+    }
+  ]
+}

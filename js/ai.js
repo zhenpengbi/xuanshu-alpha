@@ -1,12 +1,38 @@
 // ========== 玄枢Alpha - AI 智能分析（DeepSeek 直连，流式输出）==========
+// 模型配置从 data/ai_config.json 动态加载，更换模型只需修改 JSON，无需改代码。
 
 const AI_CFG = {
-    KEY_STORE:        'xuanshu_ai_key',
-    MODEL_STORE:      'xuanshu_ai_model',
-    BASE_URLS:        { deepseek: 'https://api.deepseek.com' },
-    DEFAULT_MODEL:    'deepseek-chat',
+    KEY_STORE:   'xuanshu_ai_key',
+    MODEL_STORE: 'xuanshu_ai_model',
+    // 以下由 loadAIConfig() 动态填充，这里保留兜底默认值
+    BASE_URLS:   { deepseek: 'https://api.deepseek.com' },
+    DEFAULT_MODEL:    'deepseek-v4-flash',
     DEFAULT_PROVIDER: 'deepseek',
+    MODELS: [],   // 从 ai_config.json 加载后填充
 };
+
+// ── 从 data/ai_config.json 动态加载模型配置 ──
+async function loadAIConfig() {
+    const cfg = await loadJSON('data/ai_config.json', d => d);
+    if (!cfg) return;
+
+    // 更新 base URL
+    if (cfg.providers) {
+        Object.entries(cfg.providers).forEach(([name, p]) => {
+            if (p.base_url) AI_CFG.BASE_URLS[name] = p.base_url;
+        });
+    }
+
+    // 更新默认提供商
+    if (cfg.default_provider) AI_CFG.DEFAULT_PROVIDER = cfg.default_provider;
+
+    // 更新模型列表
+    if (cfg.models && cfg.models.length) {
+        AI_CFG.MODELS = cfg.models;
+        const def = cfg.models.find(m => m.default);
+        if (def) AI_CFG.DEFAULT_MODEL = def.id;
+    }
+}
 
 // ── API Key / 模型 存取 ──
 function aiGetKey()     { return localStorage.getItem(AI_CFG.KEY_STORE) || ''; }
@@ -17,11 +43,38 @@ function aiGetModel()   {
 }
 function aiSaveModel(m) { localStorage.setItem(AI_CFG.MODEL_STORE, JSON.stringify(m)); }
 function aiCurrentModel() {
-    return aiGetModel() || { id: AI_CFG.DEFAULT_MODEL, provider: AI_CFG.DEFAULT_PROVIDER };
+    const saved = aiGetModel();
+    // 如果已保存的模型 ID 在当前配置里存在，直接使用；否则回退到默认
+    if (saved && saved.id) {
+        const inList = AI_CFG.MODELS.find(m => m.id === saved.id);
+        if (inList) return { id: inList.id, provider: inList.provider };
+    }
+    const def = AI_CFG.MODELS.find(m => m.default) || AI_CFG.MODELS[0];
+    return def
+        ? { id: def.id, provider: def.provider }
+        : { id: AI_CFG.DEFAULT_MODEL, provider: AI_CFG.DEFAULT_PROVIDER };
+}
+
+// ── 模型名称显示（从配置读取，不再硬编码）──
+function modelDisplayName(id) {
+    const m = AI_CFG.MODELS.find(m => m.id === id);
+    return m ? m.name : id;
+}
+
+// ── 动态渲染模型 Tab ──
+function renderModelTabs(container) {
+    if (!container || !AI_CFG.MODELS.length) return;
+    const current = aiCurrentModel();
+    container.innerHTML = AI_CFG.MODELS.map(m => `
+        <button class="ai-model-tab${m.id === current.id ? ' active' : ''}"
+                data-model="${escHtml(m.id)}"
+                data-provider="${escHtml(m.provider)}">
+            ${escHtml(m.name)}<span class="ai-model-desc">${escHtml(m.desc || '')}</span>
+        </button>
+    `).join('');
 }
 
 // ── Prompt 构建 ──
-// 把持仓、信号、风险、历史数据组装成自然语言，让 AI 有足够上下文
 function buildAIPrompt() {
     const p    = portfolioData || {};
     const sigs = window.techSignalsData || [];
@@ -38,7 +91,7 @@ function buildAIPrompt() {
                `¥${h.amount.toLocaleString('zh-CN', { maximumFractionDigits: 0 })}（${h.ratio}%）${retStr ? '，' + retStr : ''}`;
     }).join('\n');
 
-    // 信号文字（仅有明确操作方向的，减少噪音）
+    // 信号文字（仅有明确操作方向的）
     const BUY_SIG  = new Set(['买入', '定投', '定投补仓', '可加仓', '待建仓']);
     const SELL_SIG = new Set(['减仓', '卖出', '高估警惕']);
     const actionSigs = sigs.filter(s => BUY_SIG.has(s.signal) || SELL_SIG.has(s.signal));
@@ -46,7 +99,7 @@ function buildAIPrompt() {
         ? actionSigs.map(s => `  - ${s.name}：${s.signal}，${(s.action_detail || s.reason || '').slice(0, 80)}`).join('\n')
         : '  暂无明确操作信号，整体观望';
 
-    // 年化推算（使用 _portfolioHistCache）
+    // 年化推算
     let annualNote = '';
     const hist = window._portfolioHistCache;
     if (hist && hist.return_pct != null && hist.series && hist.series.length >= 7) {
@@ -76,7 +129,7 @@ ${sigsText}
 语言简洁，面向普通投资者，避免堆砌专业术语。`;
 }
 
-// ── 流式调用 DeepSeek ──
+// ── 流式调用 AI API（兼容 OpenAI 格式）──
 async function callAIStream(prompt, model, apiKey, onToken, onDone, onError) {
     const provider = model.provider || AI_CFG.DEFAULT_PROVIDER;
     const baseUrl  = AI_CFG.BASE_URLS[provider] || AI_CFG.BASE_URLS.deepseek;
@@ -115,7 +168,7 @@ async function callAIStream(prompt, model, apiKey, onToken, onDone, onError) {
         if (done) break;
         buf += decoder.decode(value, { stream: true });
         const lines = buf.split('\n');
-        buf = lines.pop(); // 保留不完整的行
+        buf = lines.pop();
         for (const line of lines) {
             if (!line.startsWith('data: ')) continue;
             const data = line.slice(6).trim();
@@ -137,14 +190,11 @@ function renderAIMarkdown(text) {
         .replace(/\n/g, '<br>');
 }
 
-// ── 模型名称显示 ──
-function modelDisplayName(id) {
-    return id === 'deepseek-chat' ? 'DeepSeek-V3' :
-           id === 'deepseek-reasoner' ? 'DeepSeek-R1' : id;
-}
-
 // ── UI 初始化 ──
-function initAIModule() {
+async function initAIModule() {
+    // 先加载模型配置，再初始化 UI
+    await loadAIConfig();
+
     const keyBtn     = document.getElementById('aiKeyBtn');
     const keyPanel   = document.getElementById('aiKeyPanel');
     const keyInput   = document.getElementById('aiKeyInput');
@@ -158,9 +208,12 @@ function initAIModule() {
     const emptyEl    = document.getElementById('aiEmpty');
     const keyStatus  = document.getElementById('aiKeyStatus');
 
-    if (!keyBtn) return; // 元素未渲染时跳过
+    if (!keyBtn) return;
 
-    // 同步 Key 状态
+    // 动态渲染模型 Tab
+    renderModelTabs(modelTabs);
+
+    // 同步 Key 状态显示
     function syncKeyStatus() {
         const k = aiGetKey();
         if (keyStatus) {
@@ -170,7 +223,7 @@ function initAIModule() {
     }
     syncKeyStatus();
 
-    // 同步模型 Tab 选中状态
+    // 同步 Tab 高亮
     function syncModelTabs() {
         const m = aiCurrentModel();
         if (!modelTabs) return;
@@ -178,7 +231,6 @@ function initAIModule() {
             btn.classList.toggle('active', btn.dataset.model === m.id);
         });
     }
-    syncModelTabs();
 
     // Key 面板开关
     keyBtn.addEventListener('click', () => {
@@ -218,32 +270,29 @@ function initAIModule() {
     runBtn.addEventListener('click', async () => {
         const key = aiGetKey();
         if (!key) {
-            // 未配置 Key，展开配置面板
             keyPanel.style.display = '';
             keyInput.focus();
             return;
         }
 
         const model = aiCurrentModel();
-        runBtn.disabled      = true;
-        runBtn.textContent   = '分析中…';
+        runBtn.disabled          = true;
+        runBtn.textContent       = '分析中…';
         outputWrap.style.display = '';
         emptyEl.style.display    = 'none';
-        outputEl.innerHTML   = '<span class="ai-cursor">▌</span>';
-        outputMeta.textContent = `${modelDisplayName(model.id)} · 生成中…`;
+        outputEl.innerHTML       = '<span class="ai-cursor">▌</span>';
+        outputMeta.textContent   = `${modelDisplayName(model.id)} · 生成中…`;
 
         const prompt = buildAIPrompt();
         let   full   = '';
 
         await callAIStream(
             prompt, model, key,
-            // onToken
             token => {
                 full += token;
                 outputEl.innerHTML = renderAIMarkdown(full) + '<span class="ai-cursor">▌</span>';
                 outputEl.parentElement.scrollTop = outputEl.parentElement.scrollHeight;
             },
-            // onDone
             () => {
                 outputEl.innerHTML = renderAIMarkdown(full);
                 const now = new Date();
@@ -253,11 +302,10 @@ function initAIModule() {
                 runBtn.disabled      = false;
                 runBtn.textContent   = '▶ 再次分析';
             },
-            // onError
             err => {
                 outputEl.innerHTML = `<span style="color:var(--red);">❌ ${escHtml(err)}</span>
 <div style="font-size:12px;color:var(--text-muted);margin-top:8px;">
-请检查 API Key 是否正确，或网络是否能访问 api.deepseek.com
+请检查 API Key 是否正确，或网络是否能访问 ${AI_CFG.BASE_URLS[AI_CFG.DEFAULT_PROVIDER]}
 </div>`;
                 outputMeta.textContent = '分析失败';
                 runBtn.disabled      = false;
