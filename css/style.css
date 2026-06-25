@@ -2148,3 +2148,45 @@
         }
         .ni-signal.positive { color: var(--green); }
         .ni-signal.negative { color: var(--red); }
+
+        /* ========== 手机端专项优化 ========== */
+        @media (max-width: 480px) {
+            /* AI 分析控制栏 */
+            .ai-ctrl-bar    { gap: 8px; }
+            .ai-ctrl-right  { gap: 6px; flex-wrap: wrap; }
+            .ai-run-btn, .ai-key-btn, .ai-hist-btn { font-size: 12px; padding: 8px 12px; }
+
+            /* AI 历史抽屉全宽 */
+            .ai-hist-drawer { width: 100vw; }
+
+            /* 决策日志 Modal 近全屏 */
+            .dj-modal-overlay { padding: 0; align-items: flex-end; }
+            .dj-modal {
+                border-radius: 20px 20px 0 0; max-width: 100%;
+                max-height: 92vh; overflow-y: auto;
+            }
+
+            /* 新闻联动卡片 */
+            .ni-row { flex-wrap: wrap; gap: 6px; }
+            .ni-cat { min-width: unset; width: 100%; }
+            .ni-signal { margin-left: 0; }
+
+            /* 目标进度条 */
+            .perf-item  { padding: 4px 8px; }
+            .perf-value { font-size: 13px; }
+            .perf-label { font-size: 9px; }
+
+            /* 信号卡片展示行 */
+            .sig-exp-row { grid-template-columns: 60px 48px 1fr; font-size: 11px; }
+            .sig-exp-tip { font-size: 10.5px; }
+
+            /* 复盘统计四格 → 手机已有 2列，进一步压缩字号 */
+            .dj-stat-value { font-size: 22px; }
+
+            /* 记录到决策日志按钮 */
+            .dj-from-ai-btn { width: 100%; justify-content: center; text-align: center; }
+
+            /* 表单输入框高度 */
+            .dj-form input, .dj-form select { padding: 10px 12px; font-size: 14px; }
+            .dj-form textarea { min-height: 80px; }
+        }

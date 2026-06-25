@@ -302,6 +302,8 @@ document.addEventListener('DOMContentLoaded', async function() {
     await loadAndRenderTechSignals();
     // 持仓健康体检（signals.json 已缓存到 window.techSignalsData）
     renderHoldingsHealth(window.techSignalsData || []);
+    // 信号推送通知（有买入/卖出信号时提醒，每天最多一次）
+    if (typeof checkAndNotifySignals === 'function') checkAndNotifySignals();
     // 策略回测（backtest/data/backtest.json）
     await loadAndRenderBacktest();
     // 组合净值曲线（data/portfolio_history.json）
