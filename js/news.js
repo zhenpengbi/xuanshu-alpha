@@ -258,3 +258,85 @@ async function renderTimeline() {
     </div>`;
 }
 
+
+// ========== 新闻→持仓影响联动 ==========
+// 把今日新闻的宏观影响（gold/ashare/nasdaq/retail）
+// 映射到你实际持有的基金，聚合成「对你持仓的综合影响」
+
+const NI_CAT_MAP = {
+    gold:   ['黄金', '有色金属'],
+    ashare: ['光伏/新能源', '高端制造', 'AI/科技'],
+    nasdaq: [],     // 按基金名称关键词匹配
+    retail: [],
+};
+const NI_NASDAQ_KW = ['纳斯达克', '标普', '纳指', '美股', '美国', 'QQQ'];
+
+// 利多=+1, 利空=-1, 中性=0；多条新闻投票取多数
+function _niScore(signal) {
+    if (/利多/.test(signal)) return 1;
+    if (/利空/.test(signal)) return -1;
+    return 0;
+}
+function _niLabel(score) {
+    return score > 0 ? { text:'利多', cls:'positive', icon:'▲' }
+         : score < 0 ? { text:'利空', cls:'negative', icon:'▼' }
+         : { text:'中性', cls:'', icon:'→' };
+}
+
+function renderNewsImpactForHoldings(allItems) {
+    const card = document.getElementById('newsImpactCard');
+    if (!card) return;
+    if (!allItems?.length || !portfolioData?.holdings?.length) {
+        card.style.display = 'none'; return;
+    }
+
+    // 汇总每个 key 的投票分数
+    const scores = {};
+    allItems.forEach(item => {
+        Object.entries(item.impact || {}).forEach(([key, val]) => {
+            if (!scores[key]) scores[key] = 0;
+            scores[key] += _niScore(val);
+        });
+    });
+
+    // 持仓 × key 匹配，去重（相同 key 只显示一行）
+    const seen = new Set();
+    const rows = [];
+    (portfolioData.holdings || []).forEach(h => {
+        if (h.category === '货币基金') return;
+        let key = null;
+        for (const [k, cats] of Object.entries(NI_CAT_MAP)) {
+            if (cats.includes(h.category)) { key = k; break; }
+        }
+        if (!key && NI_NASDAQ_KW.some(kw => h.name.includes(kw))) key = 'nasdaq';
+        if (!key || scores[key] === undefined) return;
+        if (seen.has(key)) {
+            rows.find(r => r.key === key).funds.push(h.name);
+        } else {
+            seen.add(key);
+            rows.push({ key, score: scores[key], funds: [h.name] });
+        }
+    });
+
+    if (!rows.length) { card.style.display = 'none'; return; }
+
+    const categoryIcon = { gold:'🥇', ashare:'📈', nasdaq:'🇺🇸', retail:'🛒' };
+
+    card.style.display = '';
+    card.innerHTML = `
+        <div class="ni-title">今日新闻对你持仓的影响
+            <span class="ni-hint">（${allItems.length}条新闻综合）</span>
+        </div>
+        <div class="ni-list">
+            ${rows.map(r => {
+                const lbl  = _niLabel(r.score);
+                const meta = IMPACT_META[r.key] || { label: r.key };
+                const funds = r.funds.map(n => `<span class="ni-fund">${escHtml(n.length>8?n.slice(0,8)+'…':n)}</span>`).join('');
+                return `<div class="ni-row">
+                    <span class="ni-cat">${categoryIcon[r.key]||''} ${meta.label}</span>
+                    <span class="ni-funds-wrap">${funds}</span>
+                    <span class="ni-signal ${lbl.cls}">${lbl.icon} ${lbl.text}</span>
+                </div>`;
+            }).join('')}
+        </div>`;
+}

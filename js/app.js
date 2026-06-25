@@ -289,6 +289,15 @@ document.addEventListener('DOMContentLoaded', async function() {
     renderSignalDetail();
     // 早晚报（依赖 window.newsData，必须在 loadSignals 之后）
     renderTimeline();
+    // 新闻→持仓影响联动（汇总当日所有新闻条目的 impact 与持仓匹配）
+    if (window.newsData && typeof renderNewsImpactForHoldings === 'function') {
+        const nd = window.newsData;
+        const allItems = [
+            ...(nd.morning?.items || []),
+            ...(nd.evening?.items  || []),
+        ].filter(i => i.impact && Object.keys(i.impact).length);
+        renderNewsImpactForHoldings(allItems);
+    }
     // 技术指标信号（signals.json）
     await loadAndRenderTechSignals();
     // 持仓健康体检（signals.json 已缓存到 window.techSignalsData）

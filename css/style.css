@@ -2119,3 +2119,32 @@
         .dj-source-name { color: var(--text-secondary); font-weight: 500; }
         .dj-source-detail { display: flex; gap: 10px; align-items: center; }
         .dj-source-n { font-size: 11px; color: var(--text-muted); }
+
+        /* ========== 新闻→持仓影响联动 ========== */
+        .ni-card { padding: 16px 18px; }
+        .ni-title {
+            font-size: 13px; font-weight: 600; color: var(--text-primary);
+            margin-bottom: 12px; display: flex; align-items: center; gap: 8px;
+        }
+        .ni-hint { font-size: 11px; color: var(--text-muted); font-weight: 400; }
+        .ni-list { display: flex; flex-direction: column; gap: 8px; }
+        .ni-row {
+            display: flex; align-items: center; gap: 10px;
+            padding: 8px 10px; border-radius: 8px;
+            background: var(--bg-surface); flex-wrap: wrap;
+        }
+        .ni-cat {
+            font-size: 12px; font-weight: 600; color: var(--text-secondary);
+            white-space: nowrap; min-width: 72px;
+        }
+        .ni-funds-wrap { flex: 1; display: flex; flex-wrap: wrap; gap: 5px; min-width: 120px; }
+        .ni-fund {
+            font-size: 11px; color: var(--text-muted);
+            background: var(--bg-hover); border-radius: 5px;
+            padding: 1px 6px; white-space: nowrap;
+        }
+        .ni-signal {
+            font-size: 12px; font-weight: 700; white-space: nowrap; margin-left: auto;
+        }
+        .ni-signal.positive { color: var(--green); }
+        .ni-signal.negative { color: var(--red); }
