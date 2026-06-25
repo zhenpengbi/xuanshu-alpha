@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-25 05:10",
+  "updated_at": "2026-06-25 13:16",
   "portfolio_updateTime": "2026-06-25",
   "funds": [
     {
@@ -12,18 +12,18 @@
       "company": "永赢基金管理有限公司",
       "inception_date": "2022-07-15",
       "name_mismatch": false,
-      "manager_tenure_days": 1938,
+      "manager_tenure_days": null,
       "performance_ranking": [
         {
           "period": "成立以来",
-          "return_pct": 37.79,
+          "return_pct": 37.94,
           "max_dd_pct": 51.78,
           "rank": "2461/5469",
           "percentile": 45.0
         },
         {
           "period": "今年以来",
-          "return_pct": -3.2,
+          "return_pct": -3.09,
           "max_dd_pct": 24.47,
           "rank": "3891/5470",
           "percentile": 71.1
@@ -58,35 +58,35 @@
         },
         {
           "period": "近1月",
-          "return_pct": -9.96,
+          "return_pct": -9.93,
           "max_dd_pct": null,
           "rank": "4989/5362",
           "percentile": 93.0
         },
         {
           "period": "近3月",
-          "return_pct": 2.84,
+          "return_pct": 1.43,
           "max_dd_pct": 22.37,
           "rank": "3316/5248",
           "percentile": 63.2
         },
         {
           "period": "近6月",
-          "return_pct": 14.59,
+          "return_pct": 6.81,
           "max_dd_pct": 24.47,
           "rank": "2334/5020",
           "percentile": 46.5
         },
         {
           "period": "近1年",
-          "return_pct": 80.09,
+          "return_pct": 76.26,
           "max_dd_pct": 24.47,
           "rank": "1199/4614",
           "percentile": 26.0
         },
         {
           "period": "近3年",
-          "return_pct": 77.5,
+          "return_pct": 77.69,
           "max_dd_pct": 42.09,
           "rank": "818/3599",
           "percentile": 22.7
@@ -245,10 +245,9 @@
       },
       "diagnosis": {
         "action": "建议评估替换",
-        "score": 30,
+        "score": 20,
         "reasons": [
-          "今年以来同类排名 71%（落后同类）",
-          "基金经理任职 5.3 年，管理经验相对充分"
+          "今年以来同类排名 71%（落后同类）"
         ],
         "warnings": [
           "⚠️ 排名落后，建议关注是否替换",
@@ -270,14 +269,14 @@
       "performance_ranking": [
         {
           "period": "成立以来",
-          "return_pct": 28.93,
+          "return_pct": 31.14,
           "max_dd_pct": 25.46,
           "rank": "2738/5469",
           "percentile": 50.1
         },
         {
           "period": "今年以来",
-          "return_pct": 0.3,
+          "return_pct": 2.01,
           "max_dd_pct": 25.46,
           "rank": "3488/5470",
           "percentile": 63.8
@@ -291,21 +290,21 @@
         },
         {
           "period": "近1月",
-          "return_pct": -8.39,
+          "return_pct": -6.72,
           "max_dd_pct": null,
           "rank": "4778/5362",
           "percentile": 89.1
         },
         {
           "period": "近3月",
-          "return_pct": 7.42,
+          "return_pct": 7.88,
           "max_dd_pct": 22.52,
           "rank": "2941/5248",
           "percentile": 56.0
         },
         {
           "period": "近6月",
-          "return_pct": 11.63,
+          "return_pct": 8.59,
           "max_dd_pct": 25.46,
           "rank": "2491/5020",
           "percentile": 49.6
