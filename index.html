@@ -465,6 +465,34 @@
         <h2 class="section-title">决策日志
             <span style="font-size:11px;font-weight:400;color:var(--text-muted);margin-left:10px;letter-spacing:0;">记录每次操作，30天后自动提醒复盘</span>
         </h2>
+
+        <!-- 复盘统计看板 -->
+        <div class="dj-stats-card card" id="djStatsCard" style="display:none;"><span class="sweep"></span>
+            <div class="dj-stats-grid">
+                <div class="dj-stat">
+                    <div class="dj-stat-value" id="djStatTotal">0</div>
+                    <div class="dj-stat-label">总操作笔数</div>
+                </div>
+                <div class="dj-stat">
+                    <div class="dj-stat-value" id="djStatReviewed">0</div>
+                    <div class="dj-stat-label">已复盘</div>
+                </div>
+                <div class="dj-stat">
+                    <div class="dj-stat-value" id="djStatWinRate">--</div>
+                    <div class="dj-stat-label">判断正确率</div>
+                </div>
+                <div class="dj-stat">
+                    <div class="dj-stat-value" id="djStatAvgPct">--</div>
+                    <div class="dj-stat-label">平均收益</div>
+                </div>
+            </div>
+            <!-- 信号来源对比 -->
+            <div class="dj-source-wrap" id="djSourceWrap" style="display:none;">
+                <div class="dj-source-title">来源胜率对比</div>
+                <div class="dj-source-list" id="djSourceList"></div>
+            </div>
+        </div>
+
         <div class="card" style="padding:20px;"><span class="sweep"></span>
             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
                 <span style="font-size:13px;color:var(--text-secondary);">操作记录 · 自动提醒复盘 · 追踪胜率</span>

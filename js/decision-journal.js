@@ -133,8 +133,9 @@ function djRenderList() {
         if (btn.classList.contains('dj-btn-del'))    djConfirmDelete(id);
     };
 
-    // 同步徽章
+    // 同步徽章和统计
     djSyncBadge();
+    djRenderStats();
 }
 
 // ── 新建记录 Modal ──
@@ -259,9 +260,85 @@ function djSyncBadge() {
     else              { badge.style.display = 'none'; }
 }
 
+// ── 复盘统计看板 ──
+function djRenderStats() {
+    const statsCard  = document.getElementById('djStatsCard');
+    if (!statsCard) return;
+
+    const list     = djLoad();
+    const reviewed = list.filter(e => e.reviewed);
+
+    // 无数据时隐藏
+    if (!list.length) { statsCard.style.display = 'none'; return; }
+    statsCard.style.display = '';
+
+    // 基础统计
+    const total    = list.length;
+    const revCount = reviewed.length;
+    const correct  = reviewed.filter(e => e.outcome?.assessment === 'correct').length;
+    const winRate  = revCount > 0 ? Math.round(correct / revCount * 100) : null;
+
+    // 平均收益（只统计填了数字的）
+    const withPct  = reviewed.filter(e => e.outcome?.pct != null);
+    const avgPct   = withPct.length > 0
+        ? (withPct.reduce((s, e) => s + e.outcome.pct, 0) / withPct.length).toFixed(1)
+        : null;
+
+    // 渲染四格数字
+    const set = (id, val, cls) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.textContent = val;
+        if (cls) el.className = 'dj-stat-value ' + cls;
+    };
+    set('djStatTotal',    total);
+    set('djStatReviewed', revCount);
+    set('djStatWinRate',  winRate !== null ? winRate + '%' : '--',
+        winRate === null ? '' : winRate >= 60 ? 'positive' : winRate >= 40 ? 'warn' : 'negative');
+    set('djStatAvgPct',   avgPct !== null ? (avgPct >= 0 ? '+' : '') + avgPct + '%' : '--',
+        avgPct === null ? '' : Number(avgPct) >= 0 ? 'positive' : 'negative');
+
+    // 来源胜率对比（≥2条已复盘才显示）
+    const sourceWrap = document.getElementById('djSourceWrap');
+    const sourceList = document.getElementById('djSourceList');
+    if (!sourceWrap || !sourceList) return;
+
+    const sources = {};
+    reviewed.forEach(e => {
+        const src = e.source || '其他';
+        if (!sources[src]) sources[src] = { total: 0, correct: 0, pcts: [] };
+        sources[src].total++;
+        if (e.outcome?.assessment === 'correct') sources[src].correct++;
+        if (e.outcome?.pct != null) sources[src].pcts.push(e.outcome.pct);
+    });
+
+    const srcEntries = Object.entries(sources).filter(([, v]) => v.total >= 1);
+    if (srcEntries.length < 2) { sourceWrap.style.display = 'none'; return; }
+
+    sourceWrap.style.display = '';
+    sourceList.innerHTML = srcEntries
+        .sort((a, b) => (b[1].correct / b[1].total) - (a[1].correct / a[1].total))
+        .map(([src, v]) => {
+            const wr  = Math.round(v.correct / v.total * 100);
+            const avg = v.pcts.length
+                ? (v.pcts.reduce((s,x) => s+x, 0) / v.pcts.length).toFixed(1)
+                : null;
+            const cls = wr >= 60 ? 'positive' : wr >= 40 ? 'warn' : 'negative';
+            return `<div class="dj-source-row">
+                <span class="dj-source-name">${escHtml(src)}</span>
+                <span class="dj-source-detail">
+                    <span class="${cls}">${wr}% 正确率</span>
+                    <span class="dj-source-n">（${v.total}笔）</span>
+                    ${avg !== null ? `<span class="${Number(avg)>=0?'positive':'negative'}">${Number(avg)>=0?'+':''}${avg}%</span>` : ''}
+                </span>
+            </div>`;
+        }).join('');
+}
+
 // ── 初始化 ──
 function initDecisionJournal() {
     djRenderList();
+    djRenderStats();
 
     // 「记录操作」按钮
     const addBtn = document.getElementById('djAddBtn');

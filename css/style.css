@@ -2083,3 +2083,39 @@
             font-size: 13px; font-weight: 700; cursor: pointer; font-family: var(--sans);
         }
         .dj-btn-confirm:hover { opacity: .9; }
+
+        /* ========== 复盘统计看板 ========== */
+        .dj-stats-card { padding: 20px; margin-bottom: 0; }
+        .dj-stats-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            gap: 16px; margin-bottom: 16px;
+        }
+        @media (max-width: 768px) { .dj-stats-grid { grid-template-columns: repeat(2, 1fr); } }
+        .dj-stat { text-align: center; }
+        .dj-stat-value {
+            font-size: 28px; font-weight: 700; font-family: var(--mono);
+            color: var(--text-primary); letter-spacing: -0.5px; line-height: 1.1;
+        }
+        .dj-stat-value.positive { color: var(--green); }
+        .dj-stat-value.negative { color: var(--red); }
+        .dj-stat-value.warn     { color: var(--orange); }
+        .dj-stat-label {
+            font-size: 10.5px; color: var(--text-muted);
+            letter-spacing: 1.5px; text-transform: uppercase; margin-top: 6px;
+        }
+        /* 来源对比 */
+        .dj-source-wrap {
+            border-top: 1px solid var(--line); padding-top: 14px;
+        }
+        .dj-source-title {
+            font-size: 11px; color: var(--text-muted);
+            letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 10px;
+        }
+        .dj-source-list { display: flex; flex-direction: column; gap: 8px; }
+        .dj-source-row {
+            display: flex; justify-content: space-between; align-items: center;
+            font-size: 13px;
+        }
+        .dj-source-name { color: var(--text-secondary); font-weight: 500; }
+        .dj-source-detail { display: flex; gap: 10px; align-items: center; }
+        .dj-source-n { font-size: 11px; color: var(--text-muted); }
