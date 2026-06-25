@@ -1777,23 +1777,27 @@
         }
         .sig-card-name { font-size: 13px; font-weight: 600; color: var(--text-primary); }
         .sig-card-code { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
-        .sig-exp-body  { display: flex; flex-direction: column; gap: 9px; margin-bottom: 14px; }
-        .sig-exp-row   {
-            display: grid;
-            grid-template-columns: 78px 56px 1fr;
-            align-items: baseline; gap: 8px; font-size: 12px;
+        .sig-exp-body  { display: flex; flex-direction: column; gap: 10px; margin-bottom: 14px; }
+        /* 每个指标：标签+徽章一行，解释文字单独一行 */
+        .sig-exp-row   { display: flex; flex-direction: column; gap: 3px; font-size: 12px; }
+        .sig-exp-row-top {
+            display: flex; align-items: center; gap: 8px;
         }
-        .sig-exp-label { color: var(--text-secondary); }
+        .sig-exp-label { color: var(--text-secondary); flex-shrink: 0; min-width: 72px; }
         .sig-exp-label b { font-family: var(--mono); }
         .sig-exp-tag   {
-            font-size: 10.5px; font-weight: 700; padding: 1px 6px;
-            border-radius: 8px; white-space: nowrap; text-align: center;
+            font-size: 10.5px; font-weight: 700; padding: 1px 7px;
+            border-radius: 8px; white-space: nowrap; text-align: center; flex-shrink: 0;
         }
         .sig-exp-positive { background: var(--green-bg);  color: var(--green); }
         .sig-exp-negative { background: var(--red-bg);    color: var(--red); }
         .sig-exp-warn     { background: var(--orange-bg); color: var(--orange); }
-        .sig-exp-neutral  { background: var(--bg-surface); color: var(--text-muted); }
-        .sig-exp-tip      { font-size: 11.5px; color: var(--text-muted); line-height: 1.45; }
+        .sig-exp-neutral  { border: 1px solid var(--line); color: var(--text-secondary); background: transparent; }
+        /* 解释文字：单独一行，比标签略缩进 */
+        .sig-exp-tip  {
+            font-size: 11.5px; color: var(--text-secondary);
+            line-height: 1.5; padding-left: 4px;
+        }
         .sig-card-foot {
             border-top: 1px solid var(--line); padding-top: 10px;
             display: flex; flex-direction: column; gap: 5px;
@@ -1876,7 +1880,6 @@
         @media (max-width: 768px) {
             .sig-cards-wrap { grid-template-columns: 1fr; }
             .ai-ctrl-bar    { flex-direction: column; align-items: flex-start; }
-            .sig-exp-row    { grid-template-columns: 68px 50px 1fr; }
         }
         /* ========== AI 历史记录抽屉 ========== */
         .ai-hist-btn {
@@ -2176,9 +2179,10 @@
             .perf-value { font-size: 13px; }
             .perf-label { font-size: 9px; }
 
-            /* 信号卡片展示行 */
-            .sig-exp-row { grid-template-columns: 60px 48px 1fr; font-size: 11px; }
+            /* 信号卡片 - 手机端略压缩字号 */
+            .sig-exp-row { font-size: 11px; gap: 2px; }
             .sig-exp-tip { font-size: 10.5px; }
+            .sig-exp-label { min-width: 60px; }
 
             /* 复盘统计四格 → 手机已有 2列，进一步压缩字号 */
             .dj-stat-value { font-size: 22px; }

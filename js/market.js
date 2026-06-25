@@ -117,11 +117,13 @@ function renderTechSignals(signals) {
         const badgeCls = isBuy ? 'sig-badge-buy' : isSell ? 'sig-badge-sell' : 'sig-badge-hold';
         const cardGlow = isBuy ? 'sig-card-buy' : isSell ? 'sig-card-sell' : '';
 
+        // 每个指标：第一行 label+badge，第二行解释文字
         const rowHtml = (icon, label, val, info) => info ? `
         <div class="sig-exp-row">
-            <span class="sig-exp-icon">${icon}</span>
-            <span class="sig-exp-label">${label} <b class="num">${val}</b></span>
-            <span class="sig-exp-tag sig-exp-${info.cls}">${info.label}</span>
+            <div class="sig-exp-row-top">
+                <span class="sig-exp-label">${icon} ${label} <b class="num">${val}</b></span>
+                <span class="sig-exp-tag sig-exp-${info.cls}">${info.label}</span>
+            </div>
             <span class="sig-exp-tip">${info.tip}</span>
         </div>` : '';
 
