@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-06-24 13:10",
-  "news_date": "2026-06-24",
+  "updated_at": "2026-06-25 05:07",
+  "news_date": "2026-06-25",
   "news_period": "晚报",
   "total_news": 12,
   "items": [
@@ -15,9 +15,9 @@
       "sentiment_label": "偏空",
       "top_impact_news": [
         {
-          "title": "金银价格大幅回落！国有大行停办代理个人贵金属竞价交易业务",
+          "title": "板块异动 | 隔夜金银价格跳水 A股贵金属板块走低",
           "time": "晚报 · 黄金",
-          "summary": "6月24日，贵金属价格继续走低。现货白银盘中跌破61美元/盎司，较1月份高点回落超50%；现货黄金盘中跌破4100美元/盎司，较1月高点回落超27%。",
+          "summary": "上证报中国证券网讯（记者曾庆怡）北京时间6月25日上午，A股贵金属板块震荡走低。同花顺数据显示，截至9时57分，该板块跌超4%。个股中，山金国际、紫金矿业、兴业银锡跌超6%。 消息面上，隔夜，黄金白银价格双双失守重要关口。",
           "sentiment": "利空"
         },
         {
@@ -45,9 +45,9 @@
       "sentiment_label": "偏空",
       "top_impact_news": [
         {
-          "title": "金银价格大幅回落！国有大行停办代理个人贵金属竞价交易业务",
+          "title": "板块异动 | 隔夜金银价格跳水 A股贵金属板块走低",
           "time": "晚报 · 黄金",
-          "summary": "6月24日，贵金属价格继续走低。现货白银盘中跌破61美元/盎司，较1月份高点回落超50%；现货黄金盘中跌破4100美元/盎司，较1月高点回落超27%。",
+          "summary": "上证报中国证券网讯（记者曾庆怡）北京时间6月25日上午，A股贵金属板块震荡走低。同花顺数据显示，截至9时57分，该板块跌超4%。个股中，山金国际、紫金矿业、兴业银锡跌超6%。 消息面上，隔夜，黄金白银价格双双失守重要关口。",
           "sentiment": "利空"
         },
         {
@@ -68,10 +68,10 @@
       "code": "011840",
       "name": "天弘中证人工智能C",
       "channel": "ashare",
-      "bullish_count": 3,
+      "bullish_count": 4,
       "bearish_count": 0,
-      "neutral_count": 9,
-      "sentiment_score": 3,
+      "neutral_count": 8,
+      "sentiment_score": 4,
       "sentiment_label": "偏多",
       "top_impact_news": [
         {
@@ -98,10 +98,10 @@
       "code": "010990",
       "name": "南方有色金属ETF联接E",
       "channel": "ashare",
-      "bullish_count": 3,
+      "bullish_count": 4,
       "bearish_count": 0,
-      "neutral_count": 9,
-      "sentiment_score": 3,
+      "neutral_count": 8,
+      "sentiment_score": 4,
       "sentiment_label": "偏多",
       "top_impact_news": [
         {
@@ -128,10 +128,10 @@
       "code": "012885",
       "name": "华夏光伏ETF联接A",
       "channel": "ashare",
-      "bullish_count": 3,
+      "bullish_count": 4,
       "bearish_count": 0,
-      "neutral_count": 9,
-      "sentiment_score": 3,
+      "neutral_count": 8,
+      "sentiment_score": 4,
       "sentiment_label": "偏多",
       "top_impact_news": [
         {
@@ -158,18 +158,12 @@
       "code": "513100",
       "name": "纳指100ETF",
       "channel": "nasdaq",
-      "bullish_count": 1,
+      "bullish_count": 0,
       "bearish_count": 0,
-      "neutral_count": 11,
-      "sentiment_score": 1,
-      "sentiment_label": "偏多",
+      "neutral_count": 12,
+      "sentiment_score": 0,
+      "sentiment_label": "中性",
       "top_impact_news": [
-        {
-          "title": "安永：上半年全球IPO强劲复苏 纳斯达克和港交所筹资分居前两位",
-          "time": "晚报 · 美股",
-          "summary": "纳斯达克凭借超大型IPO项目及AI基础设施概念实现筹资额大幅增长，单SpaceX的IPO融资额就达862.5亿美元，占据纳斯达克上半年融资额的四分之三。",
-          "sentiment": "利多"
-        },
         {
           "title": "李强出席2026年夏季达沃斯论坛开幕式并致辞",
           "time": "晚报 · 宏观",
@@ -180,6 +174,12 @@
           "title": "全国政协十四届常委会第十七次会议举行全体会议 围绕“坚持高质量发展，推动经济持续健康发展和社会全面进步”进行大会发言 王沪宁出席",
           "time": "晚报 · 宏观",
           "summary": "政协第十四届全国委员会常务委员会第十七次会议24日上午举行全体会议，14位全国政协常委围绕“坚持高质量发展，推动经济持续健康发展和社会全面进步”作大会发言。中共中央政治局常委、全国政协主席王沪宁出席。李和平常委建议，以科技创新为引领，推动我国现代化产业体系建设，筑牢未来发展战略优势。张兴海常委...",
+          "sentiment": "中性"
+        },
+        {
+          "title": "国内联播快讯",
+          "time": "晚报 · 宏观",
+          "summary": "审计署发布年度审计工作报告审计署日前发布的年度审计工作报告显示，截至4月底，针对2024年度审计查出的问题，已整改1.41万亿元问题金额，制定完善制度1150多项，处理处分3690多人。对报告反映的2025年度中央预算执行和其他财政收支审计发现的主要问题，有关地区、部门和单位正在积极整改。前五...",
           "sentiment": "中性"
         }
       ]
@@ -188,18 +188,12 @@
       "code": "513500",
       "name": "标普500ETF",
       "channel": "nasdaq",
-      "bullish_count": 1,
+      "bullish_count": 0,
       "bearish_count": 0,
-      "neutral_count": 11,
-      "sentiment_score": 1,
-      "sentiment_label": "偏多",
+      "neutral_count": 12,
+      "sentiment_score": 0,
+      "sentiment_label": "中性",
       "top_impact_news": [
-        {
-          "title": "安永：上半年全球IPO强劲复苏 纳斯达克和港交所筹资分居前两位",
-          "time": "晚报 · 美股",
-          "summary": "纳斯达克凭借超大型IPO项目及AI基础设施概念实现筹资额大幅增长，单SpaceX的IPO融资额就达862.5亿美元，占据纳斯达克上半年融资额的四分之三。",
-          "sentiment": "利多"
-        },
         {
           "title": "李强出席2026年夏季达沃斯论坛开幕式并致辞",
           "time": "晚报 · 宏观",
@@ -211,6 +205,12 @@
           "time": "晚报 · 宏观",
           "summary": "政协第十四届全国委员会常务委员会第十七次会议24日上午举行全体会议，14位全国政协常委围绕“坚持高质量发展，推动经济持续健康发展和社会全面进步”作大会发言。中共中央政治局常委、全国政协主席王沪宁出席。李和平常委建议，以科技创新为引领，推动我国现代化产业体系建设，筑牢未来发展战略优势。张兴海常委...",
           "sentiment": "中性"
+        },
+        {
+          "title": "国内联播快讯",
+          "time": "晚报 · 宏观",
+          "summary": "审计署发布年度审计工作报告审计署日前发布的年度审计工作报告显示，截至4月底，针对2024年度审计查出的问题，已整改1.41万亿元问题金额，制定完善制度1150多项，处理处分3690多人。对报告反映的2025年度中央预算执行和其他财政收支审计发现的主要问题，有关地区、部门和单位正在积极整改。前五...",
+          "sentiment": "中性"
         }
       ]
     },
@@ -218,10 +218,10 @@
       "code": "015790",
       "name": "永赢高端装备混合C",
       "channel": "ashare",
-      "bullish_count": 3,
+      "bullish_count": 4,
       "bearish_count": 0,
-      "neutral_count": 9,
-      "sentiment_score": 3,
+      "neutral_count": 8,
+      "sentiment_score": 4,
       "sentiment_label": "偏多",
       "top_impact_news": [
         {
@@ -248,10 +248,10 @@
       "code": "014881",
       "name": "天弘机器人ETF联接C",
       "channel": "ashare",
-      "bullish_count": 3,
+      "bullish_count": 4,
       "bearish_count": 0,
-      "neutral_count": 9,
-      "sentiment_score": 3,
+      "neutral_count": 8,
+      "sentiment_score": 4,
       "sentiment_label": "偏多",
       "top_impact_news": [
         {
@@ -278,10 +278,10 @@
       "code": "025647",
       "name": "平安高端装备混合C",
       "channel": "ashare",
-      "bullish_count": 3,
+      "bullish_count": 4,
       "bearish_count": 0,
-      "neutral_count": 9,
-      "sentiment_score": 3,
+      "neutral_count": 8,
+      "sentiment_score": 4,
       "sentiment_label": "偏多",
       "top_impact_news": [
         {

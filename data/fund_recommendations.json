@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-24 13:12",
+  "updated_at": "2026-06-25 05:08",
   "triggered": false,
   "avg_sell_score": 0.8,
   "panic_threshold": 2.0,
@@ -19,54 +19,84 @@
   "recommendations": [],
   "undervalued": [
     {
-      "code": "560210",
-      "name": "农牧渔ETF景顺",
-      "drop_60d_pct": 21.41,
-      "today_chg_pct": -2.73,
-      "scale_bn": 4.06,
-      "rsi14": 18.03,
+      "code": "513040",
+      "name": "港股通互联网ETF易方达",
+      "drop_60d_pct": 25.15,
+      "today_chg_pct": -2.16,
+      "scale_bn": 54.24,
+      "rsi14": 24.11,
       "signal": "超跌反弹",
-      "reason": "近60日跌幅 21.4%，RSI=18.0<30（深度超卖），关注反弹机会"
+      "reason": "近60日跌幅 25.1%，RSI=24.1<30（深度超卖），关注反弹机会"
     },
     {
-      "code": "512690",
-      "name": "酒ETF鹏华",
-      "drop_60d_pct": 19.75,
-      "today_chg_pct": -2.26,
-      "scale_bn": 133.9,
-      "rsi14": 22.07,
+      "code": "513770",
+      "name": "港股互联网ETF华宝",
+      "drop_60d_pct": 22.79,
+      "today_chg_pct": -2.41,
+      "scale_bn": 49.04,
+      "rsi14": 25.54,
       "signal": "超跌反弹",
-      "reason": "近60日跌幅 19.8%，RSI=22.1<30（深度超卖），关注反弹机会"
+      "reason": "近60日跌幅 22.8%，RSI=25.5<30（深度超卖），关注反弹机会"
     },
     {
-      "code": "516670",
-      "name": "畜牧养殖ETF招商",
-      "drop_60d_pct": 19.37,
-      "today_chg_pct": -2.35,
-      "scale_bn": 16.51,
-      "rsi14": 20.51,
+      "code": "513330",
+      "name": "恒生互联网ETF华夏",
+      "drop_60d_pct": 17.33,
+      "today_chg_pct": -2.55,
+      "scale_bn": 254.32,
+      "rsi14": 26.44,
       "signal": "超跌反弹",
-      "reason": "近60日跌幅 19.4%，RSI=20.5<30（深度超卖），关注反弹机会"
+      "reason": "近60日跌幅 17.3%，RSI=26.4<30（深度超卖），关注反弹机会"
     },
     {
-      "code": "562510",
-      "name": "旅游ETF华夏",
-      "drop_60d_pct": 18.5,
-      "today_chg_pct": -1.91,
-      "scale_bn": 6.04,
-      "rsi14": 31.39,
+      "code": "513050",
+      "name": "中概互联网ETF易方达",
+      "drop_60d_pct": 17.12,
+      "today_chg_pct": -2.4,
+      "scale_bn": 326.65,
+      "rsi14": 28.85,
+      "signal": "超跌反弹",
+      "reason": "近60日跌幅 17.1%，RSI=28.9<30（深度超卖），关注反弹机会"
+    },
+    {
+      "code": "515210",
+      "name": "钢铁ETF国泰",
+      "drop_60d_pct": 15.51,
+      "today_chg_pct": -2.17,
+      "scale_bn": 11.46,
+      "rsi14": 28.86,
+      "signal": "超跌反弹",
+      "reason": "近60日跌幅 15.5%，RSI=28.9<30（深度超卖），关注反弹机会"
+    },
+    {
+      "code": "159518",
+      "name": "标普油气ETF嘉实",
+      "drop_60d_pct": 30.23,
+      "today_chg_pct": -2.03,
+      "scale_bn": 20.14,
+      "rsi14": 34.38,
       "signal": "低位观察",
-      "reason": "近60日跌幅 18.5%，RSI=31.4（低位区间），可小仓位试探"
+      "reason": "近60日跌幅 30.2%，RSI=34.4（低位区间），可小仓位试探"
     },
     {
-      "code": "515220",
-      "name": "煤炭ETF国泰",
-      "drop_60d_pct": 11.87,
-      "today_chg_pct": -3.09,
-      "scale_bn": 128.32,
-      "rsi14": 33.19,
+      "code": "517520",
+      "name": "黄金股ETF永赢",
+      "drop_60d_pct": 19.67,
+      "today_chg_pct": -4.21,
+      "scale_bn": 81.56,
+      "rsi14": 36.62,
       "signal": "低位观察",
-      "reason": "近60日跌幅 11.9%，RSI=33.2（低位区间），可小仓位试探"
+      "reason": "近60日跌幅 19.7%，RSI=36.6（低位区间），可小仓位试探"
+    },
+    {
+      "code": "517400",
+      "name": "黄金股ETF国泰",
+      "drop_60d_pct": 19.5,
+      "today_chg_pct": -4.22,
+      "scale_bn": 10.68,
+      "rsi14": 36.47,
+      "signal": "低位观察",
+      "reason": "近60日跌幅 19.5%，RSI=36.5（低位区间），可小仓位试探"
     }
   ],
   "disclaimer": "以上仅为量化扫描结果，不构成投资建议，投资者需自行承担风险"

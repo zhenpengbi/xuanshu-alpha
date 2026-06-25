@@ -2,16 +2,16 @@
   {
     "code": "002963",
     "name": "易方达黄金ETF联接C",
-    "price": 2.8622,
-    "change_pct": -1.65,
-    "updated_at": "2026-06-23"
+    "price": 2.8461,
+    "change_pct": -0.56,
+    "updated_at": "2026-06-24"
   },
   {
     "code": "000307",
     "name": "易方达黄金ETF联接A",
-    "price": 2.9524,
-    "change_pct": -1.65,
-    "updated_at": "2026-06-23"
+    "price": 2.9359,
+    "change_pct": -0.56,
+    "updated_at": "2026-06-24"
   },
   {
     "code": "010990",
@@ -51,8 +51,8 @@
   {
     "code": "025647",
     "name": "平安高端装备混合发起式C",
-    "price": 1.2425,
-    "change_pct": -3.77,
-    "updated_at": "2026-06-23"
+    "price": 1.2893,
+    "change_pct": 3.77,
+    "updated_at": "2026-06-24"
   }
 ]
