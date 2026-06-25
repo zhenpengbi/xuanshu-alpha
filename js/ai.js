@@ -312,6 +312,15 @@ async function initAIModule() {
     const histBtn = document.getElementById('aiHistBtn');
     if (histBtn) histBtn.addEventListener('click', aiHistOpen);
 
+    // 「记录到决策日志」按钮（将当前 AI 输出预填到决策日志表单）
+    const djFromAiBtn = document.getElementById('djFromAiBtn');
+    if (djFromAiBtn) djFromAiBtn.addEventListener('click', () => {
+        const text = outputEl?.innerText || '';
+        if (typeof djRecordFromAI === 'function') djRecordFromAI(text);
+        // 跳转到决策日志区块
+        document.getElementById('sec-journal')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
     // 历史详情返回按钮
     const histBack = document.getElementById('aiHistBack');
     if (histBack) histBack.addEventListener('click', () => {

@@ -175,6 +175,9 @@
     <button class="anav-btn" data-anchor="sec-decision">今日决策</button>
     <button class="anav-btn" data-anchor="sec-radar">基金雷达</button>
     <button class="anav-btn" data-anchor="sec-ai">AI分析</button>
+    <button class="anav-btn" data-anchor="sec-journal" style="position:relative;">
+        决策日志<span id="djNavBadge" class="dj-nav-badge" style="display:none;"></span>
+    </button>
     <button class="anav-btn" data-anchor="sec-advice">规则建议</button>
 </nav>
 
@@ -442,12 +445,32 @@
             <div class="ai-output-wrap" id="aiOutputWrap" style="display:none;">
                 <div class="ai-output-meta" id="aiOutputMeta"></div>
                 <div class="ai-output" id="aiOutput"></div>
+                <div style="margin-top:12px;">
+                    <button class="dj-from-ai-btn" id="djFromAiBtn"
+                            title="将本次AI建议记录到决策日志">
+                        📝 记录到决策日志
+                    </button>
+                </div>
             </div>
             <!-- 空态提示 -->
             <div class="ai-empty" id="aiEmpty">
                 <div>🤖 配置 API Key 后点击「立即分析」</div>
                 <div style="font-size:12px;color:var(--text-muted);">AI 将基于你的真实持仓 + 当日量化信号，生成个性化操作建议</div>
             </div>
+        </div>
+    </section>
+
+    <!-- Section: 决策日志 -->
+    <section class="section" data-panel="decision" id="sec-journal">
+        <h2 class="section-title">决策日志
+            <span style="font-size:11px;font-weight:400;color:var(--text-muted);margin-left:10px;letter-spacing:0;">记录每次操作，30天后自动提醒复盘</span>
+        </h2>
+        <div class="card" style="padding:20px;"><span class="sweep"></span>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+                <span style="font-size:13px;color:var(--text-secondary);">操作记录 · 自动提醒复盘 · 追踪胜率</span>
+                <button class="dj-add-btn" id="djAddBtn">＋ 记录操作</button>
+            </div>
+            <div id="djList"></div>
         </div>
     </section>
 
@@ -586,6 +609,7 @@
 <script src="js/nav-curve.js"></script>
 <script src="js/app.js"></script>
 <script src="js/ai.js"></script>
+<script src="js/decision-journal.js"></script>
 <script src="js/auth.js"></script>
 <script>
   // 锁定按钮绑定（依赖 AUTH 已定义）

@@ -1970,3 +1970,116 @@
             border-radius: 8px; transition: all .18s; font-family: var(--sans);
         }
         .ai-hist-clear:hover { background: var(--red-bg); }
+
+        /* ========== 决策日志 ========== */
+        .dj-add-btn {
+            padding: 8px 18px; border-radius: 10px; border: none; cursor: pointer;
+            background: var(--accent); color: #070d1a;
+            font-size: 13px; font-weight: 700; font-family: var(--sans);
+            transition: opacity .2s, box-shadow .2s;
+        }
+        .dj-add-btn:hover { opacity: .9; box-shadow: 0 0 16px var(--accent-glow); }
+        .dj-from-ai-btn {
+            padding: 6px 14px; border-radius: 8px; border: 1px solid var(--accent-line);
+            background: var(--accent-glow); color: var(--accent);
+            font-size: 12px; font-weight: 600; cursor: pointer; font-family: var(--sans);
+            transition: background .18s;
+        }
+        .dj-from-ai-btn:hover { background: rgba(0,200,255,.25); }
+        /* 导航徽章 */
+        .dj-nav-badge {
+            position: absolute; top: -4px; right: -4px;
+            background: var(--red); color: #fff;
+            font-size: 9px; font-weight: 700; min-width: 14px; height: 14px;
+            border-radius: 7px; line-height: 14px; text-align: center; padding: 0 2px;
+        }
+        /* 待复盘提醒条 */
+        .dj-overdue-bar {
+            background: var(--orange-bg); border: 1px solid var(--orange);
+            border-radius: 8px; padding: 8px 14px; margin-bottom: 12px;
+            font-size: 13px; color: var(--orange);
+        }
+        /* 记录条目 */
+        .dj-item {
+            padding: 14px 16px; border-radius: 10px; margin-bottom: 10px;
+            border: 1px solid var(--line); background: var(--bg-surface);
+            transition: border-color .18s;
+        }
+        .dj-item:last-child { margin-bottom: 0; }
+        .dj-item-due  { border-color: var(--orange); }
+        .dj-item-done { opacity: .75; }
+        .dj-item-head {
+            display: flex; justify-content: space-between; align-items: flex-start;
+            margin-bottom: 8px; flex-wrap: wrap; gap: 6px;
+        }
+        .dj-item-left  { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .dj-item-right { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        /* 操作徽章 */
+        .dj-badge {
+            font-size: 11px; font-weight: 700; padding: 2px 8px;
+            border-radius: 8px; white-space: nowrap;
+        }
+        .dj-badge-buy  { background: var(--green-bg);  color: var(--green); }
+        .dj-badge-sell { background: var(--red-bg);    color: var(--red); }
+        .dj-badge-hold { background: var(--bg-surface); color: var(--text-muted); border: 1px solid var(--line); }
+        .dj-fund   { font-size: 13px; font-weight: 600; color: var(--text-primary); }
+        .dj-amount { font-size: 12px; color: var(--accent); }
+        /* 状态标签 */
+        .dj-status { font-size: 11px; font-weight: 600; padding: 2px 7px; border-radius: 8px; }
+        .dj-status-done { background: var(--green-bg);  color: var(--green); }
+        .dj-status-due  { background: var(--orange-bg); color: var(--orange); }
+        .dj-status-wait { background: var(--bg-surface); color: var(--text-muted); border: 1px solid var(--line); }
+        .dj-date   { font-size: 11px; color: var(--text-muted); font-family: var(--mono); }
+        .dj-reason { font-size: 12px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 8px; }
+        .dj-outcome { font-size: 12px; color: var(--text-secondary); margin-bottom: 8px; }
+        .dj-item-actions { display: flex; gap: 8px; }
+        .dj-btn-review {
+            padding: 4px 12px; border-radius: 7px; border: 1px solid var(--accent-line);
+            background: var(--accent-glow); color: var(--accent);
+            font-size: 11px; font-weight: 600; cursor: pointer; font-family: var(--sans);
+        }
+        .dj-btn-del {
+            padding: 4px 10px; border-radius: 7px; border: 1px solid var(--line);
+            background: transparent; color: var(--text-muted);
+            font-size: 11px; cursor: pointer; font-family: var(--sans);
+        }
+        .dj-btn-del:hover { color: var(--red); border-color: var(--red-bg); }
+        .dj-empty {
+            text-align: center; padding: 40px 0;
+            color: var(--text-secondary); font-size: 13px; line-height: 2;
+        }
+        /* Modal */
+        .dj-modal-overlay {
+            position: fixed; inset: 0; z-index: 9000;
+            background: rgba(0,0,0,.55); backdrop-filter: blur(4px);
+            display: flex; align-items: center; justify-content: center; padding: 16px;
+        }
+        .dj-modal {
+            background: var(--bg-secondary); border: 1px solid var(--accent-line);
+            border-radius: 16px; padding: 24px; width: 100%; max-width: 480px;
+            box-shadow: 0 16px 64px rgba(0,0,0,.5);
+        }
+        .dj-modal-title { font-size: 16px; font-weight: 700; color: var(--text-primary); margin: 0 0 20px; }
+        .dj-form { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+        .dj-form label { font-size: 11px; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; }
+        .dj-form input, .dj-form select, .dj-form textarea {
+            padding: 9px 12px; border-radius: 9px; border: 1px solid var(--line);
+            background: var(--bg-surface); color: var(--text-primary);
+            font-size: 13px; font-family: var(--sans); outline: none;
+            transition: border-color .2s;
+        }
+        .dj-form input:focus, .dj-form select:focus, .dj-form textarea:focus {
+            border-color: var(--accent);
+        }
+        .dj-form textarea { resize: vertical; min-height: 70px; }
+        .dj-modal-btns { display: flex; gap: 10px; justify-content: flex-end; }
+        .dj-btn-cancel {
+            padding: 9px 18px; border-radius: 9px; border: 1px solid var(--line);
+            background: transparent; color: var(--text-secondary); cursor: pointer; font-family: var(--sans);
+        }
+        .dj-btn-confirm {
+            padding: 9px 20px; border-radius: 9px; border: none;
+            background: var(--accent); color: #070d1a;
+            font-size: 13px; font-weight: 700; cursor: pointer; font-family: var(--sans);
+        }
+        .dj-btn-confirm:hover { opacity: .9; }
