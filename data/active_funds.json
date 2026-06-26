@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-26 05:14",
+  "updated_at": "2026-06-26 13:08",
   "portfolio_updateTime": "2026-06-26",
   "funds": [
     {
@@ -16,14 +16,14 @@
       "performance_ranking": [
         {
           "period": "成立以来",
-          "return_pct": 37.94,
+          "return_pct": 42.57,
           "max_dd_pct": 51.78,
           "rank": "2511/5475",
           "percentile": 45.9
         },
         {
           "period": "今年以来",
-          "return_pct": -3.09,
+          "return_pct": 0.16,
           "max_dd_pct": 24.47,
           "rank": "3861/5476",
           "percentile": 70.5
@@ -58,35 +58,35 @@
         },
         {
           "period": "近1月",
-          "return_pct": -9.93,
+          "return_pct": -3.18,
           "max_dd_pct": null,
           "rank": "4928/5360",
           "percentile": 91.9
         },
         {
           "period": "近3月",
-          "return_pct": 1.43,
+          "return_pct": 5.02,
           "max_dd_pct": 22.37,
           "rank": "3367/5250",
           "percentile": 64.1
         },
         {
           "period": "近6月",
-          "return_pct": 6.81,
+          "return_pct": 6.55,
           "max_dd_pct": 24.47,
           "rank": "2846/5032",
           "percentile": 56.6
         },
         {
           "period": "近1年",
-          "return_pct": 76.26,
+          "return_pct": 82.06,
           "max_dd_pct": 24.47,
           "rank": "1307/4621",
           "percentile": 28.3
         },
         {
           "period": "近3年",
-          "return_pct": 77.69,
+          "return_pct": 85.57,
           "max_dd_pct": 42.09,
           "rank": "868/3597",
           "percentile": 24.1
@@ -95,7 +95,7 @@
       "rank_percentile_ytd": 70.5,
       "max_drawdown_pct": 51.78,
       "alpha_analysis": {
-        "fund_annual_pct": 22.03,
+        "fund_annual_pct": 23.4,
         "benchmark_annual_pct": "数据缺失",
         "alpha_pct": "数据缺失",
         "benchmark": "沪深300",
@@ -314,14 +314,14 @@
       "rank_percentile_ytd": 61.0,
       "max_drawdown_pct": 25.46,
       "alpha_analysis": {
-        "fund_annual_pct": 55.83,
-        "benchmark_annual_pct": 8.71,
-        "alpha_pct": 47.12,
+        "fund_annual_pct": 65.09,
+        "benchmark_annual_pct": "数据缺失",
+        "alpha_pct": "数据缺失",
         "benchmark": "沪深300",
         "period_years": 0.6,
-        "note": ""
+        "note": "基准数据缺失，alpha 无法计算"
       },
-      "alpha_pct": 47.12,
+      "alpha_pct": "数据缺失",
       "holdings_analysis": {
         "status": "ok",
         "latest_quarter": "2026年1季度股票投资明细",
@@ -464,10 +464,9 @@
       },
       "diagnosis": {
         "action": "建议评估替换",
-        "score": 35,
+        "score": 20,
         "reasons": [
-          "今年以来同类排名 61%（落后同类）",
-          "α=47.1pt，相对沪深300有超额收益"
+          "今年以来同类排名 61%（落后同类）"
         ],
         "warnings": [
           "⚠️ 排名落后，建议关注是否替换",

@@ -60,9 +60,9 @@
       "stop_loss_pct": null,
       "take_profit_pct": null,
       "trailing_stop_pct": null,
-      "current_nav": 0.6392,
+      "current_nav": 0.6359,
       "highest_nav": 0.6613,
-      "current_return_pct": -2.04,
+      "current_return_pct": -2.54,
       "triggered": null
     },
     {
@@ -75,9 +75,9 @@
       "stop_loss_pct": null,
       "take_profit_pct": null,
       "trailing_stop_pct": null,
-      "current_nav": 2.1679,
+      "current_nav": 2.0726,
       "highest_nav": 2.1679,
-      "current_return_pct": 7.91,
+      "current_return_pct": 3.17,
       "triggered": null
     },
     {
@@ -90,9 +90,9 @@
       "stop_loss_pct": null,
       "take_profit_pct": null,
       "trailing_stop_pct": null,
-      "current_nav": 1.3794,
-      "highest_nav": 1.398,
-      "current_return_pct": -1.33,
+      "current_nav": 1.4257,
+      "highest_nav": 1.4257,
+      "current_return_pct": 1.98,
       "triggered": null
     },
     {
@@ -105,9 +105,9 @@
       "stop_loss_pct": null,
       "take_profit_pct": null,
       "trailing_stop_pct": null,
-      "current_nav": 1.3385,
+      "current_nav": 1.2884,
       "highest_nav": 1.352,
-      "current_return_pct": -0.25,
+      "current_return_pct": -3.99,
       "triggered": null
     },
     {
@@ -126,5 +126,5 @@
       "triggered": "trailing_stop"
     }
   ],
-  "updated_at": "2026-06-26 05:14"
+  "updated_at": "2026-06-26 13:08"
 }

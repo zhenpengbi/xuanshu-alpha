@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-06-26 05:12",
+  "updated_at": "2026-06-26 13:04",
   "triggered": false,
-  "avg_sell_score": 0.8,
+  "avg_sell_score": 0.7,
   "panic_threshold": 2.0,
   "scan_params": {
     "panic_scan": {
@@ -15,18 +15,48 @@
       "rsi_threshold": 40
     }
   },
-  "message": "当前无超跌机会（avg_sell_score=0.80 < 2.0，市场情绪平稳）",
+  "message": "当前无超跌机会（avg_sell_score=0.70 < 2.0，市场情绪平稳）",
   "recommendations": [],
   "undervalued": [
     {
-      "code": "561330",
-      "name": "矿业ETF国泰",
-      "drop_60d_pct": 50.63,
-      "today_chg_pct": -4.57,
-      "scale_bn": 16.94,
-      "rsi14": 20.24,
+      "code": "561380",
+      "name": "电网设备ETF国泰",
+      "drop_60d_pct": 55.14,
+      "today_chg_pct": -5.62,
+      "scale_bn": 62.5,
+      "rsi14": 16.36,
       "signal": "超跌反弹",
-      "reason": "近60日跌幅 50.6%，RSI=20.2<30（深度超卖），关注反弹机会"
+      "reason": "近60日跌幅 55.1%，RSI=16.4<30（深度超卖），关注反弹机会"
+    },
+    {
+      "code": "515230",
+      "name": "软件ETF国泰",
+      "drop_60d_pct": 15.33,
+      "today_chg_pct": -5.6,
+      "scale_bn": 47.11,
+      "rsi14": 32.07,
+      "signal": "低位观察",
+      "reason": "近60日跌幅 15.3%，RSI=32.1（低位区间），可小仓位试探"
+    },
+    {
+      "code": "516860",
+      "name": "金融科技ETF博时",
+      "drop_60d_pct": 12.01,
+      "today_chg_pct": -5.81,
+      "scale_bn": 12.63,
+      "rsi14": 39.13,
+      "signal": "低位观察",
+      "reason": "近60日跌幅 12.0%，RSI=39.1（低位区间），可小仓位试探"
+    },
+    {
+      "code": "516100",
+      "name": "金融科技ETF华夏",
+      "drop_60d_pct": 11.99,
+      "today_chg_pct": -5.99,
+      "scale_bn": 10.88,
+      "rsi14": 39.22,
+      "signal": "低位观察",
+      "reason": "近60日跌幅 12.0%，RSI=39.2（低位区间），可小仓位试探"
     }
   ],
   "disclaimer": "以上仅为量化扫描结果，不构成投资建议，投资者需自行承担风险"
