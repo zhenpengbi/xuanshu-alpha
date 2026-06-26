@@ -1,5 +1,5 @@
 {
-  "updateTime": "2026-06-25",
+  "updateTime": "2026-06-26",
   "totalAsset": 55522.55,
   "holdings": [
     {
@@ -7,7 +7,7 @@
       "code": "002963",
       "amount": 19074.41,
       "ratio": 34.35,
-      "dailyReturn": -107.29,
+      "dailyReturn": -414.85,
       "holdingReturn": -2125.59,
       "holdingReturnRate": -10.03,
       "totalReturn": 1775.65,
@@ -19,7 +19,7 @@
       "code": "000307",
       "amount": 8298.93,
       "ratio": 14.95,
-      "dailyReturn": -46.38,
+      "dailyReturn": -180.63,
       "holdingReturn": -1200.15,
       "holdingReturnRate": -12.63,
       "totalReturn": -1200.15,
@@ -31,7 +31,7 @@
       "code": "010990",
       "amount": 7804.39,
       "ratio": 14.06,
-      "dailyReturn": 19.56,
+      "dailyReturn": -215.39,
       "holdingReturn": -1232.34,
       "holdingReturnRate": -13.64,
       "totalReturn": -1232.34,
@@ -43,7 +43,7 @@
       "code": "012885",
       "amount": 5154.07,
       "ratio": 9.28,
-      "dailyReturn": 3.26,
+      "dailyReturn": 48.02,
       "holdingReturn": -345.93,
       "holdingReturnRate": -6.29,
       "totalReturn": -345.93,
@@ -55,7 +55,7 @@
       "code": "011840",
       "amount": 4916.27,
       "ratio": 8.86,
-      "dailyReturn": 117.24,
+      "dailyReturn": 170.83,
       "holdingReturn": 1268.8,
       "holdingReturnRate": 34.79,
       "totalReturn": 2993.77,
@@ -67,7 +67,7 @@
       "code": "015790",
       "amount": 3577.13,
       "ratio": 6.44,
-      "dailyReturn": 76.09,
+      "dailyReturn": 3.9,
       "holdingReturn": -422.87,
       "holdingReturnRate": -10.57,
       "totalReturn": -422.87,
@@ -91,7 +91,7 @@
       "code": "014881",
       "amount": 1978.73,
       "ratio": 3.56,
-      "dailyReturn": 17.67,
+      "dailyReturn": -8.54,
       "holdingReturn": 103.73,
       "holdingReturnRate": 5.53,
       "totalReturn": -108.21,
@@ -103,7 +103,7 @@
       "code": "025647",
       "amount": 1809.54,
       "ratio": 3.26,
-      "dailyReturn": 68.16,
+      "dailyReturn": 31.02,
       "holdingReturn": -190.46,
       "holdingReturnRate": -9.52,
       "totalReturn": -190.46,
@@ -146,5 +146,5 @@
       }
     }
   },
-  "dailyReturn": 148.31
+  "dailyReturn": -565.64
 }
