@@ -1,6 +1,6 @@
 {
-  "portfolio_updateTime": "2026-06-26",
-  "updated_at": "2026-06-26 13:08",
+  "portfolio_updateTime": "2026-06-29",
+  "updated_at": "2026-06-29 14:46",
   "total_value": 52613.47,
   "rebalance_threshold_pct": 5.0,
   "bullet": {
@@ -114,7 +114,7 @@
       "deviation_amount": 126.27,
       "signal": null,
       "action": "建议调研替换",
-      "reason": "同类排名前61%；今年以来同类排名 61%（落后同类）  |  警告：⚠️ 排名落后，建议关注是否替换",
+      "reason": "同类排名前53%；α=+55.5pt；今年以来同类排名 53%（落后同类）；α=55.5pt，相对沪深300有超额收益  |  警告：⚠️ 排名落后，建议关注是否替换",
       "priority": "medium",
       "recommend_amount": null,
       "needs_action": false,

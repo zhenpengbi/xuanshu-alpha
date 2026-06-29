@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-06-26 13:04",
+  "updated_at": "2026-06-29 14:43",
   "triggered": false,
-  "avg_sell_score": 0.7,
+  "avg_sell_score": 1.1,
   "panic_threshold": 2.0,
   "scan_params": {
     "panic_scan": {
@@ -15,48 +15,88 @@
       "rsi_threshold": 40
     }
   },
-  "message": "当前无超跌机会（avg_sell_score=0.70 < 2.0，市场情绪平稳）",
+  "message": "当前无超跌机会（avg_sell_score=1.10 < 2.0，市场情绪平稳）",
   "recommendations": [],
   "undervalued": [
     {
-      "code": "561380",
-      "name": "电网设备ETF国泰",
-      "drop_60d_pct": 55.14,
-      "today_chg_pct": -5.62,
-      "scale_bn": 62.5,
-      "rsi14": 16.36,
+      "code": "159697",
+      "name": "石油ETF鹏华",
+      "drop_60d_pct": 15.9,
+      "today_chg_pct": -1.23,
+      "scale_bn": 13.13,
+      "rsi14": 25.23,
       "signal": "超跌反弹",
-      "reason": "近60日跌幅 55.1%，RSI=16.4<30（深度超卖），关注反弹机会"
+      "reason": "近60日跌幅 15.9%，RSI=25.2<30（深度超卖），关注反弹机会"
     },
     {
-      "code": "515230",
-      "name": "软件ETF国泰",
-      "drop_60d_pct": 15.33,
-      "today_chg_pct": -5.6,
-      "scale_bn": 47.11,
-      "rsi14": 32.07,
-      "signal": "低位观察",
-      "reason": "近60日跌幅 15.3%，RSI=32.1（低位区间），可小仓位试探"
+      "code": "159588",
+      "name": "石油ETF景顺",
+      "drop_60d_pct": 15.44,
+      "today_chg_pct": -1.13,
+      "scale_bn": 5.71,
+      "rsi14": 25.62,
+      "signal": "超跌反弹",
+      "reason": "近60日跌幅 15.4%，RSI=25.6<30（深度超卖），关注反弹机会"
     },
     {
-      "code": "516860",
-      "name": "金融科技ETF博时",
-      "drop_60d_pct": 12.01,
-      "today_chg_pct": -5.81,
-      "scale_bn": 12.63,
-      "rsi14": 39.13,
+      "code": "159227",
+      "name": "航空航天ETF华夏",
+      "drop_60d_pct": 15.69,
+      "today_chg_pct": -1.65,
+      "scale_bn": 46.63,
+      "rsi14": 30.78,
       "signal": "低位观察",
-      "reason": "近60日跌幅 12.0%，RSI=39.1（低位区间），可小仓位试探"
+      "reason": "近60日跌幅 15.7%，RSI=30.8（低位区间），可小仓位试探"
     },
     {
-      "code": "516100",
-      "name": "金融科技ETF华夏",
-      "drop_60d_pct": 11.99,
-      "today_chg_pct": -5.99,
-      "scale_bn": 10.88,
-      "rsi14": 39.22,
+      "code": "159267",
+      "name": "航天ETF华安",
+      "drop_60d_pct": 15.48,
+      "today_chg_pct": -1.71,
+      "scale_bn": 21.91,
+      "rsi14": 30.96,
       "signal": "低位观察",
-      "reason": "近60日跌幅 12.0%，RSI=39.2（低位区间），可小仓位试探"
+      "reason": "近60日跌幅 15.5%，RSI=31.0（低位区间），可小仓位试探"
+    },
+    {
+      "code": "159241",
+      "name": "航空航天ETF天弘",
+      "drop_60d_pct": 15.09,
+      "today_chg_pct": -1.69,
+      "scale_bn": 11.44,
+      "rsi14": 31.32,
+      "signal": "低位观察",
+      "reason": "近60日跌幅 15.1%，RSI=31.3（低位区间），可小仓位试探"
+    },
+    {
+      "code": "159208",
+      "name": "航空航天ETF万家",
+      "drop_60d_pct": 14.25,
+      "today_chg_pct": -1.76,
+      "scale_bn": 3.56,
+      "rsi14": 32.5,
+      "signal": "低位观察",
+      "reason": "近60日跌幅 14.2%，RSI=32.5（低位区间），可小仓位试探"
+    },
+    {
+      "code": "159309",
+      "name": "油气ETF汇添富",
+      "drop_60d_pct": 13.97,
+      "today_chg_pct": -1.76,
+      "scale_bn": 8.46,
+      "rsi14": 32.53,
+      "signal": "低位观察",
+      "reason": "近60日跌幅 14.0%，RSI=32.5（低位区间），可小仓位试探"
+    },
+    {
+      "code": "159230",
+      "name": "通用航空ETF华夏",
+      "drop_60d_pct": 13.19,
+      "today_chg_pct": -1.05,
+      "scale_bn": 3.17,
+      "rsi14": 31.19,
+      "signal": "低位观察",
+      "reason": "近60日跌幅 13.2%，RSI=31.2（低位区间），可小仓位试探"
     }
   ],
   "disclaimer": "以上仅为量化扫描结果，不构成投资建议，投资者需自行承担风险"

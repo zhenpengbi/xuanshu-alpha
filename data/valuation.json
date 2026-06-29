@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-06-26",
+  "updated_at": "2026-06-29",
   "valuations": [
     {
       "category": "AI/科技",
       "index_name": "中证人工智能(930713)",
-      "current_pe": 58.44,
-      "pe_pct_5y": 97.6,
+      "current_pe": 58.68,
+      "pe_pct_5y": 97.8,
       "current_pb": null,
       "pb_pct_5y": null,
       "verdict": "高估",
@@ -15,8 +15,8 @@
     {
       "category": "有色金属",
       "index_name": "中证有色金属(930708)",
-      "current_pe": 18.59,
-      "pe_pct_5y": 52.7,
+      "current_pe": 18.98,
+      "pe_pct_5y": 54.0,
       "current_pb": null,
       "pb_pct_5y": null,
       "verdict": "适中",
@@ -26,8 +26,8 @@
     {
       "category": "光伏/新能源",
       "index_name": "中证新能源(931151)",
-      "current_pe": 35.38,
-      "pe_pct_5y": 76.9,
+      "current_pe": 35.72,
+      "pe_pct_5y": 77.9,
       "current_pb": null,
       "pb_pct_5y": null,
       "verdict": "偏贵",
@@ -38,17 +38,17 @@
       "category": "高端制造",
       "index_name": "中证高端装备(399377)",
       "current_pe": null,
-      "pe_pct_5y": 86.6,
+      "pe_pct_5y": 81.5,
       "current_pb": null,
       "pb_pct_5y": null,
-      "verdict": "高估",
-      "verdict_score": 88,
+      "verdict": "偏贵",
+      "verdict_score": 70,
       "pe_note": "价格5年分位(无PE历史)"
     },
     {
       "category": "纳指100",
       "index_name": "纳斯达克100(NDX/QQQ)",
-      "current_pe": 32.89,
+      "current_pe": 32.69,
       "pe_pct_5y": 75.0,
       "current_pb": null,
       "pb_pct_5y": null,
@@ -59,7 +59,7 @@
     {
       "category": "标普500",
       "index_name": "标普500(SPX/SPY)",
-      "current_pe": 26.3,
+      "current_pe": 26.38,
       "pe_pct_5y": 60.0,
       "current_pb": null,
       "pb_pct_5y": null,
