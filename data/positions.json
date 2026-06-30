@@ -75,9 +75,9 @@
       "stop_loss_pct": null,
       "take_profit_pct": null,
       "trailing_stop_pct": null,
-      "current_nav": 2.1017,
-      "highest_nav": 2.1679,
-      "current_return_pct": 4.62,
+      "current_nav": 2.2127,
+      "highest_nav": 2.2127,
+      "current_return_pct": 10.14,
       "triggered": null
     },
     {
@@ -90,9 +90,9 @@
       "stop_loss_pct": null,
       "take_profit_pct": null,
       "trailing_stop_pct": null,
-      "current_nav": 1.4222,
-      "highest_nav": 1.4257,
-      "current_return_pct": 1.73,
+      "current_nav": 1.4766,
+      "highest_nav": 1.4766,
+      "current_return_pct": 5.62,
       "triggered": null
     },
     {
@@ -126,5 +126,5 @@
       "triggered": "trailing_stop"
     }
   ],
-  "updated_at": "2026-06-30 05:10"
+  "updated_at": "2026-06-30 13:07"
 }
