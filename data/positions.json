@@ -60,9 +60,9 @@
       "stop_loss_pct": null,
       "take_profit_pct": null,
       "trailing_stop_pct": null,
-      "current_nav": 0.6415,
+      "current_nav": 0.6612,
       "highest_nav": 0.6613,
-      "current_return_pct": -1.69,
+      "current_return_pct": 1.33,
       "triggered": null
     },
     {
@@ -126,5 +126,5 @@
       "triggered": "trailing_stop"
     }
   ],
-  "updated_at": "2026-06-30 13:07"
+  "updated_at": "2026-07-01 05:27"
 }

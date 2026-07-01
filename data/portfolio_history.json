@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-06-30",
+  "updated_at": "2026-07-01",
   "start_value": 52613.47,
-  "current_value": 50168.64,
-  "return_pct": -4.65,
+  "current_value": 50737.75,
+  "return_pct": -3.57,
   "series": [
     {
       "date": "2026-04-01",
@@ -239,6 +239,10 @@
     {
       "date": "2026-06-29",
       "value": 50168.64
+    },
+    {
+      "date": "2026-06-30",
+      "value": 50737.75
     }
   ]
 }
