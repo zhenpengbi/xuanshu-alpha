@@ -71,14 +71,14 @@
       "entry_date": "2026-06-17",
       "entry_nav": 2.0089,
       "amount": 4916.27,
-      "status": "open",
+      "status": "alert",
       "stop_loss_pct": null,
       "take_profit_pct": null,
       "trailing_stop_pct": null,
-      "current_nav": 2.1641,
+      "current_nav": 2.0294,
       "highest_nav": 2.2127,
-      "current_return_pct": 7.73,
-      "triggered": null
+      "current_return_pct": 1.02,
+      "triggered": "trailing_stop"
     },
     {
       "fund_code": "015790",
@@ -90,9 +90,9 @@
       "stop_loss_pct": null,
       "take_profit_pct": null,
       "trailing_stop_pct": null,
-      "current_nav": 1.4828,
+      "current_nav": 1.4334,
       "highest_nav": 1.4828,
-      "current_return_pct": 6.07,
+      "current_return_pct": 2.53,
       "triggered": null
     },
     {
@@ -126,5 +126,5 @@
       "triggered": "trailing_stop"
     }
   ],
-  "updated_at": "2026-07-02 05:04"
+  "updated_at": "2026-07-02 12:58"
 }

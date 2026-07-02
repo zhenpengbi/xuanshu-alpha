@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-02 05:04",
+  "updated_at": "2026-07-02 12:58",
   "portfolio_updateTime": "2026-07-02",
   "funds": [
     {
@@ -16,14 +16,14 @@
       "performance_ranking": [
         {
           "period": "成立以来",
-          "return_pct": 48.28,
+          "return_pct": 43.34,
           "max_dd_pct": 51.78,
           "rank": "2207/5484",
           "percentile": 40.2
         },
         {
           "period": "今年以来",
-          "return_pct": 4.17,
+          "return_pct": 0.7,
           "max_dd_pct": 24.47,
           "rank": "3244/5485",
           "percentile": 59.1
@@ -58,35 +58,35 @@
         },
         {
           "period": "近1月",
-          "return_pct": 11.29,
+          "return_pct": 7.52,
           "max_dd_pct": null,
           "rank": "1861/5395",
           "percentile": 34.5
         },
         {
           "period": "近3月",
-          "return_pct": 6.53,
+          "return_pct": 5.04,
           "max_dd_pct": 22.37,
           "rank": "2911/5257",
           "percentile": 55.4
         },
         {
           "period": "近6月",
-          "return_pct": 4.17,
+          "return_pct": 0.7,
           "max_dd_pct": 24.47,
           "rank": "3078/5058",
           "percentile": 60.9
         },
         {
           "period": "近1年",
-          "return_pct": 84.7,
+          "return_pct": 81.83,
           "max_dd_pct": 24.47,
           "rank": "1079/4636",
           "percentile": 23.3
         },
         {
           "period": "近3年",
-          "return_pct": 83.11,
+          "return_pct": 77.01,
           "max_dd_pct": 42.09,
           "rank": "769/3603",
           "percentile": 21.3
@@ -95,7 +95,7 @@
       "rank_percentile_ytd": 59.1,
       "max_drawdown_pct": 51.78,
       "alpha_analysis": {
-        "fund_annual_pct": 22.97,
+        "fund_annual_pct": 21.51,
         "benchmark_annual_pct": "数据缺失",
         "alpha_pct": "数据缺失",
         "benchmark": "沪深300",
@@ -314,7 +314,7 @@
       "rank_percentile_ytd": 52.4,
       "max_drawdown_pct": 25.46,
       "alpha_analysis": {
-        "fund_annual_pct": 70.87,
+        "fund_annual_pct": 60.11,
         "benchmark_annual_pct": "数据缺失",
         "alpha_pct": "数据缺失",
         "benchmark": "沪深300",
