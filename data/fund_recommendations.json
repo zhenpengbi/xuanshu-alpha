@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-02 12:54",
+  "updated_at": "2026-07-03 04:45",
   "triggered": false,
   "avg_sell_score": 0.9,
   "panic_threshold": 2.0,
@@ -22,8 +22,8 @@
       "code": "561980",
       "name": "半导体设备ETF招商",
       "drop_60d_pct": 57.75,
-      "today_chg_pct": -8.38,
-      "scale_bn": 72.68,
+      "today_chg_pct": -0.94,
+      "scale_bn": 71.75,
       "rsi14": 24.46,
       "signal": "超跌反弹",
       "reason": "近60日跌幅 57.8%，RSI=24.5<30（深度超卖），关注反弹机会"
@@ -32,31 +32,11 @@
       "code": "560780",
       "name": "半导体设备ETF广发",
       "drop_60d_pct": 24.12,
-      "today_chg_pct": -8.58,
-      "scale_bn": 115.01,
+      "today_chg_pct": -2.53,
+      "scale_bn": 117.16,
       "rsi14": 29.67,
       "signal": "超跌反弹",
       "reason": "近60日跌幅 24.1%，RSI=29.7<30（深度超卖），关注反弹机会"
-    },
-    {
-      "code": "589100",
-      "name": "科创芯片ETF国泰",
-      "drop_60d_pct": 23.74,
-      "today_chg_pct": -8.64,
-      "scale_bn": 9.83,
-      "rsi14": 28.89,
-      "signal": "超跌反弹",
-      "reason": "近60日跌幅 23.7%，RSI=28.9<30（深度超卖），关注反弹机会"
-    },
-    {
-      "code": "515050",
-      "name": "通信ETF华夏",
-      "drop_60d_pct": 48.33,
-      "today_chg_pct": -8.4,
-      "scale_bn": 218.44,
-      "rsi14": 38.76,
-      "signal": "低位观察",
-      "reason": "近60日跌幅 48.3%，RSI=38.8（低位区间），可小仓位试探"
     }
   ],
   "disclaimer": "以上仅为量化扫描结果，不构成投资建议，投资者需自行承担风险"

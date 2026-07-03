@@ -56,14 +56,14 @@
       "entry_date": "2026-06-17",
       "entry_nav": 0.6525,
       "amount": 5154.07,
-      "status": "open",
+      "status": "alert",
       "stop_loss_pct": null,
       "take_profit_pct": null,
       "trailing_stop_pct": null,
-      "current_nav": 0.648,
+      "current_nav": 0.6177,
       "highest_nav": 0.6613,
-      "current_return_pct": -0.69,
-      "triggered": null
+      "current_return_pct": -5.33,
+      "triggered": "trailing_stop"
     },
     {
       "fund_code": "011840",
@@ -126,5 +126,5 @@
       "triggered": "trailing_stop"
     }
   ],
-  "updated_at": "2026-07-02 12:58"
+  "updated_at": "2026-07-03 04:48"
 }

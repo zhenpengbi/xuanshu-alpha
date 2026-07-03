@@ -1,6 +1,6 @@
 {
-  "portfolio_updateTime": "2026-07-02",
-  "updated_at": "2026-07-02 12:58",
+  "portfolio_updateTime": "2026-07-03",
+  "updated_at": "2026-07-03 04:48",
   "total_value": 52613.47,
   "rebalance_threshold_pct": 5.0,
   "bullet": {
@@ -114,7 +114,7 @@
       "deviation_amount": 126.27,
       "signal": null,
       "action": "建议调研替换",
-      "reason": "同类排名前52%；今年以来同类排名 52%（落后同类）  |  警告：⚠️ 排名落后，建议关注是否替换",
+      "reason": "同类排名前55%；今年以来同类排名 55%（落后同类）  |  警告：⚠️ 排名落后，建议关注是否替换",
       "priority": "medium",
       "recommend_amount": null,
       "needs_action": false,
