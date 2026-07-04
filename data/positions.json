@@ -26,14 +26,14 @@
       "entry_date": "2026-06-17",
       "entry_nav": 3.0843,
       "amount": 8298.93,
-      "status": "open",
+      "status": "alert",
       "stop_loss_pct": null,
       "take_profit_pct": null,
       "trailing_stop_pct": null,
-      "current_nav": 2.9359,
+      "current_nav": 2.872,
       "highest_nav": 3.0843,
-      "current_return_pct": -4.81,
-      "triggered": null
+      "current_return_pct": -6.88,
+      "triggered": "trailing_stop"
     },
     {
       "fund_code": "010990",
@@ -56,14 +56,14 @@
       "entry_date": "2026-06-17",
       "entry_nav": 0.6525,
       "amount": 5154.07,
-      "status": "open",
+      "status": "alert",
       "stop_loss_pct": null,
       "take_profit_pct": null,
       "trailing_stop_pct": null,
-      "current_nav": 0.6333,
+      "current_nav": 0.6177,
       "highest_nav": 0.6613,
-      "current_return_pct": -2.94,
-      "triggered": null
+      "current_return_pct": -5.33,
+      "triggered": "trailing_stop"
     },
     {
       "fund_code": "011840",
@@ -71,14 +71,14 @@
       "entry_date": "2026-06-17",
       "entry_nav": 2.0089,
       "amount": 4916.27,
-      "status": "open",
+      "status": "alert",
       "stop_loss_pct": null,
       "take_profit_pct": null,
       "trailing_stop_pct": null,
-      "current_nav": 2.0951,
-      "highest_nav": 2.1216,
-      "current_return_pct": 4.29,
-      "triggered": null
+      "current_nav": 2.0294,
+      "highest_nav": 2.2127,
+      "current_return_pct": 1.02,
+      "triggered": "trailing_stop"
     },
     {
       "fund_code": "015790",
@@ -90,9 +90,9 @@
       "stop_loss_pct": null,
       "take_profit_pct": null,
       "trailing_stop_pct": null,
-      "current_nav": 1.3779,
-      "highest_nav": 1.398,
-      "current_return_pct": -1.44,
+      "current_nav": 1.4334,
+      "highest_nav": 1.4828,
+      "current_return_pct": 2.53,
       "triggered": null
     },
     {
@@ -101,14 +101,14 @@
       "entry_date": "2026-06-17",
       "entry_nav": 1.3419,
       "amount": 1978.73,
-      "status": "open",
+      "status": "alert",
       "stop_loss_pct": null,
       "take_profit_pct": null,
       "trailing_stop_pct": null,
-      "current_nav": 1.3443,
+      "current_nav": 1.2812,
       "highest_nav": 1.352,
-      "current_return_pct": 0.18,
-      "triggered": null
+      "current_return_pct": -4.52,
+      "triggered": "trailing_stop"
     },
     {
       "fund_code": "025647",
@@ -126,5 +126,5 @@
       "triggered": "trailing_stop"
     }
   ],
-  "updated_at": "2026-06-25 05:10"
+  "updated_at": "2026-07-03 04:48"
 }
