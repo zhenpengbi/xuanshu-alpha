@@ -1,34 +1,34 @@
 {
-  "updated_at": "2026-07-03",
+  "updated_at": "2026-07-04",
   "portfolio_risk": {
-    "volatility": 27.07,
+    "volatility": 27.22,
     "volatility_note": "加权日收益率实算",
-    "drawdown": 23.88,
-    "sharpe": 0.13,
+    "drawdown": 23.96,
+    "sharpe": 0.28,
     "risk_level": "高"
   },
   "concentration": {
     "categories": {
-      "黄金": 49.3,
-      "有色金属": 14.1,
-      "AI/科技": 12.4,
-      "高端制造": 9.7,
-      "光伏/新能源": 9.3
+      "黄金": 52.8,
+      "有色金属": 14.2,
+      "AI/科技": 12.9,
+      "高端制造": 10.7,
+      "光伏/新能源": 8.8
     },
     "alerts": [
       {
         "type": "concentration_single",
         "severity": "high",
         "category": "黄金",
-        "ratio": 49.3,
-        "message": "黄金占比49.3%，超过安全线40%"
+        "ratio": 52.8,
+        "message": "黄金占比52.8%，超过安全线40%"
       },
       {
         "type": "concentration_bulk",
         "severity": "high",
         "category": "黄金+有色金属",
-        "ratio": 63.4,
-        "message": "大宗商品（黄金+有色）占比63.4%，超过安全线50%"
+        "ratio": 67.0,
+        "message": "大宗商品（黄金+有色）占比67.0%，超过安全线50%"
       }
     ]
   },
@@ -43,37 +43,37 @@
     "matrix": [
       [
         1.0,
-        0.591,
-        0.455,
-        0.547,
-        0.292
+        0.577,
+        0.456,
+        0.556,
+        0.301
       ],
       [
-        0.591,
+        0.577,
         1.0,
-        0.522,
-        0.532,
-        0.323
+        0.518,
+        0.515,
+        0.315
       ],
       [
-        0.455,
-        0.522,
+        0.456,
+        0.518,
         1.0,
-        0.302,
+        0.303,
         0.62
       ],
       [
-        0.547,
-        0.532,
-        0.302,
+        0.556,
+        0.515,
+        0.303,
         1.0,
-        0.234
+        0.246
       ],
       [
-        0.292,
-        0.323,
+        0.301,
+        0.315,
         0.62,
-        0.234,
+        0.246,
         1.0
       ]
     ],
@@ -83,17 +83,17 @@
     {
       "name": "黄金回调10%",
       "description": "假设黄金价格下跌10%",
-      "portfolio_impact_pct": -4.93
+      "portfolio_impact_pct": -5.28
     },
     {
       "name": "A股整体回调15%",
       "description": "AI+光伏+高端制造+有色金属同步下跌15%",
-      "portfolio_impact_pct": -6.82
+      "portfolio_impact_pct": -6.99
     },
     {
       "name": "大宗全面走弱20%",
       "description": "黄金+有色金属同步下跌20%",
-      "portfolio_impact_pct": -12.68
+      "portfolio_impact_pct": -13.4
     }
   ]
 }
