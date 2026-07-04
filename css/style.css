@@ -426,7 +426,9 @@
         .holdings-cards { display: none; } /* PC端隐藏卡片，只显示表格 */
         .capability-grid { display: none; } /* PC端隐藏能力概览入口 */
         .holdings-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
-        .holdings-table thead { position: sticky; top: 64px; z-index: 10; }
+        /* sticky top 必须为 0 —— overflow-x:auto 让容器成为 scroll-container，
+           top:64px 会相对容器生效，把 thead 强行下移 64px 覆盖第一行（002963）*/
+        .holdings-table thead { position: sticky; top: 0; z-index: 10; }
         .holdings-table th {
             text-align: left; padding: 16px 18px; font-size: 10.5px; color: var(--text-secondary);
             letter-spacing: 2px; border-bottom: 1px solid var(--accent-line); font-weight: 600;

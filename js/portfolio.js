@@ -124,9 +124,6 @@ function switchTabFromCap(panel) {
 }
 
 function renderHoldings() {
-    // ── 调试：验证渲染时持仓数据完整性 ──
-    const _codes = (portfolioData.holdings||[]).map(h=>h.code);
-    console.error('[renderHoldings] holdings codes:', _codes.join(','), '| count:', _codes.length);
     // --- 移动端卡片 ---
     const cardsEl = document.getElementById('holdingsCards');
     if (cardsEl) {
@@ -170,11 +167,6 @@ function renderHoldings() {
             </div></td>
         </tr>`;
     }).join('');
-    // ── 调试：验证 DOM 行数是否与预期匹配 ──
-    const _domRows = tbody.querySelectorAll('tr').length;
-    if (_domRows !== portfolioData.holdings.length) {
-        console.error('[renderHoldings] DOM行数异常! 预期', portfolioData.holdings.length, '实际', _domRows, '| tbody.innerHTML长度:', tbody.innerHTML.length);
-    }
     // Draw sparklines（真实净值，60日；无净值数据回退随机趋势）
     const nav = (window.navData && window.navData.funds) || {};
     portfolioData.holdings.forEach((h,i) => {
