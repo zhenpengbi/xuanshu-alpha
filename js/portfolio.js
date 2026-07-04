@@ -146,8 +146,9 @@ function renderHoldings() {
     const tbody = document.getElementById('holdingsBody');
     tbody.innerHTML = portfolioData.holdings.map((h,i) => {
         const dailyCls = retClass(h.dailyReturn);
-        const holdCls = retClass(h.holdingReturnRate);
-        const tagCls = getCategoryTagClass(h.category);
+        const holdCls  = retClass(h.holdingReturnRate);
+        const totalCls = retClass(h.totalReturn);
+        const tagCls   = getCategoryTagClass(h.category);
         return `<tr>
             <td><div class="fund-name">${h.name}</div></td>
             <td><span class="fund-code num">${h.code}</span></td>
@@ -155,7 +156,11 @@ function renderHoldings() {
             <td style="text-align:right;" class="num">${fmtMoney(h.amount)}</td>
             <td style="text-align:right;" class="num">${h.ratio}%</td>
             <td style="text-align:right;" class="num ${dailyCls}">${fmtReturn(h.dailyReturn)}</td>
-            <td style="text-align:right;" class="num ${holdCls}">${fmtPct(h.holdingReturnRate)}</td>
+            <td style="text-align:right;">
+                <div class="num hold-return-amt ${holdCls}">${fmtReturn(h.holdingReturn)}</div>
+                <div class="num hold-return-rate ${holdCls}">${fmtPct(h.holdingReturnRate)}</div>
+            </td>
+            <td style="text-align:right;" class="num ${totalCls}">${fmtReturn(h.totalReturn)}</td>
             <td><div style="display:flex;align-items:center;gap:8px;">
                 <canvas class="sparkline-canvas" id="spark${i}"></canvas>
                 <span class="num" id="navchg${i}" style="font-size:11px;min-width:48px;text-align:right;"></span>

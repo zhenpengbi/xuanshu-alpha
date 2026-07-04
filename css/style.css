@@ -442,6 +442,11 @@
         /* 涨跌列加背景色块强化对比 */
         .holdings-table td.positive { color: var(--green); font-weight: 600; }
         .holdings-table td.negative { color: var(--red); font-weight: 600; }
+        /* 持有收益：金额+收益率两行合并显示（仿支付宝交互） */
+        .hold-return-amt  { font-size: 13px; font-weight: 600; line-height: 1.4; }
+        .hold-return-rate { font-size: 11px; font-weight: 500; opacity: .85; line-height: 1.3; }
+        .hold-return-amt.positive, .hold-return-rate.positive { color: var(--green); }
+        .hold-return-amt.negative, .hold-return-rate.negative { color: var(--red); }
         .fund-name { font-weight: 500; color: var(--text-primary); }
         .fund-code { color: var(--text-muted); font-size: 11px; font-family: var(--mono); }
         /* 持仓健康体检徽章 */
