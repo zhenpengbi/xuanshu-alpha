@@ -86,14 +86,14 @@
       "entry_date": "2026-06-17",
       "entry_nav": 1.398,
       "amount": 3577.13,
-      "status": "open",
+      "status": "alert",
       "stop_loss_pct": null,
       "take_profit_pct": null,
       "trailing_stop_pct": null,
-      "current_nav": 1.5189,
+      "current_nav": 1.4344,
       "highest_nav": 1.5189,
-      "current_return_pct": 8.65,
-      "triggered": null
+      "current_return_pct": 2.6,
+      "triggered": "trailing_stop"
     },
     {
       "fund_code": "014881",
@@ -126,5 +126,5 @@
       "triggered": "trailing_stop"
     }
   ],
-  "updated_at": "2026-07-06 05:18"
+  "updated_at": "2026-07-06 14:24"
 }

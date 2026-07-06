@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-07-06 05:14",
+  "updated_at": "2026-07-06 14:20",
   "triggered": false,
-  "avg_sell_score": 0.9,
+  "avg_sell_score": 0.7,
   "panic_threshold": 2.0,
   "scan_params": {
     "panic_scan": {
@@ -15,8 +15,39 @@
       "rsi_threshold": 40
     }
   },
-  "message": "当前无超跌机会（avg_sell_score=0.90 < 2.0，市场情绪平稳）",
+  "message": "当前无超跌机会（avg_sell_score=0.70 < 2.0，市场情绪平稳）",
   "recommendations": [],
-  "undervalued": [],
+  "undervalued": [
+    {
+      "code": "515880",
+      "name": "UC通信ETF国泰",
+      "drop_60d_pct": 36.71,
+      "today_chg_pct": -4.18,
+      "scale_bn": 509.25,
+      "rsi14": 21.2,
+      "signal": "超跌反弹",
+      "reason": "近60日跌幅 36.7%，RSI=21.2<30（深度超卖），关注反弹机会"
+    },
+    {
+      "code": "515050",
+      "name": "通信ETF华夏",
+      "drop_60d_pct": 52.94,
+      "today_chg_pct": -3.22,
+      "scale_bn": 217.07,
+      "rsi14": 38.46,
+      "signal": "低位观察",
+      "reason": "近60日跌幅 52.9%，RSI=38.5（低位区间），可小仓位试探"
+    },
+    {
+      "code": "516780",
+      "name": "稀土ETF华泰柏瑞",
+      "drop_60d_pct": 48.55,
+      "today_chg_pct": -3.81,
+      "scale_bn": 21.43,
+      "rsi14": 33.97,
+      "signal": "低位观察",
+      "reason": "近60日跌幅 48.5%，RSI=34.0（低位区间），可小仓位试探"
+    }
+  ],
   "disclaimer": "以上仅为量化扫描结果，不构成投资建议，投资者需自行承担风险"
 }
