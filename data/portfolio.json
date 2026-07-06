@@ -1,13 +1,13 @@
 {
-  "updateTime": "2026-07-04",
+  "updateTime": "2026-07-06",
   "totalAsset": 55533.04,
   "holdings": [
     {
       "name": "易方达黄金ETF联接C",
       "code": "002963",
       "amount": 21325.43,
-      "ratio": 38.40,
-      "dailyReturn": 0.00,
+      "ratio": 38.4,
+      "dailyReturn": 569.71,
       "holdingReturn": -2783.57,
       "holdingReturnRate": -11.55,
       "totalReturn": 1117.67,
@@ -18,8 +18,8 @@
       "name": "易方达黄金ETF联接A",
       "code": "000307",
       "amount": 7994.07,
-      "ratio": 14.40,
-      "dailyReturn": 208.05,
+      "ratio": 14.4,
+      "dailyReturn": 213.61,
       "holdingReturn": -1505.01,
       "holdingReturnRate": -15.84,
       "totalReturn": -1505.01,
@@ -31,10 +31,10 @@
       "code": "010990",
       "amount": 7877.23,
       "ratio": 14.19,
-      "dailyReturn": 96.84,
-      "holdingReturn": -1159.50,
+      "dailyReturn": 98.04,
+      "holdingReturn": -1159.5,
       "holdingReturnRate": -12.83,
-      "totalReturn": -1159.50,
+      "totalReturn": -1159.5,
       "category": "有色金属",
       "assetType": "trend"
     },
@@ -43,7 +43,7 @@
       "code": "011840",
       "amount": 5160.01,
       "ratio": 9.29,
-      "dailyReturn": 23.54,
+      "dailyReturn": 23.65,
       "holdingReturn": 1512.54,
       "holdingReturnRate": 41.47,
       "totalReturn": 3237.51,
@@ -55,7 +55,7 @@
       "code": "012885",
       "amount": 4872.36,
       "ratio": 8.77,
-      "dailyReturn": -71.23,
+      "dailyReturn": -70.2,
       "holdingReturn": -627.64,
       "holdingReturnRate": -11.41,
       "totalReturn": -627.64,
@@ -67,7 +67,7 @@
       "code": "015790",
       "amount": 3938.04,
       "ratio": 7.09,
-      "dailyReturn": 221.67,
+      "dailyReturn": 234.9,
       "holdingReturn": -61.96,
       "holdingReturnRate": -1.55,
       "totalReturn": -61.96,
@@ -79,7 +79,7 @@
       "code": "025647",
       "amount": 2022.34,
       "ratio": 3.64,
-      "dailyReturn": 107.97,
+      "dailyReturn": 114.06,
       "holdingReturn": 22.34,
       "holdingReturnRate": 1.12,
       "totalReturn": 22.34,
@@ -91,7 +91,7 @@
       "code": "014881",
       "amount": 2003.37,
       "ratio": 3.61,
-      "dailyReturn": 110.32,
+      "dailyReturn": 116.75,
       "holdingReturn": 128.37,
       "holdingReturnRate": 6.85,
       "totalReturn": -83.57,
@@ -146,5 +146,5 @@
       }
     }
   },
-  "dailyReturn": 697.17
+  "dailyReturn": 1300.52
 }

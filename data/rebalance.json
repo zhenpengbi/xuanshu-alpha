@@ -1,6 +1,6 @@
 {
-  "portfolio_updateTime": "2026-07-04",
-  "updated_at": "2026-07-04 17:48",
+  "portfolio_updateTime": "2026-07-06",
+  "updated_at": "2026-07-06 05:18",
   "total_value": 55192.85,
   "rebalance_threshold_pct": 5.0,
   "bullet": {
@@ -114,7 +114,7 @@
       "deviation_amount": 441.54,
       "signal": null,
       "action": "建议调研替换",
-      "reason": "同类排名前55%；今年以来同类排名 55%（落后同类）  |  警告：⚠️ 排名落后，建议关注是否替换",
+      "reason": "⚠️ 代码与名称不符（官方:永赢高端装备智选混合发起C）；同类排名前52%；今年以来同类排名 52%（落后同类）；基金经理任职 5.3 年，管理经验相对充分  |  警告：⚠️ 代码 015790 官方名称与持仓标注不符，请核实！官方：永赢高端装备智选混合发起C，持仓标注：永赢高端装备智选混合C",
       "priority": "medium",
       "recommend_amount": null,
       "needs_action": false,
