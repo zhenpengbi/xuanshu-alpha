@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-06 14:19",
+  "updated_at": "2026-07-07 04:53",
   "indicators": [
     {
       "code": "002963",
@@ -34,16 +34,16 @@
     {
       "code": "010990",
       "name": "南方有色金属ETF联接E",
-      "rsi14": 44.7,
+      "rsi14": 42.22,
       "ma5": 1.8137,
-      "ma20": 1.87996,
-      "prev_ma5": 1.80392,
-      "prev_ma20": 1.883645,
-      "macd_dif": -0.03717546,
-      "macd_dea": -0.02928256,
-      "macd_hist": -0.01578579,
+      "ma20": 1.87694,
+      "prev_ma5": 1.8137,
+      "prev_ma20": 1.87996,
+      "macd_dif": -0.03852286,
+      "macd_dea": -0.03172675,
+      "macd_hist": -0.01359222,
       "macd_trend": "bearish",
-      "latest_price": 1.8384,
+      "latest_price": 1.8131,
       "prices_used": 60
     },
     {
@@ -64,16 +64,16 @@
     {
       "code": "012885",
       "name": "华夏中证光伏产业ETF联接A",
-      "rsi14": 36.82,
-      "ma5": 0.63544,
-      "ma20": 0.64026,
-      "prev_ma5": 0.64086,
-      "prev_ma20": 0.643565,
-      "macd_dif": -0.01150956,
-      "macd_dea": -0.01017321,
-      "macd_hist": -0.00267271,
+      "rsi14": 33.63,
+      "ma5": 0.62638,
+      "ma20": 0.63712,
+      "prev_ma5": 0.63544,
+      "prev_ma20": 0.64026,
+      "macd_dif": -0.01404033,
+      "macd_dea": -0.0110773,
+      "macd_hist": -0.00592605,
       "macd_trend": "bearish",
-      "latest_price": 0.6088,
+      "latest_price": 0.5962,
       "prices_used": 60
     },
     {
