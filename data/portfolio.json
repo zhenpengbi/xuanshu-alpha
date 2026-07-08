@@ -1,5 +1,5 @@
 {
-  "updateTime": "2026-07-07",
+  "updateTime": "2026-07-08",
   "totalAsset": 55533.04,
   "holdings": [
     {
@@ -19,7 +19,7 @@
       "code": "000307",
       "amount": 7994.07,
       "ratio": 14.4,
-      "dailyReturn": -24.87,
+      "dailyReturn": -46.94,
       "holdingReturn": -1505.01,
       "holdingReturnRate": -15.84,
       "totalReturn": -1505.01,
@@ -31,7 +31,7 @@
       "code": "010990",
       "amount": 7877.23,
       "ratio": 14.19,
-      "dailyReturn": -108.41,
+      "dailyReturn": -227.23,
       "holdingReturn": -1159.5,
       "holdingReturnRate": -12.83,
       "totalReturn": -1159.5,
@@ -43,7 +43,7 @@
       "code": "011840",
       "amount": 5160.01,
       "ratio": 9.29,
-      "dailyReturn": -30.62,
+      "dailyReturn": -19.35,
       "holdingReturn": 1512.54,
       "holdingReturnRate": 41.47,
       "totalReturn": 3237.51,
@@ -55,7 +55,7 @@
       "code": "012885",
       "amount": 4872.36,
       "ratio": 8.77,
-      "dailyReturn": -100.84,
+      "dailyReturn": -49.04,
       "holdingReturn": -627.64,
       "holdingReturnRate": -11.41,
       "totalReturn": -627.64,
@@ -67,7 +67,7 @@
       "code": "015790",
       "amount": 3938.04,
       "ratio": 7.09,
-      "dailyReturn": -219.08,
+      "dailyReturn": -84.01,
       "holdingReturn": -61.96,
       "holdingReturnRate": -1.55,
       "totalReturn": -61.96,
@@ -91,7 +91,7 @@
       "code": "014881",
       "amount": 2003.37,
       "ratio": 3.61,
-      "dailyReturn": -69.92,
+      "dailyReturn": -26.57,
       "holdingReturn": 128.37,
       "holdingReturnRate": 6.85,
       "totalReturn": -83.57,
@@ -146,5 +146,5 @@
       }
     }
   },
-  "dailyReturn": -732.75
+  "dailyReturn": -632.15
 }

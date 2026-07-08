@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-07 13:12",
+  "updated_at": "2026-07-08 04:17",
   "triggered": false,
   "avg_sell_score": 0.7,
   "panic_threshold": 2.0,
@@ -19,14 +19,14 @@
   "recommendations": [],
   "undervalued": [
     {
-      "code": "561380",
-      "name": "电网设备ETF国泰",
-      "drop_60d_pct": 59.84,
-      "today_chg_pct": -3.56,
-      "scale_bn": 52.5,
-      "rsi14": 15.9,
-      "signal": "超跌反弹",
-      "reason": "近60日跌幅 59.8%，RSI=15.9<30（深度超卖），关注反弹机会"
+      "code": "516780",
+      "name": "稀土ETF华泰柏瑞",
+      "drop_60d_pct": 49.25,
+      "today_chg_pct": -2.42,
+      "scale_bn": 20.53,
+      "rsi14": 33.21,
+      "signal": "低位观察",
+      "reason": "近60日跌幅 49.2%，RSI=33.2（低位区间），可小仓位试探"
     }
   ],
   "disclaimer": "以上仅为量化扫描结果，不构成投资建议，投资者需自行承担风险"
