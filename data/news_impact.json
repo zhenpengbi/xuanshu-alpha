@@ -1,18 +1,18 @@
 {
-  "updated_at": "2026-07-08 04:16",
+  "updated_at": "2026-07-08 12:12",
   "news_date": "2026-07-08",
-  "news_period": "早报",
-  "total_news": 12,
+  "news_period": "早报/晚报",
+  "total_news": 24,
   "items": [
     {
       "code": "002963",
       "name": "易方达黄金ETF联接C",
       "channel": "gold",
       "bullish_count": 1,
-      "bearish_count": 0,
-      "neutral_count": 11,
-      "sentiment_score": 1,
-      "sentiment_label": "偏多",
+      "bearish_count": 1,
+      "neutral_count": 22,
+      "sentiment_score": 0,
+      "sentiment_label": "中性",
       "top_impact_news": [
         {
           "title": "贵金属板块快速拉升 多只黄金股ETF上涨",
@@ -21,15 +21,15 @@
           "sentiment": "利多"
         },
         {
+          "title": "国际油价急速拉升，黄金白银跳水",
+          "time": "晚报 · 黄金",
+          "summary": "黄金白银贵金属短线跳水。截至发稿，伦敦金现盘中最低触及4051.46美元/盎司，跌超1%；伦敦银现盘中最低触及58.15美元/盎司，跌超2%。 国际油价急速拉升，美油、布油双双涨逾6%。 中东局势再度紧张。",
+          "sentiment": "利空"
+        },
+        {
           "title": "【新思想引领新征程】加快高水平科技自立自强 奋进科技强国建设",
           "time": "早报 · 宏观",
           "summary": "科技是国家强盛之基，创新是民族进步之魂。习近平总书记深刻指出，建设社会主义现代化强国，关键在科技自立自强。在总书记的领航掌舵下，我国科技实力实现从量的积累迈向质的飞跃、从点的突破迈向系统能力提升，正朝着建成科技强国的宏伟目标坚定前行。这两条不断向上生长的曲线，是中国科技创新活力涌动的增长轨迹。...",
-          "sentiment": "中性"
-        },
-        {
-          "title": "联播快讯",
-          "time": "早报 · 宏观",
-          "summary": "2026世界人工智能大会将于7月17日至20日举办今天（7月7日），2026世界人工智能大会暨人工智能全球治理高级别会议新闻发布会在上海举行。本届大会以“智能伙伴 共创未来”为主题，将于7月17日至20日举办。大会期间，国家发展改革委将发布《中国智·惠世界》案例集和《人工智能合作发展行动计划》...",
           "sentiment": "中性"
         }
       ]
@@ -39,10 +39,10 @@
       "name": "易方达黄金ETF联接A",
       "channel": "gold",
       "bullish_count": 1,
-      "bearish_count": 0,
-      "neutral_count": 11,
-      "sentiment_score": 1,
-      "sentiment_label": "偏多",
+      "bearish_count": 1,
+      "neutral_count": 22,
+      "sentiment_score": 0,
+      "sentiment_label": "中性",
       "top_impact_news": [
         {
           "title": "贵金属板块快速拉升 多只黄金股ETF上涨",
@@ -51,15 +51,15 @@
           "sentiment": "利多"
         },
         {
+          "title": "国际油价急速拉升，黄金白银跳水",
+          "time": "晚报 · 黄金",
+          "summary": "黄金白银贵金属短线跳水。截至发稿，伦敦金现盘中最低触及4051.46美元/盎司，跌超1%；伦敦银现盘中最低触及58.15美元/盎司，跌超2%。 国际油价急速拉升，美油、布油双双涨逾6%。 中东局势再度紧张。",
+          "sentiment": "利空"
+        },
+        {
           "title": "【新思想引领新征程】加快高水平科技自立自强 奋进科技强国建设",
           "time": "早报 · 宏观",
           "summary": "科技是国家强盛之基，创新是民族进步之魂。习近平总书记深刻指出，建设社会主义现代化强国，关键在科技自立自强。在总书记的领航掌舵下，我国科技实力实现从量的积累迈向质的飞跃、从点的突破迈向系统能力提升，正朝着建成科技强国的宏伟目标坚定前行。这两条不断向上生长的曲线，是中国科技创新活力涌动的增长轨迹。...",
-          "sentiment": "中性"
-        },
-        {
-          "title": "联播快讯",
-          "time": "早报 · 宏观",
-          "summary": "2026世界人工智能大会将于7月17日至20日举办今天（7月7日），2026世界人工智能大会暨人工智能全球治理高级别会议新闻发布会在上海举行。本届大会以“智能伙伴 共创未来”为主题，将于7月17日至20日举办。大会期间，国家发展改革委将发布《中国智·惠世界》案例集和《人工智能合作发展行动计划》...",
           "sentiment": "中性"
         }
       ]
@@ -68,10 +68,10 @@
       "code": "011840",
       "name": "天弘中证人工智能C",
       "channel": "ashare",
-      "bullish_count": 4,
+      "bullish_count": 10,
       "bearish_count": 0,
-      "neutral_count": 8,
-      "sentiment_score": 4,
+      "neutral_count": 14,
+      "sentiment_score": 10,
       "sentiment_label": "偏多",
       "top_impact_news": [
         {
@@ -98,10 +98,10 @@
       "code": "010990",
       "name": "南方有色金属ETF联接E",
       "channel": "ashare",
-      "bullish_count": 4,
+      "bullish_count": 10,
       "bearish_count": 0,
-      "neutral_count": 8,
-      "sentiment_score": 4,
+      "neutral_count": 14,
+      "sentiment_score": 10,
       "sentiment_label": "偏多",
       "top_impact_news": [
         {
@@ -128,10 +128,10 @@
       "code": "012885",
       "name": "华夏光伏ETF联接A",
       "channel": "ashare",
-      "bullish_count": 4,
+      "bullish_count": 10,
       "bearish_count": 0,
-      "neutral_count": 8,
-      "sentiment_score": 4,
+      "neutral_count": 14,
+      "sentiment_score": 10,
       "sentiment_label": "偏多",
       "top_impact_news": [
         {
@@ -160,7 +160,7 @@
       "channel": "nasdaq",
       "bullish_count": 0,
       "bearish_count": 0,
-      "neutral_count": 12,
+      "neutral_count": 24,
       "sentiment_score": 0,
       "sentiment_label": "中性",
       "top_impact_news": [
@@ -190,7 +190,7 @@
       "channel": "nasdaq",
       "bullish_count": 0,
       "bearish_count": 0,
-      "neutral_count": 12,
+      "neutral_count": 24,
       "sentiment_score": 0,
       "sentiment_label": "中性",
       "top_impact_news": [
@@ -218,10 +218,10 @@
       "code": "015790",
       "name": "永赢高端装备混合C",
       "channel": "ashare",
-      "bullish_count": 4,
+      "bullish_count": 10,
       "bearish_count": 0,
-      "neutral_count": 8,
-      "sentiment_score": 4,
+      "neutral_count": 14,
+      "sentiment_score": 10,
       "sentiment_label": "偏多",
       "top_impact_news": [
         {
@@ -248,10 +248,10 @@
       "code": "014881",
       "name": "天弘机器人ETF联接C",
       "channel": "ashare",
-      "bullish_count": 4,
+      "bullish_count": 10,
       "bearish_count": 0,
-      "neutral_count": 8,
-      "sentiment_score": 4,
+      "neutral_count": 14,
+      "sentiment_score": 10,
       "sentiment_label": "偏多",
       "top_impact_news": [
         {
@@ -278,10 +278,10 @@
       "code": "025647",
       "name": "平安高端装备混合C",
       "channel": "ashare",
-      "bullish_count": 4,
+      "bullish_count": 10,
       "bearish_count": 0,
-      "neutral_count": 8,
-      "sentiment_score": 4,
+      "neutral_count": 14,
+      "sentiment_score": 10,
       "sentiment_label": "偏多",
       "top_impact_news": [
         {

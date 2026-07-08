@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-08 04:20",
+  "updated_at": "2026-07-08 12:21",
   "portfolio_updateTime": "2026-07-08",
   "funds": [
     {
@@ -315,7 +315,7 @@
       "rank_percentile_ytd": 55.4,
       "max_drawdown_pct": 25.46,
       "alpha_analysis": {
-        "fund_annual_pct": 55.5,
+        "fund_annual_pct": 47.28,
         "benchmark_annual_pct": "数据缺失",
         "alpha_pct": "数据缺失",
         "benchmark": "沪深300",
@@ -324,145 +324,10 @@
       },
       "alpha_pct": "数据缺失",
       "holdings_analysis": {
-        "status": "ok",
-        "latest_quarter": "2026年1季度股票投资明细",
-        "top5_concentration_pct": 30.27,
-        "top10_concentration_pct": 51.29,
-        "top_holdings": [
-          {
-            "stock_code": "600879",
-            "stock_name": "航天电子",
-            "ratio_pct": 8.61
-          },
-          {
-            "stock_code": "002149",
-            "stock_name": "西部材料",
-            "ratio_pct": 6.49
-          },
-          {
-            "stock_code": "688387",
-            "stock_name": "信科移动",
-            "ratio_pct": 5.48
-          },
-          {
-            "stock_code": "600118",
-            "stock_name": "中国卫星",
-            "ratio_pct": 5.16
-          },
-          {
-            "stock_code": "688270",
-            "stock_name": "臻镭科技",
-            "ratio_pct": 4.53
-          },
-          {
-            "stock_code": "001400",
-            "stock_name": "江顺科技",
-            "ratio_pct": 4.51
-          },
-          {
-            "stock_code": "688378",
-            "stock_name": "奥来德",
-            "ratio_pct": 4.36
-          },
-          {
-            "stock_code": "688385",
-            "stock_name": "复旦微电",
-            "ratio_pct": 4.15
-          },
-          {
-            "stock_code": "688818",
-            "stock_name": "电科蓝天",
-            "ratio_pct": 4.09
-          },
-          {
-            "stock_code": "300751",
-            "stock_name": "迈为股份",
-            "ratio_pct": 3.91
-          }
-        ]
+        "status": "数据缺失",
+        "top_holdings": []
       },
-      "holdings_rated": [
-        {
-          "stock_code": "600879",
-          "stock_name": "航天电子",
-          "ratio_pct": 8.61,
-          "rating": "灰",
-          "rating_label": "不予评级",
-          "score": null,
-          "score_max": null,
-          "reason": "航天电子 属于高技术/半导体/AI算力领域，长期竞争格局超出巴菲特框架与普通投资者能力圈，诚实标注「不知道」，不强行评级。"
-        },
-        {
-          "stock_code": "002149",
-          "stock_name": "西部材料",
-          "ratio_pct": 6.49,
-          "rating": "红",
-          "rating_label": "回避",
-          "score": 3,
-          "score_max": 10,
-          "reason": "西部材料 质地偏弱（3/10），评「红-回避」。"
-        },
-        {
-          "stock_code": "688387",
-          "stock_name": "信科移动",
-          "ratio_pct": 5.48,
-          "rating": "灰",
-          "rating_label": "不予评级",
-          "score": null,
-          "score_max": null,
-          "reason": "信科移动 属于高技术/半导体/AI算力领域，长期竞争格局超出巴菲特框架与普通投资者能力圈，诚实标注「不知道」，不强行评级。"
-        },
-        {
-          "stock_code": "600118",
-          "stock_name": "中国卫星",
-          "ratio_pct": 5.16,
-          "rating": "灰",
-          "rating_label": "不予评级",
-          "score": null,
-          "score_max": null,
-          "reason": "中国卫星 属于高技术/半导体/AI算力领域，长期竞争格局超出巴菲特框架与普通投资者能力圈，诚实标注「不知道」，不强行评级。"
-        },
-        {
-          "stock_code": "688270",
-          "stock_name": "臻镭科技",
-          "ratio_pct": 4.53,
-          "rating": "灰",
-          "rating_label": "不予评级",
-          "score": null,
-          "score_max": null,
-          "reason": "臻镭科技 属于高技术/半导体/AI算力领域，长期竞争格局超出巴菲特框架与普通投资者能力圈，诚实标注「不知道」，不强行评级。"
-        },
-        {
-          "stock_code": "001400",
-          "stock_name": "江顺科技",
-          "ratio_pct": 4.51,
-          "rating": "黄",
-          "rating_label": "观察",
-          "score": 5,
-          "score_max": 10,
-          "reason": "江顺科技 质地中等（5/10）且处能力圈边缘，评「黄-观察」。"
-        },
-        {
-          "stock_code": "688378",
-          "stock_name": "奥来德",
-          "ratio_pct": 4.36,
-          "rating": "灰",
-          "rating_label": "不予评级",
-          "score": null,
-          "score_max": null,
-          "reason": "奥来德 属于高技术/半导体/AI算力领域，长期竞争格局超出巴菲特框架与普通投资者能力圈，诚实标注「不知道」，不强行评级。"
-        }
-      ],
-      "quality_summary": {
-        "weight_by_rating_pct": {
-          "绿": 0.0,
-          "黄": 11.5,
-          "红": 16.6,
-          "灰": 71.9
-        },
-        "green_yellow_pct": 11.5,
-        "verdict": "前7大重仓中约 12% 权重为绿/黄评级，底层质地偏弱"
-      },
+      "holdings_rated": [],
       "diagnosis": {
         "action": "建议评估替换",
         "score": 20,

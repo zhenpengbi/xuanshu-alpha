@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-08 04:17",
+  "updated_at": "2026-07-08 12:14",
   "triggered": false,
   "avg_sell_score": 0.7,
   "panic_threshold": 2.0,
@@ -22,8 +22,8 @@
       "code": "516780",
       "name": "稀土ETF华泰柏瑞",
       "drop_60d_pct": 49.25,
-      "today_chg_pct": -2.42,
-      "scale_bn": 20.53,
+      "today_chg_pct": -4.42,
+      "scale_bn": 20.09,
       "rsi14": 33.21,
       "signal": "低位观察",
       "reason": "近60日跌幅 49.2%，RSI=33.2（低位区间），可小仓位试探"
