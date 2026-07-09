@@ -1,6 +1,6 @@
 {
-  "portfolio_updateTime": "2026-07-08",
-  "updated_at": "2026-07-08 12:21",
+  "portfolio_updateTime": "2026-07-09",
+  "updated_at": "2026-07-09 05:00",
   "total_value": 55192.85,
   "rebalance_threshold_pct": 5.0,
   "bullet": {
@@ -114,7 +114,7 @@
       "deviation_amount": 441.54,
       "signal": null,
       "action": "建议调研替换",
-      "reason": "⚠️ 代码与名称不符（官方:平安高端装备混合发起式C）；同类排名前55%；今年以来同类排名 55%（落后同类）  |  警告：⚠️ 代码 025647 官方名称与持仓标注不符，请核实！官方：平安高端装备混合发起式C，持仓标注：平安高端装备混合C",
+      "reason": "⚠️ 代码与名称不符（官方:平安高端装备混合发起式C）；同类排名前60%；今年以来同类排名 60%（落后同类）  |  警告：⚠️ 代码 025647 官方名称与持仓标注不符，请核实！官方：平安高端装备混合发起式C，持仓标注：平安高端装备混合C",
       "priority": "medium",
       "recommend_amount": null,
       "needs_action": false,

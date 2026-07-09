@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-07-08 12:21",
-  "portfolio_updateTime": "2026-07-08",
+  "updated_at": "2026-07-09 05:00",
+  "portfolio_updateTime": "2026-07-09",
   "funds": [
     {
       "code": "015790",
@@ -12,21 +12,21 @@
       "company": "永赢基金管理有限公司",
       "inception_date": "2022-07-15",
       "name_mismatch": true,
-      "manager_tenure_days": 1951,
+      "manager_tenure_days": 1952,
       "performance_ranking": [
         {
           "period": "成立以来",
-          "return_pct": 40.38,
+          "return_pct": 34.95,
           "max_dd_pct": 51.78,
-          "rank": "2232/5486",
-          "percentile": 40.7
+          "rank": "2349/5486",
+          "percentile": 42.8
         },
         {
           "period": "今年以来",
-          "return_pct": -1.38,
+          "return_pct": -5.19,
           "max_dd_pct": 24.47,
-          "rank": "3630/5487",
-          "percentile": 66.2
+          "rank": "4010/5487",
+          "percentile": 73.1
         },
         {
           "period": "2025",
@@ -58,44 +58,44 @@
         },
         {
           "period": "近1月",
-          "return_pct": 0.11,
+          "return_pct": -0.95,
           "max_dd_pct": null,
-          "rank": "2871/5417",
-          "percentile": 53.0
+          "rank": "3633/5417",
+          "percentile": 67.1
         },
         {
           "period": "近3月",
-          "return_pct": 5.16,
+          "return_pct": -4.3,
           "max_dd_pct": 22.37,
-          "rank": "2850/5259",
-          "percentile": 54.2
+          "rank": "3482/5259",
+          "percentile": 66.2
         },
         {
           "period": "近6月",
-          "return_pct": -5.7,
+          "return_pct": -13.33,
           "max_dd_pct": 24.47,
-          "rank": "3496/5059",
-          "percentile": 69.1
+          "rank": "4275/5059",
+          "percentile": 84.5
         },
         {
           "period": "近1年",
-          "return_pct": 77.94,
+          "return_pct": 68.58,
           "max_dd_pct": 24.47,
-          "rank": "957/4642",
-          "percentile": 20.6
+          "rank": "1048/4643",
+          "percentile": 22.6
         },
         {
           "period": "近3年",
-          "return_pct": 76.16,
+          "return_pct": 69.34,
           "max_dd_pct": 42.09,
-          "rank": "715/3605",
-          "percentile": 19.8
+          "rank": "793/3605",
+          "percentile": 22.0
         }
       ],
-      "rank_percentile_ytd": 66.2,
+      "rank_percentile_ytd": 73.1,
       "max_drawdown_pct": 51.78,
       "alpha_analysis": {
-        "fund_annual_pct": 21.46,
+        "fund_annual_pct": 19.78,
         "benchmark_annual_pct": "数据缺失",
         "alpha_pct": "数据缺失",
         "benchmark": "沪深300",
@@ -247,7 +247,7 @@
         "action": "建议评估替换",
         "score": 30,
         "reasons": [
-          "今年以来同类排名 66%（落后同类）",
+          "今年以来同类排名 73%（落后同类）",
           "基金经理任职 5.3 年，管理经验相对充分"
         ],
         "warnings": [
@@ -267,21 +267,21 @@
       "company": "平安基金管理有限公司",
       "inception_date": "2025-10-30",
       "name_mismatch": true,
-      "manager_tenure_days": 239,
+      "manager_tenure_days": 240,
       "performance_ranking": [
         {
           "period": "成立以来",
-          "return_pct": 32.82,
+          "return_pct": 28.46,
           "max_dd_pct": 25.46,
-          "rank": "2462/5486",
-          "percentile": 44.9
+          "rank": "2559/5486",
+          "percentile": 46.6
         },
         {
           "period": "今年以来",
-          "return_pct": 3.32,
+          "return_pct": -0.07,
           "max_dd_pct": 25.46,
-          "rank": "3042/5487",
-          "percentile": 55.4
+          "rank": "3307/5487",
+          "percentile": 60.3
         },
         {
           "period": "2025",
@@ -292,27 +292,27 @@
         },
         {
           "period": "近1月",
-          "return_pct": 1.47,
+          "return_pct": 2.15,
           "max_dd_pct": null,
-          "rank": "2395/5417",
-          "percentile": 44.2
+          "rank": "2564/5417",
+          "percentile": 47.3
         },
         {
           "period": "近3月",
-          "return_pct": 14.66,
+          "return_pct": 3.14,
           "max_dd_pct": 22.52,
-          "rank": "2072/5259",
-          "percentile": 39.4
+          "rank": "2561/5259",
+          "percentile": 48.7
         },
         {
           "period": "近6月",
-          "return_pct": -0.35,
+          "return_pct": -8.71,
           "max_dd_pct": 25.46,
-          "rank": "2884/5059",
-          "percentile": 57.0
+          "rank": "3801/5059",
+          "percentile": 75.1
         }
       ],
-      "rank_percentile_ytd": 55.4,
+      "rank_percentile_ytd": 60.3,
       "max_drawdown_pct": 25.46,
       "alpha_analysis": {
         "fund_annual_pct": 47.28,
@@ -324,15 +324,150 @@
       },
       "alpha_pct": "数据缺失",
       "holdings_analysis": {
-        "status": "数据缺失",
-        "top_holdings": []
+        "status": "ok",
+        "latest_quarter": "2026年1季度股票投资明细",
+        "top5_concentration_pct": 30.27,
+        "top10_concentration_pct": 51.29,
+        "top_holdings": [
+          {
+            "stock_code": "600879",
+            "stock_name": "航天电子",
+            "ratio_pct": 8.61
+          },
+          {
+            "stock_code": "002149",
+            "stock_name": "西部材料",
+            "ratio_pct": 6.49
+          },
+          {
+            "stock_code": "688387",
+            "stock_name": "信科移动",
+            "ratio_pct": 5.48
+          },
+          {
+            "stock_code": "600118",
+            "stock_name": "中国卫星",
+            "ratio_pct": 5.16
+          },
+          {
+            "stock_code": "688270",
+            "stock_name": "臻镭科技",
+            "ratio_pct": 4.53
+          },
+          {
+            "stock_code": "001400",
+            "stock_name": "江顺科技",
+            "ratio_pct": 4.51
+          },
+          {
+            "stock_code": "688378",
+            "stock_name": "奥来德",
+            "ratio_pct": 4.36
+          },
+          {
+            "stock_code": "688385",
+            "stock_name": "复旦微电",
+            "ratio_pct": 4.15
+          },
+          {
+            "stock_code": "688818",
+            "stock_name": "电科蓝天",
+            "ratio_pct": 4.09
+          },
+          {
+            "stock_code": "300751",
+            "stock_name": "迈为股份",
+            "ratio_pct": 3.91
+          }
+        ]
       },
-      "holdings_rated": [],
+      "holdings_rated": [
+        {
+          "stock_code": "600879",
+          "stock_name": "航天电子",
+          "ratio_pct": 8.61,
+          "rating": "灰",
+          "rating_label": "不予评级",
+          "score": null,
+          "score_max": null,
+          "reason": "航天电子 属于高技术/半导体/AI算力领域，长期竞争格局超出巴菲特框架与普通投资者能力圈，诚实标注「不知道」，不强行评级。"
+        },
+        {
+          "stock_code": "002149",
+          "stock_name": "西部材料",
+          "ratio_pct": 6.49,
+          "rating": "红",
+          "rating_label": "回避",
+          "score": 3,
+          "score_max": 10,
+          "reason": "西部材料 质地偏弱（3/10），评「红-回避」。"
+        },
+        {
+          "stock_code": "688387",
+          "stock_name": "信科移动",
+          "ratio_pct": 5.48,
+          "rating": "灰",
+          "rating_label": "不予评级",
+          "score": null,
+          "score_max": null,
+          "reason": "信科移动 属于高技术/半导体/AI算力领域，长期竞争格局超出巴菲特框架与普通投资者能力圈，诚实标注「不知道」，不强行评级。"
+        },
+        {
+          "stock_code": "600118",
+          "stock_name": "中国卫星",
+          "ratio_pct": 5.16,
+          "rating": "灰",
+          "rating_label": "不予评级",
+          "score": null,
+          "score_max": null,
+          "reason": "中国卫星 属于高技术/半导体/AI算力领域，长期竞争格局超出巴菲特框架与普通投资者能力圈，诚实标注「不知道」，不强行评级。"
+        },
+        {
+          "stock_code": "688270",
+          "stock_name": "臻镭科技",
+          "ratio_pct": 4.53,
+          "rating": "灰",
+          "rating_label": "不予评级",
+          "score": null,
+          "score_max": null,
+          "reason": "臻镭科技 属于高技术/半导体/AI算力领域，长期竞争格局超出巴菲特框架与普通投资者能力圈，诚实标注「不知道」，不强行评级。"
+        },
+        {
+          "stock_code": "001400",
+          "stock_name": "江顺科技",
+          "ratio_pct": 4.51,
+          "rating": "黄",
+          "rating_label": "观察",
+          "score": 5,
+          "score_max": 10,
+          "reason": "江顺科技 质地中等（5/10）且处能力圈边缘，评「黄-观察」。"
+        },
+        {
+          "stock_code": "688378",
+          "stock_name": "奥来德",
+          "ratio_pct": 4.36,
+          "rating": "灰",
+          "rating_label": "不予评级",
+          "score": null,
+          "score_max": null,
+          "reason": "奥来德 属于高技术/半导体/AI算力领域，长期竞争格局超出巴菲特框架与普通投资者能力圈，诚实标注「不知道」，不强行评级。"
+        }
+      ],
+      "quality_summary": {
+        "weight_by_rating_pct": {
+          "绿": 0.0,
+          "黄": 11.5,
+          "红": 16.6,
+          "灰": 71.9
+        },
+        "green_yellow_pct": 11.5,
+        "verdict": "前7大重仓中约 12% 权重为绿/黄评级，底层质地偏弱"
+      },
       "diagnosis": {
         "action": "建议评估替换",
         "score": 20,
         "reasons": [
-          "今年以来同类排名 55%（落后同类）"
+          "今年以来同类排名 60%（落后同类）"
         ],
         "warnings": [
           "⚠️ 代码 025647 官方名称与持仓标注不符，请核实！官方：平安高端装备混合发起式C，持仓标注：平安高端装备混合C",
