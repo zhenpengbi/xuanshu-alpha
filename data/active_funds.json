@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-09 05:00",
+  "updated_at": "2026-07-09 13:48",
   "portfolio_updateTime": "2026-07-09",
   "funds": [
     {
@@ -16,14 +16,14 @@
       "performance_ranking": [
         {
           "period": "成立以来",
-          "return_pct": 34.95,
+          "return_pct": 41.79,
           "max_dd_pct": 51.78,
           "rank": "2349/5486",
           "percentile": 42.8
         },
         {
           "period": "今年以来",
-          "return_pct": -5.19,
+          "return_pct": -0.39,
           "max_dd_pct": 24.47,
           "rank": "4010/5487",
           "percentile": 73.1
@@ -58,35 +58,35 @@
         },
         {
           "period": "近1月",
-          "return_pct": -0.95,
+          "return_pct": 2.77,
           "max_dd_pct": null,
           "rank": "3633/5417",
           "percentile": 67.1
         },
         {
           "period": "近3月",
-          "return_pct": -4.3,
+          "return_pct": 1.87,
           "max_dd_pct": 22.37,
           "rank": "3482/5259",
           "percentile": 66.2
         },
         {
           "period": "近6月",
-          "return_pct": -13.33,
+          "return_pct": -13.06,
           "max_dd_pct": 24.47,
           "rank": "4275/5059",
           "percentile": 84.5
         },
         {
           "period": "近1年",
-          "return_pct": 68.58,
+          "return_pct": 79.53,
           "max_dd_pct": 24.47,
           "rank": "1048/4643",
           "percentile": 22.6
         },
         {
           "period": "近3年",
-          "return_pct": 69.34,
+          "return_pct": 77.93,
           "max_dd_pct": 42.09,
           "rank": "793/3605",
           "percentile": 22.0
@@ -95,7 +95,7 @@
       "rank_percentile_ytd": 73.1,
       "max_drawdown_pct": 51.78,
       "alpha_analysis": {
-        "fund_annual_pct": 19.78,
+        "fund_annual_pct": 21.82,
         "benchmark_annual_pct": "数据缺失",
         "alpha_pct": "数据缺失",
         "benchmark": "沪深300",
@@ -271,14 +271,14 @@
       "performance_ranking": [
         {
           "period": "成立以来",
-          "return_pct": 28.46,
+          "return_pct": 37.32,
           "max_dd_pct": 25.46,
           "rank": "2559/5486",
           "percentile": 46.6
         },
         {
           "period": "今年以来",
-          "return_pct": -0.07,
+          "return_pct": 6.82,
           "max_dd_pct": 25.46,
           "rank": "3307/5487",
           "percentile": 60.3
@@ -292,21 +292,21 @@
         },
         {
           "period": "近1月",
-          "return_pct": 2.15,
+          "return_pct": 7.95,
           "max_dd_pct": null,
           "rank": "2564/5417",
           "percentile": 47.3
         },
         {
           "period": "近3月",
-          "return_pct": 3.14,
+          "return_pct": 10.95,
           "max_dd_pct": 22.52,
           "rank": "2561/5259",
           "percentile": 48.7
         },
         {
           "period": "近6月",
-          "return_pct": -8.71,
+          "return_pct": -6.55,
           "max_dd_pct": 25.46,
           "rank": "3801/5059",
           "percentile": 75.1
@@ -315,11 +315,11 @@
       "rank_percentile_ytd": 60.3,
       "max_drawdown_pct": 25.46,
       "alpha_analysis": {
-        "fund_annual_pct": 47.28,
+        "fund_annual_pct": 62.79,
         "benchmark_annual_pct": "数据缺失",
         "alpha_pct": "数据缺失",
         "benchmark": "沪深300",
-        "period_years": 0.6,
+        "period_years": 0.7,
         "note": "基准数据缺失，alpha 无法计算"
       },
       "alpha_pct": "数据缺失",

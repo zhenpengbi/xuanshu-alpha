@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-07-09 04:57",
+  "updated_at": "2026-07-09 13:44",
   "triggered": false,
-  "avg_sell_score": 1.0,
+  "avg_sell_score": 0.6,
   "panic_threshold": 2.0,
   "scan_params": {
     "panic_scan": {
@@ -15,89 +15,8 @@
       "rsi_threshold": 40
     }
   },
-  "message": "当前无超跌机会（avg_sell_score=1.00 < 2.0，市场情绪平稳）",
+  "message": "当前无超跌机会（avg_sell_score=0.60 < 2.0，市场情绪平稳）",
   "recommendations": [],
-  "undervalued": [
-    {
-      "code": "561330",
-      "name": "矿业ETF国泰",
-      "drop_60d_pct": 57.79,
-      "today_chg_pct": -4.38,
-      "scale_bn": 14.97,
-      "rsi14": 20.05,
-      "signal": "超跌反弹",
-      "reason": "近60日跌幅 57.8%，RSI=20.1<30（深度超卖），关注反弹机会"
-    },
-    {
-      "code": "515210",
-      "name": "钢铁ETF国泰",
-      "drop_60d_pct": 21.84,
-      "today_chg_pct": -3.25,
-      "scale_bn": 10.25,
-      "rsi14": 29.39,
-      "signal": "超跌反弹",
-      "reason": "近60日跌幅 21.8%，RSI=29.4<30（深度超卖），关注反弹机会"
-    },
-    {
-      "code": "516780",
-      "name": "稀土ETF华泰柏瑞",
-      "drop_60d_pct": 51.73,
-      "today_chg_pct": -4.85,
-      "scale_bn": 19.3,
-      "rsi14": 30.04,
-      "signal": "低位观察",
-      "reason": "近60日跌幅 51.7%，RSI=30.0（低位区间），可小仓位试探"
-    },
-    {
-      "code": "516650",
-      "name": "有色金属ETF华夏",
-      "drop_60d_pct": 17.13,
-      "today_chg_pct": -4.42,
-      "scale_bn": 86.37,
-      "rsi14": 36.31,
-      "signal": "低位观察",
-      "reason": "近60日跌幅 17.1%，RSI=36.3（低位区间），可小仓位试探"
-    },
-    {
-      "code": "512400",
-      "name": "有色金属ETF南方",
-      "drop_60d_pct": 16.51,
-      "today_chg_pct": -4.0,
-      "scale_bn": 212.59,
-      "rsi14": 34.89,
-      "signal": "低位观察",
-      "reason": "近60日跌幅 16.5%，RSI=34.9（低位区间），可小仓位试探"
-    },
-    {
-      "code": "512940",
-      "name": "有色ETF华安",
-      "drop_60d_pct": 15.29,
-      "today_chg_pct": -4.74,
-      "scale_bn": 16.26,
-      "rsi14": 35.9,
-      "signal": "低位观察",
-      "reason": "近60日跌幅 15.3%，RSI=35.9（低位区间），可小仓位试探"
-    },
-    {
-      "code": "560860",
-      "name": "工业有色ETF万家",
-      "drop_60d_pct": 11.93,
-      "today_chg_pct": -4.03,
-      "scale_bn": 86.62,
-      "rsi14": 35.58,
-      "signal": "低位观察",
-      "reason": "近60日跌幅 11.9%，RSI=35.6（低位区间），可小仓位试探"
-    },
-    {
-      "code": "515030",
-      "name": "新能源车ETF华夏",
-      "drop_60d_pct": 10.51,
-      "today_chg_pct": -3.43,
-      "scale_bn": 27.23,
-      "rsi14": 34.61,
-      "signal": "低位观察",
-      "reason": "近60日跌幅 10.5%，RSI=34.6（低位区间），可小仓位试探"
-    }
-  ],
+  "undervalued": [],
   "disclaimer": "以上仅为量化扫描结果，不构成投资建议，投资者需自行承担风险"
 }
