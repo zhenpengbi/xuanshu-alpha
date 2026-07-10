@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-09 13:41",
+  "updated_at": "2026-07-10 04:52",
   "signals": [
     {
       "code": "002963",
@@ -42,10 +42,10 @@
     {
       "code": "010990",
       "name": "南方有色金属ETF联接E",
-      "rsi14": 35.03,
-      "ma5": 1.78826,
-      "ma20": 1.870965,
-      "macd_hist": -0.0247258,
+      "rsi14": 34.48,
+      "ma5": 1.76604,
+      "ma20": 1.86631,
+      "macd_hist": -0.02813786,
       "macd_trend": "bearish",
       "signal": "持有",
       "reason": "品类有色金属整体超配+8.2pt（合计14.2%/目标6.0%），不择时减仓",
@@ -53,8 +53,8 @@
       "sell_score": 2,
       "asset_type": "trend",
       "signal_type": "trend_hold_cat_overweight",
-      "valuation_verdict": "适中",
-      "valuation_score": 50,
+      "valuation_verdict": "适中偏低",
+      "valuation_score": 35,
       "deviation_pt": 8.2,
       "action_detail": "南方有色金属ETF联接E 所属品类有色金属整体超配8.2pt，趋势型不建议择时减仓，维持持有"
     },
@@ -80,21 +80,21 @@
     {
       "code": "012885",
       "name": "华夏中证光伏产业ETF联接A",
-      "rsi14": 28.72,
-      "ma5": 0.59704,
-      "ma20": 0.631755,
-      "macd_hist": -0.01123137,
+      "rsi14": 32.8,
+      "ma5": 0.58986,
+      "ma20": 0.629075,
+      "macd_hist": -0.01104603,
       "macd_trend": "bearish",
-      "signal": "可加仓",
-      "reason": "RSI超卖(28.7<30)→买入 · MA5<MA20空头 · MACD柱负向；估值适中(score=50)适中，技术信号偏多",
-      "buy_score": 2,
+      "signal": "谨慎持有",
+      "reason": "RSI偏低(32.8) · MA5<MA20空头 · MACD柱负向；估值偏贵(score=70)偏高，技术趋弱",
+      "buy_score": 1,
       "sell_score": 2,
       "asset_type": "oscillation",
-      "signal_type": "oscillation_add_mid",
-      "valuation_verdict": "适中",
-      "valuation_score": 50,
+      "signal_type": "oscillation_caution",
+      "valuation_verdict": "偏贵",
+      "valuation_score": 70,
       "deviation_pt": 2.8,
-      "action_detail": "华夏中证光伏产业ETF联接A 技术偏多(buy=2)，估值适中(score=50)，可小仓位介入"
+      "action_detail": "华夏中证光伏产业ETF联接A 技术趋弱(sell=2)且估值偏高(score=70，偏贵)，建议谨慎持有，不加仓"
     },
     {
       "code": "015790",
