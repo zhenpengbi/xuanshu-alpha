@@ -23,9 +23,9 @@
   {
     "code": "011840",
     "name": "天弘中证人工智能主题指数C",
-    "price": 2.0485,
-    "change_pct": -2.8,
-    "updated_at": "2026-07-13"
+    "price": 2.0823,
+    "change_pct": 1.65,
+    "updated_at": "2026-07-14"
   },
   {
     "code": "012885",
@@ -51,8 +51,8 @@
   {
     "code": "014881",
     "name": "天弘中证机器人ETF联接C",
-    "price": 1.2303,
-    "change_pct": -5.47,
-    "updated_at": "2026-07-13"
+    "price": 1.238,
+    "change_pct": 0.63,
+    "updated_at": "2026-07-14"
   }
 ]

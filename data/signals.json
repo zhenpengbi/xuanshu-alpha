@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-14 03:57",
+  "updated_at": "2026-07-14 12:04",
   "signals": [
     {
       "code": "002963",
@@ -61,10 +61,10 @@
     {
       "code": "011840",
       "name": "天弘中证人工智能主题指数C",
-      "rsi14": 50.62,
-      "ma5": 2.0779,
-      "ma20": 2.074645,
-      "macd_hist": -0.01194304,
+      "rsi14": 52.79,
+      "ma5": 2.09056,
+      "ma20": 2.080925,
+      "macd_hist": -0.01166054,
       "macd_trend": "bearish",
       "signal": "高估警惕",
       "reason": "估值高估(score=88)，注意高估风险",
@@ -137,13 +137,13 @@
     {
       "code": "014881",
       "name": "天弘中证机器人ETF联接C",
-      "rsi14": 39.03,
-      "ma5": 1.2881,
-      "ma20": 1.325435,
-      "macd_hist": -0.01884028,
+      "rsi14": 40.14,
+      "ma5": 1.26938,
+      "ma20": 1.321515,
+      "macd_hist": -0.02234253,
       "macd_trend": "bearish",
       "signal": "谨慎持有",
-      "reason": "RSI偏低(39.0) · MA5<MA20空头 · MACD柱负向；估值高估(score=88)偏高，技术趋弱",
+      "reason": "RSI偏低(40.1) · MA5<MA20空头 · MACD柱负向；估值高估(score=88)偏高，技术趋弱",
       "buy_score": 1,
       "sell_score": 2,
       "asset_type": "oscillation",
@@ -161,16 +161,16 @@
       "ma20": null,
       "macd_hist": null,
       "macd_trend": "",
-      "signal": "估值偏贵等回调",
-      "reason": "纳指100当前持仓为0(目标18%)，偏贵(score=70)",
+      "signal": "估值适中可试水",
+      "reason": "纳指100当前持仓为0(目标18%)，适中(score=50)",
       "buy_score": 0,
       "sell_score": 0,
       "asset_type": "pending",
       "signal_type": "pending_build",
-      "valuation_verdict": "偏贵",
-      "valuation_score": 70,
+      "valuation_verdict": "适中",
+      "valuation_score": 50,
       "deviation_pt": -18.0,
-      "action_detail": "估值偏高(score=70，偏贵)，建议等待纳指100估值回落再建仓"
+      "action_detail": "估值适中(score=50，适中)，纳指100目标仓位18%，可小额开始建仓"
     },
     {
       "code": "007722",

@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-14 03:57",
+  "updated_at": "2026-07-14 12:04",
   "indicators": [
     {
       "code": "002963",
@@ -49,16 +49,16 @@
     {
       "code": "011840",
       "name": "天弘中证人工智能主题指数C",
-      "rsi14": 50.62,
-      "ma5": 2.0779,
-      "ma20": 2.074645,
-      "prev_ma5": 2.07352,
-      "prev_ma20": 2.065,
-      "macd_dif": 0.03083775,
-      "macd_dea": 0.03680927,
-      "macd_hist": -0.01194304,
+      "rsi14": 52.79,
+      "ma5": 2.09056,
+      "ma20": 2.080925,
+      "prev_ma5": 2.0779,
+      "prev_ma20": 2.074645,
+      "macd_dif": 0.02895505,
+      "macd_dea": 0.03478532,
+      "macd_hist": -0.01166054,
       "macd_trend": "bearish",
-      "latest_price": 2.0485,
+      "latest_price": 2.0823,
       "prices_used": 60
     },
     {
@@ -109,16 +109,16 @@
     {
       "code": "014881",
       "name": "天弘中证机器人ETF联接C",
-      "rsi14": 39.03,
-      "ma5": 1.2881,
-      "ma20": 1.325435,
-      "prev_ma5": 1.31194,
-      "prev_ma20": 1.32758,
-      "macd_dif": -0.00961149,
-      "macd_dea": -0.00019135,
-      "macd_hist": -0.01884028,
+      "rsi14": 40.14,
+      "ma5": 1.26938,
+      "ma20": 1.321515,
+      "prev_ma5": 1.2881,
+      "prev_ma20": 1.325435,
+      "macd_dif": -0.01450143,
+      "macd_dea": -0.00333017,
+      "macd_hist": -0.02234253,
       "macd_trend": "bearish",
-      "latest_price": 1.2303,
+      "latest_price": 1.238,
       "prices_used": 60
     }
   ]

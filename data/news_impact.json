@@ -1,18 +1,18 @@
 {
-  "updated_at": "2026-07-14 03:58",
+  "updated_at": "2026-07-14 12:04",
   "news_date": "2026-07-14",
-  "news_period": "早报",
-  "total_news": 12,
+  "news_period": "早报/晚报",
+  "total_news": 24,
   "items": [
     {
       "code": "002963",
       "name": "易方达黄金ETF联接C",
       "channel": "gold",
-      "bullish_count": 0,
+      "bullish_count": 3,
       "bearish_count": 2,
-      "neutral_count": 10,
-      "sentiment_score": -2,
-      "sentiment_label": "偏空",
+      "neutral_count": 19,
+      "sentiment_score": 1,
+      "sentiment_label": "偏多",
       "top_impact_news": [
         {
           "title": "美伊冲突再度升级，贵金属概念盘中走弱，现货黄金4000美元附近震荡 | 异动情报",
@@ -27,10 +27,10 @@
           "sentiment": "利空"
         },
         {
-          "title": "习近平将出席2026世界人工智能大会暨人工智能全球治理高级别会议开幕式并发表主旨讲话",
-          "time": "早报 · 宏观",
-          "summary": "2026世界人工智能大会暨人工智能全球治理高级别会议将于7月17日至20日在上海举行。国家主席习近平将出席大会开幕式并发表主旨讲话。",
-          "sentiment": "中性"
+          "title": "A股三大指数全线收涨 贵金属指数涨超5%",
+          "time": "晚报 · 黄金",
+          "summary": "国泰海通证券研报指出，建议布局贵金属板块。美国6月非农就业超预期走弱，而核心CPI、核心PCE数据相对平稳，市场调低对美国经济走强的置信度。叠加沃什最新表态偏鸽，贵金属价格得到支撑。贵金属长期逻辑仍然坚实，长周期布局时点逐步到来。",
+          "sentiment": "利多"
         }
       ]
     },
@@ -38,11 +38,11 @@
       "code": "000307",
       "name": "易方达黄金ETF联接A",
       "channel": "gold",
-      "bullish_count": 0,
+      "bullish_count": 3,
       "bearish_count": 2,
-      "neutral_count": 10,
-      "sentiment_score": -2,
-      "sentiment_label": "偏空",
+      "neutral_count": 19,
+      "sentiment_score": 1,
+      "sentiment_label": "偏多",
       "top_impact_news": [
         {
           "title": "美伊冲突再度升级，贵金属概念盘中走弱，现货黄金4000美元附近震荡 | 异动情报",
@@ -57,10 +57,10 @@
           "sentiment": "利空"
         },
         {
-          "title": "习近平将出席2026世界人工智能大会暨人工智能全球治理高级别会议开幕式并发表主旨讲话",
-          "time": "早报 · 宏观",
-          "summary": "2026世界人工智能大会暨人工智能全球治理高级别会议将于7月17日至20日在上海举行。国家主席习近平将出席大会开幕式并发表主旨讲话。",
-          "sentiment": "中性"
+          "title": "A股三大指数全线收涨 贵金属指数涨超5%",
+          "time": "晚报 · 黄金",
+          "summary": "国泰海通证券研报指出，建议布局贵金属板块。美国6月非农就业超预期走弱，而核心CPI、核心PCE数据相对平稳，市场调低对美国经济走强的置信度。叠加沃什最新表态偏鸽，贵金属价格得到支撑。贵金属长期逻辑仍然坚实，长周期布局时点逐步到来。",
+          "sentiment": "利多"
         }
       ]
     },
@@ -68,10 +68,10 @@
       "code": "011840",
       "name": "天弘中证人工智能C",
       "channel": "ashare",
-      "bullish_count": 3,
+      "bullish_count": 5,
       "bearish_count": 0,
-      "neutral_count": 9,
-      "sentiment_score": 3,
+      "neutral_count": 19,
+      "sentiment_score": 5,
       "sentiment_label": "偏多",
       "top_impact_news": [
         {
@@ -98,10 +98,10 @@
       "code": "010990",
       "name": "南方有色金属ETF联接E",
       "channel": "ashare",
-      "bullish_count": 3,
+      "bullish_count": 5,
       "bearish_count": 0,
-      "neutral_count": 9,
-      "sentiment_score": 3,
+      "neutral_count": 19,
+      "sentiment_score": 5,
       "sentiment_label": "偏多",
       "top_impact_news": [
         {
@@ -128,10 +128,10 @@
       "code": "012885",
       "name": "华夏光伏ETF联接A",
       "channel": "ashare",
-      "bullish_count": 3,
+      "bullish_count": 5,
       "bearish_count": 0,
-      "neutral_count": 9,
-      "sentiment_score": 3,
+      "neutral_count": 19,
+      "sentiment_score": 5,
       "sentiment_label": "偏多",
       "top_impact_news": [
         {
@@ -158,9 +158,9 @@
       "code": "513100",
       "name": "纳指100ETF",
       "channel": "nasdaq",
-      "bullish_count": 0,
-      "bearish_count": 1,
-      "neutral_count": 11,
+      "bullish_count": 1,
+      "bearish_count": 2,
+      "neutral_count": 21,
       "sentiment_score": -1,
       "sentiment_label": "偏空",
       "top_impact_news": [
@@ -171,16 +171,16 @@
           "sentiment": "利空"
         },
         {
-          "title": "习近平将出席2026世界人工智能大会暨人工智能全球治理高级别会议开幕式并发表主旨讲话",
-          "time": "早报 · 宏观",
-          "summary": "2026世界人工智能大会暨人工智能全球治理高级别会议将于7月17日至20日在上海举行。国家主席习近平将出席大会开幕式并发表主旨讲话。",
-          "sentiment": "中性"
+          "title": "油价飙升引发市场巨震 美联储离加息更进一步？",
+          "time": "晚报 · 美股",
+          "summary": "来源：LSEG，Forex.com 另外意外的是，美联储理事沃勒本周表示“若此次CPI持续远高于2%的目标，美联储可能需要在近期加息”。 作为曾经的鸽派代表人物，沃勒的鹰派转变令美联储9月加息的概率上升至80%。",
+          "sentiment": "利空"
         },
         {
-          "title": "【新思想引领新征程】人工智能蓬勃兴起 锻造高质量发展新引擎",
-          "time": "早报 · 宏观",
-          "summary": "习近平总书记强调，加快发展新一代人工智能是我们赢得全球科技竞争主动权的重要战略抓手，是推动我国科技跨越发展、产业优化升级、生产力整体跃升的重要战略资源。“十五五”开局之年，我国人工智能产业加速壮大、场景应用进一步拓展，正以强劲的创新活力，不断塑造经济高质量发展新动能、新优势。在深圳市福田区的人...",
-          "sentiment": "中性"
+          "title": "中旗新材：公司高纯石英砂产品可应用于光伏、半导体等领域",
+          "time": "晚报 · A股",
+          "summary": "证券日报网讯 7月14日，中旗新材在互动平台回答投资者提问时表示，公司高纯石英砂产品可应用于光伏、半导体等领域，目前高纯石英砂业务仍处于市场拓展阶段，销量相对较小。公司将持续推进高纯石英砂产品的市场开拓，提升业务可持续盈利能力。",
+          "sentiment": "利多"
         }
       ]
     },
@@ -188,9 +188,9 @@
       "code": "513500",
       "name": "标普500ETF",
       "channel": "nasdaq",
-      "bullish_count": 0,
-      "bearish_count": 1,
-      "neutral_count": 11,
+      "bullish_count": 1,
+      "bearish_count": 2,
+      "neutral_count": 21,
       "sentiment_score": -1,
       "sentiment_label": "偏空",
       "top_impact_news": [
@@ -201,16 +201,16 @@
           "sentiment": "利空"
         },
         {
-          "title": "习近平将出席2026世界人工智能大会暨人工智能全球治理高级别会议开幕式并发表主旨讲话",
-          "time": "早报 · 宏观",
-          "summary": "2026世界人工智能大会暨人工智能全球治理高级别会议将于7月17日至20日在上海举行。国家主席习近平将出席大会开幕式并发表主旨讲话。",
-          "sentiment": "中性"
+          "title": "油价飙升引发市场巨震 美联储离加息更进一步？",
+          "time": "晚报 · 美股",
+          "summary": "来源：LSEG，Forex.com 另外意外的是，美联储理事沃勒本周表示“若此次CPI持续远高于2%的目标，美联储可能需要在近期加息”。 作为曾经的鸽派代表人物，沃勒的鹰派转变令美联储9月加息的概率上升至80%。",
+          "sentiment": "利空"
         },
         {
-          "title": "【新思想引领新征程】人工智能蓬勃兴起 锻造高质量发展新引擎",
-          "time": "早报 · 宏观",
-          "summary": "习近平总书记强调，加快发展新一代人工智能是我们赢得全球科技竞争主动权的重要战略抓手，是推动我国科技跨越发展、产业优化升级、生产力整体跃升的重要战略资源。“十五五”开局之年，我国人工智能产业加速壮大、场景应用进一步拓展，正以强劲的创新活力，不断塑造经济高质量发展新动能、新优势。在深圳市福田区的人...",
-          "sentiment": "中性"
+          "title": "中旗新材：公司高纯石英砂产品可应用于光伏、半导体等领域",
+          "time": "晚报 · A股",
+          "summary": "证券日报网讯 7月14日，中旗新材在互动平台回答投资者提问时表示，公司高纯石英砂产品可应用于光伏、半导体等领域，目前高纯石英砂业务仍处于市场拓展阶段，销量相对较小。公司将持续推进高纯石英砂产品的市场开拓，提升业务可持续盈利能力。",
+          "sentiment": "利多"
         }
       ]
     },
@@ -218,10 +218,10 @@
       "code": "015790",
       "name": "永赢高端装备混合C",
       "channel": "ashare",
-      "bullish_count": 3,
+      "bullish_count": 5,
       "bearish_count": 0,
-      "neutral_count": 9,
-      "sentiment_score": 3,
+      "neutral_count": 19,
+      "sentiment_score": 5,
       "sentiment_label": "偏多",
       "top_impact_news": [
         {
@@ -248,10 +248,10 @@
       "code": "014881",
       "name": "天弘机器人ETF联接C",
       "channel": "ashare",
-      "bullish_count": 3,
+      "bullish_count": 5,
       "bearish_count": 0,
-      "neutral_count": 9,
-      "sentiment_score": 3,
+      "neutral_count": 19,
+      "sentiment_score": 5,
       "sentiment_label": "偏多",
       "top_impact_news": [
         {
@@ -278,10 +278,10 @@
       "code": "025647",
       "name": "平安高端装备混合C",
       "channel": "ashare",
-      "bullish_count": 3,
+      "bullish_count": 5,
       "bearish_count": 0,
-      "neutral_count": 9,
-      "sentiment_score": 3,
+      "neutral_count": 19,
+      "sentiment_score": 5,
       "sentiment_label": "偏多",
       "top_impact_news": [
         {
