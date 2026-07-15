@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-15 04:09",
+  "updated_at": "2026-07-15 12:11",
   "portfolio_updateTime": "2026-07-15",
   "funds": [
     {
@@ -104,145 +104,10 @@
       },
       "alpha_pct": "数据缺失",
       "holdings_analysis": {
-        "status": "ok",
-        "latest_quarter": "2026年1季度股票投资明细",
-        "top5_concentration_pct": 26.3,
-        "top10_concentration_pct": 46.56,
-        "top_holdings": [
-          {
-            "stock_code": "600879",
-            "stock_name": "航天电子",
-            "ratio_pct": 7.6
-          },
-          {
-            "stock_code": "600118",
-            "stock_name": "中国卫星",
-            "ratio_pct": 5.21
-          },
-          {
-            "stock_code": "300342",
-            "stock_name": "天银机电",
-            "ratio_pct": 4.76
-          },
-          {
-            "stock_code": "688375",
-            "stock_name": "国博电子",
-            "ratio_pct": 4.54
-          },
-          {
-            "stock_code": "601698",
-            "stock_name": "中国卫通",
-            "ratio_pct": 4.19
-          },
-          {
-            "stock_code": "300136",
-            "stock_name": "信维通信",
-            "ratio_pct": 4.17
-          },
-          {
-            "stock_code": "688568",
-            "stock_name": "中科星图",
-            "ratio_pct": 4.17
-          },
-          {
-            "stock_code": "300102",
-            "stock_name": "乾照光电",
-            "ratio_pct": 4.16
-          },
-          {
-            "stock_code": "600498",
-            "stock_name": "烽火通信",
-            "ratio_pct": 4.1
-          },
-          {
-            "stock_code": "301005",
-            "stock_name": "超捷股份",
-            "ratio_pct": 3.66
-          }
-        ]
+        "status": "数据缺失",
+        "top_holdings": []
       },
-      "holdings_rated": [
-        {
-          "stock_code": "600879",
-          "stock_name": "航天电子",
-          "ratio_pct": 7.6,
-          "rating": "灰",
-          "rating_label": "不予评级",
-          "score": null,
-          "score_max": null,
-          "reason": "航天电子 属于高技术/半导体/AI算力领域，长期竞争格局超出巴菲特框架与普通投资者能力圈，诚实标注「不知道」，不强行评级。"
-        },
-        {
-          "stock_code": "600118",
-          "stock_name": "中国卫星",
-          "ratio_pct": 5.21,
-          "rating": "灰",
-          "rating_label": "不予评级",
-          "score": null,
-          "score_max": null,
-          "reason": "中国卫星 属于高技术/半导体/AI算力领域，长期竞争格局超出巴菲特框架与普通投资者能力圈，诚实标注「不知道」，不强行评级。"
-        },
-        {
-          "stock_code": "300342",
-          "stock_name": "天银机电",
-          "ratio_pct": 4.76,
-          "rating": "灰",
-          "rating_label": "不予评级",
-          "score": null,
-          "score_max": null,
-          "reason": "天银机电 属于高技术/半导体/AI算力领域，长期竞争格局超出巴菲特框架与普通投资者能力圈，诚实标注「不知道」，不强行评级。"
-        },
-        {
-          "stock_code": "688375",
-          "stock_name": "国博电子",
-          "ratio_pct": 4.54,
-          "rating": "灰",
-          "rating_label": "不予评级",
-          "score": null,
-          "score_max": null,
-          "reason": "国博电子 属于高技术/半导体/AI算力领域，长期竞争格局超出巴菲特框架与普通投资者能力圈，诚实标注「不知道」，不强行评级。"
-        },
-        {
-          "stock_code": "601698",
-          "stock_name": "中国卫通",
-          "ratio_pct": 4.19,
-          "rating": "灰",
-          "rating_label": "不予评级",
-          "score": null,
-          "score_max": null,
-          "reason": "中国卫通 属于高技术/半导体/AI算力领域，长期竞争格局超出巴菲特框架与普通投资者能力圈，诚实标注「不知道」，不强行评级。"
-        },
-        {
-          "stock_code": "300136",
-          "stock_name": "信维通信",
-          "ratio_pct": 4.17,
-          "rating": "黄",
-          "rating_label": "观察",
-          "score": 5,
-          "score_max": 10,
-          "reason": "信维通信 质地中等（5/10）且处能力圈边缘，评「黄-观察」。"
-        },
-        {
-          "stock_code": "688568",
-          "stock_name": "中科星图",
-          "ratio_pct": 4.17,
-          "rating": "灰",
-          "rating_label": "不予评级",
-          "score": null,
-          "score_max": null,
-          "reason": "中科星图 属于高技术/半导体/AI算力领域，长期竞争格局超出巴菲特框架与普通投资者能力圈，诚实标注「不知道」，不强行评级。"
-        }
-      ],
-      "quality_summary": {
-        "weight_by_rating_pct": {
-          "绿": 0.0,
-          "黄": 12.0,
-          "红": 0.0,
-          "灰": 88.0
-        },
-        "green_yellow_pct": 12.0,
-        "verdict": "前7大重仓中约 12% 权重为绿/黄评级，底层质地偏弱"
-      },
+      "holdings_rated": [],
       "diagnosis": {
         "action": "建议评估替换",
         "score": 30,
@@ -315,7 +180,7 @@
       "rank_percentile_ytd": 69.5,
       "max_drawdown_pct": 25.46,
       "alpha_analysis": {
-        "fund_annual_pct": 37.69,
+        "fund_annual_pct": 28.56,
         "benchmark_annual_pct": "数据缺失",
         "alpha_pct": "数据缺失",
         "benchmark": "沪深300",
@@ -324,145 +189,10 @@
       },
       "alpha_pct": "数据缺失",
       "holdings_analysis": {
-        "status": "ok",
-        "latest_quarter": "2026年2季度股票投资明细",
-        "top5_concentration_pct": 42.3,
-        "top10_concentration_pct": 70.27,
-        "top_holdings": [
-          {
-            "stock_code": "300136",
-            "stock_name": "信维通信",
-            "ratio_pct": 9.75
-          },
-          {
-            "stock_code": "688387",
-            "stock_name": "信科移动",
-            "ratio_pct": 9.39
-          },
-          {
-            "stock_code": "688375",
-            "stock_name": "国博电子",
-            "ratio_pct": 8.56
-          },
-          {
-            "stock_code": "600118",
-            "stock_name": "中国卫星",
-            "ratio_pct": 7.42
-          },
-          {
-            "stock_code": "688378",
-            "stock_name": "奥来德",
-            "ratio_pct": 7.18
-          },
-          {
-            "stock_code": "688531",
-            "stock_name": "日联科技",
-            "ratio_pct": 6.91
-          },
-          {
-            "stock_code": "301232",
-            "stock_name": "飞沃科技",
-            "ratio_pct": 6.41
-          },
-          {
-            "stock_code": "688818",
-            "stock_name": "电科蓝天",
-            "ratio_pct": 5.46
-          },
-          {
-            "stock_code": "600879",
-            "stock_name": "航天电子",
-            "ratio_pct": 5.01
-          },
-          {
-            "stock_code": "001270",
-            "stock_name": "铖昌科技",
-            "ratio_pct": 4.18
-          }
-        ]
+        "status": "数据缺失",
+        "top_holdings": []
       },
-      "holdings_rated": [
-        {
-          "stock_code": "300136",
-          "stock_name": "信维通信",
-          "ratio_pct": 9.75,
-          "rating": "黄",
-          "rating_label": "观察",
-          "score": 5,
-          "score_max": 10,
-          "reason": "信维通信 质地中等（5/10）且处能力圈边缘，评「黄-观察」。"
-        },
-        {
-          "stock_code": "688387",
-          "stock_name": "信科移动",
-          "ratio_pct": 9.39,
-          "rating": "灰",
-          "rating_label": "不予评级",
-          "score": null,
-          "score_max": null,
-          "reason": "信科移动 属于高技术/半导体/AI算力领域，长期竞争格局超出巴菲特框架与普通投资者能力圈，诚实标注「不知道」，不强行评级。"
-        },
-        {
-          "stock_code": "688375",
-          "stock_name": "国博电子",
-          "ratio_pct": 8.56,
-          "rating": "灰",
-          "rating_label": "不予评级",
-          "score": null,
-          "score_max": null,
-          "reason": "国博电子 属于高技术/半导体/AI算力领域，长期竞争格局超出巴菲特框架与普通投资者能力圈，诚实标注「不知道」，不强行评级。"
-        },
-        {
-          "stock_code": "600118",
-          "stock_name": "中国卫星",
-          "ratio_pct": 7.42,
-          "rating": "灰",
-          "rating_label": "不予评级",
-          "score": null,
-          "score_max": null,
-          "reason": "中国卫星 属于高技术/半导体/AI算力领域，长期竞争格局超出巴菲特框架与普通投资者能力圈，诚实标注「不知道」，不强行评级。"
-        },
-        {
-          "stock_code": "688378",
-          "stock_name": "奥来德",
-          "ratio_pct": 7.18,
-          "rating": "灰",
-          "rating_label": "不予评级",
-          "score": null,
-          "score_max": null,
-          "reason": "奥来德 属于高技术/半导体/AI算力领域，长期竞争格局超出巴菲特框架与普通投资者能力圈，诚实标注「不知道」，不强行评级。"
-        },
-        {
-          "stock_code": "688531",
-          "stock_name": "日联科技",
-          "ratio_pct": 6.91,
-          "rating": "灰",
-          "rating_label": "不予评级",
-          "score": null,
-          "score_max": null,
-          "reason": "日联科技 属于高技术/半导体/AI算力领域，长期竞争格局超出巴菲特框架与普通投资者能力圈，诚实标注「不知道」，不强行评级。"
-        },
-        {
-          "stock_code": "301232",
-          "stock_name": "飞沃科技",
-          "ratio_pct": 6.41,
-          "rating": "灰",
-          "rating_label": "不予评级",
-          "score": null,
-          "score_max": null,
-          "reason": "飞沃科技 属于高技术/半导体/AI算力领域，长期竞争格局超出巴菲特框架与普通投资者能力圈，诚实标注「不知道」，不强行评级。"
-        }
-      ],
-      "quality_summary": {
-        "weight_by_rating_pct": {
-          "绿": 0.0,
-          "黄": 17.5,
-          "红": 0.0,
-          "灰": 82.5
-        },
-        "green_yellow_pct": 17.5,
-        "verdict": "前7大重仓中约 18% 权重为绿/黄评级，底层质地偏弱"
-      },
+      "holdings_rated": [],
       "diagnosis": {
         "action": "建议评估替换",
         "score": 20,

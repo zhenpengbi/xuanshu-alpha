@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-15 03:58",
+  "updated_at": "2026-07-15 12:09",
   "signals": [
     {
       "code": "002963",
@@ -118,21 +118,21 @@
     {
       "code": "025647",
       "name": "平安高端装备混合C",
-      "rsi14": 42.7,
-      "ma5": 1.31704,
-      "ma20": 1.3301,
-      "macd_hist": -0.01418349,
+      "rsi14": 39.19,
+      "ma5": 1.29658,
+      "ma20": 1.32642,
+      "macd_hist": -0.02944151,
       "macd_trend": "bearish",
       "signal": "谨慎持有",
-      "reason": "RSI偏低(42.7) · 死叉(MA5下穿MA20) · MACD柱负向；估值偏贵(score=70)偏高，技术趋弱",
+      "reason": "RSI偏低(39.2) · MA5<MA20空头 · MACD柱负向；估值偏贵(score=70)偏高，技术趋弱",
       "buy_score": 1,
-      "sell_score": 3,
+      "sell_score": 2,
       "asset_type": "active",
       "signal_type": "oscillation_caution",
       "valuation_verdict": "偏贵",
       "valuation_score": 70,
       "deviation_pt": -6.4,
-      "action_detail": "平安高端装备混合C 技术趋弱(sell=3)且估值偏高(score=70，偏贵)，建议谨慎持有，不加仓"
+      "action_detail": "平安高端装备混合C 技术趋弱(sell=2)且估值偏高(score=70，偏贵)，建议谨慎持有，不加仓"
     },
     {
       "code": "014881",

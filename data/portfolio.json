@@ -79,7 +79,7 @@
       "code": "025647",
       "amount": 2022.34,
       "ratio": 3.64,
-      "dailyReturn": -77.11,
+      "dailyReturn": -88.02,
       "holdingReturn": 22.34,
       "holdingReturnRate": 1.12,
       "totalReturn": 22.34,
@@ -146,5 +146,5 @@
       }
     }
   },
-  "dailyReturn": -1.5
+  "dailyReturn": -12.41
 }

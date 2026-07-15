@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-07-15 04:00",
+  "updated_at": "2026-07-15 12:09",
   "news_date": "2026-07-15",
-  "news_period": "早报",
-  "total_news": 12,
+  "news_period": "早报/晚报",
+  "total_news": 24,
   "items": [
     {
       "code": "002963",
@@ -10,7 +10,7 @@
       "channel": "gold",
       "bullish_count": 1,
       "bearish_count": 0,
-      "neutral_count": 11,
+      "neutral_count": 23,
       "sentiment_score": 1,
       "sentiment_label": "偏多",
       "top_impact_news": [
@@ -40,7 +40,7 @@
       "channel": "gold",
       "bullish_count": 1,
       "bearish_count": 0,
-      "neutral_count": 11,
+      "neutral_count": 23,
       "sentiment_score": 1,
       "sentiment_label": "偏多",
       "top_impact_news": [
@@ -68,10 +68,10 @@
       "code": "011840",
       "name": "天弘中证人工智能C",
       "channel": "ashare",
-      "bullish_count": 5,
-      "bearish_count": 1,
-      "neutral_count": 6,
-      "sentiment_score": 4,
+      "bullish_count": 7,
+      "bearish_count": 2,
+      "neutral_count": 15,
+      "sentiment_score": 5,
       "sentiment_label": "偏多",
       "top_impact_news": [
         {
@@ -98,10 +98,10 @@
       "code": "010990",
       "name": "南方有色金属ETF联接E",
       "channel": "ashare",
-      "bullish_count": 5,
-      "bearish_count": 1,
-      "neutral_count": 6,
-      "sentiment_score": 4,
+      "bullish_count": 7,
+      "bearish_count": 2,
+      "neutral_count": 15,
+      "sentiment_score": 5,
       "sentiment_label": "偏多",
       "top_impact_news": [
         {
@@ -128,10 +128,10 @@
       "code": "012885",
       "name": "华夏光伏ETF联接A",
       "channel": "ashare",
-      "bullish_count": 5,
-      "bearish_count": 1,
-      "neutral_count": 6,
-      "sentiment_score": 4,
+      "bullish_count": 7,
+      "bearish_count": 2,
+      "neutral_count": 15,
+      "sentiment_score": 5,
       "sentiment_label": "偏多",
       "top_impact_news": [
         {
@@ -159,11 +159,17 @@
       "name": "纳指100ETF",
       "channel": "nasdaq",
       "bullish_count": 0,
-      "bearish_count": 0,
-      "neutral_count": 12,
-      "sentiment_score": 0,
-      "sentiment_label": "中性",
+      "bearish_count": 1,
+      "neutral_count": 23,
+      "sentiment_score": -1,
+      "sentiment_label": "偏空",
       "top_impact_news": [
+        {
+          "title": "国际联播快讯",
+          "time": "晚报 · 宏观",
+          "summary": "黎巴嫩与以色列举行新一轮会谈黎巴嫩与以色列14日在位于意大利罗马的美国驻意大利大使馆开始新一轮会谈。这是黎以双方自6月26日达成框架协议后的首次会谈，将重点围绕推动以军从黎巴嫩南部撤出等问题展开。欧盟上半年从俄进口液化天然气创纪录英国媒体日前援引国际市场服务机构克普勒公司的统计数据报道说，由于...",
+          "sentiment": "利空"
+        },
         {
           "title": "【新思想引领新征程】开放共赢 促进人工智能更好造福各国人民",
           "time": "早报 · 宏观",
@@ -174,12 +180,6 @@
           "title": "【活力中国调研行】“拔节生长”的未来之城",
           "time": "早报 · 宏观",
           "summary": "雄安新区，这座从零规划的未来之城，九年来正与北京形成日益紧密的创新共同体。那么，这样的协同创新正释放出怎样的发展活力？来看记者的一线调研。在雄安新区高铁站，记者见到了北京邮电大学教授路兆铭，他的团队正为雄安地下空间搭建高精度导航系统。为加速技术落地，路兆铭团队成员人均每周至少要在京雄间往返两趟...",
-          "sentiment": "中性"
-        },
-        {
-          "title": "个股异动 | 光伏概念走强 爱旭股份涨停",
-          "time": "早报 · A股",
-          "summary": "关于业绩预亏的原因，公司表示主要受制于行业供需格局及终端价格传导的滞后性，叠加报告期内光伏产品出口退税政策取消、外汇波动以及减值计提等综合因素影响，但单季度亏损幅度已显著收窄。",
           "sentiment": "中性"
         }
       ]
@@ -189,11 +189,17 @@
       "name": "标普500ETF",
       "channel": "nasdaq",
       "bullish_count": 0,
-      "bearish_count": 0,
-      "neutral_count": 12,
-      "sentiment_score": 0,
-      "sentiment_label": "中性",
+      "bearish_count": 1,
+      "neutral_count": 23,
+      "sentiment_score": -1,
+      "sentiment_label": "偏空",
       "top_impact_news": [
+        {
+          "title": "国际联播快讯",
+          "time": "晚报 · 宏观",
+          "summary": "黎巴嫩与以色列举行新一轮会谈黎巴嫩与以色列14日在位于意大利罗马的美国驻意大利大使馆开始新一轮会谈。这是黎以双方自6月26日达成框架协议后的首次会谈，将重点围绕推动以军从黎巴嫩南部撤出等问题展开。欧盟上半年从俄进口液化天然气创纪录英国媒体日前援引国际市场服务机构克普勒公司的统计数据报道说，由于...",
+          "sentiment": "利空"
+        },
         {
           "title": "【新思想引领新征程】开放共赢 促进人工智能更好造福各国人民",
           "time": "早报 · 宏观",
@@ -205,12 +211,6 @@
           "time": "早报 · 宏观",
           "summary": "雄安新区，这座从零规划的未来之城，九年来正与北京形成日益紧密的创新共同体。那么，这样的协同创新正释放出怎样的发展活力？来看记者的一线调研。在雄安新区高铁站，记者见到了北京邮电大学教授路兆铭，他的团队正为雄安地下空间搭建高精度导航系统。为加速技术落地，路兆铭团队成员人均每周至少要在京雄间往返两趟...",
           "sentiment": "中性"
-        },
-        {
-          "title": "个股异动 | 光伏概念走强 爱旭股份涨停",
-          "time": "早报 · A股",
-          "summary": "关于业绩预亏的原因，公司表示主要受制于行业供需格局及终端价格传导的滞后性，叠加报告期内光伏产品出口退税政策取消、外汇波动以及减值计提等综合因素影响，但单季度亏损幅度已显著收窄。",
-          "sentiment": "中性"
         }
       ]
     },
@@ -218,10 +218,10 @@
       "code": "015790",
       "name": "永赢高端装备混合C",
       "channel": "ashare",
-      "bullish_count": 5,
-      "bearish_count": 1,
-      "neutral_count": 6,
-      "sentiment_score": 4,
+      "bullish_count": 7,
+      "bearish_count": 2,
+      "neutral_count": 15,
+      "sentiment_score": 5,
       "sentiment_label": "偏多",
       "top_impact_news": [
         {
@@ -248,10 +248,10 @@
       "code": "014881",
       "name": "天弘机器人ETF联接C",
       "channel": "ashare",
-      "bullish_count": 5,
-      "bearish_count": 1,
-      "neutral_count": 6,
-      "sentiment_score": 4,
+      "bullish_count": 7,
+      "bearish_count": 2,
+      "neutral_count": 15,
+      "sentiment_score": 5,
       "sentiment_label": "偏多",
       "top_impact_news": [
         {
@@ -278,10 +278,10 @@
       "code": "025647",
       "name": "平安高端装备混合C",
       "channel": "ashare",
-      "bullish_count": 5,
-      "bearish_count": 1,
-      "neutral_count": 6,
-      "sentiment_score": 4,
+      "bullish_count": 7,
+      "bearish_count": 2,
+      "neutral_count": 15,
+      "sentiment_score": 5,
       "sentiment_label": "偏多",
       "top_impact_news": [
         {
