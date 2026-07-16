@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-07-16 04:09",
+  "updated_at": "2026-07-16 12:13",
   "news_date": "2026-07-16",
-  "news_period": "早报",
-  "total_news": 12,
+  "news_period": "早报/晚报",
+  "total_news": 24,
   "items": [
     {
       "code": "002963",
@@ -10,7 +10,7 @@
       "channel": "gold",
       "bullish_count": 1,
       "bearish_count": 1,
-      "neutral_count": 10,
+      "neutral_count": 22,
       "sentiment_score": 0,
       "sentiment_label": "中性",
       "top_impact_news": [
@@ -40,7 +40,7 @@
       "channel": "gold",
       "bullish_count": 1,
       "bearish_count": 1,
-      "neutral_count": 10,
+      "neutral_count": 22,
       "sentiment_score": 0,
       "sentiment_label": "中性",
       "top_impact_news": [
@@ -68,10 +68,10 @@
       "code": "011840",
       "name": "天弘中证人工智能C",
       "channel": "ashare",
-      "bullish_count": 2,
+      "bullish_count": 4,
       "bearish_count": 0,
-      "neutral_count": 10,
-      "sentiment_score": 2,
+      "neutral_count": 20,
+      "sentiment_score": 4,
       "sentiment_label": "偏多",
       "top_impact_news": [
         {
@@ -87,10 +87,10 @@
           "sentiment": "利多"
         },
         {
-          "title": "【树立和践行正确政绩观】办好群众身边事 学习教育见实效",
-          "time": "早报 · 宏观",
-          "summary": "树立和践行正确政绩观学习教育开展以来，河南新乡、西藏那曲一体推进学查改，自觉践行全心全意为人民服务的根本宗旨，让学习教育成果落地见效。学习教育开展以来，河南省新乡市通过走访调研、座谈交流等方式，广泛了解群众诉求。      不少市民反映，一些社区、公园等公共场所健身器材老化，缺少健身指导和科学...",
-          "sentiment": "中性"
+          "title": "2026世界人工智能大会暨人工智能全球治理高级别会议明天开幕",
+          "time": "晚报 · 宏观",
+          "summary": "2026世界人工智能大会暨人工智能全球治理高级别会议明天（7月17日）将在上海开幕。目前，各项准备工作已全部就绪。本次大会聚焦“智能伙伴，共创未来”的主题，首次升级为“三地四馆”办展模式，汇集1100多家参展企业和300多款全球首发产品。同时，设置158场论坛及配套活动，1500多位海内外院士...",
+          "sentiment": "利多"
         }
       ]
     },
@@ -98,10 +98,10 @@
       "code": "010990",
       "name": "南方有色金属ETF联接E",
       "channel": "ashare",
-      "bullish_count": 2,
+      "bullish_count": 4,
       "bearish_count": 0,
-      "neutral_count": 10,
-      "sentiment_score": 2,
+      "neutral_count": 20,
+      "sentiment_score": 4,
       "sentiment_label": "偏多",
       "top_impact_news": [
         {
@@ -117,10 +117,10 @@
           "sentiment": "利多"
         },
         {
-          "title": "【树立和践行正确政绩观】办好群众身边事 学习教育见实效",
-          "time": "早报 · 宏观",
-          "summary": "树立和践行正确政绩观学习教育开展以来，河南新乡、西藏那曲一体推进学查改，自觉践行全心全意为人民服务的根本宗旨，让学习教育成果落地见效。学习教育开展以来，河南省新乡市通过走访调研、座谈交流等方式，广泛了解群众诉求。      不少市民反映，一些社区、公园等公共场所健身器材老化，缺少健身指导和科学...",
-          "sentiment": "中性"
+          "title": "2026世界人工智能大会暨人工智能全球治理高级别会议明天开幕",
+          "time": "晚报 · 宏观",
+          "summary": "2026世界人工智能大会暨人工智能全球治理高级别会议明天（7月17日）将在上海开幕。目前，各项准备工作已全部就绪。本次大会聚焦“智能伙伴，共创未来”的主题，首次升级为“三地四馆”办展模式，汇集1100多家参展企业和300多款全球首发产品。同时，设置158场论坛及配套活动，1500多位海内外院士...",
+          "sentiment": "利多"
         }
       ]
     },
@@ -128,10 +128,10 @@
       "code": "012885",
       "name": "华夏光伏ETF联接A",
       "channel": "ashare",
-      "bullish_count": 2,
+      "bullish_count": 4,
       "bearish_count": 0,
-      "neutral_count": 10,
-      "sentiment_score": 2,
+      "neutral_count": 20,
+      "sentiment_score": 4,
       "sentiment_label": "偏多",
       "top_impact_news": [
         {
@@ -147,10 +147,10 @@
           "sentiment": "利多"
         },
         {
-          "title": "【树立和践行正确政绩观】办好群众身边事 学习教育见实效",
-          "time": "早报 · 宏观",
-          "summary": "树立和践行正确政绩观学习教育开展以来，河南新乡、西藏那曲一体推进学查改，自觉践行全心全意为人民服务的根本宗旨，让学习教育成果落地见效。学习教育开展以来，河南省新乡市通过走访调研、座谈交流等方式，广泛了解群众诉求。      不少市民反映，一些社区、公园等公共场所健身器材老化，缺少健身指导和科学...",
-          "sentiment": "中性"
+          "title": "2026世界人工智能大会暨人工智能全球治理高级别会议明天开幕",
+          "time": "晚报 · 宏观",
+          "summary": "2026世界人工智能大会暨人工智能全球治理高级别会议明天（7月17日）将在上海开幕。目前，各项准备工作已全部就绪。本次大会聚焦“智能伙伴，共创未来”的主题，首次升级为“三地四馆”办展模式，汇集1100多家参展企业和300多款全球首发产品。同时，设置158场论坛及配套活动，1500多位海内外院士...",
+          "sentiment": "利多"
         }
       ]
     },
@@ -160,7 +160,7 @@
       "channel": "nasdaq",
       "bullish_count": 0,
       "bearish_count": 1,
-      "neutral_count": 11,
+      "neutral_count": 23,
       "sentiment_score": -1,
       "sentiment_label": "偏空",
       "top_impact_news": [
@@ -190,7 +190,7 @@
       "channel": "nasdaq",
       "bullish_count": 0,
       "bearish_count": 1,
-      "neutral_count": 11,
+      "neutral_count": 23,
       "sentiment_score": -1,
       "sentiment_label": "偏空",
       "top_impact_news": [
@@ -218,10 +218,10 @@
       "code": "015790",
       "name": "永赢高端装备混合C",
       "channel": "ashare",
-      "bullish_count": 2,
+      "bullish_count": 4,
       "bearish_count": 0,
-      "neutral_count": 10,
-      "sentiment_score": 2,
+      "neutral_count": 20,
+      "sentiment_score": 4,
       "sentiment_label": "偏多",
       "top_impact_news": [
         {
@@ -237,10 +237,10 @@
           "sentiment": "利多"
         },
         {
-          "title": "【树立和践行正确政绩观】办好群众身边事 学习教育见实效",
-          "time": "早报 · 宏观",
-          "summary": "树立和践行正确政绩观学习教育开展以来，河南新乡、西藏那曲一体推进学查改，自觉践行全心全意为人民服务的根本宗旨，让学习教育成果落地见效。学习教育开展以来，河南省新乡市通过走访调研、座谈交流等方式，广泛了解群众诉求。      不少市民反映，一些社区、公园等公共场所健身器材老化，缺少健身指导和科学...",
-          "sentiment": "中性"
+          "title": "2026世界人工智能大会暨人工智能全球治理高级别会议明天开幕",
+          "time": "晚报 · 宏观",
+          "summary": "2026世界人工智能大会暨人工智能全球治理高级别会议明天（7月17日）将在上海开幕。目前，各项准备工作已全部就绪。本次大会聚焦“智能伙伴，共创未来”的主题，首次升级为“三地四馆”办展模式，汇集1100多家参展企业和300多款全球首发产品。同时，设置158场论坛及配套活动，1500多位海内外院士...",
+          "sentiment": "利多"
         }
       ]
     },
@@ -248,10 +248,10 @@
       "code": "014881",
       "name": "天弘机器人ETF联接C",
       "channel": "ashare",
-      "bullish_count": 2,
+      "bullish_count": 4,
       "bearish_count": 0,
-      "neutral_count": 10,
-      "sentiment_score": 2,
+      "neutral_count": 20,
+      "sentiment_score": 4,
       "sentiment_label": "偏多",
       "top_impact_news": [
         {
@@ -267,10 +267,10 @@
           "sentiment": "利多"
         },
         {
-          "title": "【树立和践行正确政绩观】办好群众身边事 学习教育见实效",
-          "time": "早报 · 宏观",
-          "summary": "树立和践行正确政绩观学习教育开展以来，河南新乡、西藏那曲一体推进学查改，自觉践行全心全意为人民服务的根本宗旨，让学习教育成果落地见效。学习教育开展以来，河南省新乡市通过走访调研、座谈交流等方式，广泛了解群众诉求。      不少市民反映，一些社区、公园等公共场所健身器材老化，缺少健身指导和科学...",
-          "sentiment": "中性"
+          "title": "2026世界人工智能大会暨人工智能全球治理高级别会议明天开幕",
+          "time": "晚报 · 宏观",
+          "summary": "2026世界人工智能大会暨人工智能全球治理高级别会议明天（7月17日）将在上海开幕。目前，各项准备工作已全部就绪。本次大会聚焦“智能伙伴，共创未来”的主题，首次升级为“三地四馆”办展模式，汇集1100多家参展企业和300多款全球首发产品。同时，设置158场论坛及配套活动，1500多位海内外院士...",
+          "sentiment": "利多"
         }
       ]
     },
@@ -278,10 +278,10 @@
       "code": "025647",
       "name": "平安高端装备混合C",
       "channel": "ashare",
-      "bullish_count": 2,
+      "bullish_count": 4,
       "bearish_count": 0,
-      "neutral_count": 10,
-      "sentiment_score": 2,
+      "neutral_count": 20,
+      "sentiment_score": 4,
       "sentiment_label": "偏多",
       "top_impact_news": [
         {
@@ -297,10 +297,10 @@
           "sentiment": "利多"
         },
         {
-          "title": "【树立和践行正确政绩观】办好群众身边事 学习教育见实效",
-          "time": "早报 · 宏观",
-          "summary": "树立和践行正确政绩观学习教育开展以来，河南新乡、西藏那曲一体推进学查改，自觉践行全心全意为人民服务的根本宗旨，让学习教育成果落地见效。学习教育开展以来，河南省新乡市通过走访调研、座谈交流等方式，广泛了解群众诉求。      不少市民反映，一些社区、公园等公共场所健身器材老化，缺少健身指导和科学...",
-          "sentiment": "中性"
+          "title": "2026世界人工智能大会暨人工智能全球治理高级别会议明天开幕",
+          "time": "晚报 · 宏观",
+          "summary": "2026世界人工智能大会暨人工智能全球治理高级别会议明天（7月17日）将在上海开幕。目前，各项准备工作已全部就绪。本次大会聚焦“智能伙伴，共创未来”的主题，首次升级为“三地四馆”办展模式，汇集1100多家参展企业和300多款全球首发产品。同时，设置158场论坛及配套活动，1500多位海内外院士...",
+          "sentiment": "利多"
         }
       ]
     }
