@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-16",
+  "updated_at": "2026-07-17",
   "valuations": [
     {
       "category": "AI/科技",
@@ -38,7 +38,7 @@
       "category": "高端制造",
       "index_name": "中证高端装备(399377)",
       "current_pe": null,
-      "pe_pct_5y": 83.0,
+      "pe_pct_5y": 81.0,
       "current_pb": null,
       "pb_pct_5y": null,
       "verdict": "偏贵",
@@ -48,7 +48,7 @@
     {
       "category": "纳指100",
       "index_name": "纳斯达克100(NDX/QQQ)",
-      "current_pe": 31.85,
+      "current_pe": 31.33,
       "pe_pct_5y": 60.0,
       "current_pb": null,
       "pb_pct_5y": null,
@@ -59,7 +59,7 @@
     {
       "category": "标普500",
       "index_name": "标普500(SPX/SPY)",
-      "current_pe": 27.15,
+      "current_pe": 27.0,
       "pe_pct_5y": 60.0,
       "current_pb": null,
       "pb_pct_5y": null,
