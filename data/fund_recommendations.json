@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-07-17 04:09",
+  "updated_at": "2026-07-17 12:04",
   "triggered": false,
-  "avg_sell_score": 1.5,
+  "avg_sell_score": 1.4,
   "panic_threshold": 2.0,
   "scan_params": {
     "panic_scan": {
@@ -15,18 +15,38 @@
       "rsi_threshold": 40
     }
   },
-  "message": "当前无超跌机会（avg_sell_score=1.50 < 2.0，市场情绪平稳）",
+  "message": "当前无超跌机会（avg_sell_score=1.40 < 2.0，市场情绪平稳）",
   "recommendations": [],
   "undervalued": [
     {
       "code": "588020",
       "name": "科创成长ETF易方达",
       "drop_60d_pct": 58.81,
-      "today_chg_pct": -7.61,
-      "scale_bn": 12.81,
+      "today_chg_pct": -10.84,
+      "scale_bn": 12.46,
       "rsi14": 18.27,
       "signal": "超跌反弹",
       "reason": "近60日跌幅 58.8%，RSI=18.3<30（深度超卖），关注反弹机会"
+    },
+    {
+      "code": "515880",
+      "name": "通信ETF国泰",
+      "drop_60d_pct": 45.45,
+      "today_chg_pct": -9.97,
+      "scale_bn": 467.66,
+      "rsi14": 24.61,
+      "signal": "超跌反弹",
+      "reason": "近60日跌幅 45.5%，RSI=24.6<30（深度超卖），关注反弹机会"
+    },
+    {
+      "code": "588120",
+      "name": "科创100ETF国泰",
+      "drop_60d_pct": 41.79,
+      "today_chg_pct": -8.8,
+      "scale_bn": 8.48,
+      "rsi14": 26.03,
+      "signal": "超跌反弹",
+      "reason": "近60日跌幅 41.8%，RSI=26.0<30（深度超卖），关注反弹机会"
     }
   ],
   "disclaimer": "以上仅为量化扫描结果，不构成投资建议，投资者需自行承担风险"

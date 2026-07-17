@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-17 04:07",
+  "updated_at": "2026-07-17 12:02",
   "signals": [
     {
       "code": "002963",
@@ -61,21 +61,21 @@
     {
       "code": "011840",
       "name": "天弘中证人工智能主题指数C",
-      "rsi14": 45.8,
-      "ma5": 2.04982,
-      "ma20": 2.082975,
-      "macd_hist": -0.02791569,
+      "rsi14": 37.62,
+      "ma5": 1.99436,
+      "ma20": 2.069475,
+      "macd_hist": -0.05231483,
       "macd_trend": "bearish",
       "signal": "谨慎持有",
-      "reason": "死叉(MA5下穿MA20) · MACD柱负向；估值高估(score=88)偏高，技术趋弱",
-      "buy_score": 0,
-      "sell_score": 3,
+      "reason": "RSI偏低(37.6) · MA5<MA20空头 · MACD柱负向；估值高估(score=88)偏高，技术趋弱",
+      "buy_score": 1,
+      "sell_score": 2,
       "asset_type": "oscillation",
       "signal_type": "oscillation_caution",
       "valuation_verdict": "高估",
       "valuation_score": 88,
       "deviation_pt": -18.7,
-      "action_detail": "天弘中证人工智能主题指数C 技术趋弱(sell=3)且估值偏高(score=88，高估)，建议谨慎持有，不加仓"
+      "action_detail": "天弘中证人工智能主题指数C 技术趋弱(sell=2)且估值偏高(score=88，高估)，建议谨慎持有，不加仓"
     },
     {
       "code": "012885",

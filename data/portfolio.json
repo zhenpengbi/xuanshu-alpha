@@ -43,7 +43,7 @@
       "code": "011840",
       "amount": 5160.01,
       "ratio": 9.29,
-      "dailyReturn": -122.04,
+      "dailyReturn": -393.76,
       "holdingReturn": 1512.54,
       "holdingReturnRate": 41.47,
       "totalReturn": 3237.51,
@@ -146,5 +146,5 @@
       }
     }
   },
-  "dailyReturn": -671.78
+  "dailyReturn": -943.5
 }
