@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-20 13:01",
+  "updated_at": "2026-07-21 04:18",
   "triggered": false,
   "avg_sell_score": 1.4,
   "panic_threshold": 2.0,
@@ -17,87 +17,6 @@
   },
   "message": "当前无超跌机会（avg_sell_score=1.40 < 2.0，市场情绪平稳）",
   "recommendations": [],
-  "undervalued": [
-    {
-      "code": "588020",
-      "name": "科创成长ETF易方达",
-      "drop_60d_pct": 66.51,
-      "today_chg_pct": -7.02,
-      "scale_bn": 11.59,
-      "rsi14": 16.98,
-      "signal": "超跌反弹",
-      "reason": "近60日跌幅 66.5%，RSI=17.0<30（深度超卖），关注反弹机会"
-    },
-    {
-      "code": "560780",
-      "name": "半导体设备ETF广发",
-      "drop_60d_pct": 52.53,
-      "today_chg_pct": -6.4,
-      "scale_bn": 115.18,
-      "rsi14": 26.77,
-      "signal": "超跌反弹",
-      "reason": "近60日跌幅 52.5%，RSI=26.8<30（深度超卖），关注反弹机会"
-    },
-    {
-      "code": "562590",
-      "name": "半导体设备ETF华夏",
-      "drop_60d_pct": 52.32,
-      "today_chg_pct": -6.46,
-      "scale_bn": 79.16,
-      "rsi14": 24.8,
-      "signal": "超跌反弹",
-      "reason": "近60日跌幅 52.3%，RSI=24.8<30（深度超卖），关注反弹机会"
-    },
-    {
-      "code": "588120",
-      "name": "科创100ETF国泰",
-      "drop_60d_pct": 50.55,
-      "today_chg_pct": -4.94,
-      "scale_bn": 8.06,
-      "rsi14": 22.04,
-      "signal": "超跌反弹",
-      "reason": "近60日跌幅 50.5%，RSI=22.0<30（深度超卖），关注反弹机会"
-    },
-    {
-      "code": "562800",
-      "name": "稀有金属ETF嘉实",
-      "drop_60d_pct": 27.18,
-      "today_chg_pct": -3.94,
-      "scale_bn": 47.12,
-      "rsi14": 25.58,
-      "signal": "超跌反弹",
-      "reason": "近60日跌幅 27.2%，RSI=25.6<30（深度超卖），关注反弹机会"
-    },
-    {
-      "code": "563300",
-      "name": "中证2000ETF华泰柏瑞",
-      "drop_60d_pct": 19.08,
-      "today_chg_pct": -5.05,
-      "scale_bn": 31.83,
-      "rsi14": 22.2,
-      "signal": "超跌反弹",
-      "reason": "近60日跌幅 19.1%，RSI=22.2<30（深度超卖），关注反弹机会"
-    },
-    {
-      "code": "562660",
-      "name": "中证2000ETF华夏",
-      "drop_60d_pct": 18.08,
-      "today_chg_pct": -4.12,
-      "scale_bn": 3.64,
-      "rsi14": 22.42,
-      "signal": "超跌反弹",
-      "reason": "近60日跌幅 18.1%，RSI=22.4<30（深度超卖），关注反弹机会"
-    },
-    {
-      "code": "588270",
-      "name": "科创200ETF易方达",
-      "drop_60d_pct": 16.03,
-      "today_chg_pct": -5.98,
-      "scale_bn": 3.87,
-      "rsi14": 26.08,
-      "signal": "超跌反弹",
-      "reason": "近60日跌幅 16.0%，RSI=26.1<30（深度超卖），关注反弹机会"
-    }
-  ],
+  "undervalued": [],
   "disclaimer": "以上仅为量化扫描结果，不构成投资建议，投资者需自行承担风险"
 }
