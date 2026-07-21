@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-21 04:19",
+  "updated_at": "2026-07-21 12:21",
   "portfolio_updateTime": "2026-07-21",
   "funds": [
     {
@@ -12,7 +12,7 @@
       "company": "永赢基金管理有限公司",
       "inception_date": "2022-07-15",
       "name_mismatch": true,
-      "manager_tenure_days": 1964,
+      "manager_tenure_days": null,
       "performance_ranking": [
         {
           "period": "成立以来",
@@ -110,10 +110,9 @@
       "holdings_rated": [],
       "diagnosis": {
         "action": "建议评估替换",
-        "score": 30,
+        "score": 20,
         "reasons": [
-          "今年以来同类排名 98%（落后同类）",
-          "基金经理任职 5.4 年，管理经验相对充分"
+          "今年以来同类排名 98%（落后同类）"
         ],
         "warnings": [
           "⚠️ 代码 015790 官方名称与持仓标注不符，请核实！官方：永赢高端装备智选混合发起C，持仓标注：永赢高端装备智选混合C",
@@ -180,7 +179,7 @@
       "rank_percentile_ytd": 96.7,
       "max_drawdown_pct": 39.39,
       "alpha_analysis": {
-        "fund_annual_pct": -8.44,
+        "fund_annual_pct": 0.73,
         "benchmark_annual_pct": "数据缺失",
         "alpha_pct": "数据缺失",
         "benchmark": "沪深300",

@@ -1,35 +1,35 @@
 {
-  "updated_at": "2026-07-21 04:16",
+  "updated_at": "2026-07-21 12:17",
   "news_date": "2026-07-21",
-  "news_period": "早报",
-  "total_news": 12,
+  "news_period": "早报/晚报",
+  "total_news": 24,
   "items": [
     {
       "code": "002963",
       "name": "易方达黄金ETF联接C",
       "channel": "gold",
-      "bullish_count": 0,
+      "bullish_count": 2,
       "bearish_count": 0,
-      "neutral_count": 12,
-      "sentiment_score": 0,
-      "sentiment_label": "中性",
+      "neutral_count": 22,
+      "sentiment_score": 2,
+      "sentiment_label": "偏多",
       "top_impact_news": [
+        {
+          "title": "上半年国内黄金ETF资金实现显著流入，黄金ETF博时(159937)上涨1.36%，连续3天获资金布局",
+          "time": "晚报 · 黄金",
+          "summary": "黄金ETF博时(159937)，场外联接(博时黄金ETF联接A：002610；博时黄金ETF联接C：002611；博时黄金ETF联接E：021499)，相关指数基金(博时黄金ETF场外D类：000929；博时黄金ETF场外I类：000930)。",
+          "sentiment": "利多"
+        },
+        {
+          "title": "贵金属板块震荡反弹，兴业银锡涨停",
+          "time": "晚报 · 黄金",
+          "summary": "贵金属板块震荡反弹，兴业银锡涨停，赤峰黄金、盛达资源、山金国际、晓程科技、中金黄金、山东黄金等跟涨。",
+          "sentiment": "利多"
+        },
         {
           "title": "李强同泰国总理会谈",
           "time": "早报 · 宏观",
           "summary": "欢迎仪式后，李强同阿努廷举行会谈。李强表示，在两国领导人战略引领下，中泰命运共同体建设正不断走深走实，为双方合作开辟更加广阔前景。总理先生这次访华期间，习近平主席同你举行会晤，就深化发展两国关系作出新的规划。中方始终把泰国置于周边外交重要位置，愿同泰方弘扬传统友谊，巩固政治互信，坚定相互支持，...",
-          "sentiment": "中性"
-        },
-        {
-          "title": "上半年我国规模以上工业增加值同比增长5.4%",
-          "time": "早报 · 宏观",
-          "summary": "国务院新闻办公室今天（7月20日）举办新闻发布会。工业和信息化部相关负责人介绍，今年上半年，我国规模以上工业增加值同比增长5.4%，创新成果持续涌现、产业结构不断优化，工业经济实现“十五五”良好开局。今年上半年，行业运行稳中有进。41个工业大类行业中有32个保持增长，电子、专用设备、通用设备、...",
-          "sentiment": "中性"
-        },
-        {
-          "title": "世界人工智能大会达成丰硕成果",
-          "time": "早报 · 宏观",
-          "summary": "2026世界人工智能大会今天（7月20日）下午在上海落下帷幕，为期四天的大会取得丰硕成果。与会嘉宾表示，期待与中国深化合作，让科技更好赋能各国发展。本次大会共吸引了1568位国内外顶尖专家参加，展品总数4486项，展商数量与展览面积均较去年增长超三分之一。同时，大会期间还发布了一系列重磅成果：...",
           "sentiment": "中性"
         }
       ]
@@ -38,28 +38,28 @@
       "code": "000307",
       "name": "易方达黄金ETF联接A",
       "channel": "gold",
-      "bullish_count": 0,
+      "bullish_count": 2,
       "bearish_count": 0,
-      "neutral_count": 12,
-      "sentiment_score": 0,
-      "sentiment_label": "中性",
+      "neutral_count": 22,
+      "sentiment_score": 2,
+      "sentiment_label": "偏多",
       "top_impact_news": [
+        {
+          "title": "上半年国内黄金ETF资金实现显著流入，黄金ETF博时(159937)上涨1.36%，连续3天获资金布局",
+          "time": "晚报 · 黄金",
+          "summary": "黄金ETF博时(159937)，场外联接(博时黄金ETF联接A：002610；博时黄金ETF联接C：002611；博时黄金ETF联接E：021499)，相关指数基金(博时黄金ETF场外D类：000929；博时黄金ETF场外I类：000930)。",
+          "sentiment": "利多"
+        },
+        {
+          "title": "贵金属板块震荡反弹，兴业银锡涨停",
+          "time": "晚报 · 黄金",
+          "summary": "贵金属板块震荡反弹，兴业银锡涨停，赤峰黄金、盛达资源、山金国际、晓程科技、中金黄金、山东黄金等跟涨。",
+          "sentiment": "利多"
+        },
         {
           "title": "李强同泰国总理会谈",
           "time": "早报 · 宏观",
           "summary": "欢迎仪式后，李强同阿努廷举行会谈。李强表示，在两国领导人战略引领下，中泰命运共同体建设正不断走深走实，为双方合作开辟更加广阔前景。总理先生这次访华期间，习近平主席同你举行会晤，就深化发展两国关系作出新的规划。中方始终把泰国置于周边外交重要位置，愿同泰方弘扬传统友谊，巩固政治互信，坚定相互支持，...",
-          "sentiment": "中性"
-        },
-        {
-          "title": "上半年我国规模以上工业增加值同比增长5.4%",
-          "time": "早报 · 宏观",
-          "summary": "国务院新闻办公室今天（7月20日）举办新闻发布会。工业和信息化部相关负责人介绍，今年上半年，我国规模以上工业增加值同比增长5.4%，创新成果持续涌现、产业结构不断优化，工业经济实现“十五五”良好开局。今年上半年，行业运行稳中有进。41个工业大类行业中有32个保持增长，电子、专用设备、通用设备、...",
-          "sentiment": "中性"
-        },
-        {
-          "title": "世界人工智能大会达成丰硕成果",
-          "time": "早报 · 宏观",
-          "summary": "2026世界人工智能大会今天（7月20日）下午在上海落下帷幕，为期四天的大会取得丰硕成果。与会嘉宾表示，期待与中国深化合作，让科技更好赋能各国发展。本次大会共吸引了1568位国内外顶尖专家参加，展品总数4486项，展商数量与展览面积均较去年增长超三分之一。同时，大会期间还发布了一系列重磅成果：...",
           "sentiment": "中性"
         }
       ]
@@ -68,10 +68,10 @@
       "code": "011840",
       "name": "天弘中证人工智能C",
       "channel": "ashare",
-      "bullish_count": 3,
+      "bullish_count": 4,
       "bearish_count": 0,
-      "neutral_count": 9,
-      "sentiment_score": 3,
+      "neutral_count": 20,
+      "sentiment_score": 4,
       "sentiment_label": "偏多",
       "top_impact_news": [
         {
@@ -98,10 +98,10 @@
       "code": "010990",
       "name": "南方有色金属ETF联接E",
       "channel": "ashare",
-      "bullish_count": 3,
+      "bullish_count": 4,
       "bearish_count": 0,
-      "neutral_count": 9,
-      "sentiment_score": 3,
+      "neutral_count": 20,
+      "sentiment_score": 4,
       "sentiment_label": "偏多",
       "top_impact_news": [
         {
@@ -128,10 +128,10 @@
       "code": "012885",
       "name": "华夏光伏ETF联接A",
       "channel": "ashare",
-      "bullish_count": 3,
+      "bullish_count": 4,
       "bearish_count": 0,
-      "neutral_count": 9,
-      "sentiment_score": 3,
+      "neutral_count": 20,
+      "sentiment_score": 4,
       "sentiment_label": "偏多",
       "top_impact_news": [
         {
@@ -160,7 +160,7 @@
       "channel": "nasdaq",
       "bullish_count": 0,
       "bearish_count": 0,
-      "neutral_count": 12,
+      "neutral_count": 24,
       "sentiment_score": 0,
       "sentiment_label": "中性",
       "top_impact_news": [
@@ -190,7 +190,7 @@
       "channel": "nasdaq",
       "bullish_count": 0,
       "bearish_count": 0,
-      "neutral_count": 12,
+      "neutral_count": 24,
       "sentiment_score": 0,
       "sentiment_label": "中性",
       "top_impact_news": [
@@ -218,10 +218,10 @@
       "code": "015790",
       "name": "永赢高端装备混合C",
       "channel": "ashare",
-      "bullish_count": 3,
+      "bullish_count": 4,
       "bearish_count": 0,
-      "neutral_count": 9,
-      "sentiment_score": 3,
+      "neutral_count": 20,
+      "sentiment_score": 4,
       "sentiment_label": "偏多",
       "top_impact_news": [
         {
@@ -248,10 +248,10 @@
       "code": "014881",
       "name": "天弘机器人ETF联接C",
       "channel": "ashare",
-      "bullish_count": 3,
+      "bullish_count": 4,
       "bearish_count": 0,
-      "neutral_count": 9,
-      "sentiment_score": 3,
+      "neutral_count": 20,
+      "sentiment_score": 4,
       "sentiment_label": "偏多",
       "top_impact_news": [
         {
@@ -278,10 +278,10 @@
       "code": "025647",
       "name": "平安高端装备混合C",
       "channel": "ashare",
-      "bullish_count": 3,
+      "bullish_count": 4,
       "bearish_count": 0,
-      "neutral_count": 9,
-      "sentiment_score": 3,
+      "neutral_count": 20,
+      "sentiment_score": 4,
       "sentiment_label": "偏多",
       "top_impact_news": [
         {

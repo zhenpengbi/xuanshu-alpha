@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-21 04:16",
+  "updated_at": "2026-07-21 12:17",
   "indicators": [
     {
       "code": "002963",
@@ -94,16 +94,16 @@
     {
       "code": "025647",
       "name": "平安高端装备混合C",
-      "rsi14": 27.53,
-      "ma5": 1.09586,
-      "ma20": 1.28302,
-      "prev_ma5": 1.1645,
-      "prev_ma20": 1.300485,
-      "macd_dif": -0.06686868,
-      "macd_dea": -0.02361333,
-      "macd_hist": -0.08651069,
+      "rsi14": 33.58,
+      "ma5": 1.04964,
+      "ma20": 1.271145,
+      "prev_ma5": 1.09586,
+      "prev_ma20": 1.28302,
+      "macd_dif": -0.0768734,
+      "macd_dea": -0.03440872,
+      "macd_hist": -0.08492935,
       "macd_trend": "bearish",
-      "latest_price": 0.9419,
+      "latest_price": 1.005,
       "prices_used": 60
     },
     {
