@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-22 04:17",
+  "updated_at": "2026-07-22 12:19",
   "indicators": [
     {
       "code": "002963",
@@ -34,16 +34,16 @@
     {
       "code": "010990",
       "name": "南方有色金属ETF联接E",
-      "rsi14": 40.8,
-      "ma5": 1.6518,
-      "ma20": 1.749255,
-      "prev_ma5": 1.66362,
-      "prev_ma20": 1.761445,
-      "macd_dif": -0.07164029,
-      "macd_dea": -0.06391858,
-      "macd_hist": -0.01544342,
+      "rsi14": 46.02,
+      "ma5": 1.65726,
+      "ma20": 1.739445,
+      "prev_ma5": 1.6518,
+      "prev_ma20": 1.749255,
+      "macd_dif": -0.0641515,
+      "macd_dea": -0.06384286,
+      "macd_hist": -0.00061727,
       "macd_trend": "bearish",
-      "latest_price": 1.6718,
+      "latest_price": 1.7242,
       "prices_used": 60
     },
     {
@@ -94,16 +94,16 @@
     {
       "code": "025647",
       "name": "平安高端装备混合C",
-      "rsi14": 33.58,
-      "ma5": 1.04964,
-      "ma20": 1.271145,
-      "prev_ma5": 1.09586,
-      "prev_ma20": 1.28302,
-      "macd_dif": -0.0768734,
-      "macd_dea": -0.03440872,
-      "macd_hist": -0.08492935,
+      "rsi14": 32.51,
+      "ma5": 1.00906,
+      "ma20": 1.25565,
+      "prev_ma5": 1.04964,
+      "prev_ma20": 1.271145,
+      "macd_dif": -0.08586085,
+      "macd_dea": -0.04481663,
+      "macd_hist": -0.08208845,
       "macd_trend": "bearish",
-      "latest_price": 1.005,
+      "latest_price": 0.9794,
       "prices_used": 60
     },
     {
