@@ -43,7 +43,7 @@
       "code": "011840",
       "amount": 5160.01,
       "ratio": 9.29,
-      "dailyReturn": -65.86,
+      "dailyReturn": -120.39,
       "holdingReturn": 1512.54,
       "holdingReturnRate": 41.47,
       "totalReturn": 3237.51,
@@ -55,7 +55,7 @@
       "code": "012885",
       "amount": 4872.36,
       "ratio": 8.77,
-      "dailyReturn": 22.38,
+      "dailyReturn": 120.67,
       "holdingReturn": -627.64,
       "holdingReturnRate": -11.41,
       "totalReturn": -627.64,
@@ -79,7 +79,7 @@
       "code": "025647",
       "amount": 2022.34,
       "ratio": 3.64,
-      "dailyReturn": -51.52,
+      "dailyReturn": 5.78,
       "holdingReturn": 22.34,
       "holdingReturnRate": 1.12,
       "totalReturn": 22.34,
@@ -146,5 +146,5 @@
       }
     }
   },
-  "dailyReturn": 441.41
+  "dailyReturn": 542.47
 }

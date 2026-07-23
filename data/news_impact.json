@@ -1,17 +1,17 @@
 {
-  "updated_at": "2026-07-23 04:16",
+  "updated_at": "2026-07-23 12:18",
   "news_date": "2026-07-23",
-  "news_period": "早报",
-  "total_news": 12,
+  "news_period": "早报/晚报",
+  "total_news": 24,
   "items": [
     {
       "code": "002963",
       "name": "易方达黄金ETF联接C",
       "channel": "gold",
-      "bullish_count": 1,
+      "bullish_count": 2,
       "bearish_count": 0,
-      "neutral_count": 11,
-      "sentiment_score": 1,
+      "neutral_count": 22,
+      "sentiment_score": 2,
       "sentiment_label": "偏多",
       "top_impact_news": [
         {
@@ -21,15 +21,15 @@
           "sentiment": "利多"
         },
         {
+          "title": "港股三大指数飘红，有色金属股大涨",
+          "time": "晚报 · A股",
+          "summary": "有色金属板块整体涨幅居前 有色金属板块整体涨幅居前，铝、铜、黄金等有色金属股全天维持强势行情。 赣锋锂业大涨9.88%，天齐锂业涨6.96%，新疆新鑫矿业涨6.67%，中国铝业大涨6.28%，大唐黄金涨5.08%。",
+          "sentiment": "利多"
+        },
+        {
           "title": "上半年全国城镇新增就业695万人",
           "time": "早报 · 宏观",
           "summary": "记者从人力资源社会保障部今天（7月22日）举行的新闻发布会上获悉，1至6月，全国城镇新增就业695万人，就业形势保持总体平稳。今年上半年加力推出《稳岗扩容提质行动方案》等稳就业政策，促进重点群体就业，实施大规模职业技能提升培训，深入开展人工智能、先进制造、新能源汽车、康养服务、低空经济五大领域...",
-          "sentiment": "中性"
-        },
-        {
-          "title": "国内联播快讯",
-          "time": "早报 · 宏观",
-          "summary": "行新增再贷款额度1000亿元支持防汛救灾及灾后重建近日，中国人民银行新增支农支小再贷款额度1000亿元，引导和鼓励金融机构加大对广西、湖北、甘肃、浙江等受灾地区的经营主体，特别是小微企业、个体工商户等的信贷支持力度，支持防汛救灾及灾后重建工作。我国将启动建设国家级零碳工厂今天（7月22日），工...",
           "sentiment": "中性"
         }
       ]
@@ -38,10 +38,10 @@
       "code": "000307",
       "name": "易方达黄金ETF联接A",
       "channel": "gold",
-      "bullish_count": 1,
+      "bullish_count": 2,
       "bearish_count": 0,
-      "neutral_count": 11,
-      "sentiment_score": 1,
+      "neutral_count": 22,
+      "sentiment_score": 2,
       "sentiment_label": "偏多",
       "top_impact_news": [
         {
@@ -51,15 +51,15 @@
           "sentiment": "利多"
         },
         {
+          "title": "港股三大指数飘红，有色金属股大涨",
+          "time": "晚报 · A股",
+          "summary": "有色金属板块整体涨幅居前 有色金属板块整体涨幅居前，铝、铜、黄金等有色金属股全天维持强势行情。 赣锋锂业大涨9.88%，天齐锂业涨6.96%，新疆新鑫矿业涨6.67%，中国铝业大涨6.28%，大唐黄金涨5.08%。",
+          "sentiment": "利多"
+        },
+        {
           "title": "上半年全国城镇新增就业695万人",
           "time": "早报 · 宏观",
           "summary": "记者从人力资源社会保障部今天（7月22日）举行的新闻发布会上获悉，1至6月，全国城镇新增就业695万人，就业形势保持总体平稳。今年上半年加力推出《稳岗扩容提质行动方案》等稳就业政策，促进重点群体就业，实施大规模职业技能提升培训，深入开展人工智能、先进制造、新能源汽车、康养服务、低空经济五大领域...",
-          "sentiment": "中性"
-        },
-        {
-          "title": "国内联播快讯",
-          "time": "早报 · 宏观",
-          "summary": "行新增再贷款额度1000亿元支持防汛救灾及灾后重建近日，中国人民银行新增支农支小再贷款额度1000亿元，引导和鼓励金融机构加大对广西、湖北、甘肃、浙江等受灾地区的经营主体，特别是小微企业、个体工商户等的信贷支持力度，支持防汛救灾及灾后重建工作。我国将启动建设国家级零碳工厂今天（7月22日），工...",
           "sentiment": "中性"
         }
       ]
@@ -68,9 +68,9 @@
       "code": "011840",
       "name": "天弘中证人工智能C",
       "channel": "ashare",
-      "bullish_count": 2,
-      "bearish_count": 0,
-      "neutral_count": 10,
+      "bullish_count": 3,
+      "bearish_count": 1,
+      "neutral_count": 20,
       "sentiment_score": 2,
       "sentiment_label": "偏多",
       "top_impact_news": [
@@ -87,10 +87,10 @@
           "sentiment": "利多"
         },
         {
-          "title": "上半年全国城镇新增就业695万人",
-          "time": "早报 · 宏观",
-          "summary": "记者从人力资源社会保障部今天（7月22日）举行的新闻发布会上获悉，1至6月，全国城镇新增就业695万人，就业形势保持总体平稳。今年上半年加力推出《稳岗扩容提质行动方案》等稳就业政策，促进重点群体就业，实施大规模职业技能提升培训，深入开展人工智能、先进制造、新能源汽车、康养服务、低空经济五大领域...",
-          "sentiment": "中性"
+          "title": "贝佐斯推动重新设计流媒体服务Prime Video 将聚焦人工智能",
+          "time": "晚报 · A股",
+          "summary": "消息人士表示，该项目被视为亚马逊提升其在人工智能领域地位的关键举措之一。此外，其他人工智能项目，例如对Alexa语音助手进行多年升级以提供更自然的对话回应，成效参差不齐，至今仍处于亏损状态。",
+          "sentiment": "利空"
         }
       ]
     },
@@ -98,9 +98,9 @@
       "code": "010990",
       "name": "南方有色金属ETF联接E",
       "channel": "ashare",
-      "bullish_count": 2,
-      "bearish_count": 0,
-      "neutral_count": 10,
+      "bullish_count": 3,
+      "bearish_count": 1,
+      "neutral_count": 20,
       "sentiment_score": 2,
       "sentiment_label": "偏多",
       "top_impact_news": [
@@ -117,10 +117,10 @@
           "sentiment": "利多"
         },
         {
-          "title": "上半年全国城镇新增就业695万人",
-          "time": "早报 · 宏观",
-          "summary": "记者从人力资源社会保障部今天（7月22日）举行的新闻发布会上获悉，1至6月，全国城镇新增就业695万人，就业形势保持总体平稳。今年上半年加力推出《稳岗扩容提质行动方案》等稳就业政策，促进重点群体就业，实施大规模职业技能提升培训，深入开展人工智能、先进制造、新能源汽车、康养服务、低空经济五大领域...",
-          "sentiment": "中性"
+          "title": "贝佐斯推动重新设计流媒体服务Prime Video 将聚焦人工智能",
+          "time": "晚报 · A股",
+          "summary": "消息人士表示，该项目被视为亚马逊提升其在人工智能领域地位的关键举措之一。此外，其他人工智能项目，例如对Alexa语音助手进行多年升级以提供更自然的对话回应，成效参差不齐，至今仍处于亏损状态。",
+          "sentiment": "利空"
         }
       ]
     },
@@ -128,9 +128,9 @@
       "code": "012885",
       "name": "华夏光伏ETF联接A",
       "channel": "ashare",
-      "bullish_count": 2,
-      "bearish_count": 0,
-      "neutral_count": 10,
+      "bullish_count": 3,
+      "bearish_count": 1,
+      "neutral_count": 20,
       "sentiment_score": 2,
       "sentiment_label": "偏多",
       "top_impact_news": [
@@ -147,10 +147,10 @@
           "sentiment": "利多"
         },
         {
-          "title": "上半年全国城镇新增就业695万人",
-          "time": "早报 · 宏观",
-          "summary": "记者从人力资源社会保障部今天（7月22日）举行的新闻发布会上获悉，1至6月，全国城镇新增就业695万人，就业形势保持总体平稳。今年上半年加力推出《稳岗扩容提质行动方案》等稳就业政策，促进重点群体就业，实施大规模职业技能提升培训，深入开展人工智能、先进制造、新能源汽车、康养服务、低空经济五大领域...",
-          "sentiment": "中性"
+          "title": "贝佐斯推动重新设计流媒体服务Prime Video 将聚焦人工智能",
+          "time": "晚报 · A股",
+          "summary": "消息人士表示，该项目被视为亚马逊提升其在人工智能领域地位的关键举措之一。此外，其他人工智能项目，例如对Alexa语音助手进行多年升级以提供更自然的对话回应，成效参差不齐，至今仍处于亏损状态。",
+          "sentiment": "利空"
         }
       ]
     },
@@ -160,7 +160,7 @@
       "channel": "nasdaq",
       "bullish_count": 0,
       "bearish_count": 0,
-      "neutral_count": 12,
+      "neutral_count": 24,
       "sentiment_score": 0,
       "sentiment_label": "中性",
       "top_impact_news": [
@@ -190,7 +190,7 @@
       "channel": "nasdaq",
       "bullish_count": 0,
       "bearish_count": 0,
-      "neutral_count": 12,
+      "neutral_count": 24,
       "sentiment_score": 0,
       "sentiment_label": "中性",
       "top_impact_news": [
@@ -218,9 +218,9 @@
       "code": "015790",
       "name": "永赢高端装备混合C",
       "channel": "ashare",
-      "bullish_count": 2,
-      "bearish_count": 0,
-      "neutral_count": 10,
+      "bullish_count": 3,
+      "bearish_count": 1,
+      "neutral_count": 20,
       "sentiment_score": 2,
       "sentiment_label": "偏多",
       "top_impact_news": [
@@ -237,10 +237,10 @@
           "sentiment": "利多"
         },
         {
-          "title": "上半年全国城镇新增就业695万人",
-          "time": "早报 · 宏观",
-          "summary": "记者从人力资源社会保障部今天（7月22日）举行的新闻发布会上获悉，1至6月，全国城镇新增就业695万人，就业形势保持总体平稳。今年上半年加力推出《稳岗扩容提质行动方案》等稳就业政策，促进重点群体就业，实施大规模职业技能提升培训，深入开展人工智能、先进制造、新能源汽车、康养服务、低空经济五大领域...",
-          "sentiment": "中性"
+          "title": "贝佐斯推动重新设计流媒体服务Prime Video 将聚焦人工智能",
+          "time": "晚报 · A股",
+          "summary": "消息人士表示，该项目被视为亚马逊提升其在人工智能领域地位的关键举措之一。此外，其他人工智能项目，例如对Alexa语音助手进行多年升级以提供更自然的对话回应，成效参差不齐，至今仍处于亏损状态。",
+          "sentiment": "利空"
         }
       ]
     },
@@ -248,9 +248,9 @@
       "code": "014881",
       "name": "天弘机器人ETF联接C",
       "channel": "ashare",
-      "bullish_count": 2,
-      "bearish_count": 0,
-      "neutral_count": 10,
+      "bullish_count": 3,
+      "bearish_count": 1,
+      "neutral_count": 20,
       "sentiment_score": 2,
       "sentiment_label": "偏多",
       "top_impact_news": [
@@ -267,10 +267,10 @@
           "sentiment": "利多"
         },
         {
-          "title": "上半年全国城镇新增就业695万人",
-          "time": "早报 · 宏观",
-          "summary": "记者从人力资源社会保障部今天（7月22日）举行的新闻发布会上获悉，1至6月，全国城镇新增就业695万人，就业形势保持总体平稳。今年上半年加力推出《稳岗扩容提质行动方案》等稳就业政策，促进重点群体就业，实施大规模职业技能提升培训，深入开展人工智能、先进制造、新能源汽车、康养服务、低空经济五大领域...",
-          "sentiment": "中性"
+          "title": "贝佐斯推动重新设计流媒体服务Prime Video 将聚焦人工智能",
+          "time": "晚报 · A股",
+          "summary": "消息人士表示，该项目被视为亚马逊提升其在人工智能领域地位的关键举措之一。此外，其他人工智能项目，例如对Alexa语音助手进行多年升级以提供更自然的对话回应，成效参差不齐，至今仍处于亏损状态。",
+          "sentiment": "利空"
         }
       ]
     },
@@ -278,9 +278,9 @@
       "code": "025647",
       "name": "平安高端装备混合C",
       "channel": "ashare",
-      "bullish_count": 2,
-      "bearish_count": 0,
-      "neutral_count": 10,
+      "bullish_count": 3,
+      "bearish_count": 1,
+      "neutral_count": 20,
       "sentiment_score": 2,
       "sentiment_label": "偏多",
       "top_impact_news": [
@@ -297,10 +297,10 @@
           "sentiment": "利多"
         },
         {
-          "title": "上半年全国城镇新增就业695万人",
-          "time": "早报 · 宏观",
-          "summary": "记者从人力资源社会保障部今天（7月22日）举行的新闻发布会上获悉，1至6月，全国城镇新增就业695万人，就业形势保持总体平稳。今年上半年加力推出《稳岗扩容提质行动方案》等稳就业政策，促进重点群体就业，实施大规模职业技能提升培训，深入开展人工智能、先进制造、新能源汽车、康养服务、低空经济五大领域...",
-          "sentiment": "中性"
+          "title": "贝佐斯推动重新设计流媒体服务Prime Video 将聚焦人工智能",
+          "time": "晚报 · A股",
+          "summary": "消息人士表示，该项目被视为亚马逊提升其在人工智能领域地位的关键举措之一。此外，其他人工智能项目，例如对Alexa语音助手进行多年升级以提供更自然的对话回应，成效参差不齐，至今仍处于亏损状态。",
+          "sentiment": "利空"
         }
       ]
     }
