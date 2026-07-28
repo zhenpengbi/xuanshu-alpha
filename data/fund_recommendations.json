@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-07-27 04:39",
+  "updated_at": "2026-07-28 04:12",
   "triggered": false,
-  "avg_sell_score": 1.3,
+  "avg_sell_score": 1.0,
   "panic_threshold": 2.0,
   "scan_params": {
     "panic_scan": {
@@ -15,58 +15,58 @@
       "rsi_threshold": 40
     }
   },
-  "message": "当前无超跌机会（avg_sell_score=1.30 < 2.0，市场情绪平稳）",
+  "message": "当前无超跌机会（avg_sell_score=1.00 < 2.0，市场情绪平稳）",
   "recommendations": [],
   "undervalued": [
     {
-      "code": "562820",
-      "name": "集成电路ETF嘉实",
-      "drop_60d_pct": 60.81,
-      "today_chg_pct": -1.25,
-      "scale_bn": 3.96,
-      "rsi14": 19.93,
+      "code": "588110",
+      "name": "科创成长ETF广发",
+      "drop_60d_pct": 73.28,
+      "today_chg_pct": -6.72,
+      "scale_bn": 3.66,
+      "rsi14": 17.83,
       "signal": "超跌反弹",
-      "reason": "近60日跌幅 60.8%，RSI=19.9<30（深度超卖），关注反弹机会"
+      "reason": "近60日跌幅 73.3%，RSI=17.8<30（深度超卖），关注反弹机会"
     },
     {
-      "code": "588200",
-      "name": "科创芯片ETF嘉实",
-      "drop_60d_pct": 56.52,
-      "today_chg_pct": -0.64,
-      "scale_bn": 539.3,
-      "rsi14": 18.27,
+      "code": "588020",
+      "name": "科创成长ETF易方达",
+      "drop_60d_pct": 64.46,
+      "today_chg_pct": -6.97,
+      "scale_bn": 12.3,
+      "rsi14": 20.68,
       "signal": "超跌反弹",
-      "reason": "近60日跌幅 56.5%，RSI=18.3<30（深度超卖），关注反弹机会"
+      "reason": "近60日跌幅 64.5%，RSI=20.7<30（深度超卖），关注反弹机会"
+    },
+    {
+      "code": "515880",
+      "name": "通信ETF国泰",
+      "drop_60d_pct": 49.77,
+      "today_chg_pct": -7.35,
+      "scale_bn": 409.61,
+      "rsi14": 27.19,
+      "signal": "超跌反弹",
+      "reason": "近60日跌幅 49.8%，RSI=27.2<30（深度超卖），关注反弹机会"
     },
     {
       "code": "589210",
       "name": "科创芯片设计ETF广发",
-      "drop_60d_pct": 46.99,
-      "today_chg_pct": -0.58,
-      "scale_bn": 8.3,
-      "rsi14": 21.58,
+      "drop_60d_pct": 46.55,
+      "today_chg_pct": -5.54,
+      "scale_bn": 8.01,
+      "rsi14": 22.19,
       "signal": "超跌反弹",
-      "reason": "近60日跌幅 47.0%，RSI=21.6<30（深度超卖），关注反弹机会"
+      "reason": "近60日跌幅 46.5%，RSI=22.2<30（深度超卖），关注反弹机会"
     },
     {
-      "code": "589190",
-      "name": "科创芯片ETF华宝",
-      "drop_60d_pct": 34.85,
-      "today_chg_pct": -0.73,
-      "scale_bn": 21.18,
-      "rsi14": 25.16,
-      "signal": "超跌反弹",
-      "reason": "近60日跌幅 34.9%，RSI=25.2<30（深度超卖），关注反弹机会"
-    },
-    {
-      "code": "512480",
-      "name": "半导体ETF国联安",
-      "drop_60d_pct": 35.85,
-      "today_chg_pct": -0.9,
-      "scale_bn": 207.21,
-      "rsi14": 30.82,
+      "code": "515050",
+      "name": "通信ETF华夏",
+      "drop_60d_pct": 64.4,
+      "today_chg_pct": -7.84,
+      "scale_bn": 179.49,
+      "rsi14": 38.35,
       "signal": "低位观察",
-      "reason": "近60日跌幅 35.9%，RSI=30.8（低位区间），可小仓位试探"
+      "reason": "近60日跌幅 64.4%，RSI=38.4（低位区间），可小仓位试探"
     }
   ],
   "disclaimer": "以上仅为量化扫描结果，不构成投资建议，投资者需自行承担风险"
