@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-29 04:17",
+  "updated_at": "2026-07-29 12:57",
   "portfolio_updateTime": "2026-07-29",
   "funds": [
     {
@@ -12,18 +12,18 @@
       "company": "永赢基金管理有限公司",
       "inception_date": "2022-07-15",
       "name_mismatch": true,
-      "manager_tenure_days": 1972,
+      "manager_tenure_days": null,
       "performance_ranking": [
         {
           "period": "成立以来",
-          "return_pct": 1.39,
+          "return_pct": 1.0,
           "max_dd_pct": 51.78,
           "rank": "3438/5535",
           "percentile": 62.1
         },
         {
           "period": "今年以来",
-          "return_pct": -28.77,
+          "return_pct": -29.04,
           "max_dd_pct": 42.53,
           "rank": "5398/5536",
           "percentile": 97.5
@@ -58,35 +58,35 @@
         },
         {
           "period": "近1月",
-          "return_pct": -28.88,
+          "return_pct": -28.98,
           "max_dd_pct": null,
           "rank": "4930/5497",
           "percentile": 89.7
         },
         {
           "period": "近3月",
-          "return_pct": -31.64,
+          "return_pct": -32.34,
           "max_dd_pct": 40.93,
           "rank": "5293/5343",
           "percentile": 99.1
         },
         {
           "period": "近6月",
-          "return_pct": -37.27,
+          "return_pct": -36.67,
           "max_dd_pct": 40.93,
           "rank": "5067/5147",
           "percentile": 98.4
         },
         {
           "period": "近1年",
-          "return_pct": 22.32,
+          "return_pct": 21.15,
           "max_dd_pct": 42.53,
           "rank": "1733/4707",
           "percentile": 36.8
         },
         {
           "period": "近3年",
-          "return_pct": 33.02,
+          "return_pct": 32.51,
           "max_dd_pct": 42.53,
           "rank": "1272/3649",
           "percentile": 34.9
@@ -95,14 +95,12 @@
       "rank_percentile_ytd": 97.5,
       "max_drawdown_pct": 51.78,
       "alpha_analysis": {
-        "fund_annual_pct": 10.57,
-        "benchmark_annual_pct": 4.51,
-        "alpha_pct": 6.06,
-        "benchmark": "沪深300",
-        "period_years": 2.9,
-        "note": ""
+        "fund_annual_pct": null,
+        "benchmark_annual_pct": null,
+        "alpha_pct": null,
+        "note": "数据不足30个交易日"
       },
-      "alpha_pct": 6.06,
+      "alpha_pct": null,
       "holdings_analysis": {
         "status": "数据缺失",
         "top_holdings": []
@@ -110,11 +108,9 @@
       "holdings_rated": [],
       "diagnosis": {
         "action": "建议评估替换",
-        "score": 45,
+        "score": 20,
         "reasons": [
-          "今年以来同类排名 98%（落后同类）",
-          "基金经理任职 5.4 年，管理经验相对充分",
-          "α=6.1pt，相对沪深300有超额收益"
+          "今年以来同类排名 98%（落后同类）"
         ],
         "warnings": [
           "⚠️ 代码 015790 官方名称与持仓标注不符，请核实！官方：永赢高端装备智选混合发起C，持仓标注：永赢高端装备智选混合C",
@@ -133,7 +129,7 @@
       "company": "平安基金管理有限公司",
       "inception_date": "2025-10-30",
       "name_mismatch": true,
-      "manager_tenure_days": 260,
+      "manager_tenure_days": null,
       "performance_ranking": [
         {
           "period": "成立以来",
@@ -181,14 +177,12 @@
       "rank_percentile_ytd": 96.3,
       "max_drawdown_pct": 39.39,
       "alpha_analysis": {
-        "fund_annual_pct": -7.35,
-        "benchmark_annual_pct": 4.51,
-        "alpha_pct": -11.86,
-        "benchmark": "沪深300",
-        "period_years": 0.7,
-        "note": ""
+        "fund_annual_pct": null,
+        "benchmark_annual_pct": null,
+        "alpha_pct": null,
+        "note": "数据不足30个交易日"
       },
-      "alpha_pct": -11.86,
+      "alpha_pct": null,
       "holdings_analysis": {
         "status": "数据缺失",
         "top_holdings": []
@@ -196,15 +190,13 @@
       "holdings_rated": [],
       "diagnosis": {
         "action": "建议评估替换",
-        "score": -5,
+        "score": 20,
         "reasons": [
-          "今年以来同类排名 96%（落后同类）",
-          "α=-11.9pt，跑输沪深300较多"
+          "今年以来同类排名 96%（落后同类）"
         ],
         "warnings": [
           "⚠️ 代码 025647 官方名称与持仓标注不符，请核实！官方：平安高端装备混合发起式C，持仓标注：平安高端装备混合C",
           "⚠️ 排名落后，建议关注是否替换",
-          "基金经理任职 0.7 年（不足1年），历史业绩参考价值有限",
           "最大回撤 39.4%，波动较大"
         ]
       }

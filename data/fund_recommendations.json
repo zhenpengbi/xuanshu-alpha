@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-29 04:16",
+  "updated_at": "2026-07-29 12:57",
   "triggered": false,
   "avg_sell_score": 0.9,
   "panic_threshold": 2.0,
@@ -19,14 +19,64 @@
   "recommendations": [],
   "undervalued": [
     {
-      "code": "588110",
-      "name": "科创成长ETF广发",
-      "drop_60d_pct": 13.42,
-      "today_chg_pct": -4.68,
-      "scale_bn": 3.53,
-      "rsi14": 32.17,
+      "code": "561980",
+      "name": "半导体设备ETF招商",
+      "drop_60d_pct": 74.0,
+      "today_chg_pct": -1.68,
+      "scale_bn": 66.0,
+      "rsi14": 28.03,
+      "signal": "超跌反弹",
+      "reason": "近60日跌幅 74.0%，RSI=28.0<30（深度超卖），关注反弹机会"
+    },
+    {
+      "code": "562820",
+      "name": "集成电路ETF嘉实",
+      "drop_60d_pct": 68.09,
+      "today_chg_pct": -1.25,
+      "scale_bn": 3.86,
+      "rsi14": 19.48,
+      "signal": "超跌反弹",
+      "reason": "近60日跌幅 68.1%，RSI=19.5<30（深度超卖），关注反弹机会"
+    },
+    {
+      "code": "562590",
+      "name": "半导体设备ETF华夏",
+      "drop_60d_pct": 53.82,
+      "today_chg_pct": -1.96,
+      "scale_bn": 83.82,
+      "rsi14": 29.51,
+      "signal": "超跌反弹",
+      "reason": "近60日跌幅 53.8%，RSI=29.5<30（深度超卖），关注反弹机会"
+    },
+    {
+      "code": "512480",
+      "name": "半导体ETF国联安",
+      "drop_60d_pct": 46.31,
+      "today_chg_pct": -1.34,
+      "scale_bn": 195.73,
+      "rsi14": 29.02,
+      "signal": "超跌反弹",
+      "reason": "近60日跌幅 46.3%，RSI=29.0<30（深度超卖），关注反弹机会"
+    },
+    {
+      "code": "589100",
+      "name": "科创芯片ETF国泰",
+      "drop_60d_pct": 56.87,
+      "today_chg_pct": -0.99,
+      "scale_bn": 8.4,
+      "rsi14": 31.36,
       "signal": "低位观察",
-      "reason": "近60日跌幅 13.4%，RSI=32.2（低位区间），可小仓位试探"
+      "reason": "近60日跌幅 56.9%，RSI=31.4（低位区间），可小仓位试探"
+    },
+    {
+      "code": "560780",
+      "name": "半导体设备ETF广发",
+      "drop_60d_pct": 53.94,
+      "today_chg_pct": -2.07,
+      "scale_bn": 119.81,
+      "rsi14": 32.75,
+      "signal": "低位观察",
+      "reason": "近60日跌幅 53.9%，RSI=32.8（低位区间），可小仓位试探"
     }
   ],
   "disclaimer": "以上仅为量化扫描结果，不构成投资建议，投资者需自行承担风险"
