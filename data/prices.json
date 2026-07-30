@@ -16,16 +16,16 @@
   {
     "code": "010990",
     "name": "南方有色金属ETF联接E",
-    "price": 1.7266,
-    "change_pct": 1.59,
-    "updated_at": "2026-07-29"
+    "price": 1.7141,
+    "change_pct": -0.72,
+    "updated_at": "2026-07-30"
   },
   {
     "code": "011840",
     "name": "天弘中证人工智能主题指数C",
-    "price": 1.7962,
-    "change_pct": -0.27,
-    "updated_at": "2026-07-29"
+    "price": 1.6974,
+    "change_pct": -5.5,
+    "updated_at": "2026-07-30"
   },
   {
     "code": "012885",
@@ -44,9 +44,9 @@
   {
     "code": "025647",
     "name": "平安高端装备混合C",
-    "price": 0.9436,
-    "change_pct": -0.44,
-    "updated_at": "2026-07-29"
+    "price": 0.8826,
+    "change_pct": -6.46,
+    "updated_at": "2026-07-30"
   },
   {
     "code": "014881",
