@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-07-29 12:57",
-  "portfolio_updateTime": "2026-07-29",
+  "updated_at": "2026-07-30 04:00",
+  "portfolio_updateTime": "2026-07-30",
   "funds": [
     {
       "code": "015790",
@@ -12,21 +12,21 @@
       "company": "永赢基金管理有限公司",
       "inception_date": "2022-07-15",
       "name_mismatch": true,
-      "manager_tenure_days": null,
+      "manager_tenure_days": 1973,
       "performance_ranking": [
         {
           "period": "成立以来",
           "return_pct": 1.0,
           "max_dd_pct": 51.78,
-          "rank": "3438/5535",
-          "percentile": 62.1
+          "rank": "3535/5545",
+          "percentile": 63.8
         },
         {
           "period": "今年以来",
           "return_pct": -29.04,
-          "max_dd_pct": 42.53,
-          "rank": "5398/5536",
-          "percentile": 97.5
+          "max_dd_pct": 42.75,
+          "rank": "5419/5546",
+          "percentile": 97.7
         },
         {
           "period": "2025",
@@ -60,47 +60,49 @@
           "period": "近1月",
           "return_pct": -28.98,
           "max_dd_pct": null,
-          "rank": "4930/5497",
-          "percentile": 89.7
+          "rank": "4912/5498",
+          "percentile": 89.3
         },
         {
           "period": "近3月",
           "return_pct": -32.34,
-          "max_dd_pct": 40.93,
-          "rank": "5293/5343",
-          "percentile": 99.1
+          "max_dd_pct": 41.15,
+          "rank": "5284/5351",
+          "percentile": 98.7
         },
         {
           "period": "近6月",
           "return_pct": -36.67,
-          "max_dd_pct": 40.93,
-          "rank": "5067/5147",
+          "max_dd_pct": 41.15,
+          "rank": "5072/5153",
           "percentile": 98.4
         },
         {
           "period": "近1年",
           "return_pct": 21.15,
-          "max_dd_pct": 42.53,
-          "rank": "1733/4707",
-          "percentile": 36.8
+          "max_dd_pct": 42.75,
+          "rank": "1780/4709",
+          "percentile": 37.8
         },
         {
           "period": "近3年",
           "return_pct": 32.51,
-          "max_dd_pct": 42.53,
-          "rank": "1272/3649",
-          "percentile": 34.9
+          "max_dd_pct": 42.75,
+          "rank": "1307/3649",
+          "percentile": 35.8
         }
       ],
-      "rank_percentile_ytd": 97.5,
+      "rank_percentile_ytd": 97.7,
       "max_drawdown_pct": 51.78,
       "alpha_analysis": {
-        "fund_annual_pct": null,
-        "benchmark_annual_pct": null,
-        "alpha_pct": null,
-        "note": "数据不足30个交易日"
+        "fund_annual_pct": 10.41,
+        "benchmark_annual_pct": "数据缺失",
+        "alpha_pct": "数据缺失",
+        "benchmark": "沪深300",
+        "period_years": 2.9,
+        "note": "基准数据缺失，alpha 无法计算"
       },
-      "alpha_pct": null,
+      "alpha_pct": "数据缺失",
       "holdings_analysis": {
         "status": "数据缺失",
         "top_holdings": []
@@ -108,9 +110,10 @@
       "holdings_rated": [],
       "diagnosis": {
         "action": "建议评估替换",
-        "score": 20,
+        "score": 30,
         "reasons": [
-          "今年以来同类排名 98%（落后同类）"
+          "今年以来同类排名 98%（落后同类）",
+          "基金经理任职 5.4 年，管理经验相对充分"
         ],
         "warnings": [
           "⚠️ 代码 015790 官方名称与持仓标注不符，请核实！官方：永赢高端装备智选混合发起C，持仓标注：永赢高端装备智选混合C",
@@ -129,21 +132,21 @@
       "company": "平安基金管理有限公司",
       "inception_date": "2025-10-30",
       "name_mismatch": true,
-      "manager_tenure_days": null,
+      "manager_tenure_days": 261,
       "performance_ranking": [
         {
           "period": "成立以来",
-          "return_pct": -5.22,
+          "return_pct": -5.64,
           "max_dd_pct": 39.39,
-          "rank": "3906/5535",
-          "percentile": 70.6
+          "rank": "3993/5545",
+          "percentile": 72.0
         },
         {
           "period": "今年以来",
-          "return_pct": -26.27,
+          "return_pct": -26.6,
           "max_dd_pct": 39.39,
-          "rank": "5329/5536",
-          "percentile": 96.3
+          "rank": "5345/5546",
+          "percentile": 96.4
         },
         {
           "period": "2025",
@@ -154,35 +157,37 @@
         },
         {
           "period": "近1月",
-          "return_pct": -30.37,
+          "return_pct": -30.68,
           "max_dd_pct": null,
-          "rank": "5056/5497",
-          "percentile": 92.0
+          "rank": "5083/5498",
+          "percentile": 92.5
         },
         {
           "period": "近3月",
-          "return_pct": -28.58,
+          "return_pct": -29.51,
           "max_dd_pct": 39.05,
-          "rank": "5241/5343",
+          "rank": "5251/5351",
           "percentile": 98.1
         },
         {
           "period": "近6月",
-          "return_pct": -35.45,
+          "return_pct": -34.57,
           "max_dd_pct": 39.05,
-          "rank": "5030/5147",
+          "rank": "5035/5153",
           "percentile": 97.7
         }
       ],
-      "rank_percentile_ytd": 96.3,
+      "rank_percentile_ytd": 96.4,
       "max_drawdown_pct": 39.39,
       "alpha_analysis": {
-        "fund_annual_pct": null,
-        "benchmark_annual_pct": null,
-        "alpha_pct": null,
-        "note": "数据不足30个交易日"
+        "fund_annual_pct": -7.89,
+        "benchmark_annual_pct": "数据缺失",
+        "alpha_pct": "数据缺失",
+        "benchmark": "沪深300",
+        "period_years": 0.7,
+        "note": "基准数据缺失，alpha 无法计算"
       },
-      "alpha_pct": null,
+      "alpha_pct": "数据缺失",
       "holdings_analysis": {
         "status": "数据缺失",
         "top_holdings": []
@@ -190,13 +195,14 @@
       "holdings_rated": [],
       "diagnosis": {
         "action": "建议评估替换",
-        "score": 20,
+        "score": 10,
         "reasons": [
           "今年以来同类排名 96%（落后同类）"
         ],
         "warnings": [
           "⚠️ 代码 025647 官方名称与持仓标注不符，请核实！官方：平安高端装备混合发起式C，持仓标注：平安高端装备混合C",
           "⚠️ 排名落后，建议关注是否替换",
+          "基金经理任职 0.7 年（不足1年），历史业绩参考价值有限",
           "最大回撤 39.4%，波动较大"
         ]
       }
