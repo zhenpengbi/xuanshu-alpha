@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-08-03 04:33",
+  "updated_at": "2026-08-04 04:17",
   "triggered": false,
-  "avg_sell_score": 1.1,
+  "avg_sell_score": 1.0,
   "panic_threshold": 2.0,
   "scan_params": {
     "panic_scan": {
@@ -15,89 +15,8 @@
       "rsi_threshold": 40
     }
   },
-  "message": "当前无超跌机会（avg_sell_score=1.10 < 2.0，市场情绪平稳）",
+  "message": "当前无超跌机会（avg_sell_score=1.00 < 2.0，市场情绪平稳）",
   "recommendations": [],
-  "undervalued": [
-    {
-      "code": "561980",
-      "name": "半导体设备ETF招商",
-      "drop_60d_pct": 74.74,
-      "today_chg_pct": -7.12,
-      "scale_bn": 58.06,
-      "rsi14": 28.38,
-      "signal": "超跌反弹",
-      "reason": "近60日跌幅 74.7%，RSI=28.4<30（深度超卖），关注反弹机会"
-    },
-    {
-      "code": "562820",
-      "name": "集成电路ETF嘉实",
-      "drop_60d_pct": 68.69,
-      "today_chg_pct": -4.23,
-      "scale_bn": 3.9,
-      "rsi14": 20.21,
-      "signal": "超跌反弹",
-      "reason": "近60日跌幅 68.7%，RSI=20.2<30（深度超卖），关注反弹机会"
-    },
-    {
-      "code": "588200",
-      "name": "科创芯片ETF嘉实",
-      "drop_60d_pct": 65.6,
-      "today_chg_pct": -4.48,
-      "scale_bn": 473.67,
-      "rsi14": 18.74,
-      "signal": "超跌反弹",
-      "reason": "近60日跌幅 65.6%，RSI=18.7<30（深度超卖），关注反弹机会"
-    },
-    {
-      "code": "562590",
-      "name": "半导体设备ETF华夏",
-      "drop_60d_pct": 56.37,
-      "today_chg_pct": -6.77,
-      "scale_bn": 77.36,
-      "rsi14": 29.32,
-      "signal": "超跌反弹",
-      "reason": "近60日跌幅 56.4%，RSI=29.3<30（深度超卖），关注反弹机会"
-    },
-    {
-      "code": "589190",
-      "name": "科创芯片ETF华宝",
-      "drop_60d_pct": 48.17,
-      "today_chg_pct": -4.59,
-      "scale_bn": 18.27,
-      "rsi14": 24.98,
-      "signal": "超跌反弹",
-      "reason": "近60日跌幅 48.2%，RSI=25.0<30（深度超卖），关注反弹机会"
-    },
-    {
-      "code": "512480",
-      "name": "半导体ETF国联安",
-      "drop_60d_pct": 47.84,
-      "today_chg_pct": -5.24,
-      "scale_bn": 188.28,
-      "rsi14": 29.54,
-      "signal": "超跌反弹",
-      "reason": "近60日跌幅 47.8%，RSI=29.5<30（深度超卖），关注反弹机会"
-    },
-    {
-      "code": "589100",
-      "name": "科创芯片ETF国泰",
-      "drop_60d_pct": 58.23,
-      "today_chg_pct": -5.07,
-      "scale_bn": 7.96,
-      "rsi14": 31.87,
-      "signal": "低位观察",
-      "reason": "近60日跌幅 58.2%，RSI=31.9（低位区间），可小仓位试探"
-    },
-    {
-      "code": "560780",
-      "name": "半导体设备ETF广发",
-      "drop_60d_pct": 56.54,
-      "today_chg_pct": -6.8,
-      "scale_bn": 109.03,
-      "rsi14": 31.81,
-      "signal": "低位观察",
-      "reason": "近60日跌幅 56.5%，RSI=31.8（低位区间），可小仓位试探"
-    }
-  ],
+  "undervalued": [],
   "disclaimer": "以上仅为量化扫描结果，不构成投资建议，投资者需自行承担风险"
 }
