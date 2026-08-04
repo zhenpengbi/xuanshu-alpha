@@ -19,7 +19,7 @@
       "code": "000307",
       "amount": 7994.07,
       "ratio": 14.4,
-      "dailyReturn": -19.82,
+      "dailyReturn": 9.66,
       "holdingReturn": -1505.01,
       "holdingReturnRate": -15.84,
       "totalReturn": -1505.01,
@@ -91,7 +91,7 @@
       "code": "014881",
       "amount": 2003.37,
       "ratio": 3.61,
-      "dailyReturn": 18.56,
+      "dailyReturn": 49.04,
       "holdingReturn": 128.37,
       "holdingReturnRate": 6.85,
       "totalReturn": -83.57,
@@ -146,5 +146,5 @@
       }
     }
   },
-  "dailyReturn": 7.14
+  "dailyReturn": 67.1
 }
