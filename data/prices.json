@@ -2,16 +2,16 @@
   {
     "code": "002963",
     "name": "易方达黄金ETF联接C",
-    "price": 2.8745,
-    "change_pct": 2.28,
-    "updated_at": "2026-08-05"
+    "price": 2.9424,
+    "change_pct": 2.36,
+    "updated_at": "2026-08-06"
   },
   {
     "code": "000307",
     "name": "易方达黄金ETF联接A",
-    "price": 2.9663,
-    "change_pct": 2.28,
-    "updated_at": "2026-08-05"
+    "price": 3.0364,
+    "change_pct": 2.36,
+    "updated_at": "2026-08-06"
   },
   {
     "code": "010990",
@@ -51,8 +51,8 @@
   {
     "code": "014881",
     "name": "天弘中证机器人ETF联接C",
-    "price": 1.2017,
-    "change_pct": 2.55,
-    "updated_at": "2026-08-05"
+    "price": 1.1942,
+    "change_pct": -0.62,
+    "updated_at": "2026-08-06"
   }
 ]
