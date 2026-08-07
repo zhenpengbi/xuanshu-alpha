@@ -1,35 +1,35 @@
 {
-  "updated_at": "2026-08-07 03:50",
+  "updated_at": "2026-08-07 11:36",
   "news_date": "2026-08-07",
-  "news_period": "早报",
-  "total_news": 12,
+  "news_period": "早报/晚报",
+  "total_news": 24,
   "items": [
     {
       "code": "002963",
       "name": "易方达黄金ETF联接C",
       "channel": "gold",
-      "bullish_count": 0,
+      "bullish_count": 2,
       "bearish_count": 0,
-      "neutral_count": 12,
-      "sentiment_score": 0,
-      "sentiment_label": "中性",
+      "neutral_count": 22,
+      "sentiment_score": 2,
+      "sentiment_label": "偏多",
       "top_impact_news": [
+        {
+          "title": "中国黄金协会：上半年我国黄金消费量同比增长1.23%",
+          "time": "晚报 · 黄金",
+          "summary": "其中：黄金首饰132.133吨，同比下降33.88%；金条及金币339.336吨，同比增长28.42%；工业及其他用金39.943吨，同比下降2.90%。 中国黄金协会分析称，金价高位大幅波动叠加黄金税收新政落地执行，国内黄金消费结构持续分化。",
+          "sentiment": "利多"
+        },
+        {
+          "title": "中国央行连续21个月增持黄金，亚洲最大黄金ETF连续17日净流入！",
+          "time": "晚报 · 黄金",
+          "summary": "跟踪指数中证沪深港黄金产业股票指数(931238)强势上涨3.19%，成分股招金黄金上涨10.01%，株冶集团上涨9.01%，灵宝黄金上涨7.43%，江西铜业，万国黄金集团等个股跟涨。",
+          "sentiment": "利多"
+        },
         {
           "title": "【奋力开创中国式现代化建设新局面——习近平总书记今年以来治国理政纪实】持续推动构建人类命运共同体 为世界注入更多正能量",
           "time": "早报 · 宏观",
           "summary": "百年变局加速演进，国际形势变乱交织，同球共济、团结合作是唯一正确选择。今年以来，习近平主席以大党大国领袖的宏阔视野和天下情怀，密集开展元首外交，引领中国担负起求和平、谋发展、促合作、扬正义的时代使命，向着构建人类命运共同体的崇高目标勇毅前行。系列报道《奋力开创中国式现代化建设新局面——习近平总...",
-          "sentiment": "中性"
-        },
-        {
-          "title": "上半年我国机械工业经济运行稳中有进",
-          "time": "早报 · 宏观",
-          "summary": "记者今天（8月6日）从中国机械工业联合会获悉，今年上半年，我国机械工业经济运行稳中有进，向新向优转型提速。最新数据显示，上半年，机械工业规模以上企业增加值同比增长6.4%，高于同期全国工业和制造业1个和0.8个百分点。主要涉及的五个国民经济行业大类——通用设备、专用设备、汽车、电气机械和仪器仪...",
-          "sentiment": "中性"
-        },
-        {
-          "title": "我国吸引外资结构进一步向新向好",
-          "time": "早报 · 宏观",
-          "summary": "今年以来，我国吸收外资回稳向好，特别是高技术产业吸引外资持续快速增长，外资企业加大对中国新产业、新赛道的投资力度，推动引资结构进一步向新向好。今年人工智能产业爆发式增长，这家外资印刷电路板层压系统制造商，不久前从利润中拿出超3000万元人民币用于再投资，对中国工厂生产线进行升级改造，以满足AI...",
           "sentiment": "中性"
         }
       ]
@@ -38,28 +38,28 @@
       "code": "000307",
       "name": "易方达黄金ETF联接A",
       "channel": "gold",
-      "bullish_count": 0,
+      "bullish_count": 2,
       "bearish_count": 0,
-      "neutral_count": 12,
-      "sentiment_score": 0,
-      "sentiment_label": "中性",
+      "neutral_count": 22,
+      "sentiment_score": 2,
+      "sentiment_label": "偏多",
       "top_impact_news": [
+        {
+          "title": "中国黄金协会：上半年我国黄金消费量同比增长1.23%",
+          "time": "晚报 · 黄金",
+          "summary": "其中：黄金首饰132.133吨，同比下降33.88%；金条及金币339.336吨，同比增长28.42%；工业及其他用金39.943吨，同比下降2.90%。 中国黄金协会分析称，金价高位大幅波动叠加黄金税收新政落地执行，国内黄金消费结构持续分化。",
+          "sentiment": "利多"
+        },
+        {
+          "title": "中国央行连续21个月增持黄金，亚洲最大黄金ETF连续17日净流入！",
+          "time": "晚报 · 黄金",
+          "summary": "跟踪指数中证沪深港黄金产业股票指数(931238)强势上涨3.19%，成分股招金黄金上涨10.01%，株冶集团上涨9.01%，灵宝黄金上涨7.43%，江西铜业，万国黄金集团等个股跟涨。",
+          "sentiment": "利多"
+        },
         {
           "title": "【奋力开创中国式现代化建设新局面——习近平总书记今年以来治国理政纪实】持续推动构建人类命运共同体 为世界注入更多正能量",
           "time": "早报 · 宏观",
           "summary": "百年变局加速演进，国际形势变乱交织，同球共济、团结合作是唯一正确选择。今年以来，习近平主席以大党大国领袖的宏阔视野和天下情怀，密集开展元首外交，引领中国担负起求和平、谋发展、促合作、扬正义的时代使命，向着构建人类命运共同体的崇高目标勇毅前行。系列报道《奋力开创中国式现代化建设新局面——习近平总...",
-          "sentiment": "中性"
-        },
-        {
-          "title": "上半年我国机械工业经济运行稳中有进",
-          "time": "早报 · 宏观",
-          "summary": "记者今天（8月6日）从中国机械工业联合会获悉，今年上半年，我国机械工业经济运行稳中有进，向新向优转型提速。最新数据显示，上半年，机械工业规模以上企业增加值同比增长6.4%，高于同期全国工业和制造业1个和0.8个百分点。主要涉及的五个国民经济行业大类——通用设备、专用设备、汽车、电气机械和仪器仪...",
-          "sentiment": "中性"
-        },
-        {
-          "title": "我国吸引外资结构进一步向新向好",
-          "time": "早报 · 宏观",
-          "summary": "今年以来，我国吸收外资回稳向好，特别是高技术产业吸引外资持续快速增长，外资企业加大对中国新产业、新赛道的投资力度，推动引资结构进一步向新向好。今年人工智能产业爆发式增长，这家外资印刷电路板层压系统制造商，不久前从利润中拿出超3000万元人民币用于再投资，对中国工厂生产线进行升级改造，以满足AI...",
           "sentiment": "中性"
         }
       ]
@@ -68,10 +68,10 @@
       "code": "011840",
       "name": "天弘中证人工智能C",
       "channel": "ashare",
-      "bullish_count": 5,
+      "bullish_count": 8,
       "bearish_count": 0,
-      "neutral_count": 7,
-      "sentiment_score": 5,
+      "neutral_count": 16,
+      "sentiment_score": 8,
       "sentiment_label": "偏多",
       "top_impact_news": [
         {
@@ -98,10 +98,10 @@
       "code": "010990",
       "name": "南方有色金属ETF联接E",
       "channel": "ashare",
-      "bullish_count": 5,
+      "bullish_count": 8,
       "bearish_count": 0,
-      "neutral_count": 7,
-      "sentiment_score": 5,
+      "neutral_count": 16,
+      "sentiment_score": 8,
       "sentiment_label": "偏多",
       "top_impact_news": [
         {
@@ -128,10 +128,10 @@
       "code": "012885",
       "name": "华夏光伏ETF联接A",
       "channel": "ashare",
-      "bullish_count": 5,
+      "bullish_count": 8,
       "bearish_count": 0,
-      "neutral_count": 7,
-      "sentiment_score": 5,
+      "neutral_count": 16,
+      "sentiment_score": 8,
       "sentiment_label": "偏多",
       "top_impact_news": [
         {
@@ -160,7 +160,7 @@
       "channel": "nasdaq",
       "bullish_count": 1,
       "bearish_count": 0,
-      "neutral_count": 11,
+      "neutral_count": 23,
       "sentiment_score": 1,
       "sentiment_label": "偏多",
       "top_impact_news": [
@@ -190,7 +190,7 @@
       "channel": "nasdaq",
       "bullish_count": 1,
       "bearish_count": 0,
-      "neutral_count": 11,
+      "neutral_count": 23,
       "sentiment_score": 1,
       "sentiment_label": "偏多",
       "top_impact_news": [
@@ -218,10 +218,10 @@
       "code": "015790",
       "name": "永赢高端装备混合C",
       "channel": "ashare",
-      "bullish_count": 5,
+      "bullish_count": 8,
       "bearish_count": 0,
-      "neutral_count": 7,
-      "sentiment_score": 5,
+      "neutral_count": 16,
+      "sentiment_score": 8,
       "sentiment_label": "偏多",
       "top_impact_news": [
         {
@@ -248,10 +248,10 @@
       "code": "014881",
       "name": "天弘机器人ETF联接C",
       "channel": "ashare",
-      "bullish_count": 5,
+      "bullish_count": 8,
       "bearish_count": 0,
-      "neutral_count": 7,
-      "sentiment_score": 5,
+      "neutral_count": 16,
+      "sentiment_score": 8,
       "sentiment_label": "偏多",
       "top_impact_news": [
         {
@@ -278,10 +278,10 @@
       "code": "025647",
       "name": "平安高端装备混合C",
       "channel": "ashare",
-      "bullish_count": 5,
+      "bullish_count": 8,
       "bearish_count": 0,
-      "neutral_count": 7,
-      "sentiment_score": 5,
+      "neutral_count": 16,
+      "sentiment_score": 8,
       "sentiment_label": "偏多",
       "top_impact_news": [
         {
