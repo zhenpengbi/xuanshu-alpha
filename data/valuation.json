@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-08-07",
+  "updated_at": "2026-08-10",
   "valuations": [
     {
       "category": "AI/科技",
       "index_name": "中证人工智能(930713)",
-      "current_pe": 51.19,
-      "pe_pct_5y": 81.6,
+      "current_pe": 49.63,
+      "pe_pct_5y": 76.9,
       "current_pb": null,
       "pb_pct_5y": null,
       "verdict": "偏贵",
@@ -15,8 +15,8 @@
     {
       "category": "有色金属",
       "index_name": "中证有色金属(930708)",
-      "current_pe": 20.43,
-      "pe_pct_5y": 64.5,
+      "current_pe": 20.76,
+      "pe_pct_5y": 67.1,
       "current_pb": null,
       "pb_pct_5y": null,
       "verdict": "适中",
@@ -26,8 +26,8 @@
     {
       "category": "光伏/新能源",
       "index_name": "中证新能源(931151)",
-      "current_pe": 28.91,
-      "pe_pct_5y": 62.2,
+      "current_pe": 28.9,
+      "pe_pct_5y": 62.3,
       "current_pb": null,
       "pb_pct_5y": null,
       "verdict": "适中",
@@ -38,7 +38,7 @@
       "category": "高端制造",
       "index_name": "中证高端装备(399377)",
       "current_pe": null,
-      "pe_pct_5y": 86.9,
+      "pe_pct_5y": 87.7,
       "current_pb": null,
       "pb_pct_5y": null,
       "verdict": "高估",
@@ -48,7 +48,7 @@
     {
       "category": "纳指100",
       "index_name": "纳斯达克100(NDX/QQQ)",
-      "current_pe": 30.56,
+      "current_pe": 30.92,
       "pe_pct_5y": 60.0,
       "current_pb": null,
       "pb_pct_5y": null,
@@ -59,12 +59,12 @@
     {
       "category": "标普500",
       "index_name": "标普500(SPX/SPY)",
-      "current_pe": 25.89,
-      "pe_pct_5y": 45.0,
+      "current_pe": 26.05,
+      "pe_pct_5y": 60.0,
       "current_pb": null,
       "pb_pct_5y": null,
-      "verdict": "适中偏低",
-      "verdict_score": 35,
+      "verdict": "适中",
+      "verdict_score": 50,
       "pe_note": "绝对PE估算(无5年序列)"
     },
     {
