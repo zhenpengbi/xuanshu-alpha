@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-08-07 11:38",
+  "updated_at": "2026-08-10 11:42",
   "triggered": false,
-  "avg_sell_score": 0.6,
+  "avg_sell_score": 0.5,
   "panic_threshold": 2.0,
   "scan_params": {
     "panic_scan": {
@@ -15,8 +15,59 @@
       "rsi_threshold": 40
     }
   },
-  "message": "当前无超跌机会（avg_sell_score=0.60 < 2.0，市场情绪平稳）",
+  "message": "当前无超跌机会（avg_sell_score=0.50 < 2.0，市场情绪平稳）",
   "recommendations": [],
-  "undervalued": [],
+  "undervalued": [
+    {
+      "code": "562820",
+      "name": "集成电路ETF嘉实",
+      "drop_60d_pct": 67.08,
+      "today_chg_pct": -2.27,
+      "scale_bn": 4.27,
+      "rsi14": 24.59,
+      "signal": "超跌反弹",
+      "reason": "近60日跌幅 67.1%，RSI=24.6<30（深度超卖），关注反弹机会"
+    },
+    {
+      "code": "515880",
+      "name": "通信ETF国泰",
+      "drop_60d_pct": 56.0,
+      "today_chg_pct": -2.42,
+      "scale_bn": 404.65,
+      "rsi14": 35.16,
+      "signal": "低位观察",
+      "reason": "近60日跌幅 56.0%，RSI=35.2（低位区间），可小仓位试探"
+    },
+    {
+      "code": "589210",
+      "name": "科创芯片设计ETF广发",
+      "drop_60d_pct": 53.89,
+      "today_chg_pct": -2.27,
+      "scale_bn": 8.09,
+      "rsi14": 30.64,
+      "signal": "低位观察",
+      "reason": "近60日跌幅 53.9%，RSI=30.6（低位区间），可小仓位试探"
+    },
+    {
+      "code": "515070",
+      "name": "人工智能ETF华夏",
+      "drop_60d_pct": 52.15,
+      "today_chg_pct": -2.54,
+      "scale_bn": 83.62,
+      "rsi14": 35.21,
+      "signal": "低位观察",
+      "reason": "近60日跌幅 52.1%，RSI=35.2（低位区间），可小仓位试探"
+    },
+    {
+      "code": "589390",
+      "name": "科创芯片设计ETF招商",
+      "drop_60d_pct": 19.72,
+      "today_chg_pct": -2.14,
+      "scale_bn": 9.17,
+      "rsi14": 39.3,
+      "signal": "低位观察",
+      "reason": "近60日跌幅 19.7%，RSI=39.3（低位区间），可小仓位试探"
+    }
+  ],
   "disclaimer": "以上仅为量化扫描结果，不构成投资建议，投资者需自行承担风险"
 }
