@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-08-11 11:37",
+  "updated_at": "2026-08-12 03:26",
   "triggered": false,
-  "avg_sell_score": 0.4,
+  "avg_sell_score": 0.3,
   "panic_threshold": 2.0,
   "scan_params": {
     "panic_scan": {
@@ -15,29 +15,8 @@
       "rsi_threshold": 40
     }
   },
-  "message": "当前无超跌机会（avg_sell_score=0.40 < 2.0，市场情绪平稳）",
+  "message": "当前无超跌机会（avg_sell_score=0.30 < 2.0，市场情绪平稳）",
   "recommendations": [],
-  "undervalued": [
-    {
-      "code": "562590",
-      "name": "半导体设备ETF华夏",
-      "drop_60d_pct": 57.54,
-      "today_chg_pct": -3.06,
-      "scale_bn": 84.32,
-      "rsi14": 38.32,
-      "signal": "低位观察",
-      "reason": "近60日跌幅 57.5%，RSI=38.3（低位区间），可小仓位试探"
-    },
-    {
-      "code": "588170",
-      "name": "科创半导体ETF华夏",
-      "drop_60d_pct": 56.74,
-      "today_chg_pct": -2.96,
-      "scale_bn": 390.58,
-      "rsi14": 39.12,
-      "signal": "低位观察",
-      "reason": "近60日跌幅 56.7%，RSI=39.1（低位区间），可小仓位试探"
-    }
-  ],
+  "undervalued": [],
   "disclaimer": "以上仅为量化扫描结果，不构成投资建议，投资者需自行承担风险"
 }
