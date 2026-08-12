@@ -37,9 +37,9 @@
   {
     "code": "015790",
     "name": "永赢高端装备智选混合C",
-    "price": 1.1225,
-    "change_pct": -3.74,
-    "updated_at": "2026-08-11"
+    "price": 1.1501,
+    "change_pct": 2.46,
+    "updated_at": "2026-08-12"
   },
   {
     "code": "025647",
@@ -51,8 +51,8 @@
   {
     "code": "014881",
     "name": "天弘中证机器人ETF联接C",
-    "price": 1.2074,
-    "change_pct": 1.0,
-    "updated_at": "2026-08-11"
+    "price": 1.2016,
+    "change_pct": -0.48,
+    "updated_at": "2026-08-12"
   }
 ]

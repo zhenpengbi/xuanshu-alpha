@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-12 03:23",
+  "updated_at": "2026-08-12 11:37",
   "indicators": [
     {
       "code": "002963",
@@ -79,16 +79,16 @@
     {
       "code": "015790",
       "name": "永赢高端装备智选混合C",
-      "rsi14": 46.4,
-      "ma5": 1.1385,
-      "ma20": 1.075305,
-      "prev_ma5": 1.12842,
-      "prev_ma20": 1.08274,
-      "macd_dif": -0.04515116,
-      "macd_dea": -0.07035919,
-      "macd_hist": 0.05041607,
+      "rsi14": 49.15,
+      "ma5": 1.14634,
+      "ma20": 1.071455,
+      "prev_ma5": 1.1385,
+      "prev_ma20": 1.075305,
+      "macd_dif": -0.03809253,
+      "macd_dea": -0.06357652,
+      "macd_hist": 0.05096799,
       "macd_trend": "bullish",
-      "latest_price": 1.1225,
+      "latest_price": 1.1501,
       "prices_used": 60
     },
     {
@@ -109,16 +109,16 @@
     {
       "code": "014881",
       "name": "天弘中证机器人ETF联接C",
-      "rsi14": 51.58,
-      "ma5": 1.20122,
-      "ma20": 1.1535,
-      "prev_ma5": 1.1941,
-      "prev_ma20": 1.15503,
-      "macd_dif": -0.0177314,
-      "macd_dea": -0.03422449,
-      "macd_hist": 0.03298619,
+      "rsi14": 50.67,
+      "ma5": 1.2012,
+      "ma20": 1.15196,
+      "prev_ma5": 1.20122,
+      "prev_ma20": 1.1535,
+      "macd_dif": -0.01434273,
+      "macd_dea": -0.03013107,
+      "macd_hist": 0.03157668,
       "macd_trend": "bullish",
-      "latest_price": 1.2074,
+      "latest_price": 1.2016,
       "prices_used": 60
     }
   ]

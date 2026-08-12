@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-12 03:23",
+  "updated_at": "2026-08-12 11:37",
   "signals": [
     {
       "code": "002963",
@@ -99,10 +99,10 @@
     {
       "code": "015790",
       "name": "永赢高端装备智选混合C",
-      "rsi14": 46.4,
-      "ma5": 1.1385,
-      "ma20": 1.075305,
-      "macd_hist": 0.05041607,
+      "rsi14": 49.15,
+      "ma5": 1.14634,
+      "ma20": 1.071455,
+      "macd_hist": 0.05096799,
       "macd_trend": "bullish",
       "signal": "高估警惕",
       "reason": "估值高估(score=88)，注意高估风险",
@@ -137,10 +137,10 @@
     {
       "code": "014881",
       "name": "天弘中证机器人ETF联接C",
-      "rsi14": 51.58,
-      "ma5": 1.20122,
-      "ma20": 1.1535,
-      "macd_hist": 0.03298619,
+      "rsi14": 50.67,
+      "ma5": 1.2012,
+      "ma20": 1.15196,
+      "macd_hist": 0.03157668,
       "macd_trend": "bullish",
       "signal": "持有观察",
       "reason": "MA5>MA20多头 · MACD柱正向；信号中性，持仓观察",
@@ -180,16 +180,16 @@
       "ma20": null,
       "macd_hist": null,
       "macd_trend": "",
-      "signal": "估值适中可试水",
-      "reason": "标普500当前持仓为0(目标8%)，适中(score=50)",
+      "signal": "低估可建仓",
+      "reason": "标普500当前持仓为0(目标8%)，适中偏低(score=35)",
       "buy_score": 0,
       "sell_score": 0,
       "asset_type": "pending",
       "signal_type": "pending_build",
-      "valuation_verdict": "适中",
-      "valuation_score": 50,
+      "valuation_verdict": "适中偏低",
+      "valuation_score": 35,
       "deviation_pt": -8.0,
-      "action_detail": "估值适中(score=50，适中)，标普500目标仓位8%，可小额开始建仓"
+      "action_detail": "估值低位(score=35，适中偏低)，标普500目标仓位8%，可开始分批建仓"
     }
   ]
 }
