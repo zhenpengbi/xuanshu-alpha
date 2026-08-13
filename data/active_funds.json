@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-13 03:30",
+  "updated_at": "2026-08-13 11:39",
   "portfolio_updateTime": "2026-08-13",
   "funds": [
     {
@@ -96,13 +96,13 @@
       "max_drawdown_pct": 51.78,
       "alpha_analysis": {
         "fund_annual_pct": 16.51,
-        "benchmark_annual_pct": 7.21,
-        "alpha_pct": 9.3,
+        "benchmark_annual_pct": "数据缺失",
+        "alpha_pct": "数据缺失",
         "benchmark": "沪深300",
         "period_years": 2.9,
-        "note": ""
+        "note": "基准数据缺失，alpha 无法计算"
       },
-      "alpha_pct": 9.3,
+      "alpha_pct": "数据缺失",
       "holdings_analysis": {
         "status": "数据缺失",
         "top_holdings": []
@@ -110,11 +110,10 @@
       "holdings_rated": [],
       "diagnosis": {
         "action": "建议评估替换",
-        "score": 45,
+        "score": 30,
         "reasons": [
           "今年以来同类排名 96%（落后同类）",
-          "基金经理任职 5.4 年，管理经验相对充分",
-          "α=9.3pt，相对沪深300有超额收益"
+          "基金经理任职 5.4 年，管理经验相对充分"
         ],
         "warnings": [
           "⚠️ 代码 015790 官方名称与持仓标注不符，请核实！官方：永赢高端装备智选混合发起C，持仓标注：永赢高端装备智选混合C",
@@ -181,11 +180,11 @@
       "rank_percentile_ytd": 95.9,
       "max_drawdown_pct": 43.21,
       "alpha_analysis": {
-        "fund_annual_pct": 6.38,
+        "fund_annual_pct": 6.21,
         "benchmark_annual_pct": "数据缺失",
         "alpha_pct": "数据缺失",
         "benchmark": "沪深300",
-        "period_years": 0.7,
+        "period_years": 0.8,
         "note": "基准数据缺失，alpha 无法计算"
       },
       "alpha_pct": "数据缺失",

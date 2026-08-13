@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-13 03:27",
+  "updated_at": "2026-08-13 11:36",
   "indicators": [
     {
       "code": "002963",
@@ -94,31 +94,31 @@
     {
       "code": "025647",
       "name": "平安高端装备混合C",
-      "rsi14": 47.61,
-      "ma5": 1.04212,
-      "ma20": 0.988895,
-      "prev_ma5": 1.03322,
-      "prev_ma20": 0.99565,
-      "macd_dif": -0.04540099,
-      "macd_dea": -0.0671019,
-      "macd_hist": 0.04340181,
+      "rsi14": 47.63,
+      "ma5": 1.04724,
+      "ma20": 0.98549,
+      "prev_ma5": 1.04212,
+      "prev_ma20": 0.988895,
+      "macd_dif": -0.03935293,
+      "macd_dea": -0.06106718,
+      "macd_hist": 0.04342852,
       "macd_trend": "bullish",
-      "latest_price": 1.0472,
+      "latest_price": 1.0462,
       "prices_used": 60
     },
     {
       "code": "014881",
       "name": "天弘中证机器人ETF联接C",
-      "rsi14": 50.67,
-      "ma5": 1.2012,
-      "ma20": 1.15196,
-      "prev_ma5": 1.20122,
-      "prev_ma20": 1.1535,
-      "macd_dif": -0.01434273,
-      "macd_dea": -0.03013107,
-      "macd_hist": 0.03157668,
+      "rsi14": 47.62,
+      "ma5": 1.19888,
+      "ma20": 1.1504,
+      "prev_ma5": 1.2012,
+      "prev_ma20": 1.15196,
+      "macd_dif": -0.01312684,
+      "macd_dea": -0.02667783,
+      "macd_hist": 0.02710196,
       "macd_trend": "bullish",
-      "latest_price": 1.2016,
+      "latest_price": 1.1826,
       "prices_used": 60
     }
   ]
