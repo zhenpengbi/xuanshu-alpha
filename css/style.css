@@ -760,24 +760,55 @@
             .perf-divider { display: none; }
             .perf-status-item { display: none; }
         }
-        /* ========== 顶部锚点导航条（仅PC端） ========== */
+        /* ========== 左侧锚点导航（PC 端可折叠目录，移动端隐藏） ========== */
+        /* 侧边栏宽度变量：展开 232px / 折叠 56px（Push 模式推开主内容） */
+        body { --sidebar-w: 232px; }
+        body.nav-collapsed { --sidebar-w: 56px; }
+
         .anchor-nav {
-            display: flex; align-items: center; justify-content: center;
-            position: sticky; top: 0; z-index: 99;
+            display: flex; flex-direction: column; align-items: stretch;
+            position: fixed; left: 0; top: 0; bottom: 0;
+            width: var(--sidebar-w);
+            z-index: 150;  /* 高于 header(100)，低于锁屏(99999)/modal(9999) */
             background: var(--bg-secondary);
             backdrop-filter: blur(16px) saturate(1.6);
             -webkit-backdrop-filter: blur(16px) saturate(1.6);
-            border-bottom: 1px solid var(--line);
-            padding: 0 max(40px, calc((100% - 1400px) / 2 + 40px));
-            gap: 2px; height: 42px;
-            overflow-x: auto; scrollbar-width: none;
+            border-right: 1px solid var(--line);
+            padding: 12px 10px 20px;
+            gap: 2px;
+            overflow-y: auto; overflow-x: hidden;
+            scrollbar-width: thin;
+            transition: width .22s cubic-bezier(.4,0,.2,1), padding .22s cubic-bezier(.4,0,.2,1);
         }
-        .anchor-nav::-webkit-scrollbar { display: none; }
+        .anchor-nav::-webkit-scrollbar { width: 4px; }
+        .anchor-nav::-webkit-scrollbar-thumb { background: var(--accent-line); border-radius: 2px; }
+        .anchor-nav::-webkit-scrollbar-track { background: transparent; }
+
+        /* 折叠/展开切换按钮 */
+        .anav-toggle {
+            display: flex; align-items: center; gap: 8px;
+            font-size: 12px; font-weight: 600; color: var(--text-secondary);
+            padding: 8px 12px; margin-bottom: 6px;
+            border-radius: 8px; cursor: pointer; border: 1px solid var(--line);
+            background: transparent; transition: color .2s, background .2s, border-color .2s;
+            white-space: nowrap; overflow: hidden;
+        }
+        .anav-toggle:hover { color: var(--accent); border-color: var(--accent-line); background: var(--bg-hover); }
+        .anav-toggle-icon { font-size: 16px; line-height: 1; flex: none; }
+        .anav-toggle-label { flex: 1; text-align: left; }
+
+        /* 按钮展开态：图标 + 文字（图标由 data-icon 注入） */
         .anav-btn {
-            flex: none; font-size: 12px; font-weight: 500; color: var(--text-secondary);
-            padding: 5px 13px; border-radius: 7px; cursor: pointer; border: none;
+            flex: none; font-size: 13px; font-weight: 500; color: var(--text-secondary);
+            padding: 8px 12px; border-radius: 8px; cursor: pointer; border: none;
             background: transparent; transition: color .2s, background .2s;
-            white-space: nowrap; line-height: 1;
+            white-space: nowrap; line-height: 1.4;
+            display: flex; align-items: center; gap: 9px;
+            text-align: left;
+        }
+        .anav-btn::before {
+            content: attr(data-icon);
+            font-size: 15px; line-height: 1; flex: none;
         }
         .anav-btn:hover { color: var(--text-primary); background: var(--bg-hover); }
         .anav-btn.anav-active {
@@ -785,17 +816,48 @@
             background: var(--accent-glow);
             box-shadow: 0 0 0 1px var(--accent-line);
         }
-        /* 分组分隔文字 */
+
+        /* 分组标题展开态 */
         .anav-divider {
             flex: none;
             font-size: 9.5px; font-weight: 600; letter-spacing: 1px;
             color: var(--text-muted); text-transform: uppercase;
-            padding: 0 6px 0 10px; white-space: nowrap;
+            padding: 14px 12px 6px; white-space: nowrap;
             opacity: .55;
             pointer-events: none;
         }
-        .anav-divider:first-child { padding-left: 0; }
-        @media (max-width: 768px) { .anchor-nav { display: none; } }
+        .anav-divider:first-of-type { padding-top: 6px; }
+
+        /* ── 折叠态：窄条 56px，只显示图标 ── */
+        body.nav-collapsed .anchor-nav { padding: 12px 6px 20px; }
+        body.nav-collapsed .anav-toggle {
+            justify-content: center; padding: 8px 0;
+            border-color: transparent;
+        }
+        body.nav-collapsed .anav-toggle-label { display: none; }
+        body.nav-collapsed .anav-toggle-icon { font-size: 20px; }
+        /* 折叠态按钮：font-size:0 隐去文字节点，::before 单独保留图标大小 */
+        body.nav-collapsed .anav-btn {
+            font-size: 0; padding: 9px 0; justify-content: center;
+        }
+        body.nav-collapsed .anav-btn::before { font-size: 18px; }
+        body.nav-collapsed .dj-nav-badge { font-size: 9px; }
+        /* 折叠态分组标题：文字消失，变 1px 分隔线 */
+        body.nav-collapsed .anav-divider {
+            font-size: 0; padding: 0; height: 1px; margin: 6px 4px;
+            border-top: 1px solid var(--line); opacity: .8;
+        }
+
+        /* ── PC 端 body 让出侧边栏空间（Push 模式） ── */
+        @media (min-width: 769px) {
+            body { padding-left: var(--sidebar-w); transition: padding-left .22s cubic-bezier(.4,0,.2,1); }
+        }
+
+        /* ── 移动端：侧边栏隐藏，维持底部 tab-nav 现状 ── */
+        @media (max-width: 768px) {
+            .anchor-nav { display: none; }
+            body { padding-left: 0; }
+        }
 
         @media (max-width: 1024px) {
             .grid-2, .grid-3 { grid-template-columns: 1fr; }

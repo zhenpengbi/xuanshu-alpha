@@ -122,5 +122,40 @@
     }, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
 
     anchors.forEach(el => obs.observe(el));
+
+    // ── 折叠/展开切换（Push 模式 + 图标窄条常驻） ──
+    const toggleBtn  = document.getElementById('anavToggle');
+    const toggleIcon = document.getElementById('anavToggleIcon');
+    const toggleLbl  = nav.querySelector('.anav-toggle-label');
+    const STORE_KEY  = 'xuanshu_sidebar_collapsed';
+
+    function applyCollapsed(collapsed) {
+        document.body.classList.toggle('nav-collapsed', collapsed);
+        if (toggleIcon) toggleIcon.textContent = collapsed ? '»' : '«';
+        if (toggleLbl)  toggleLbl.textContent  = collapsed ? '展开目录' : '收起目录';
+        if (toggleBtn)  toggleBtn.setAttribute('title', collapsed ? '展开目录' : '折叠目录');
+    }
+
+    // 恢复上次状态（默认展开）；class 在脚本加载时即生效，图表 init 时宽度已正确
+    try { applyCollapsed(localStorage.getItem(STORE_KEY) === '1'); } catch(_) {}
+
+    if (toggleBtn) {
+        toggleBtn.addEventListener('click', () => {
+            const collapsed = !document.body.classList.contains('nav-collapsed');
+            applyCollapsed(collapsed);
+            try { localStorage.setItem(STORE_KEY, collapsed ? '1' : '0'); } catch(_) {}
+            // width transition 240ms，结束后 resize ECharts（复用 switchTab 的 resize 模式）
+            clearTimeout(nav._rsz);
+            nav._rsz = setTimeout(() => {
+                requestAnimationFrame(() => {
+                    if (typeof _pieChart  !== 'undefined' && _pieChart)  _pieChart.resize();
+                    if (typeof _barChart  !== 'undefined' && _barChart)  _barChart.resize();
+                    if (typeof _btChart   !== 'undefined' && _btChart)   _btChart.resize();
+                    if (typeof _goldChart !== 'undefined' && _goldChart) _goldChart.resize();
+                    if (typeof _usChart   !== 'undefined' && _usChart)   _usChart.resize();
+                });
+            }, 260);
+        });
+    }
 })();
 

@@ -158,27 +158,32 @@
     </div>
 </div>
 
-<!-- ========== 顶部锚点导航条 ========== -->
+<!-- ========== 左侧锚点导航（PC 端可折叠目录，移动端隐藏） ========== -->
 <nav class="anchor-nav" id="anchorNav" aria-label="快捷导航">
+    <!-- 折叠/展开切换按钮 -->
+    <button class="anav-toggle" id="anavToggle" aria-label="折叠/展开目录" title="折叠目录">
+        <span class="anav-toggle-icon" id="anavToggleIcon">«</span>
+        <span class="anav-toggle-label">收起目录</span>
+    </button>
     <!-- 第一层：现状 -->
     <span class="anav-divider">现状</span>
-    <button class="anav-btn" data-anchor="sec-market">实时行情</button>
-    <button class="anav-btn" data-anchor="sec-holdings">持仓明细</button>
+    <button class="anav-btn" data-anchor="sec-market" data-icon="📈" title="实时行情">实时行情</button>
+    <button class="anav-btn" data-anchor="sec-holdings" data-icon="💰" title="持仓明细">持仓明细</button>
     <!-- 第二层：分析 -->
     <span class="anav-divider">分析</span>
-    <button class="anav-btn" data-anchor="sec-signals">量化信号</button>
-    <button class="anav-btn" data-anchor="sec-fusion">融合决策</button>
-    <button class="anav-btn" data-anchor="sec-backtest">策略回测</button>
-    <button class="anav-btn" data-anchor="sec-news">早晚报</button>
+    <button class="anav-btn" data-anchor="sec-signals" data-icon="📊" title="量化信号">量化信号</button>
+    <button class="anav-btn" data-anchor="sec-fusion" data-icon="🎯" title="融合决策">融合决策</button>
+    <button class="anav-btn" data-anchor="sec-backtest" data-icon="⏪" title="策略回测">策略回测</button>
+    <button class="anav-btn" data-anchor="sec-news" data-icon="📰" title="早晚报">早晚报</button>
     <!-- 第三层：决策 -->
     <span class="anav-divider">决策</span>
-    <button class="anav-btn" data-anchor="sec-decision">今日决策</button>
-    <button class="anav-btn" data-anchor="sec-radar">基金雷达</button>
-    <button class="anav-btn" data-anchor="sec-ai">AI分析</button>
-    <button class="anav-btn" data-anchor="sec-journal" style="position:relative;">
+    <button class="anav-btn" data-anchor="sec-decision" data-icon="⚡" title="今日决策">今日决策</button>
+    <button class="anav-btn" data-anchor="sec-radar" data-icon="📡" title="基金雷达">基金雷达</button>
+    <button class="anav-btn" data-anchor="sec-ai" data-icon="🤖" title="AI分析">AI分析</button>
+    <button class="anav-btn" data-anchor="sec-journal" data-icon="📓" title="决策日志" style="position:relative;">
         决策日志<span id="djNavBadge" class="dj-nav-badge" style="display:none;"></span>
     </button>
-    <button class="anav-btn" data-anchor="sec-advice">规则建议</button>
+    <button class="anav-btn" data-anchor="sec-advice" data-icon="📋" title="规则建议">规则建议</button>
 </nav>
 
 <!-- ========== MAIN CONTENT ========== -->
