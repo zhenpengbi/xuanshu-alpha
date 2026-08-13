@@ -1,13 +1,14 @@
 /**
- * 玄枢Alpha · Service Worker  v3
+ * 玄枢Alpha · Service Worker  v4
  * ================================
  * 策略：Network First + Cache Fallback
  * - 优先走网络拿最新数据
  * - 网络不通时从缓存返回上次成功的响应
  * - 缓存范围：HTML + CSS + JS + 数据 JSON
+ * - 版本号变更后 activate 会自动清旧缓存（避免部署后用户卡在旧版）
  */
 
-const CACHE_NAME = 'xuanshu-alpha-v3';
+const CACHE_NAME = 'xuanshu-alpha-v4';
 
 const PRECACHE_URLS = [
     './',
