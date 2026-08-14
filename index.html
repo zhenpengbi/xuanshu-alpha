@@ -35,6 +35,7 @@
       }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -223,6 +224,24 @@
 
 
     <!-- ═══════════════════════════════════════════════════════
+         第零层：今日驾驶舱（首屏一眼看到今天该做什么）
+         ═══════════════════════════════════════════════════════ -->
+    <section class="section cockpit-section" data-panel="overview" id="sec-cockpit">
+        <div class="card cockpit-card" id="cockpitCard"><span class="sweep"></span>
+            <div class="cockpit-head">
+                <div class="cockpit-title">
+                    <span class="cockpit-emoji">🧭</span> 今日驾驶舱
+                    <span class="cockpit-date num" id="cockpitDate"></span>
+                </div>
+                <span class="cockpit-count" id="cockpitCount"></span>
+            </div>
+            <div class="cockpit-body" id="cockpitBody">
+                <div style="color:var(--paper-faint);font-size:13px;padding:20px 0;">加载今日行动项…</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
          第一层：现状（先看"我有什么，表现如何"）
          ═══════════════════════════════════════════════════════ -->
 
@@ -375,7 +394,7 @@
     <section class="section" data-panel="news" id="sec-news">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;gap:12px;flex-wrap:wrap;">
             <h2 class="section-title" style="margin-bottom:0;">市场早晚报</h2>
-            <select class="news-select" id="newsDateSelect" style="display:none;"><option>加载中...</option></select>
+            <input class="news-date-input" id="newsDateSelect" type="text" readonly placeholder="选择日期" style="display:none;">
         </div>
         <div class="timeline" id="timeline"></div>
         <!-- 新闻→持仓影响联动（JS 动态填充）-->
@@ -666,6 +685,8 @@
 <script src="js/utils.js"></script>
 <script src="js/portfolio.js"></script>
 <script src="js/signals.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/zh.js"></script>
 <script src="js/news.js"></script>
 <script src="js/rebalance.js"></script>
 <script src="js/market.js"></script>

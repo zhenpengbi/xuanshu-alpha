@@ -229,23 +229,38 @@ async function renderTimeline() {
         }
         const dates = [...byDate.keys()]; // 保持 records 顺序（最新在前，去重）
 
-        if (sel) {
-            sel.innerHTML = dates.map((date, i) => `<option value="${i}">${date}</option>`).join('');
-            sel.style.display = '';
-            sel.value = '0';
+        const showDate = dateStr => {
+            const b = byDate.get(dateStr);
+            if (!b) return;
+            _renderTimelinePeriodTabs(el, {
+                updated: dateStr,
+                morning: b.morning.length ? { period: '早报', items: b.morning } : undefined,
+                evening: b.evening.length ? { period: '晚报', items: b.evening } : undefined,
+            });
+        };
 
-            const showDate = idx => {
-                const date = dates[idx];
-                if (!date) return;
-                const b = byDate.get(date);
-                _renderTimelinePeriodTabs(el, {
-                    updated: date,
-                    morning: b.morning.length ? { period: '早报', items: b.morning } : undefined,
-                    evening: b.evening.length ? { period: '晚报', items: b.evening } : undefined,
+        if (sel) {
+            sel.style.display = '';
+            // 优先用 flatpickr 日历组件（只允许选有数据的日期）
+            if (typeof flatpickr !== 'undefined') {
+                if (sel._fp) sel._fp.destroy();
+                sel._fp = flatpickr(sel, {
+                    locale: 'zh',
+                    dateFormat: 'Y-m-d',
+                    defaultDate: dates[0],
+                    enable: dates,            // 仅这些日期可选
+                    onChange: (_sel, dateStr) => showDate(dateStr),
                 });
-            };
-            sel.onchange = () => showDate(parseInt(sel.value));
-            showDate(0);
+            } else {
+                // 兜底：flatpickr 未加载时用 select
+                sel.outerHTML = `<select class="news-select" id="newsDateSelect">`
+                    + dates.map(d => `<option value="${d}">${d}</option>`).join('')
+                    + `</select>`;
+                const sel2 = document.getElementById('newsDateSelect');
+                sel2.value = dates[0];
+                sel2.onchange = () => showDate(sel2.value);
+            }
+            showDate(dates[0]);
         }
         return;
     }

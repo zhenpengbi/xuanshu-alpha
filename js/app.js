@@ -6,6 +6,118 @@ async function loadPortfolio() {
     await loadJSON('data/portfolio.json', data => Object.assign(portfolioData, data));
 }
 
+// ========== 今日驾驶舱（总览首屏，聚合今日最该做的1-3件事） ==========
+// 独立于 loadAndRenderDecision：首屏优先渲染，只取4个JSON关键字段做优先级排序
+async function loadAndRenderCockpit() {
+    const errHtml = '<div style="color:var(--red);font-size:13px;padding:8px 0;">驾驶舱数据加载失败，请运行 run_all.sh</div>';
+    try {
+        const t = Date.now();
+        const [pR, rR, bR, sR] = await Promise.all([
+            fetch('data/positions.json?t=' + t),
+            fetch('data/risk.json?t=' + t),
+            fetch('data/rebalance.json?t=' + t),
+            fetch('data/signals.json?t=' + t)
+        ]);
+        const [pD, rD, bD, sD] = await Promise.all([
+            pR.ok?pR.json():null, rR.ok?rR.json():null,
+            bR.ok?bR.json():null, sR.ok?sR.json():null
+        ]);
+        const { actions, overflow } = _collectCockpitActions(pD, rD, bD, sD);
+        _renderCockpit(actions, overflow, sD, rD);
+    } catch(e) {
+        const el = document.getElementById('cockpitBody');
+        if (el) el.innerHTML = errHtml;
+    }
+}
+function _collectCockpitActions(pD, rD, bD, sD) {
+    const TRIG_LBL  = { stop_loss:'止损', take_profit:'止盈', trailing_stop:'移动止损' };
+    const TRIG_ORDER= { stop_loss:0, take_profit:1, trailing_stop:2 };
+    const BUY_SET   = new Set(['买入','定投','定投补仓','可加仓','待建仓']);
+    const SELL_SET  = new Set(['减仓','卖出','高估警惕']);
+    const actions = [];
+    const alerts = (pD?.positions || []).filter(p => p.status === 'alert');
+    alerts.sort((a,b) => (TRIG_ORDER[a.triggered]??9) - (TRIG_ORDER[b.triggered]??9)
+                       || Math.abs(b.current_return_pct||0) - Math.abs(a.current_return_pct||0));
+    alerts.forEach(p => actions.push({
+        prio:0, type:TRIG_LBL[p.triggered]||'止盈止损',
+        fundName:p.fund_name, fundCode:p.fund_code,
+        dir:'sell', amount:null,
+        reason:`触发${TRIG_LBL[p.triggered]||'止盈止损'} · 当前 ${(p.current_return_pct??0).toFixed(2)}% · 建议及时处理`,
+        extra:`当前 ${(p.current_return_pct??0).toFixed(1)}%`
+    }));
+    (rD?.concentration?.alerts || []).filter(a => a.severity==='high').forEach(a => {
+        actions.push({
+            prio:1, type:'风险预警',
+            fundName:a.category, fundCode:null,
+            dir:'sell', amount:null, reason:a.message,
+            extra: a.ratio!=null ? `占比 ${a.ratio}%` : '高风险'
+        });
+    });
+    (bD?.operations || []).forEach(o => actions.push({
+        prio:2, type:'再平衡',
+        fundName:o.fund_name, fundCode:o.fund_code,
+        dir:o.action, amount:o.amount, reason:o.reason
+    }));
+    (sD?.signals || []).filter(s => !['持有','持有观察'].includes(s.signal)).forEach(s => {
+        const dir = SELL_SET.has(s.signal) ? 'sell' : (BUY_SET.has(s.signal) ? 'buy' : 'hold');
+        actions.push({
+            prio:3, type:'信号',
+            fundName:s.name, fundCode:s.fund_code,
+            dir, amount:null, reason:s.action_detail || s.reason || '',
+            extra:s.signal
+        });
+    });
+    actions.sort((a,b) => a.prio - b.prio);
+    return { actions: actions.slice(0, 3), overflow: { stopLoss: alerts.length } };
+}
+function _cockpitActionHtml(a) {
+    const fmtAmt = n => '¥' + Number(n).toLocaleString('zh-CN');
+    const dirCls = a.dir === 'sell' ? 'ops-dir-sell' : (a.dir === 'buy' ? 'ops-dir-buy' : '');
+    const dirLbl = a.dir === 'sell' ? '卖出' : (a.dir === 'buy' ? '买入' : '');
+    const amtCls = a.dir === 'sell' ? 'ops-amount ops-amount-sell' : 'ops-amount ops-amount-buy';
+    const amtPfx = a.dir === 'sell' ? '-' : '+';
+    const rightHtml = a.amount != null
+        ? `<span class="${amtCls}">${amtPfx}${fmtAmt(a.amount)}</span>`
+        : (a.extra ? `<span class="cockpit-extra">${escHtml(a.extra)}</span>` : '');
+    return `<div class="cockpit-action cockpit-action-p${a.prio}">
+        <div class="cockpit-action-prio"><span class="cockpit-prio-tag">${escHtml(a.type)}</span></div>
+        <div class="cockpit-action-main">
+            <div class="cockpit-action-fund">
+                <span class="cockpit-fund-name">${escHtml(a.fundName||'')}</span>
+                ${a.fundCode ? `<span class="cockpit-fund-code num">${escHtml(a.fundCode)}</span>` : ''}
+                ${dirLbl ? `<span class="${dirCls}">${dirLbl}</span>` : ''}
+            </div>
+            <div class="cockpit-action-reason">${escHtml(a.reason||'')}</div>
+        </div>
+        <div class="cockpit-action-amt">${rightHtml}</div>
+    </div>`;
+}
+function _renderCockpit(actions, overflow, sD, rD) {
+    const body = document.getElementById('cockpitBody');
+    if (!body) return;
+    const date = (sD?.updated_at || rD?.updated_at || '').slice(0,10);
+    const dEl = document.getElementById('cockpitDate');
+    if (dEl) dEl.textContent = date ? '· ' + date : '';
+    const cEl = document.getElementById('cockpitCount');
+    if (cEl) cEl.textContent = actions.length ? `${actions.length} 项待办` : '今日无待办';
+    if (!actions.length) {
+        body.innerHTML = `<div class="cockpit-action cockpit-action-safe">
+            <div class="cockpit-action-prio"><span class="cockpit-empty-icon">✅</span></div>
+            <div class="cockpit-action-main">
+                <div style="font-size:15px;font-weight:600;color:var(--green);">今日无需操作，继续持有即可</div>
+                <div style="font-size:12px;color:var(--text-muted);margin-top:4px;">无止损止盈触发 · 无高风险预警 · 无再平衡偏离 · 无买卖信号</div>
+            </div>
+        </div>`;
+        return;
+    }
+    body.innerHTML = actions.map(_cockpitActionHtml).join('');
+    if (overflow.stopLoss > 3) {
+        body.insertAdjacentHTML('beforeend',
+            `<div class="cockpit-more" onclick="document.querySelector('[data-anchor=sec-decision]')&&document.querySelector('[data-anchor=sec-decision]').click();">
+                → 另有 ${overflow.stopLoss - 3} 只持仓触发止盈止损，详见「今日决策」</div>`);
+    }
+}
+
 // ========== Initialize ==========
 // ========== 今日决策 Panel ==========
 async function loadAndRenderDecision() {
@@ -263,7 +375,10 @@ document.addEventListener('DOMContentLoaded', async function() {
     // ① 先拉最新持仓数据（覆盖 inline 快照），确保所有后续渲染用真实数据
     await loadPortfolio();
 
-    // ② 基于真实 portfolioData 渲染主界面
+    // ② 驾驶舱（总览首屏，优先渲染，不阻塞主界面）
+    loadAndRenderCockpit();
+
+    // ③ 基于真实 portfolioData 渲染主界面
     renderHeader();
     renderMetrics();
     renderPieChart();

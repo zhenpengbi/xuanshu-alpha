@@ -460,6 +460,33 @@
             background: rgba(138,168,208,.10);
             border: 1px solid rgba(138,168,208,.20);
         }
+        /* ========== 今日驾驶舱（总览首屏，聚合今日最该做的1-3件事） ========== */
+        .cockpit-card { padding: 20px 24px; border-left: 3px solid var(--accent); }
+        .cockpit-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; }
+        .cockpit-title { font-size:16px; font-weight:700; color:var(--text-primary); }
+        .cockpit-emoji { margin-right:4px; }
+        .cockpit-date { font-size:12px; font-weight:400; color:var(--text-muted); margin-left:8px; }
+        .cockpit-count { font-size:12px; color:var(--accent); background:rgba(255,255,255,.06); padding:3px 10px; border-radius:10px; }
+        .cockpit-action { display:flex; align-items:center; gap:12px; padding:11px 0; border-bottom:1px solid var(--border-color); }
+        .cockpit-action:last-child { border-bottom:none; }
+        .cockpit-action-p0 { border-left:3px solid var(--red); padding-left:12px; margin-left:-12px; }
+        .cockpit-action-p1 { border-left:3px solid var(--accent); padding-left:12px; margin-left:-12px; }
+        .cockpit-action-p2 { border-left:3px solid var(--blue, var(--accent)); padding-left:12px; margin-left:-12px; }
+        .cockpit-action-p3 { border-left:3px solid var(--text-muted); padding-left:12px; margin-left:-12px; }
+        .cockpit-action-safe { border-left:3px solid var(--green); padding-left:12px; margin-left:-12px; }
+        .cockpit-action-prio { flex:0 0 auto; }
+        .cockpit-prio-tag { font-size:11px; font-weight:700; padding:3px 9px; border-radius:5px; background:rgba(255,255,255,.08); color:var(--text-secondary); white-space:nowrap; }
+        .cockpit-action-main { flex:1; min-width:0; }
+        .cockpit-action-fund { display:flex; align-items:center; gap:7px; flex-wrap:wrap; }
+        .cockpit-fund-name { font-weight:600; font-size:14px; color:var(--text-primary); }
+        .cockpit-fund-code { font-size:11px; color:var(--text-muted); }
+        .cockpit-action-reason { font-size:12px; color:var(--text-secondary); margin-top:3px; line-height:1.5; }
+        .cockpit-action-amt { flex:0 0 auto; text-align:right; }
+        .cockpit-extra { font-size:12px; font-weight:600; color:var(--text-secondary); background:rgba(255,255,255,.05); padding:2px 8px; border-radius:5px; white-space:nowrap; }
+        .cockpit-empty { display:flex; align-items:center; gap:12px; padding:8px 0; }
+        .cockpit-empty-icon { font-size:28px; }
+        .cockpit-more { margin-top:10px; font-size:11px; color:var(--accent); cursor:pointer; text-align:right; }
+        @media (max-width:640px){ .cockpit-action{ flex-direction:column; align-items:flex-start; } .cockpit-action-amt{ align-self:flex-end; } }
         .tag {
             display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 500;
             letter-spacing: .5px; border: 1px solid transparent;
@@ -543,6 +570,28 @@
             transition: border-color .2s, color .2s;
         }
         .news-select:hover, .news-select:focus { border-color: var(--accent); color: var(--text-primary); }
+        /* flatpickr 日历组件 + 深色主题适配 */
+        .news-date-input {
+            font-size: 12px; font-family: var(--sans); font-weight: 500;
+            color: var(--text-secondary); background: var(--bg-surface);
+            border: 1px solid var(--border-color); border-radius: 6px;
+            padding: 5px 12px; cursor: pointer; outline: none; text-align: center;
+            transition: border-color .2s, color .2s;
+        }
+        .news-date-input:hover { border-color: var(--accent); color: var(--text-primary); }
+        .flatpickr-calendar { background: var(--bg-secondary); border: 1px solid var(--accent-line); box-shadow: 0 8px 32px rgba(0,0,0,.5); }
+        .flatpickr-calendar .flatpickr-month { color: var(--text-primary); fill: var(--text-primary); }
+        .flatpickr-calendar .flatpickr-weekday { color: var(--text-muted); fill: var(--text-muted); }
+        .flatpickr-calendar .flatpickr-day { color: var(--text-secondary); border-radius: 6px; }
+        .flatpickr-calendar .flatpickr-day:hover { background: var(--bg-hover); border-color: var(--bg-hover); color: var(--text-primary); }
+        .flatpickr-calendar .flatpickr-day.selected, .flatpickr-calendar .flatpickr-day.selected:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+        .flatpickr-calendar .flatpickr-day.disabled, .flatpickr-calendar .flatpickr-day.disabled:hover { color: var(--text-muted); background: transparent; opacity: .35; }
+        .flatpickr-calendar .flatpickr-day.prevMonthDay, .flatpickr-calendar .flatpickr-day.nextMonthDay { color: var(--text-muted); opacity: .4; }
+        .flatpickr-calendar .flatpickr-current-month input, .flatpickr-calendar .numInput { color: var(--text-primary); }
+        .flatpickr-calendar .flatpickr-monthDropdown-months { background: var(--bg-surface); color: var(--text-primary); }
+        .flatpickr-calendar .flatpickr-monthDropdown-month { background: var(--bg-surface); color: var(--text-primary); }
+        .flatpickr-calendar .flatpickr-weekdays, .flatpickr-calendar span.flatpickr-day { background: transparent; }
+        .flatpickr-calendar.arrowBottom:before, .flatpickr-calendar.arrowBottom:after, .flatpickr-calendar.arrowTop:before, .flatpickr-calendar.arrowTop:after { border-bottom-color: var(--bg-secondary); }
 
         /* ========== Timeline ========== */
         .timeline { position: relative; padding-left: 32px; }
