@@ -238,7 +238,8 @@ async function callAIStream(prompt, model, apiKey, onToken, onDone, onError) {
                 model:      model.id,
                 messages:   [{ role: 'user', content: prompt }],
                 stream:     true,
-                max_tokens: 600,
+                // pro 是深度推理模型，thinking 也算 output token，600 不够会"thinking 用完没正文"
+                max_tokens: model.id.includes('pro') ? 4000 : 1200,
             }),
         });
     } catch (e) {

@@ -214,22 +214,38 @@ async function renderTimeline() {
     if (historyData && Array.isArray(historyData.records) && historyData.records.length) {
         const records = historyData.records; // 最新在前
 
-        // 填充下拉选项
+        // 按日期分组：同一天的早报+晚报合并，选日期后双 tab 都能看到
+        const byDate = new Map(); // date -> { morning:[], evening:[] }
+        for (const rec of records) {
+            const date = rec.date || '?';
+            if (!byDate.has(date)) byDate.set(date, { morning: [], evening: [] });
+            const bucket = byDate.get(date);
+            const period = rec.period || '';
+            const items  = Array.isArray(rec.items) ? rec.items : [];
+            // '早报/晚报' 是合并条目，同时含早晚，需拆分到两个时段
+            const isBoth = period.includes('早') && period.includes('晚');
+            if (isBoth || period.includes('早')) bucket.morning.push(...items);
+            if (isBoth || period.includes('晚')) bucket.evening.push(...items);
+        }
+        const dates = [...byDate.keys()]; // 保持 records 顺序（最新在前，去重）
+
         if (sel) {
-            sel.innerHTML = records.map((rec, i) => {
-                const periodShort = (rec.period || '').replace('报', '');
-                return `<option value="${i}">${rec.date} ${periodShort}</option>`;
-            }).join('');
+            sel.innerHTML = dates.map((date, i) => `<option value="${i}">${date}</option>`).join('');
             sel.style.display = '';
             sel.value = '0';
 
-            const showRecord = idx => {
-                const rec = records[idx];
-                if (!rec) return;
-                _renderTimelinePeriodTabs(el, _recordToNewsObj(rec));
+            const showDate = idx => {
+                const date = dates[idx];
+                if (!date) return;
+                const b = byDate.get(date);
+                _renderTimelinePeriodTabs(el, {
+                    updated: date,
+                    morning: b.morning.length ? { period: '早报', items: b.morning } : undefined,
+                    evening: b.evening.length ? { period: '晚报', items: b.evening } : undefined,
+                });
             };
-            sel.onchange = () => showRecord(parseInt(sel.value));
-            showRecord(0);
+            sel.onchange = () => showDate(parseInt(sel.value));
+            showDate(0);
         }
         return;
     }
