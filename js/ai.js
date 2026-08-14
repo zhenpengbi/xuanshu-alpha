@@ -167,6 +167,77 @@ function renderModelTabs(container) {
 }
 
 // ── Prompt 构建 ──
+// ── 历史决策反哺：从决策日志筛出与当前信号相似的历史，汇总胜率 ──
+// 复用 decision-journal.js 的全局 djLoad()；复用本文件 BUY/SELL 阵营
+const DJ_BUY_SIG  = new Set(['买入','定投','定投补仓','可加仓','待建仓']);
+const DJ_SELL_SIG = new Set(['减仓','卖出','高估警惕']);
+function _sigSide(signal) {
+    if (DJ_BUY_SIG.has(signal))  return 'buy';
+    if (DJ_SELL_SIG.has(signal)) return 'sell';
+    return null;
+}
+function _categoryOf(name) {
+    if (!name) return '其他';
+    if (name.includes('黄金')) return '黄金';
+    if (name.includes('有色金属')) return '有色金属';
+    if (name.includes('人工智能')) return '人工智能';
+    if (name.includes('光伏')) return '光伏';
+    if (name.includes('机器人')) return '机器人';
+    if (name.includes('高端装备')) return '高端装备';
+    if (name.includes('纳斯达克') || name.includes('纳')) return '纳斯达克';
+    if (name.includes('标普') || name.includes('500')) return '标普500';
+    return '其他';
+}
+function buildHistoryFeedback(actionSigs) {
+    if (typeof djLoad !== 'function') return '';
+    const reviewedAll = djLoad().filter(e =>
+        e.reviewed && e.outcome && e.outcome.pct != null && e.outcome.pct !== ''
+    );
+    if (reviewedAll.length < 2) return '';
+    const N = 3;
+    const lines = [];
+    for (const s of actionSigs) {
+        const side = _sigSide(s.signal);
+        if (!side) continue;
+        const cat = _categoryOf(s.name);
+        const sidePool = reviewedAll.filter(e =>
+            side === 'buy' ? DJ_BUY_SIG.has(e.action) : DJ_SELL_SIG.has(e.action)
+        );
+        if (!sidePool.length) continue;
+        // 层1：同基金同方向
+        let pool = sidePool.filter(e => e.fund && (e.fund === s.name || e.fund.includes(s.name) || s.name.includes(e.fund)));
+        let layer = '同基金';
+        // 层2：同品类同方向
+        if (pool.length < 2 && cat !== '其他') {
+            const p2 = sidePool.filter(e => e.fund && _categoryOf(e.fund) === cat);
+            if (p2.length >= 2) { pool = p2; layer = '同品类'; }
+        }
+        // 层3：同方向（跨品类）
+        if (pool.length < 2) { pool = sidePool; layer = '同方向(跨品类)'; }
+        if (pool.length < 2) continue;
+        pool.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+        const top = pool.slice(0, N);
+        const up  = top.filter(e => e.outcome.pct >= 0).length;
+        const dn  = top.length - up;
+        const avg = (top.reduce((s2, e) => s2 + e.outcome.pct, 0) / top.length).toFixed(1);
+        const wr  = Math.round(up / top.length * 100);
+        const latest = top[0];
+        const assessTxt = latest.outcome.assessment
+            ? ({ correct:'判断正确', partial:'有偏差', wrong:'判断失误' }[latest.outcome.assessment] || '')
+            : '';
+        const catLabel = layer === '同方向(跨品类)' ? '' : `·${cat}`;
+        lines.push(
+            `- ${cat}${catLabel}：过去${top.length}次${layer}决策，事后${up}涨${dn}跌，胜率${wr}%，平均收益${avg >= 0 ? '+' : ''}${avg}%。` +
+            `最近一次：${latest.date} ${latest.action} ${latest.fund}，事后${latest.outcome.pct >= 0 ? '+' : ''}${latest.outcome.pct}%` +
+            (assessTxt ? `（${assessTxt}）` : '') + `。`
+        );
+    }
+    if (!lines.length) return '';
+    return `【历史决策反馈（基于你过去的同类操作复盘）】
+${lines.join('\n')}
+请基于上述历史胜率调整建议力度：若某方向历史胜率<40%，对同类信号的建议应更保守；胜率>70%可更果断。`;
+}
+
 function buildAIPrompt() {
     const p    = portfolioData || {};
     const sigs = window.techSignalsData || [];
@@ -190,6 +261,8 @@ function buildAIPrompt() {
     const sigsText   = actionSigs.length
         ? actionSigs.map(s => `  - ${s.name}：${s.signal}，${(s.action_detail || s.reason || '').slice(0, 80)}`).join('\n')
         : '  暂无明确操作信号，整体观望';
+    // 历史决策反哺：从决策日志筛相似历史注入（不足2次返回空串，零侵入降级）
+    const histFb = buildHistoryFeedback(actionSigs);
 
     // 年化推算
     let annualNote = '';
@@ -211,7 +284,7 @@ ${holdingsText || '  暂无持仓数据'}
 
 【今日量化信号（有操作方向的）】
 ${sigsText}
-
+${histFb ? '\n' + histFb + '\n' : ''}
 请给出今日投资建议，格式如下，不要超过300字：
 
 **今日操作**：有机会则说清楚操作哪个基金、从余额宝转多少钱；没有机会就直接说"今日无需操作"。
