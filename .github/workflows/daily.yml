@@ -37,6 +37,8 @@ jobs:
         run: python3 data/indicators.py
       - name: 生成买卖信号
         run: python3 data/signals.py
+      - name: 黄金/美股/有色量化评分
+        run: python3 scripts/build_signals_quant.py
       - name: 自动抓取新闻
         run: python3 scripts/fetch_news.py
       - name: 新闻情绪分析

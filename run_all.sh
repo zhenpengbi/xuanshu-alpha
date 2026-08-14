@@ -22,6 +22,10 @@ echo "【第3步】生成买卖信号..."
 python3 data/signals.py
 
 echo ""
+echo "【第3.5步】生成黄金/美股/有色量化评分（akshare 实时）..."
+python3 scripts/build_signals_quant.py
+
+echo ""
 echo "【第4步】自动抓取新闻（东方财富 + 新闻联播）..."
 python3 scripts/fetch_news.py
 
