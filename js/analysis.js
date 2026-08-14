@@ -715,3 +715,158 @@ function renderActiveFundsFallback() {
         '暂无主动基诊断数据，请先运行 python3 scripts/active_fund_diagnose.py</div>';
 }
 
+
+// ========== 信号→建议因果链 抽屉（点持仓行展开完整决策链条） ==========
+let _indicatorsData = null, _valuationData = null, _chainBtChart = null;
+async function _ensureIndicators() {
+    if (_indicatorsData) return _indicatorsData;
+    await loadJSON('data/indicators.json', d => { _indicatorsData = d.indicators || []; });
+    return _indicatorsData;
+}
+async function _ensureValuation() {
+    if (_valuationData) return _valuationData;
+    await loadJSON('data/valuation.json', d => { _valuationData = d.valuations || []; });
+    return _valuationData;
+}
+function _chainSection(title, icon, bodyHtml) {
+    return `<div class="chain-section">
+        <div class="chain-section-title">${icon} ${title}</div>
+        <div class="chain-section-body">${bodyHtml}</div>
+    </div>`;
+}
+function _chainRow(icon, label, val, info) {
+    return info ? `<div class="sig-exp-row">
+        <div class="sig-exp-row-top"><span class="sig-exp-label">${icon} ${label} <b class="num">${val}</b></span>
+        <span class="sig-exp-tag sig-exp-${info.cls}">${info.label}</span></div>
+        <span class="sig-exp-tip">${info.tip}</span>
+    </div>` : '';
+}
+function _renderChainTech(h, sig, ind) {
+    if (h.assetType === 'cash' || !sig)
+        return _chainSection('技术面', '📊', '<div class="chain-empty">货币/待建仓基金无技术信号</div>');
+    const rsi = _rsiInfo(sig.rsi14), ma = _maInfo(sig.ma5, sig.ma20), macd = _macdInfo(sig.macd_trend);
+    const BUY = new Set(['买入','定投','定投补仓','可加仓','待建仓']);
+    const SELL = new Set(['减仓','卖出','高估警惕']);
+    const badgeCls = BUY.has(sig.signal) ? 'sig-badge-buy' : SELL.has(sig.signal) ? 'sig-badge-sell' : 'sig-badge-hold';
+    let html = `<div style="margin-bottom:8px;"><span class="sig-badge ${badgeCls}">${escHtml(sig.signal)}</span></div>`;
+    html += _chainRow('📊','RSI', sig.rsi14!=null?sig.rsi14.toFixed(1):'--', rsi);
+    html += _chainRow('📈','均线', ma?(sig.ma5>sig.ma20?'金叉':'死叉'):'--', ma);
+    html += _chainRow('📉','MACD', sig.macd_trend==='bullish'?'多头':'空头', macd);
+    const meta = [];
+    if (ind && ind.latest_price) meta.push('现价 ' + ind.latest_price.toFixed(4));
+    if (sig.buy_score!=null || sig.sell_score!=null) meta.push('买分 ' + (sig.buy_score??0) + '/卖分 ' + (sig.sell_score??0));
+    if (meta.length) html += `<div class="chain-meta">${meta.join(' · ')}</div>`;
+    html += `<div class="chain-conclusion">${escHtml(_sigConclusion(sig))}</div>`;
+    if (sig.action_detail) html += `<div class="chain-detail">${escHtml(sig.action_detail)}</div>`;
+    return _chainSection('技术面', '📊', html);
+}
+function _renderChainValuation(h, v) {
+    if (h.assetType === 'cash') return _chainSection('估值分位', '🎯', '<div class="chain-empty">货币基金不适用估值</div>');
+    if (!v) return _chainSection('估值分位', '🎯', '<div class="chain-empty">该品类无估值数据</div>');
+    const NA = new Set(['数据缺失','不适用']);
+    const ck = NA.has(v.verdict) ? 'na' : v.verdict_score<=40?'green':v.verdict_score<=60?'yellow':v.verdict_score<=80?'orange':'red';
+    const score = NA.has(v.verdict) ? '—' : (v.pe_pct_5y!=null?v.pe_pct_5y:v.verdict_score);
+    const verdict = NA.has(v.verdict) ? '不适用' : v.verdict;
+    let html = `<div class="val-chip val-chip-${ck}"><div class="val-chip-cat">${escHtml(v.category)}</div><div class="val-chip-score">${score}</div><div class="val-chip-verdict">${escHtml(verdict)}</div></div>`;
+    if (v.index_name) html += `<div class="chain-meta">${escHtml(v.index_name)} · PE ${v.current_pe??'--'} · 5年分位 ${v.pe_pct_5y!=null?v.pe_pct_5y+'%':'无序列'}</div>`;
+    if (v.pe_note) html += `<div class="chain-detail">${escHtml(v.pe_note)}</div>`;
+    return _chainSection('估值分位', '🎯', html);
+}
+function _renderChainRebalance(h, act, ops) {
+    if (h.assetType === 'cash') return _chainSection('再平衡', '⚖️', '<div class="chain-empty">货币基金为子弹仓，不计入再平衡</div>');
+    let html = '';
+    if (act && act.needs_rebalance) {
+        const over = act.deviation > 0;
+        html += `<div class="chain-rebal-row"><span style="color:${over?'var(--red)':'var(--green)'};font-weight:600;">${over?'🔻':'🔺'} ${over?'减仓':'加仓'}</span>`;
+        if (act.deviation_amount) html += ` <span class="num">≈¥${Math.round(Math.abs(act.deviation_amount)).toLocaleString('zh-CN')}</span>`;
+        html += `<div class="chain-meta">实际 ${act.actual_pct?.toFixed(1)}% vs 目标 ${act.target_pct}% · 偏${over?'+':''}${act.deviation?.toFixed(1)}pt</div>`;
+        if (act.reason) html += `<div class="chain-detail">${escHtml(act.reason)}</div></div>`;
+        else html += '</div>';
+    } else {
+        html += '<div class="chain-empty">配置接近目标，无调整建议</div>';
+    }
+    if (ops.length) {
+        html += '<div class="chain-meta" style="margin-top:8px;">本基金被点名操作：</div>';
+        ops.forEach(o => {
+            html += `<div class="chain-rebal-row"><span class="${o.action==='sell'?'ops-dir-sell':'ops-dir-buy'}">${o.action==='sell'?'卖出':'买入'}</span> <span class="num">${o.action==='sell'?'-':'+'}¥${Number(o.amount).toLocaleString('zh-CN')}</span><div class="chain-detail">${escHtml(o.reason||'')}</div></div>`;
+        });
+    }
+    return _chainSection('再平衡', '⚖️', html);
+}
+function _renderChainBacktest(h, result) {
+    if (h.assetType === 'cash') return _chainSection('历史回测', '⏪', '<div class="chain-empty">货币基金无回测意义</div>');
+    if (!result) return _chainSection('历史回测', '⏪', '<div class="chain-empty">该基金未纳入回测（主动基金/历史不足）</div>');
+    const s = result.metrics.strategy, b = result.metrics.benchmark;
+    const alpha = s.annual_return_pct - b.annual_return_pct;
+    const cls = v => v >= 0 ? 'positive' : 'negative';
+    const sign = v => v >= 0 ? '+' : '';
+    const html = `
+        <div class="chain-bt-grid">
+            <div class="chain-bt-metric"><div class="chain-bt-label">策略年化</div><div class="chain-bt-val num ${cls(s.annual_return_pct)}">${sign(s.annual_return_pct)}${s.annual_return_pct.toFixed(1)}%</div><div class="chain-bt-sub">基准 ${sign(b.annual_return_pct)}${b.annual_return_pct.toFixed(1)}%</div></div>
+            <div class="chain-bt-metric"><div class="chain-bt-label">超额 α</div><div class="chain-bt-val num ${cls(alpha)}">${sign(alpha)}${alpha.toFixed(1)}pt</div><div class="chain-bt-sub">策略 - 基准</div></div>
+            <div class="chain-bt-metric"><div class="chain-bt-label">最大回撤</div><div class="chain-bt-val num">${s.max_drawdown_pct.toFixed(1)}%</div><div class="chain-bt-sub">基准 ${b.max_drawdown_pct.toFixed(1)}%</div></div>
+            <div class="chain-bt-metric"><div class="chain-bt-label">夏普</div><div class="chain-bt-val num">${s.sharpe.toFixed(2)}</div><div class="chain-bt-sub">基准 ${b.sharpe.toFixed(2)}</div></div>
+        </div>
+        <div id="chainBtChart" style="width:100%;height:240px;margin-top:8px;"></div>
+        <div class="chain-meta">区间 ${result.period_start} ~ ${result.period_end} · ${result.data_days} 交易日</div>`;
+    return _chainSection('历史回测', '⏪', html);
+}
+function _renderChainBtChart(result) {
+    const el = document.getElementById('chainBtChart');
+    if (!el) return;
+    _chainBtChart = echarts.init(el);
+    const c = result.nav_curve, s = result.metrics.strategy, b = result.metrics.benchmark;
+    const cc = getChartColors();
+    _chainBtChart.setOption({
+        backgroundColor: 'transparent',
+        tooltip: { trigger: 'axis', backgroundColor: cc.bgTooltip, borderColor: cc.lineColor, textStyle: { color: cc.textPrimary, fontSize: 12 },
+            formatter: p => p[0].axisValue + '<br>' + p.map(x => x.marker + x.seriesName + ': ' + (+x.value).toFixed(3)).join('<br>') },
+        legend: { top: 0, textStyle: { color: cc.dim, fontSize: 10 }, data: ['信号策略','买入持有'] },
+        grid: { left: 48, right: 16, top: 28, bottom: 48 },
+        xAxis: { type: 'category', data: c.dates, axisLabel: { color: cc.muted, fontSize: 9, rotate: 30 }, axisLine: { lineStyle: { color: cc.border } }, splitLine: { show: false } },
+        yAxis: { type: 'value', axisLabel: { color: cc.muted, fontSize: 9, formatter: v => v.toFixed(2) }, splitLine: { lineStyle: { color: cc.border, type: 'dashed' } } },
+        series: [
+            { name: '信号策略', type: 'line', data: c.strategy, smooth: true, symbol: 'none', lineStyle: { color: cc.green, width: 2 },
+              areaStyle: { color: { type: 'linear', x:0, y:0, x2:0, y2:1, colorStops: [{offset:0,color:cc.green+'30'},{offset:1,color:cc.green+'00'}] } } },
+            { name: '买入持有', type: 'line', data: c.benchmark, smooth: true, symbol: 'none', lineStyle: { color: cc.accent, width: 1.5, type: 'dashed' } }
+        ]
+    });
+    window.addEventListener('resize', () => _chainBtChart && _chainBtChart.resize());
+}
+async function openChainDrawer(code) {
+    const h = (portfolioData.holdings || []).find(x => x.code === code);
+    if (!h) return;
+    if (_chainBtChart) { _chainBtChart.dispose(); _chainBtChart = null; }
+    document.getElementById('chainOverlay').style.display = '';
+    const drawer = document.getElementById('chainDrawer');
+    drawer.style.display = '';
+    drawer.classList.remove('chain-out'); drawer.classList.add('chain-in');
+    document.getElementById('chainFundName').textContent = h.name;
+    const tagCls = getCategoryTagClass(h.category);
+    document.getElementById('chainFundMeta').innerHTML =
+        `<span class="tag ${tagCls}">${escHtml(h.category)}</span><span class="fund-code num">${h.code}</span>`
+        + ` · <span class="num">${fmtMoney(h.amount)}</span> · 占比 ${h.ratio}%`
+        + ` · 持有 <span class="num ${retClass(h.holdingReturnRate)}">${fmtReturn(h.holdingReturn)} (${fmtPct(h.holdingReturnRate)})</span>`;
+    document.getElementById('chainBody').innerHTML = '<div style="color:var(--text-muted);padding:20px;">加载因果链…</div>';
+    await Promise.all([_ensureIndicators(), _ensureValuation()]);
+    const sig = (window.techSignalsData || []).find(s => s.code === code);
+    const ind = _indicatorsData.find(x => x.code === code);
+    const val = _valuationData.find(v => v.category === h.category);
+    const rebal = window._cachedRebalance || {};
+    const act = (rebal.actions || []).find(a => a.category === h.category);
+    const ops = (rebal.operations || []).filter(o => o.fund_code === code);
+    const btResult = (_btData?.results || []).find(r => r.code === code);
+    document.getElementById('chainBody').innerHTML =
+        _renderChainTech(h, sig, ind) +
+        _renderChainValuation(h, val) +
+        _renderChainRebalance(h, act, ops) +
+        _renderChainBacktest(h, btResult);
+    if (btResult) _renderChainBtChart(btResult);
+}
+function closeChainDrawer() {
+    document.getElementById('chainOverlay').style.display = 'none';
+    const drawer = document.getElementById('chainDrawer');
+    drawer.classList.remove('chain-in'); drawer.classList.add('chain-out');
+    setTimeout(() => { drawer.style.display = 'none'; }, 220);
+    if (_chainBtChart) { _chainBtChart.dispose(); _chainBtChart = null; }
+}

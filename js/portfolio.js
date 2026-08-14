@@ -129,7 +129,7 @@ function renderHoldings() {
     if (cardsEl) {
         cardsEl.innerHTML = portfolioData.holdings.map(h => {
             const cls = h.dailyReturn >= 0 ? 'positive' : 'negative';
-            return `<div class="holding-card ${cls}">
+            return `<div class="holding-card ${cls}" onclick="openChainDrawer('${h.code}')" style="cursor:pointer;">
                 <div class="hc-left">
                     <div class="hc-name">${h.name}</div>
                     <div class="hc-meta"><span class="hc-tag">${h.category}</span><span>${h.code}</span></div>
@@ -149,7 +149,7 @@ function renderHoldings() {
         const holdCls  = retClass(h.holdingReturnRate);
         const totalCls = retClass(h.totalReturn);
         const tagCls   = getCategoryTagClass(h.category);
-        return `<tr>
+        return `<tr onclick="openChainDrawer('${h.code}')" style="cursor:pointer;" title="点击查看决策因果链">
             <td><div class="fund-name">${h.name}</div></td>
             <td><span class="fund-code num">${h.code}</span></td>
             <td><span class="tag ${tagCls}">${h.category}</span></td>
