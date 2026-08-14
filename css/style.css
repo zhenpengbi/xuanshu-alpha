@@ -451,16 +451,15 @@
         .hold-return-amt.negative, .hold-return-rate.negative { color: var(--red); }
         .fund-name { font-weight: 500; color: var(--text-primary); }
         .fund-code { color: var(--text-muted); font-size: 11px; font-family: var(--mono); }
-        /* 持仓健康体检徽章 */
+        /* 持仓健康体检徽章：统一中性色，不干扰行底色统一性 */
         .health-badge {
-            display: inline-block; font-size: 9.5px; font-weight: 700;
-            padding: 1px 5px; border-radius: 6px;
+            display: inline-block; font-size: 9.5px; font-weight: 600;
+            padding: 1px 6px; border-radius: 6px;
             vertical-align: middle; margin-left: 4px; white-space: nowrap;
+            color: var(--text-secondary);
+            background: rgba(138,168,208,.10);
+            border: 1px solid rgba(138,168,208,.20);
         }
-        .health-warn   { background: var(--orange-bg); color: var(--orange); }
-        .health-danger { background: var(--red-bg);    color: var(--red); }
-        .health-sell   { background: var(--red-bg);    color: var(--red); }
-        .health-buy    { background: var(--green-bg);  color: var(--green); }
         .tag {
             display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 500;
             letter-spacing: .5px; border: 1px solid transparent;
@@ -797,25 +796,27 @@
         .anav-toggle-icon { font-size: 16px; line-height: 1; flex: none; }
         .anav-toggle-label { flex: 1; text-align: left; }
 
-        /* 按钮展开态：图标 + 文字（图标由 data-icon 注入） */
+        /* 按钮展开态：SVG 图标 + 文字 */
         .anav-btn {
             flex: none; font-size: 13px; font-weight: 500; color: var(--text-secondary);
             padding: 8px 12px; border-radius: 8px; cursor: pointer; border: none;
             background: transparent; transition: color .2s, background .2s;
             white-space: nowrap; line-height: 1.4;
-            display: flex; align-items: center; gap: 9px;
+            display: flex; align-items: center; gap: 10px;
             text-align: left;
         }
-        .anav-btn::before {
-            content: attr(data-icon);
-            font-size: 15px; line-height: 1; flex: none;
+        .anav-svg {
+            flex: none; width: 18px; height: 18px;
+            stroke: currentColor; fill: none; stroke-width: 1.5;
+            stroke-linecap: round; stroke-linejoin: round;
+            color: var(--text-muted);
+            transition: color .2s;
         }
+        .anav-btn:hover .anav-svg { color: var(--text-secondary); }
         .anav-btn:hover { color: var(--text-primary); background: var(--bg-hover); }
-        .anav-btn.anav-active {
-            color: var(--accent);
-            background: var(--accent-glow);
-            box-shadow: 0 0 0 1px var(--accent-line);
-        }
+        .anav-btn.anav-active { color: var(--accent); background: var(--accent-glow); box-shadow: 0 0 0 1px var(--accent-line); }
+        .anav-btn.anav-active .anav-svg { color: var(--accent); }
+        .anav-label { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
 
         /* 分组标题展开态 */
         .anav-divider {
@@ -836,11 +837,12 @@
         }
         body.nav-collapsed .anav-toggle-label { display: none; }
         body.nav-collapsed .anav-toggle-icon { font-size: 20px; }
-        /* 折叠态按钮：font-size:0 隐去文字节点，::before 单独保留图标大小 */
+        /* 折叠态按钮：文字隐藏，SVG 居中放大 */
         body.nav-collapsed .anav-btn {
-            font-size: 0; padding: 9px 0; justify-content: center;
+            padding: 10px 0; justify-content: center;
         }
-        body.nav-collapsed .anav-btn::before { font-size: 18px; }
+        body.nav-collapsed .anav-label { display: none; }
+        body.nav-collapsed .anav-svg { width: 20px; height: 20px; }
         body.nav-collapsed .dj-nav-badge { font-size: 9px; }
         /* 折叠态分组标题：文字消失，变 1px 分隔线 */
         body.nav-collapsed .anav-divider {
