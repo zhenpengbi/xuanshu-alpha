@@ -36,6 +36,21 @@ except Exception:
 def now_str():
     return datetime.now(TZ).strftime('%Y-%m-%d %H:%M')
 
+# calc_ma/calc_rsi 数据不足时返回 None，这里做安全包装
+def _ma(prices, period):
+    if not prices or len(prices) < period: return None
+    if calc_ma:
+        v = calc_ma(prices, period)
+        if v is not None: return v
+    return sum(prices[-period:]) / period  # fallback 手动算
+
+def _rsi(prices, period=14):
+    if not prices or len(prices) < period + 1: return 50.0
+    if calc_rsi:
+        v = calc_rsi(prices, period)
+        if v is not None: return v
+    return 50.0  # fallback 中性
+
 # ── akshare 拉取辅助 ──
 def _fetch_foreign(symbol):
     """COMEX 期货历史收盘序列，失败返回 []"""
@@ -131,12 +146,12 @@ def build_gold():
         print("  ✗ 黄金数据拉取失败，跳过"); return None
 
     # tech (满分38: MA12+RSI9+布林9+量9)
-    ma20 = calc_ma(gold, 20) if calc_ma else sum(gold[-20:])/min(20,len(gold))
-    ma60 = calc_ma(gold, 60) if calc_ma else sum(gold[-60:])/min(60,len(gold))
-    rsi = calc_rsi(gold, 14) if calc_rsi else 50
-    std20 = (sum((x-ma20)**2 for x in gold[-20:]) / 20) ** 0.5 if len(gold) >= 20 else 0
-    boll_pct = (gold[-1] - ma20) / (2*std20) if std20 else 0
-    ma_score = 12 if ma20 > ma60 else (6 if ma60 == 0 else max(0, 12 - int(abs(ma20-ma60)/ma60*1000)))
+    ma20 = _ma(gold, 20)
+    ma60 = _ma(gold, 60)
+    rsi = _rsi(gold, 14)
+    std20 = (sum((x-ma20)**2 for x in gold[-20:]) / 20) ** 0.5 if len(gold) >= 20 and ma20 else 0
+    boll_pct = (gold[-1] - ma20) / (2*std20) if std20 and ma20 else 0
+    ma_score = 12 if (ma20 and ma60 and ma20 > ma60) else 6 if (not ma20 or not ma60) else max(0, 12 - int(abs(ma20-ma60)/ma60*1000))
     rsi_score = 9 if rsi < 30 else max(0, 9 - int((rsi-30)/40*9)) if rsi < 70 else 2
     boll_score = max(0, min(9, round((1-boll_pct) * 9))) if boll_pct < 1 else 0
     tech = ma_score + rsi_score + boll_score
@@ -210,9 +225,9 @@ def build_us():
 
     def _score_one(prices, label):
         if not prices: return {}, 50, '中性观望', '⚪'
-        ma20 = calc_ma(prices, 20) if calc_ma else sum(prices[-20:])/min(20,len(prices))
-        ma60 = calc_ma(prices, 60) if calc_ma else sum(prices[-60:])/min(60,len(prices))
-        rsi = calc_rsi(prices, 14) if calc_rsi else 50
+        ma20 = _ma(prices, 20)
+        ma60 = _ma(prices, 60)
+        rsi = _rsi(prices, 14)
         std20 = (sum((x-ma20)**2 for x in prices[-20:]) / 20) ** 0.5 if len(prices) >= 20 else 0
         boll = (prices[-1] - ma20) / (2*std20) if std20 else 0
         # tech (40: MA12+RSI10+布林10+量8 → 简化无量比，满分30)
@@ -282,9 +297,9 @@ def build_metals():
     usd = _fetch_usd_cny()
     if not copper:
         print("  ✗ COMEX铜 拉取失败，跳过"); return None
-    ma20 = calc_ma(copper, 20) if calc_ma else sum(copper[-20:])/min(20,len(copper))
-    ma60 = calc_ma(copper, 60) if calc_ma else sum(copper[-60:])/min(60,len(copper))
-    rsi = calc_rsi(copper, 14) if calc_rsi else 50
+    ma20 = _ma(copper, 20)
+    ma60 = _ma(copper, 60)
+    rsi = _rsi(copper, 14)
     std20 = (sum((x-ma20)**2 for x in copper[-20:]) / 20) ** 0.5 if len(copper) >= 20 else 0
     boll = (copper[-1] - ma20) / (2*std20) if std20 else 0
     # tech (38: MA12+RSI9+布林9+量9→简化无量,满分30)
