@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-20 02:17",
+  "updated_at": "2026-08-20 11:15",
   "signals": [
     {
       "code": "002963",
@@ -104,16 +104,16 @@
       "ma20": 1.093265,
       "macd_hist": 0.03575884,
       "macd_trend": "bullish",
-      "signal": "观望（估值不支持）",
-      "reason": "RSI偏低(44.1) · MA5>MA20多头 · MACD柱正向；但估值高估(score=88)偏高，信号无效",
+      "signal": "可加仓",
+      "reason": "RSI偏低(44.1) · MA5>MA20多头 · MACD柱正向；估值偏贵，轻仓可加",
       "buy_score": 3,
       "sell_score": 0,
       "asset_type": "active",
-      "signal_type": "oscillation_watch_val",
-      "valuation_verdict": "高估",
-      "valuation_score": 88,
+      "signal_type": "oscillation_add",
+      "valuation_verdict": "偏贵",
+      "valuation_score": 70,
       "deviation_pt": -3.1,
-      "action_detail": "永赢高端装备智选混合C 技术信号偏多但估值高估(score=88)，等待回调至合理区间再介入"
+      "action_detail": "永赢高端装备智选混合C 技术买入信号(buy=3)，估值偏贵(score=70)，可小幅加仓"
     },
     {
       "code": "025647",
@@ -123,16 +123,16 @@
       "ma20": 1.004915,
       "macd_hist": 0.04108311,
       "macd_trend": "bullish",
-      "signal": "高估警惕",
-      "reason": "估值高估(score=88)，注意高估风险",
+      "signal": "持有观察",
+      "reason": "MA5>MA20多头 · MACD柱正向；信号中性，持仓观察",
       "buy_score": 2,
       "sell_score": 0,
       "asset_type": "active",
-      "signal_type": "oscillation_val_high",
-      "valuation_verdict": "高估",
-      "valuation_score": 88,
+      "signal_type": "oscillation_hold",
+      "valuation_verdict": "偏贵",
+      "valuation_score": 70,
       "deviation_pt": -5.7,
-      "action_detail": "平安高端装备混合C 估值偏高(score=88，高估)，持仓需谨慎，等待回调"
+      "action_detail": "平安高端装备混合C 技术中性(buy=2/sell=0)，估值偏贵(score=70)，仓位偏离-5.7pt，继续持仓观察"
     },
     {
       "code": "014881",

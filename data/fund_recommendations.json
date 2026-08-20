@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-20 02:19",
+  "updated_at": "2026-08-20 11:18",
   "triggered": false,
   "avg_sell_score": 0.2,
   "panic_threshold": 2.0,
@@ -17,6 +17,47 @@
   },
   "message": "当前无超跌机会（avg_sell_score=0.20 < 2.0，市场情绪平稳）",
   "recommendations": [],
-  "undervalued": [],
+  "undervalued": [
+    {
+      "code": "589520",
+      "name": "科创人工智能ETF华宝",
+      "drop_60d_pct": 19.1,
+      "today_chg_pct": -1.35,
+      "scale_bn": 4.53,
+      "rsi14": 39.83,
+      "signal": "低位观察",
+      "reason": "近60日跌幅 19.1%，RSI=39.8（低位区间），可小仓位试探"
+    },
+    {
+      "code": "588930",
+      "name": "科创人工智能ETF银华",
+      "drop_60d_pct": 18.41,
+      "today_chg_pct": -1.29,
+      "scale_bn": 9.27,
+      "rsi14": 39.97,
+      "signal": "低位观察",
+      "reason": "近60日跌幅 18.4%，RSI=40.0（低位区间），可小仓位试探"
+    },
+    {
+      "code": "512930",
+      "name": "AI人工智能ETF平安",
+      "drop_60d_pct": 13.43,
+      "today_chg_pct": -1.13,
+      "scale_bn": 29.75,
+      "rsi14": 33.15,
+      "signal": "低位观察",
+      "reason": "近60日跌幅 13.4%，RSI=33.1（低位区间），可小仓位试探"
+    },
+    {
+      "code": "589410",
+      "name": "科创人工智能ETF嘉实",
+      "drop_60d_pct": 10.56,
+      "today_chg_pct": -1.45,
+      "scale_bn": 4.5,
+      "rsi14": 39.43,
+      "signal": "低位观察",
+      "reason": "近60日跌幅 10.6%，RSI=39.4（低位区间），可小仓位试探"
+    }
+  ],
   "disclaimer": "以上仅为量化扫描结果，不构成投资建议，投资者需自行承担风险"
 }
