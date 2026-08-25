@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-25 02:18",
+  "updated_at": "2026-08-25 11:15",
   "signals": [
     {
       "code": "002963",
@@ -53,7 +53,7 @@
       "sell_score": 0,
       "asset_type": "trend",
       "signal_type": "trend_hold_cat_overweight",
-      "valuation_verdict": "适中",
+      "valuation_verdict": "数据缺失",
       "valuation_score": 50,
       "deviation_pt": 7.1,
       "action_detail": "南方有色金属ETF联接E 所属品类有色金属整体超配7.1pt，趋势型不建议择时减仓，维持持有"
@@ -72,10 +72,10 @@
       "sell_score": 2,
       "asset_type": "oscillation",
       "signal_type": "oscillation_hold",
-      "valuation_verdict": "适中",
+      "valuation_verdict": "数据缺失",
       "valuation_score": 50,
       "deviation_pt": -17.5,
-      "action_detail": "天弘中证人工智能主题ETF联接C 技术中性(buy=1/sell=2)，估值适中(score=50)，仓位偏离-17.5pt，继续持仓观察"
+      "action_detail": "天弘中证人工智能主题ETF联接C 技术中性(buy=1/sell=2)，估值数据缺失(score=50)，仓位偏离-17.5pt，继续持仓观察"
     },
     {
       "code": "012885",
@@ -86,15 +86,15 @@
       "macd_hist": 0.00338841,
       "macd_trend": "bullish",
       "signal": "可加仓",
-      "reason": "RSI偏低(44.3) · MA5>MA20多头 · MACD柱正向；估值适中，轻仓可加",
+      "reason": "RSI偏低(44.3) · MA5>MA20多头 · MACD柱正向；估值数据缺失，轻仓可加",
       "buy_score": 3,
       "sell_score": 0,
       "asset_type": "oscillation",
       "signal_type": "oscillation_add",
-      "valuation_verdict": "适中",
+      "valuation_verdict": "数据缺失",
       "valuation_score": 50,
       "deviation_pt": 1.5,
-      "action_detail": "华夏中证光伏产业ETF联接A 技术买入信号(buy=3)，估值适中(score=50)，可小幅加仓"
+      "action_detail": "华夏中证光伏产业ETF联接A 技术买入信号(buy=3)，估值数据缺失(score=50)，可小幅加仓"
     },
     {
       "code": "015790",
@@ -143,15 +143,15 @@
       "macd_hist": -0.0055166,
       "macd_trend": "bearish",
       "signal": "观望",
-      "reason": "RSI偏低(38.5) · 死叉(MA5下穿MA20) · MACD柱负向；估值适中尚可，暂观望",
+      "reason": "RSI偏低(38.5) · 死叉(MA5下穿MA20) · MACD柱负向；估值数据缺失尚可，暂观望",
       "buy_score": 1,
       "sell_score": 3,
       "asset_type": "oscillation",
       "signal_type": "oscillation_watch",
-      "valuation_verdict": "适中",
+      "valuation_verdict": "数据缺失",
       "valuation_score": 50,
       "deviation_pt": -25.1,
-      "action_detail": "天弘中证机器人ETF联接C 技术偏弱(sell=3)但估值适中(score=50)，不急减仓，持仓观望"
+      "action_detail": "天弘中证机器人ETF联接C 技术偏弱(sell=3)但估值数据缺失(score=50)，不急减仓，持仓观望"
     },
     {
       "code": "022525",

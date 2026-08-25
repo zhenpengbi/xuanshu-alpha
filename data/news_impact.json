@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-08-25 02:19",
+  "updated_at": "2026-08-25 11:16",
   "news_date": "2026-08-25",
-  "news_period": "早报",
-  "total_news": 12,
+  "news_period": "早报/晚报",
+  "total_news": 24,
   "items": [
     {
       "code": "002963",
@@ -10,7 +10,7 @@
       "channel": "gold",
       "bullish_count": 2,
       "bearish_count": 0,
-      "neutral_count": 10,
+      "neutral_count": 22,
       "sentiment_score": 2,
       "sentiment_label": "偏多",
       "top_impact_news": [
@@ -40,7 +40,7 @@
       "channel": "gold",
       "bullish_count": 2,
       "bearish_count": 0,
-      "neutral_count": 10,
+      "neutral_count": 22,
       "sentiment_score": 2,
       "sentiment_label": "偏多",
       "top_impact_news": [
@@ -68,10 +68,10 @@
       "code": "011840",
       "name": "天弘中证人工智能C",
       "channel": "ashare",
-      "bullish_count": 2,
-      "bearish_count": 0,
-      "neutral_count": 10,
-      "sentiment_score": 2,
+      "bullish_count": 6,
+      "bearish_count": 2,
+      "neutral_count": 16,
+      "sentiment_score": 4,
       "sentiment_label": "偏多",
       "top_impact_news": [
         {
@@ -87,10 +87,10 @@
           "sentiment": "利多"
         },
         {
-          "title": "王沪宁会见第三届中美1.5轨对话美方代表",
-          "time": "早报 · 宏观",
-          "summary": "中共中央政治局常委、全国政协主席王沪宁24日在京会见出席第三届中美1.5轨对话的美方代表。王沪宁表示，今年5月，习近平主席同来华访问的特朗普总统就事关中美关系以及世界和平发展的重大问题进行深入沟通。中方愿同美方共同努力，全面准确落实两国元首重要共识，增进相互正确认知，尊重彼此核心利益，加强各领...",
-          "sentiment": "中性"
+          "title": "习近平同约旦国王会谈",
+          "time": "晚报 · 宏观",
+          "summary": "8月24日下午，国家主席习近平在北京人民大会堂同来华进行国事访问的约旦国王阿卜杜拉二世举行会谈。习近平指出，中约建交以来，始终相互尊重、平等相待、互利合作，是不同社会制度、不同大小国家合作共赢、交流互鉴的生动写照。2015年，我们共同宣布建立中约战略伙伴关系，开启双边关系发展新篇章。面对变乱交...",
+          "sentiment": "利多"
         }
       ]
     },
@@ -98,10 +98,10 @@
       "code": "010990",
       "name": "南方有色金属ETF联接E",
       "channel": "ashare",
-      "bullish_count": 2,
-      "bearish_count": 0,
-      "neutral_count": 10,
-      "sentiment_score": 2,
+      "bullish_count": 6,
+      "bearish_count": 2,
+      "neutral_count": 16,
+      "sentiment_score": 4,
       "sentiment_label": "偏多",
       "top_impact_news": [
         {
@@ -117,10 +117,10 @@
           "sentiment": "利多"
         },
         {
-          "title": "王沪宁会见第三届中美1.5轨对话美方代表",
-          "time": "早报 · 宏观",
-          "summary": "中共中央政治局常委、全国政协主席王沪宁24日在京会见出席第三届中美1.5轨对话的美方代表。王沪宁表示，今年5月，习近平主席同来华访问的特朗普总统就事关中美关系以及世界和平发展的重大问题进行深入沟通。中方愿同美方共同努力，全面准确落实两国元首重要共识，增进相互正确认知，尊重彼此核心利益，加强各领...",
-          "sentiment": "中性"
+          "title": "习近平同约旦国王会谈",
+          "time": "晚报 · 宏观",
+          "summary": "8月24日下午，国家主席习近平在北京人民大会堂同来华进行国事访问的约旦国王阿卜杜拉二世举行会谈。习近平指出，中约建交以来，始终相互尊重、平等相待、互利合作，是不同社会制度、不同大小国家合作共赢、交流互鉴的生动写照。2015年，我们共同宣布建立中约战略伙伴关系，开启双边关系发展新篇章。面对变乱交...",
+          "sentiment": "利多"
         }
       ]
     },
@@ -128,10 +128,10 @@
       "code": "012885",
       "name": "华夏光伏ETF联接A",
       "channel": "ashare",
-      "bullish_count": 2,
-      "bearish_count": 0,
-      "neutral_count": 10,
-      "sentiment_score": 2,
+      "bullish_count": 6,
+      "bearish_count": 2,
+      "neutral_count": 16,
+      "sentiment_score": 4,
       "sentiment_label": "偏多",
       "top_impact_news": [
         {
@@ -147,10 +147,10 @@
           "sentiment": "利多"
         },
         {
-          "title": "王沪宁会见第三届中美1.5轨对话美方代表",
-          "time": "早报 · 宏观",
-          "summary": "中共中央政治局常委、全国政协主席王沪宁24日在京会见出席第三届中美1.5轨对话的美方代表。王沪宁表示，今年5月，习近平主席同来华访问的特朗普总统就事关中美关系以及世界和平发展的重大问题进行深入沟通。中方愿同美方共同努力，全面准确落实两国元首重要共识，增进相互正确认知，尊重彼此核心利益，加强各领...",
-          "sentiment": "中性"
+          "title": "习近平同约旦国王会谈",
+          "time": "晚报 · 宏观",
+          "summary": "8月24日下午，国家主席习近平在北京人民大会堂同来华进行国事访问的约旦国王阿卜杜拉二世举行会谈。习近平指出，中约建交以来，始终相互尊重、平等相待、互利合作，是不同社会制度、不同大小国家合作共赢、交流互鉴的生动写照。2015年，我们共同宣布建立中约战略伙伴关系，开启双边关系发展新篇章。面对变乱交...",
+          "sentiment": "利多"
         }
       ]
     },
@@ -160,7 +160,7 @@
       "channel": "nasdaq",
       "bullish_count": 0,
       "bearish_count": 1,
-      "neutral_count": 11,
+      "neutral_count": 23,
       "sentiment_score": -1,
       "sentiment_label": "偏空",
       "top_impact_news": [
@@ -190,7 +190,7 @@
       "channel": "nasdaq",
       "bullish_count": 0,
       "bearish_count": 1,
-      "neutral_count": 11,
+      "neutral_count": 23,
       "sentiment_score": -1,
       "sentiment_label": "偏空",
       "top_impact_news": [
@@ -218,10 +218,10 @@
       "code": "015790",
       "name": "永赢高端装备混合C",
       "channel": "ashare",
-      "bullish_count": 2,
-      "bearish_count": 0,
-      "neutral_count": 10,
-      "sentiment_score": 2,
+      "bullish_count": 6,
+      "bearish_count": 2,
+      "neutral_count": 16,
+      "sentiment_score": 4,
       "sentiment_label": "偏多",
       "top_impact_news": [
         {
@@ -237,10 +237,10 @@
           "sentiment": "利多"
         },
         {
-          "title": "王沪宁会见第三届中美1.5轨对话美方代表",
-          "time": "早报 · 宏观",
-          "summary": "中共中央政治局常委、全国政协主席王沪宁24日在京会见出席第三届中美1.5轨对话的美方代表。王沪宁表示，今年5月，习近平主席同来华访问的特朗普总统就事关中美关系以及世界和平发展的重大问题进行深入沟通。中方愿同美方共同努力，全面准确落实两国元首重要共识，增进相互正确认知，尊重彼此核心利益，加强各领...",
-          "sentiment": "中性"
+          "title": "习近平同约旦国王会谈",
+          "time": "晚报 · 宏观",
+          "summary": "8月24日下午，国家主席习近平在北京人民大会堂同来华进行国事访问的约旦国王阿卜杜拉二世举行会谈。习近平指出，中约建交以来，始终相互尊重、平等相待、互利合作，是不同社会制度、不同大小国家合作共赢、交流互鉴的生动写照。2015年，我们共同宣布建立中约战略伙伴关系，开启双边关系发展新篇章。面对变乱交...",
+          "sentiment": "利多"
         }
       ]
     },
@@ -248,10 +248,10 @@
       "code": "014881",
       "name": "天弘机器人ETF联接C",
       "channel": "ashare",
-      "bullish_count": 2,
-      "bearish_count": 0,
-      "neutral_count": 10,
-      "sentiment_score": 2,
+      "bullish_count": 6,
+      "bearish_count": 2,
+      "neutral_count": 16,
+      "sentiment_score": 4,
       "sentiment_label": "偏多",
       "top_impact_news": [
         {
@@ -267,10 +267,10 @@
           "sentiment": "利多"
         },
         {
-          "title": "王沪宁会见第三届中美1.5轨对话美方代表",
-          "time": "早报 · 宏观",
-          "summary": "中共中央政治局常委、全国政协主席王沪宁24日在京会见出席第三届中美1.5轨对话的美方代表。王沪宁表示，今年5月，习近平主席同来华访问的特朗普总统就事关中美关系以及世界和平发展的重大问题进行深入沟通。中方愿同美方共同努力，全面准确落实两国元首重要共识，增进相互正确认知，尊重彼此核心利益，加强各领...",
-          "sentiment": "中性"
+          "title": "习近平同约旦国王会谈",
+          "time": "晚报 · 宏观",
+          "summary": "8月24日下午，国家主席习近平在北京人民大会堂同来华进行国事访问的约旦国王阿卜杜拉二世举行会谈。习近平指出，中约建交以来，始终相互尊重、平等相待、互利合作，是不同社会制度、不同大小国家合作共赢、交流互鉴的生动写照。2015年，我们共同宣布建立中约战略伙伴关系，开启双边关系发展新篇章。面对变乱交...",
+          "sentiment": "利多"
         }
       ]
     },
@@ -278,10 +278,10 @@
       "code": "025647",
       "name": "平安高端装备混合C",
       "channel": "ashare",
-      "bullish_count": 2,
-      "bearish_count": 0,
-      "neutral_count": 10,
-      "sentiment_score": 2,
+      "bullish_count": 6,
+      "bearish_count": 2,
+      "neutral_count": 16,
+      "sentiment_score": 4,
       "sentiment_label": "偏多",
       "top_impact_news": [
         {
@@ -297,10 +297,10 @@
           "sentiment": "利多"
         },
         {
-          "title": "王沪宁会见第三届中美1.5轨对话美方代表",
-          "time": "早报 · 宏观",
-          "summary": "中共中央政治局常委、全国政协主席王沪宁24日在京会见出席第三届中美1.5轨对话的美方代表。王沪宁表示，今年5月，习近平主席同来华访问的特朗普总统就事关中美关系以及世界和平发展的重大问题进行深入沟通。中方愿同美方共同努力，全面准确落实两国元首重要共识，增进相互正确认知，尊重彼此核心利益，加强各领...",
-          "sentiment": "中性"
+          "title": "习近平同约旦国王会谈",
+          "time": "晚报 · 宏观",
+          "summary": "8月24日下午，国家主席习近平在北京人民大会堂同来华进行国事访问的约旦国王阿卜杜拉二世举行会谈。习近平指出，中约建交以来，始终相互尊重、平等相待、互利合作，是不同社会制度、不同大小国家合作共赢、交流互鉴的生动写照。2015年，我们共同宣布建立中约战略伙伴关系，开启双边关系发展新篇章。面对变乱交...",
+          "sentiment": "利多"
         }
       ]
     }
