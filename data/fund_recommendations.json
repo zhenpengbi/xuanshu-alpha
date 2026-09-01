@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-08-31 06:47",
+  "updated_at": "2026-09-01 06:07",
   "triggered": false,
-  "avg_sell_score": 1.2,
+  "avg_sell_score": 0.8,
   "panic_threshold": 2.0,
   "scan_params": {
     "panic_scan": {
@@ -15,7 +15,7 @@
       "rsi_threshold": 40
     }
   },
-  "message": "当前无超跌机会（avg_sell_score=1.20 < 2.0，市场情绪平稳）",
+  "message": "当前无超跌机会（avg_sell_score=0.80 < 2.0，市场情绪平稳）",
   "recommendations": [],
   "undervalued": [],
   "disclaimer": "以上仅为量化扫描结果，不构成投资建议，投资者需自行承担风险"
