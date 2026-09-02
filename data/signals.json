@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-01 15:16",
+  "updated_at": "2026-09-02 05:30",
   "signals": [
     {
       "code": "002963",
@@ -53,8 +53,8 @@
       "sell_score": 2,
       "asset_type": "trend",
       "signal_type": "trend_hold_cat_overweight",
-      "valuation_verdict": "适中",
-      "valuation_score": 50,
+      "valuation_verdict": "适中偏低",
+      "valuation_score": 35,
       "deviation_pt": 7.1,
       "action_detail": "南方有色金属ETF联接E 所属品类有色金属整体超配7.1pt，趋势型不建议择时减仓，维持持有"
     },
@@ -72,10 +72,10 @@
       "sell_score": 1,
       "asset_type": "oscillation",
       "signal_type": "oscillation_hold",
-      "valuation_verdict": "偏贵",
-      "valuation_score": 70,
+      "valuation_verdict": "适中",
+      "valuation_score": 50,
       "deviation_pt": -17.5,
-      "action_detail": "天弘中证人工智能主题ETF联接C 技术中性(buy=1/sell=1)，估值偏贵(score=70)，仓位偏离-17.5pt，继续持仓观察"
+      "action_detail": "天弘中证人工智能主题ETF联接C 技术中性(buy=1/sell=1)，估值适中(score=50)，仓位偏离-17.5pt，继续持仓观察"
     },
     {
       "code": "012885",
@@ -148,10 +148,10 @@
       "sell_score": 1,
       "asset_type": "oscillation",
       "signal_type": "oscillation_hold",
-      "valuation_verdict": "偏贵",
-      "valuation_score": 70,
+      "valuation_verdict": "适中",
+      "valuation_score": 50,
       "deviation_pt": -25.1,
-      "action_detail": "天弘中证机器人ETF联接C 技术中性(buy=1/sell=1)，估值偏贵(score=70)，仓位偏离-25.1pt，继续持仓观察"
+      "action_detail": "天弘中证机器人ETF联接C 技术中性(buy=1/sell=1)，估值适中(score=50)，仓位偏离-25.1pt，继续持仓观察"
     },
     {
       "code": "022525",
