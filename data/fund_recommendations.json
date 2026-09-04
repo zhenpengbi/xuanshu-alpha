@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-04 05:39",
+  "updated_at": "2026-09-04 14:39",
   "triggered": false,
   "avg_sell_score": 1.4,
   "panic_threshold": 2.0,
@@ -19,64 +19,84 @@
   "recommendations": [],
   "undervalued": [
     {
+      "code": "588110",
+      "name": "科创成长ETF广发",
+      "drop_60d_pct": 77.85,
+      "today_chg_pct": -3.07,
+      "scale_bn": 6.27,
+      "rsi14": 29.24,
+      "signal": "超跌反弹",
+      "reason": "近60日跌幅 77.8%，RSI=29.2<30（深度超卖），关注反弹机会"
+    },
+    {
       "code": "562820",
       "name": "集成电路ETF嘉实",
-      "drop_60d_pct": 69.34,
-      "today_chg_pct": -1.8,
-      "scale_bn": 3.87,
-      "rsi14": 29.87,
+      "drop_60d_pct": 69.89,
+      "today_chg_pct": -2.64,
+      "scale_bn": 3.84,
+      "rsi14": 29.17,
       "signal": "超跌反弹",
-      "reason": "近60日跌幅 69.3%，RSI=29.9<30（深度超卖），关注反弹机会"
+      "reason": "近60日跌幅 69.9%，RSI=29.2<30（深度超卖），关注反弹机会"
+    },
+    {
+      "code": "588200",
+      "name": "科创芯片ETF嘉实",
+      "drop_60d_pct": 68.39,
+      "today_chg_pct": -2.64,
+      "scale_bn": 475.0,
+      "rsi14": 28.43,
+      "signal": "超跌反弹",
+      "reason": "近60日跌幅 68.4%，RSI=28.4<30（深度超卖），关注反弹机会"
     },
     {
       "code": "588290",
       "name": "科创芯片ETF华安",
-      "drop_60d_pct": 67.9,
-      "today_chg_pct": -1.8,
-      "scale_bn": 53.48,
-      "rsi14": 19.18,
+      "drop_60d_pct": 68.33,
+      "today_chg_pct": -2.61,
+      "scale_bn": 53.04,
+      "rsi14": 19.04,
       "signal": "超跌反弹",
-      "reason": "近60日跌幅 67.9%，RSI=19.2<30（深度超卖），关注反弹机会"
+      "reason": "近60日跌幅 68.3%，RSI=19.0<30（深度超卖），关注反弹机会"
     },
     {
       "code": "588890",
       "name": "科创芯片ETF南方",
-      "drop_60d_pct": 67.81,
-      "today_chg_pct": -1.79,
-      "scale_bn": 35.27,
-      "rsi14": 17.22,
+      "drop_60d_pct": 68.29,
+      "today_chg_pct": -2.65,
+      "scale_bn": 34.96,
+      "rsi14": 17.11,
       "signal": "超跌反弹",
-      "reason": "近60日跌幅 67.8%，RSI=17.2<30（深度超卖），关注反弹机会"
+      "reason": "近60日跌幅 68.3%，RSI=17.1<30（深度超卖），关注反弹机会"
     },
     {
       "code": "588920",
       "name": "科创芯片ETF鹏华",
-      "drop_60d_pct": 51.68,
-      "today_chg_pct": -1.74,
-      "scale_bn": 3.51,
-      "rsi14": 29.25,
+      "drop_60d_pct": 52.37,
+      "today_chg_pct": -2.56,
+      "scale_bn": 3.48,
+      "rsi14": 28.5,
       "signal": "超跌反弹",
-      "reason": "近60日跌幅 51.7%，RSI=29.2<30（深度超卖），关注反弹机会"
+      "reason": "近60日跌幅 52.4%，RSI=28.5<30（深度超卖），关注反弹机会"
     },
     {
       "code": "561980",
       "name": "半导体设备ETF招商",
-      "drop_60d_pct": 79.77,
-      "today_chg_pct": -1.81,
-      "scale_bn": 56.0,
-      "rsi14": 35.55,
+      "drop_60d_pct": 80.08,
+      "today_chg_pct": -2.72,
+      "scale_bn": 55.48,
+      "rsi14": 34.46,
       "signal": "低位观察",
-      "reason": "近60日跌幅 79.8%，RSI=35.5（低位区间），可小仓位试探"
+      "reason": "近60日跌幅 80.1%，RSI=34.5（低位区间），可小仓位试探"
     },
     {
-      "code": "588160",
-      "name": "科创新材料ETF南方",
-      "drop_60d_pct": 16.75,
-      "today_chg_pct": -1.92,
-      "scale_bn": 9.09,
-      "rsi14": 39.91,
+      "code": "512480",
+      "name": "半导体ETF国联安",
+      "drop_60d_pct": 53.66,
+      "today_chg_pct": -2.79,
+      "scale_bn": 193.07,
+      "rsi14": 36.29,
       "signal": "低位观察",
-      "reason": "近60日跌幅 16.8%，RSI=39.9（低位区间），可小仓位试探"
+      "reason": "近60日跌幅 53.7%，RSI=36.3（低位区间），可小仓位试探"
     }
   ],
   "disclaimer": "以上仅为量化扫描结果，不构成投资建议，投资者需自行承担风险"
