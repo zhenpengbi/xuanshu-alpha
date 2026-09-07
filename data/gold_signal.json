@@ -1,5 +1,5 @@
 {
-  "date": "2026-09-07 13:46",
+  "date": "2026-09-08 00:09",
   "score": 33,
   "combined_score": 33.0,
   "lgbm_score_normalized": null,
@@ -36,7 +36,7 @@
   "risk_flags": {
     "data_source": "akshare",
     "signal_confidence": "high",
-    "confidence_reason": "akshare实时数据 5184日可用",
+    "confidence_reason": "akshare实时数据 5183日可用",
     "caution_notes": []
   }
 }
