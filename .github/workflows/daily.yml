@@ -2,8 +2,8 @@ name: 玄枢Alpha 每日数据更新
 
 on:
   schedule:
-    - cron: '0 1 * * 1-5'     # UTC 01:00 = 北京 09:00（早报）
-    - cron: '0 11 * * 1-5'    # UTC 11:00 = 北京 19:00（晚报）
+    - cron: '0 1 * * *'       # UTC 01:00 = 北京 09:00（早报）——全周跑: 周末也有行业新闻, AIHOT 本就全天
+    - cron: '0 11 * * *'      # UTC 11:00 = 北京 19:00（晚报）——全周跑
   workflow_dispatch:           # 手动触发（GitHub Actions 页面）
   repository_dispatch:         # 外部 cron 兜底：POST /repos/{owner}/{repo}/dispatches
     types: [daily-update]
@@ -41,7 +41,7 @@ jobs:
         run: python3 scripts/build_signals_quant.py
       - name: 自动抓取新闻
         run: python3 scripts/fetch_news.py
-      - name: 新闻情绪分析
+      - name: 新闻情绪分析（同时把当期新闻追加进 news_history.json）
         run: python3 scripts/build_news_impact.py
       - name: 基金雷达扫描
         run: python3 scripts/fund_scanner.py
