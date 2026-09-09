@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-09-08 14:50",
-  "news_date": "2026-09-08",
+  "updated_at": "2026-09-09 05:47",
+  "news_date": "2026-09-09",
   "news_period": "晚报",
   "total_news": 12,
   "items": [
@@ -68,10 +68,10 @@
       "code": "011840",
       "name": "天弘中证人工智能C",
       "channel": "ashare",
-      "bullish_count": 6,
+      "bullish_count": 5,
       "bearish_count": 0,
-      "neutral_count": 6,
-      "sentiment_score": 6,
+      "neutral_count": 7,
+      "sentiment_score": 5,
       "sentiment_label": "偏多",
       "top_impact_news": [
         {
@@ -98,10 +98,10 @@
       "code": "010990",
       "name": "南方有色金属ETF联接E",
       "channel": "ashare",
-      "bullish_count": 6,
+      "bullish_count": 5,
       "bearish_count": 0,
-      "neutral_count": 6,
-      "sentiment_score": 6,
+      "neutral_count": 7,
+      "sentiment_score": 5,
       "sentiment_label": "偏多",
       "top_impact_news": [
         {
@@ -128,10 +128,10 @@
       "code": "012885",
       "name": "华夏光伏ETF联接A",
       "channel": "ashare",
-      "bullish_count": 6,
+      "bullish_count": 5,
       "bearish_count": 0,
-      "neutral_count": 6,
-      "sentiment_score": 6,
+      "neutral_count": 7,
+      "sentiment_score": 5,
       "sentiment_label": "偏多",
       "top_impact_news": [
         {
@@ -159,11 +159,17 @@
       "name": "纳指100ETF",
       "channel": "nasdaq",
       "bullish_count": 0,
-      "bearish_count": 0,
-      "neutral_count": 12,
-      "sentiment_score": 0,
-      "sentiment_label": "中性",
+      "bearish_count": 1,
+      "neutral_count": 11,
+      "sentiment_score": -1,
+      "sentiment_label": "偏空",
       "top_impact_news": [
+        {
+          "title": "安联首席：美联储本月应继续按兵不动 财政部行动当下影响更大！",
+          "time": "晚报 · 美股",
+          "summary": "根据CME美联储观察工具，美联储到9月维持利率不变的概率为40.6%，累计加息25个基点的概率为59.4%。美联储到10月维持利率不变的概率为29.8%，累计加息25个基点的概率为54.4%，累计加息50个基点的概率为15.8%。",
+          "sentiment": "利空"
+        },
         {
           "title": "【新思想引领新征程】我国服务贸易新格局加速成型",
           "time": "晚报 · 宏观",
@@ -174,12 +180,6 @@
           "title": "前8个月我国外贸同比增长17.6% 延续快速增长态势",
           "time": "晚报 · 宏观",
           "summary": "海关总署今天（9月8日）对外公布，今年前8个月，我国货物贸易进出口同比增长17.6%，外贸运行延续两位数快速增长态势。据海关统计，今年前8个月，我国货物贸易进出口总值34.78万亿元，同比增长17.6%。其中，出口20.17万亿元，增长14.6%；进口14.61万亿元，增长22%。8月当月，进...",
-          "sentiment": "中性"
-        },
-        {
-          "title": "国内联播快讯",
-          "time": "晚报 · 宏观",
-          "summary": "8月中国大宗商品市场景气水平提升记者从中国物流与采购联合会了解到，8月中国大宗商品价格指数为132.3点，环比上涨2.8%，同比上涨18.4%。在重点监测的50种大宗商品中，8月价格环比上涨的有27种，总体保持稳中有增的发展态势。人民币跨境支付系统与11家外资机构签约今天（9月8日），人民币跨...",
           "sentiment": "中性"
         }
       ]
@@ -189,11 +189,17 @@
       "name": "标普500ETF",
       "channel": "nasdaq",
       "bullish_count": 0,
-      "bearish_count": 0,
-      "neutral_count": 12,
-      "sentiment_score": 0,
-      "sentiment_label": "中性",
+      "bearish_count": 1,
+      "neutral_count": 11,
+      "sentiment_score": -1,
+      "sentiment_label": "偏空",
       "top_impact_news": [
+        {
+          "title": "安联首席：美联储本月应继续按兵不动 财政部行动当下影响更大！",
+          "time": "晚报 · 美股",
+          "summary": "根据CME美联储观察工具，美联储到9月维持利率不变的概率为40.6%，累计加息25个基点的概率为59.4%。美联储到10月维持利率不变的概率为29.8%，累计加息25个基点的概率为54.4%，累计加息50个基点的概率为15.8%。",
+          "sentiment": "利空"
+        },
         {
           "title": "【新思想引领新征程】我国服务贸易新格局加速成型",
           "time": "晚报 · 宏观",
@@ -205,12 +211,6 @@
           "time": "晚报 · 宏观",
           "summary": "海关总署今天（9月8日）对外公布，今年前8个月，我国货物贸易进出口同比增长17.6%，外贸运行延续两位数快速增长态势。据海关统计，今年前8个月，我国货物贸易进出口总值34.78万亿元，同比增长17.6%。其中，出口20.17万亿元，增长14.6%；进口14.61万亿元，增长22%。8月当月，进...",
           "sentiment": "中性"
-        },
-        {
-          "title": "国内联播快讯",
-          "time": "晚报 · 宏观",
-          "summary": "8月中国大宗商品市场景气水平提升记者从中国物流与采购联合会了解到，8月中国大宗商品价格指数为132.3点，环比上涨2.8%，同比上涨18.4%。在重点监测的50种大宗商品中，8月价格环比上涨的有27种，总体保持稳中有增的发展态势。人民币跨境支付系统与11家外资机构签约今天（9月8日），人民币跨...",
-          "sentiment": "中性"
         }
       ]
     },
@@ -218,10 +218,10 @@
       "code": "015790",
       "name": "永赢高端装备混合C",
       "channel": "ashare",
-      "bullish_count": 6,
+      "bullish_count": 5,
       "bearish_count": 0,
-      "neutral_count": 6,
-      "sentiment_score": 6,
+      "neutral_count": 7,
+      "sentiment_score": 5,
       "sentiment_label": "偏多",
       "top_impact_news": [
         {
@@ -248,10 +248,10 @@
       "code": "014881",
       "name": "天弘机器人ETF联接C",
       "channel": "ashare",
-      "bullish_count": 6,
+      "bullish_count": 5,
       "bearish_count": 0,
-      "neutral_count": 6,
-      "sentiment_score": 6,
+      "neutral_count": 7,
+      "sentiment_score": 5,
       "sentiment_label": "偏多",
       "top_impact_news": [
         {
@@ -278,10 +278,10 @@
       "code": "025647",
       "name": "平安高端装备混合C",
       "channel": "ashare",
-      "bullish_count": 6,
+      "bullish_count": 5,
       "bearish_count": 0,
-      "neutral_count": 6,
-      "sentiment_score": 6,
+      "neutral_count": 7,
+      "sentiment_score": 5,
       "sentiment_label": "偏多",
       "top_impact_news": [
         {

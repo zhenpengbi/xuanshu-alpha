@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-08 14:48",
+  "updated_at": "2026-09-09 05:46",
   "indicators": [
     {
       "code": "002963",
@@ -19,16 +19,16 @@
     {
       "code": "000307",
       "name": "易方达黄金ETF联接A",
-      "rsi14": 48.96,
-      "ma5": 3.12672,
-      "ma20": 3.167965,
-      "prev_ma5": 3.13524,
-      "prev_ma20": 3.16721,
-      "macd_dif": 0.03301529,
-      "macd_dea": 0.05155312,
-      "macd_hist": -0.03707566,
+      "rsi14": 49.58,
+      "ma5": 3.12248,
+      "ma20": 3.168605,
+      "prev_ma5": 3.12672,
+      "prev_ma20": 3.167965,
+      "macd_dif": 0.02800623,
+      "macd_dea": 0.04722593,
+      "macd_hist": -0.0384394,
       "macd_trend": "bearish",
-      "latest_price": 3.1134,
+      "latest_price": 3.12,
       "prices_used": 60
     },
     {
