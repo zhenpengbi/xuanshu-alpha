@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-11 14:58",
+  "updated_at": "2026-09-12 05:21",
   "triggered": false,
   "avg_sell_score": 1.3,
   "panic_threshold": 2.0,
@@ -23,7 +23,7 @@
       "name": "矿业ETF国泰",
       "drop_60d_pct": 57.63,
       "today_chg_pct": -4.14,
-      "scale_bn": 16.83,
+      "scale_bn": 16.88,
       "rsi14": 39.1,
       "signal": "低位观察",
       "reason": "近60日跌幅 57.6%，RSI=39.1（低位区间），可小仓位试探"
@@ -33,7 +33,7 @@
       "name": "科创新能源ETF鹏华",
       "drop_60d_pct": 31.06,
       "today_chg_pct": -3.13,
-      "scale_bn": 7.23,
+      "scale_bn": 6.73,
       "rsi14": 30.79,
       "signal": "低位观察",
       "reason": "近60日跌幅 31.1%，RSI=30.8（低位区间），可小仓位试探"
@@ -43,7 +43,7 @@
       "name": "稀有金属ETF嘉实",
       "drop_60d_pct": 29.57,
       "today_chg_pct": -3.1,
-      "scale_bn": 50.37,
+      "scale_bn": 50.45,
       "rsi14": 36.56,
       "signal": "低位观察",
       "reason": "近60日跌幅 29.6%，RSI=36.6（低位区间），可小仓位试探"
@@ -53,7 +53,7 @@
       "name": "有色金属ETF南方",
       "drop_60d_pct": 18.61,
       "today_chg_pct": -4.05,
-      "scale_bn": 253.48,
+      "scale_bn": 253.51,
       "rsi14": 37.07,
       "signal": "低位观察",
       "reason": "近60日跌幅 18.6%，RSI=37.1（低位区间），可小仓位试探"
@@ -63,7 +63,7 @@
       "name": "化工ETF华宝",
       "drop_60d_pct": 13.7,
       "today_chg_pct": -3.4,
-      "scale_bn": 29.01,
+      "scale_bn": 29.06,
       "rsi14": 39.94,
       "signal": "低位观察",
       "reason": "近60日跌幅 13.7%，RSI=39.9（低位区间），可小仓位试探"
@@ -73,7 +73,7 @@
       "name": "金融科技ETF博时",
       "drop_60d_pct": 12.19,
       "today_chg_pct": -3.92,
-      "scale_bn": 11.91,
+      "scale_bn": 11.94,
       "rsi14": 39.13,
       "signal": "低位观察",
       "reason": "近60日跌幅 12.2%，RSI=39.1（低位区间），可小仓位试探"
@@ -83,7 +83,7 @@
       "name": "金融科技ETF华夏",
       "drop_60d_pct": 11.72,
       "today_chg_pct": -4.02,
-      "scale_bn": 11.38,
+      "scale_bn": 11.37,
       "rsi14": 39.5,
       "signal": "低位观察",
       "reason": "近60日跌幅 11.7%，RSI=39.5（低位区间），可小仓位试探"
