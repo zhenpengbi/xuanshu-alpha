@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-12",
+  "updated_at": "2026-09-13",
   "valuations": [
     {
       "category": "AI/科技",
@@ -27,7 +27,7 @@
       "category": "光伏/新能源",
       "index_name": "中证新能源(931151)",
       "current_pe": 29.69,
-      "pe_pct_5y": 65.3,
+      "pe_pct_5y": 65.4,
       "current_pb": null,
       "pb_pct_5y": null,
       "verdict": "适中",
