@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-09-13 14:55",
-  "portfolio_updateTime": "2026-09-13",
+  "updated_at": "2026-09-14 05:40",
+  "portfolio_updateTime": "2026-09-14",
   "funds": [
     {
       "code": "015790",
@@ -12,7 +12,7 @@
       "company": "永赢基金管理有限公司",
       "inception_date": "2022-07-15",
       "name_mismatch": true,
-      "manager_tenure_days": 2018,
+      "manager_tenure_days": 2019,
       "performance_ranking": [
         {
           "period": "成立以来",
@@ -95,7 +95,7 @@
       "rank_percentile_ytd": 97.8,
       "max_drawdown_pct": 51.78,
       "alpha_analysis": {
-        "fund_annual_pct": 10.3,
+        "fund_annual_pct": 10.69,
         "benchmark_annual_pct": "数据缺失",
         "alpha_pct": "数据缺失",
         "benchmark": "沪深300",
@@ -132,7 +132,7 @@
       "company": "平安基金管理有限公司",
       "inception_date": "2025-10-30",
       "name_mismatch": true,
-      "manager_tenure_days": 306,
+      "manager_tenure_days": 307,
       "performance_ranking": [
         {
           "period": "成立以来",
