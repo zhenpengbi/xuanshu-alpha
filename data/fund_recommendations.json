@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-15 05:40",
+  "updated_at": "2026-09-15 15:32",
   "triggered": false,
   "avg_sell_score": 1.5,
   "panic_threshold": 2.0,
@@ -17,6 +17,27 @@
   },
   "message": "当前无超跌机会（avg_sell_score=1.50 < 2.0，市场情绪平稳）",
   "recommendations": [],
-  "undervalued": [],
+  "undervalued": [
+    {
+      "code": "515030",
+      "name": "新能源车ETF华夏",
+      "drop_60d_pct": 22.4,
+      "today_chg_pct": -1.53,
+      "scale_bn": 22.15,
+      "rsi14": 30.52,
+      "signal": "低位观察",
+      "reason": "近60日跌幅 22.4%，RSI=30.5（低位区间），可小仓位试探"
+    },
+    {
+      "code": "515700",
+      "name": "新能源车ETF平安",
+      "drop_60d_pct": 22.19,
+      "today_chg_pct": -1.44,
+      "scale_bn": 13.13,
+      "rsi14": 30.17,
+      "signal": "低位观察",
+      "reason": "近60日跌幅 22.2%，RSI=30.2（低位区间），可小仓位试探"
+    }
+  ],
   "disclaimer": "以上仅为量化扫描结果，不构成投资建议，投资者需自行承担风险"
 }

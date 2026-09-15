@@ -1,10 +1,10 @@
 {
   "updated_at": "2026-09-15",
   "portfolio_risk": {
-    "volatility": 26.25,
+    "volatility": 26.2,
     "volatility_note": "加权日收益率实算",
     "drawdown": 27.79,
-    "sharpe": 0.04,
+    "sharpe": 0.01,
     "risk_level": "高"
   },
   "concentration": {
@@ -60,7 +60,7 @@
         0.567,
         1.0,
         0.369,
-        0.594
+        0.595
       ],
       [
         0.654,
@@ -72,7 +72,7 @@
       [
         0.257,
         0.321,
-        0.594,
+        0.595,
         0.223,
         1.0
       ]
