@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-20 05:35",
+  "updated_at": "2026-09-20 14:36",
   "signals": [
     {
       "code": "002963",
@@ -85,16 +85,16 @@
       "ma20": 0.52732,
       "macd_hist": -0.0005435,
       "macd_trend": "bearish",
-      "signal": "持有观察",
-      "reason": "MA5<MA20空头 · MACD柱负向；信号中性，持仓观察",
+      "signal": "谨慎持有",
+      "reason": "MA5<MA20空头 · MACD柱负向；估值偏贵(score=70)偏高，技术趋弱",
       "buy_score": 0,
       "sell_score": 2,
       "asset_type": "oscillation",
-      "signal_type": "oscillation_hold",
-      "valuation_verdict": "适中",
-      "valuation_score": 50,
+      "signal_type": "oscillation_caution",
+      "valuation_verdict": "偏贵",
+      "valuation_score": 70,
       "deviation_pt": 1.5,
-      "action_detail": "华夏中证光伏产业ETF联接A 技术中性(buy=0/sell=2)，估值适中(score=50)，仓位偏离+1.5pt，继续持仓观察"
+      "action_detail": "华夏中证光伏产业ETF联接A 技术趋弱(sell=2)且估值偏高(score=70，偏贵)，建议谨慎持有，不加仓"
     },
     {
       "code": "015790",
