@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-09-20",
+  "updated_at": "2026-09-21",
   "valuations": [
     {
       "category": "AI/科技",
       "index_name": "中证人工智能(930713)",
       "current_pe": 45.75,
-      "pe_pct_5y": 65.0,
+      "pe_pct_5y": 65.1,
       "current_pb": null,
       "pb_pct_5y": null,
       "verdict": "适中",
@@ -16,7 +16,7 @@
       "category": "有色金属",
       "index_name": "中证有色金属(930708)",
       "current_pe": 16.53,
-      "pe_pct_5y": 41.3,
+      "pe_pct_5y": 41.4,
       "current_pb": null,
       "pb_pct_5y": null,
       "verdict": "适中偏低",
