@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-22 15:27",
+  "updated_at": "2026-09-23 05:25",
   "signals": [
     {
       "code": "002963",
@@ -66,16 +66,16 @@
       "ma20": 1.7491,
       "macd_hist": 0.0292913,
       "macd_trend": "bullish",
-      "signal": "可加仓",
-      "reason": "MA5>MA20多头 · MACD柱正向；估值适中(score=50)适中，技术信号偏多",
+      "signal": "持有观察",
+      "reason": "MA5>MA20多头 · MACD柱正向；信号中性，持仓观察",
       "buy_score": 2,
       "sell_score": 0,
       "asset_type": "oscillation",
-      "signal_type": "oscillation_add_mid",
-      "valuation_verdict": "适中",
-      "valuation_score": 50,
+      "signal_type": "oscillation_hold",
+      "valuation_verdict": "偏贵",
+      "valuation_score": 70,
       "deviation_pt": -17.5,
-      "action_detail": "天弘中证人工智能主题ETF联接C 技术偏多(buy=2)，估值适中(score=50)，可小仓位介入"
+      "action_detail": "天弘中证人工智能主题ETF联接C 技术中性(buy=2/sell=0)，估值偏贵(score=70)，仓位偏离-17.5pt，继续持仓观察"
     },
     {
       "code": "012885",
@@ -91,10 +91,10 @@
       "sell_score": 1,
       "asset_type": "oscillation",
       "signal_type": "oscillation_hold",
-      "valuation_verdict": "偏贵",
-      "valuation_score": 70,
+      "valuation_verdict": "适中",
+      "valuation_score": 50,
       "deviation_pt": 1.5,
-      "action_detail": "华夏中证光伏产业ETF联接A 技术中性(buy=1/sell=1)，估值偏贵(score=70)，仓位偏离+1.5pt，继续持仓观察"
+      "action_detail": "华夏中证光伏产业ETF联接A 技术中性(buy=1/sell=1)，估值适中(score=50)，仓位偏离+1.5pt，继续持仓观察"
     },
     {
       "code": "015790",
@@ -148,10 +148,10 @@
       "sell_score": 1,
       "asset_type": "oscillation",
       "signal_type": "oscillation_hold",
-      "valuation_verdict": "适中",
-      "valuation_score": 50,
+      "valuation_verdict": "偏贵",
+      "valuation_score": 70,
       "deviation_pt": -25.1,
-      "action_detail": "天弘中证机器人ETF联接C 技术中性(buy=1/sell=1)，估值适中(score=50)，仓位偏离-25.1pt，继续持仓观察"
+      "action_detail": "天弘中证机器人ETF联接C 技术中性(buy=1/sell=1)，估值偏贵(score=70)，仓位偏离-25.1pt，继续持仓观察"
     },
     {
       "code": "022525",
