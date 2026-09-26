@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-09-25 15:48",
-  "portfolio_updateTime": "2026-09-25",
+  "updated_at": "2026-09-26 05:48",
+  "portfolio_updateTime": "2026-09-26",
   "funds": [
     {
       "code": "015790",
@@ -12,7 +12,7 @@
       "company": "永赢基金管理有限公司",
       "inception_date": "2022-07-15",
       "name_mismatch": true,
-      "manager_tenure_days": 2030,
+      "manager_tenure_days": 2031,
       "performance_ranking": [
         {
           "period": "成立以来",
@@ -95,14 +95,14 @@
       "rank_percentile_ytd": 97.8,
       "max_drawdown_pct": 51.78,
       "alpha_analysis": {
-        "fund_annual_pct": 12.34,
-        "benchmark_annual_pct": 6.6,
-        "alpha_pct": 5.74,
+        "fund_annual_pct": 12.33,
+        "benchmark_annual_pct": "数据缺失",
+        "alpha_pct": "数据缺失",
         "benchmark": "沪深300",
         "period_years": 2.9,
-        "note": ""
+        "note": "基准数据缺失，alpha 无法计算"
       },
-      "alpha_pct": 5.74,
+      "alpha_pct": "数据缺失",
       "holdings_analysis": {
         "status": "数据缺失",
         "top_holdings": []
@@ -110,11 +110,10 @@
       "holdings_rated": [],
       "diagnosis": {
         "action": "建议评估替换",
-        "score": 45,
+        "score": 30,
         "reasons": [
           "今年以来同类排名 98%（落后同类）",
-          "基金经理任职 5.6 年，管理经验相对充分",
-          "α=5.7pt，相对沪深300有超额收益"
+          "基金经理任职 5.6 年，管理经验相对充分"
         ],
         "warnings": [
           "⚠️ 代码 015790 官方名称与持仓标注不符，请核实！官方：永赢高端装备智选混合发起C，持仓标注：永赢高端装备智选混合C",
@@ -133,7 +132,7 @@
       "company": "平安基金管理有限公司",
       "inception_date": "2025-10-30",
       "name_mismatch": true,
-      "manager_tenure_days": 318,
+      "manager_tenure_days": 319,
       "performance_ranking": [
         {
           "period": "成立以来",
