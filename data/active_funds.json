@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-01 06:52",
+  "updated_at": "2026-10-01 17:25",
   "portfolio_updateTime": "2026-10-01",
   "funds": [
     {
@@ -181,13 +181,13 @@
       "max_drawdown_pct": 43.21,
       "alpha_analysis": {
         "fund_annual_pct": -4.49,
-        "benchmark_annual_pct": 5.99,
-        "alpha_pct": -10.48,
+        "benchmark_annual_pct": "数据缺失",
+        "alpha_pct": "数据缺失",
         "benchmark": "沪深300",
         "period_years": 0.9,
-        "note": ""
+        "note": "基准数据缺失，alpha 无法计算"
       },
-      "alpha_pct": -10.48,
+      "alpha_pct": "数据缺失",
       "holdings_analysis": {
         "status": "数据缺失",
         "top_holdings": []
@@ -195,10 +195,9 @@
       "holdings_rated": [],
       "diagnosis": {
         "action": "建议评估替换",
-        "score": -5,
+        "score": 10,
         "reasons": [
-          "今年以来同类排名 96%（落后同类）",
-          "α=-10.5pt，跑输沪深300较多"
+          "今年以来同类排名 96%（落后同类）"
         ],
         "warnings": [
           "⚠️ 代码 025647 官方名称与持仓标注不符，请核实！官方：平安高端装备混合发起式C，持仓标注：平安高端装备混合C",
