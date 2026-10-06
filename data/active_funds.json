@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-10-05 19:35",
-  "portfolio_updateTime": "2026-10-05",
+  "updated_at": "2026-10-06 07:06",
+  "portfolio_updateTime": "2026-10-06",
   "funds": [
     {
       "code": "015790",
@@ -96,13 +96,13 @@
       "max_drawdown_pct": 51.78,
       "alpha_analysis": {
         "fund_annual_pct": 8.6,
-        "benchmark_annual_pct": "数据缺失",
-        "alpha_pct": "数据缺失",
+        "benchmark_annual_pct": 5.99,
+        "alpha_pct": 2.61,
         "benchmark": "沪深300",
         "period_years": 2.9,
-        "note": "基准数据缺失，alpha 无法计算"
+        "note": ""
       },
-      "alpha_pct": "数据缺失",
+      "alpha_pct": 2.61,
       "holdings_analysis": {
         "status": "数据缺失",
         "top_holdings": []
