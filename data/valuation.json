@@ -4,8 +4,8 @@
     {
       "category": "AI/科技",
       "index_name": "中证人工智能(930713)",
-      "current_pe": 42.63,
-      "pe_pct_5y": 46.7,
+      "current_pe": 41.42,
+      "pe_pct_5y": 43.5,
       "current_pb": null,
       "pb_pct_5y": null,
       "verdict": "适中偏低",
@@ -15,8 +15,8 @@
     {
       "category": "有色金属",
       "index_name": "中证有色金属(930708)",
-      "current_pe": 15.54,
-      "pe_pct_5y": 28.7,
+      "current_pe": 15.37,
+      "pe_pct_5y": 25.5,
       "current_pb": null,
       "pb_pct_5y": null,
       "verdict": "低估",
@@ -26,8 +26,8 @@
     {
       "category": "光伏/新能源",
       "index_name": "中证新能源(931151)",
-      "current_pe": 29.16,
-      "pe_pct_5y": 64.0,
+      "current_pe": 28.79,
+      "pe_pct_5y": 63.0,
       "current_pb": null,
       "pb_pct_5y": null,
       "verdict": "适中",
@@ -38,7 +38,7 @@
       "category": "高端制造",
       "index_name": "中证高端装备(399377)",
       "current_pe": null,
-      "pe_pct_5y": 75.1,
+      "pe_pct_5y": 74.8,
       "current_pb": null,
       "pb_pct_5y": null,
       "verdict": "偏贵",
@@ -48,24 +48,24 @@
     {
       "category": "纳指100",
       "index_name": "纳斯达克100(NDX/QQQ)",
-      "current_pe": 35.0,
-      "pe_pct_5y": 75.0,
+      "current_pe": 28.53,
+      "pe_pct_5y": 60.0,
       "current_pb": null,
       "pb_pct_5y": null,
-      "verdict": "偏贵",
-      "verdict_score": 70,
-      "pe_note": "fallback_calibration(2026Q2参考值)"
+      "verdict": "适中",
+      "verdict_score": 50,
+      "pe_note": "绝对PE估算(无5年序列)"
     },
     {
       "category": "标普500",
       "index_name": "标普500(SPX/SPY)",
-      "current_pe": 24.0,
+      "current_pe": 24.5,
       "pe_pct_5y": 45.0,
       "current_pb": null,
       "pb_pct_5y": null,
       "verdict": "适中偏低",
       "verdict_score": 35,
-      "pe_note": "fallback_calibration(2026Q2参考值)"
+      "pe_note": "绝对PE估算(无5年序列)"
     },
     {
       "category": "黄金",
@@ -78,8 +78,5 @@
       "verdict_score": 50,
       "pe_note": null
     }
-  ],
-  "warnings": [
-    "PE校准值已过期（2026Q2），请更新US_PE_FALLBACK（有效期至2026-09-30）"
   ]
 }
