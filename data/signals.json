@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-09 17:23",
+  "updated_at": "2026-10-10 06:34",
   "signals": [
     {
       "code": "002963",
@@ -53,8 +53,8 @@
       "sell_score": 2,
       "asset_type": "trend",
       "signal_type": "trend_hold_cat_overweight",
-      "valuation_verdict": "低估",
-      "valuation_score": 20,
+      "valuation_verdict": "适中偏低",
+      "valuation_score": 35,
       "deviation_pt": 7.1,
       "action_detail": "南方有色金属ETF联接E 所属品类有色金属整体超配7.1pt，趋势型不建议择时减仓，维持持有"
     },
