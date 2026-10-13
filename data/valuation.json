@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-12",
+  "updated_at": "2026-10-13",
   "valuations": [
     {
       "category": "AI/科技",
@@ -16,7 +16,7 @@
       "category": "有色金属",
       "index_name": "中证有色金属(930708)",
       "current_pe": 15.35,
-      "pe_pct_5y": 25.3,
+      "pe_pct_5y": 25.4,
       "current_pb": null,
       "pb_pct_5y": null,
       "verdict": "低估",
