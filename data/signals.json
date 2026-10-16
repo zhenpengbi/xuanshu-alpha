@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-15 15:32",
+  "updated_at": "2026-10-16 05:19",
   "signals": [
     {
       "code": "002963",
@@ -66,16 +66,16 @@
       "ma20": 1.687015,
       "macd_hist": -0.04909688,
       "macd_trend": "bearish",
-      "signal": "可加仓",
-      "reason": "RSI超卖(23.5<30)→买入 · MA5<MA20空头 · MACD柱负向；估值适中偏低(score=35)适中，技术信号偏多",
+      "signal": "低估可加",
+      "reason": "RSI超卖(23.5<30)→买入 · MA5<MA20空头 · MACD柱负向；估值低估(score=20)低位，中等技术信号确认",
       "buy_score": 2,
       "sell_score": 2,
       "asset_type": "oscillation",
-      "signal_type": "oscillation_add_mid",
-      "valuation_verdict": "适中偏低",
-      "valuation_score": 35,
+      "signal_type": "oscillation_add_low",
+      "valuation_verdict": "低估",
+      "valuation_score": 20,
       "deviation_pt": -17.5,
-      "action_detail": "天弘中证人工智能主题ETF联接C 技术偏多(buy=2)，估值适中偏低(score=35)，可小仓位介入"
+      "action_detail": "天弘中证人工智能主题ETF联接C 技术偏多(buy=2)且估值处于低位(score=20，低估)，可分批加仓"
     },
     {
       "code": "012885",
@@ -142,16 +142,16 @@
       "ma20": 1.062925,
       "macd_hist": -0.02420612,
       "macd_trend": "bearish",
-      "signal": "可加仓",
-      "reason": "RSI超卖(19.4<30)→买入 · MA5<MA20空头 · MACD柱负向；估值适中偏低(score=35)适中，技术信号偏多",
+      "signal": "低估可加",
+      "reason": "RSI超卖(19.4<30)→买入 · MA5<MA20空头 · MACD柱负向；估值低估(score=20)低位，中等技术信号确认",
       "buy_score": 2,
       "sell_score": 2,
       "asset_type": "oscillation",
-      "signal_type": "oscillation_add_mid",
-      "valuation_verdict": "适中偏低",
-      "valuation_score": 35,
+      "signal_type": "oscillation_add_low",
+      "valuation_verdict": "低估",
+      "valuation_score": 20,
       "deviation_pt": -25.1,
-      "action_detail": "天弘中证机器人ETF联接C 技术偏多(buy=2)，估值适中偏低(score=35)，可小仓位介入"
+      "action_detail": "天弘中证机器人ETF联接C 技术偏多(buy=2)且估值处于低位(score=20，低估)，可分批加仓"
     },
     {
       "code": "022525",
