@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-20 15:37",
+  "updated_at": "2026-10-21 05:40",
   "triggered": false,
   "avg_sell_score": 1.6,
   "panic_threshold": 2.0,
@@ -17,6 +17,87 @@
   },
   "message": "当前无超跌机会（avg_sell_score=1.60 < 2.0，市场情绪平稳）",
   "recommendations": [],
-  "undervalued": [],
+  "undervalued": [
+    {
+      "code": "159369",
+      "name": "创业板50ETF易方达",
+      "drop_60d_pct": 27.44,
+      "today_chg_pct": -1.94,
+      "scale_bn": 6.55,
+      "rsi14": 16.25,
+      "signal": "超跌反弹",
+      "reason": "近60日跌幅 27.4%，RSI=16.2<30（深度超卖），关注反弹机会"
+    },
+    {
+      "code": "159682",
+      "name": "创业板50ETF景顺",
+      "drop_60d_pct": 27.14,
+      "today_chg_pct": -1.79,
+      "scale_bn": 39.46,
+      "rsi14": 16.12,
+      "signal": "超跌反弹",
+      "reason": "近60日跌幅 27.1%，RSI=16.1<30（深度超卖），关注反弹机会"
+    },
+    {
+      "code": "159681",
+      "name": "创业板50ETF鹏华",
+      "drop_60d_pct": 27.03,
+      "today_chg_pct": -1.77,
+      "scale_bn": 16.37,
+      "rsi14": 16.05,
+      "signal": "超跌反弹",
+      "reason": "近60日跌幅 27.0%，RSI=16.1<30（深度超卖），关注反弹机会"
+    },
+    {
+      "code": "159367",
+      "name": "创业板50ETF华夏",
+      "drop_60d_pct": 26.83,
+      "today_chg_pct": -2.01,
+      "scale_bn": 3.15,
+      "rsi14": 16.2,
+      "signal": "超跌反弹",
+      "reason": "近60日跌幅 26.8%，RSI=16.2<30（深度超卖），关注反弹机会"
+    },
+    {
+      "code": "159370",
+      "name": "创50ETF工银",
+      "drop_60d_pct": 26.77,
+      "today_chg_pct": -1.7,
+      "scale_bn": 3.43,
+      "rsi14": 15.86,
+      "signal": "超跌反弹",
+      "reason": "近60日跌幅 26.8%，RSI=15.9<30（深度超卖），关注反弹机会"
+    },
+    {
+      "code": "159958",
+      "name": "创业板ETF工银",
+      "drop_60d_pct": 23.94,
+      "today_chg_pct": -1.73,
+      "scale_bn": 4.09,
+      "rsi14": 18.29,
+      "signal": "超跌反弹",
+      "reason": "近60日跌幅 23.9%，RSI=18.3<30（深度超卖），关注反弹机会"
+    },
+    {
+      "code": "159387",
+      "name": "创业板新能源ETF国泰",
+      "drop_60d_pct": 19.24,
+      "today_chg_pct": -3.7,
+      "scale_bn": 6.92,
+      "rsi14": 16.43,
+      "signal": "超跌反弹",
+      "reason": "近60日跌幅 19.2%，RSI=16.4<30（深度超卖），关注反弹机会"
+    },
+    {
+      "code": "159775",
+      "name": "电池ETF建信",
+      "drop_60d_pct": 19.22,
+      "today_chg_pct": -3.89,
+      "scale_bn": 4.28,
+      "rsi14": 18.54,
+      "signal": "超跌反弹",
+      "reason": "近60日跌幅 19.2%，RSI=18.5<30（深度超卖），关注反弹机会"
+    }
+  ],
   "disclaimer": "以上仅为量化扫描结果，不构成投资建议，投资者需自行承担风险"
 }
