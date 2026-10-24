@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-23 15:40",
+  "updated_at": "2026-10-24 05:16",
   "signals": [
     {
       "code": "002963",
@@ -66,16 +66,16 @@
       "ma20": 1.621105,
       "macd_hist": -0.0163837,
       "macd_trend": "bearish",
-      "signal": "低估可加",
-      "reason": "估值低估(score=20)，技术中性，估值驱动可小加",
+      "signal": "持有观察",
+      "reason": "RSI偏低(37.7) · MA5<MA20空头 · MACD柱负向；信号中性，持仓观察",
       "buy_score": 1,
       "sell_score": 2,
       "asset_type": "oscillation",
-      "signal_type": "oscillation_val_low",
-      "valuation_verdict": "低估",
-      "valuation_score": 20,
+      "signal_type": "oscillation_hold",
+      "valuation_verdict": "适中偏低",
+      "valuation_score": 35,
       "deviation_pt": -17.5,
-      "action_detail": "天弘中证人工智能主题ETF联接C 估值处于低位(score=20，低估)，技术中性，可分批小额加仓"
+      "action_detail": "天弘中证人工智能主题ETF联接C 技术中性(buy=1/sell=2)，估值适中偏低(score=35)，仓位偏离-17.5pt，继续持仓观察"
     },
     {
       "code": "012885",
@@ -142,16 +142,16 @@
       "ma20": 1.035635,
       "macd_hist": 0.00914844,
       "macd_trend": "bullish",
-      "signal": "低估可加",
-      "reason": "估值低估(score=20)，技术中性，估值驱动可小加",
+      "signal": "持有观察",
+      "reason": "MA5<MA20空头 · MACD柱正向；信号中性，持仓观察",
       "buy_score": 1,
       "sell_score": 1,
       "asset_type": "oscillation",
-      "signal_type": "oscillation_val_low",
-      "valuation_verdict": "低估",
-      "valuation_score": 20,
+      "signal_type": "oscillation_hold",
+      "valuation_verdict": "适中偏低",
+      "valuation_score": 35,
       "deviation_pt": -25.1,
-      "action_detail": "天弘中证机器人ETF联接C 估值处于低位(score=20，低估)，技术中性，可分批小额加仓"
+      "action_detail": "天弘中证机器人ETF联接C 技术中性(buy=1/sell=1)，估值适中偏低(score=35)，仓位偏离-25.1pt，继续持仓观察"
     },
     {
       "code": "022525",
