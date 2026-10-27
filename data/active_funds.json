@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-27 06:02",
+  "updated_at": "2026-10-27 16:20",
   "portfolio_updateTime": "2026-10-27",
   "funds": [
     {
@@ -16,14 +16,14 @@
       "performance_ranking": [
         {
           "period": "成立以来",
-          "return_pct": -10.8,
+          "return_pct": -14.3,
           "max_dd_pct": 51.78,
           "rank": "3784/5679",
           "percentile": 66.6
         },
         {
           "period": "今年以来",
-          "return_pct": -37.33,
+          "return_pct": -39.79,
           "max_dd_pct": 51.02,
           "rank": "5530/5680",
           "percentile": 97.4
@@ -58,35 +58,35 @@
         },
         {
           "period": "近1月",
-          "return_pct": -12.43,
+          "return_pct": -15.86,
           "max_dd_pct": null,
           "rank": "3115/5653",
           "percentile": 55.1
         },
         {
           "period": "近3月",
-          "return_pct": -12.13,
+          "return_pct": -18.66,
           "max_dd_pct": 27.6,
           "rank": "2914/5509",
           "percentile": 52.9
         },
         {
           "period": "近6月",
-          "return_pct": -40.77,
+          "return_pct": -43.28,
           "max_dd_pct": 49.66,
           "rank": "5189/5304",
           "percentile": 97.8
         },
         {
           "period": "近1年",
-          "return_pct": -0.58,
+          "return_pct": -6.23,
           "max_dd_pct": 51.02,
           "rank": "1303/4868",
           "percentile": 26.8
         },
         {
           "period": "近3年",
-          "return_pct": 11.88,
+          "return_pct": 8.22,
           "max_dd_pct": 51.02,
           "rank": "2387/3784",
           "percentile": 63.1
@@ -95,7 +95,7 @@
       "rank_percentile_ytd": 97.4,
       "max_drawdown_pct": 51.78,
       "alpha_analysis": {
-        "fund_annual_pct": 3.0,
+        "fund_annual_pct": 1.58,
         "benchmark_annual_pct": "数据缺失",
         "alpha_pct": "数据缺失",
         "benchmark": "沪深300",
@@ -136,14 +136,14 @@
       "performance_ranking": [
         {
           "period": "成立以来",
-          "return_pct": -12.84,
+          "return_pct": -15.66,
           "max_dd_pct": 43.92,
           "rank": "3915/5679",
           "percentile": 68.9
         },
         {
           "period": "今年以来",
-          "return_pct": -32.2,
+          "return_pct": -34.39,
           "max_dd_pct": 43.92,
           "rank": "5393/5680",
           "percentile": 94.9
@@ -157,21 +157,21 @@
         },
         {
           "period": "近1月",
-          "return_pct": -13.9,
+          "return_pct": -16.68,
           "max_dd_pct": null,
           "rank": "3442/5653",
           "percentile": 60.9
         },
         {
           "period": "近3月",
-          "return_pct": -8.69,
+          "return_pct": -15.69,
           "max_dd_pct": 21.39,
           "rank": "2244/5509",
           "percentile": 40.7
         },
         {
           "period": "近6月",
-          "return_pct": -34.97,
+          "return_pct": -37.61,
           "max_dd_pct": 43.6,
           "rank": "5020/5304",
           "percentile": 94.6
@@ -180,14 +180,14 @@
       "rank_percentile_ytd": 94.9,
       "max_drawdown_pct": 43.92,
       "alpha_analysis": {
-        "fund_annual_pct": -13.7,
-        "benchmark_annual_pct": 4.78,
-        "alpha_pct": -18.48,
+        "fund_annual_pct": -16.63,
+        "benchmark_annual_pct": "数据缺失",
+        "alpha_pct": "数据缺失",
         "benchmark": "沪深300",
         "period_years": 0.9,
-        "note": ""
+        "note": "基准数据缺失，alpha 无法计算"
       },
-      "alpha_pct": -18.48,
+      "alpha_pct": "数据缺失",
       "holdings_analysis": {
         "status": "数据缺失",
         "top_holdings": []
@@ -195,10 +195,9 @@
       "holdings_rated": [],
       "diagnosis": {
         "action": "建议评估替换",
-        "score": -5,
+        "score": 10,
         "reasons": [
-          "今年以来同类排名 95%（落后同类）",
-          "α=-18.5pt，跑输沪深300较多"
+          "今年以来同类排名 95%（落后同类）"
         ],
         "warnings": [
           "⚠️ 代码 025647 官方名称与持仓标注不符，请核实！官方：平安高端装备混合发起式C，持仓标注：平安高端装备混合C",
