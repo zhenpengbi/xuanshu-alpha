@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-05 18:39",
-  "portfolio_updateTime": "2026-11-05",
+  "updated_at": "2026-11-06 18:04",
+  "portfolio_updateTime": "2026-11-06",
   "funds": [
     {
       "code": "015790",
@@ -16,17 +16,17 @@
       "performance_ranking": [
         {
           "period": "成立以来",
-          "return_pct": -3.81,
+          "return_pct": -6.3,
           "max_dd_pct": 51.78,
-          "rank": "3312/5702",
-          "percentile": 58.1
+          "rank": "3335/5702",
+          "percentile": 58.5
         },
         {
           "period": "今年以来",
-          "return_pct": -32.42,
+          "return_pct": -34.17,
           "max_dd_pct": 51.42,
-          "rank": "5354/5703",
-          "percentile": 93.9
+          "rank": "5368/5703",
+          "percentile": 94.1
         },
         {
           "period": "2025",
@@ -58,51 +58,51 @@
         },
         {
           "period": "近1月",
-          "return_pct": -0.08,
+          "return_pct": -2.67,
           "max_dd_pct": null,
-          "rank": "905/5658",
-          "percentile": 16.0
+          "rank": "1000/5658",
+          "percentile": 17.7
         },
         {
           "period": "近3月",
-          "return_pct": -13.41,
+          "return_pct": -16.92,
           "max_dd_pct": 28.18,
-          "rank": "2703/5528",
-          "percentile": 48.9
+          "rank": "3002/5528",
+          "percentile": 54.3
         },
         {
           "period": "近6月",
-          "return_pct": -37.49,
+          "return_pct": -41.28,
           "max_dd_pct": 50.07,
-          "rank": "4982/5327",
-          "percentile": 93.5
+          "rank": "4972/5327",
+          "percentile": 93.3
         },
         {
           "period": "近1年",
-          "return_pct": 7.14,
+          "return_pct": 4.03,
           "max_dd_pct": 51.42,
-          "rank": "704/4901",
-          "percentile": 14.4
+          "rank": "628/4906",
+          "percentile": 12.8
         },
         {
           "period": "近3年",
-          "return_pct": 20.51,
+          "return_pct": 15.21,
           "max_dd_pct": 51.42,
-          "rank": "1843/3789",
-          "percentile": 48.6
+          "rank": "1851/3789",
+          "percentile": 48.9
         }
       ],
-      "rank_percentile_ytd": 93.9,
+      "rank_percentile_ytd": 94.1,
       "max_drawdown_pct": 51.78,
       "alpha_analysis": {
-        "fund_annual_pct": 5.97,
-        "benchmark_annual_pct": 4.4,
-        "alpha_pct": 1.57,
+        "fund_annual_pct": 4.62,
+        "benchmark_annual_pct": 4.01,
+        "alpha_pct": 0.61,
         "benchmark": "沪深300",
         "period_years": 2.9,
         "note": ""
       },
-      "alpha_pct": 1.57,
+      "alpha_pct": 0.61,
       "holdings_analysis": {
         "status": "数据缺失",
         "top_holdings": []
@@ -136,17 +136,17 @@
       "performance_ranking": [
         {
           "period": "成立以来",
-          "return_pct": -13.47,
+          "return_pct": -15.31,
           "max_dd_pct": 47.4,
-          "rank": "3971/5702",
-          "percentile": 69.6
+          "rank": "4013/5702",
+          "percentile": 70.4
         },
         {
           "period": "今年以来",
-          "return_pct": -32.69,
+          "return_pct": -34.12,
           "max_dd_pct": 47.4,
-          "rank": "5358/5703",
-          "percentile": 94.0
+          "rank": "5380/5703",
+          "percentile": 94.3
         },
         {
           "period": "2025",
@@ -157,44 +157,44 @@
         },
         {
           "period": "近1月",
-          "return_pct": -9.89,
+          "return_pct": -11.81,
           "max_dd_pct": null,
-          "rank": "2972/5658",
-          "percentile": 52.5
+          "rank": "3157/5658",
+          "percentile": 55.8
         },
         {
           "period": "近3月",
-          "return_pct": -13.7,
+          "return_pct": -17.02,
           "max_dd_pct": 26.28,
-          "rank": "2721/5528",
-          "percentile": 49.2
+          "rank": "3058/5528",
+          "percentile": 55.3
         },
         {
           "period": "近6月",
-          "return_pct": -37.56,
+          "return_pct": -40.85,
           "max_dd_pct": 47.11,
-          "rank": "4974/5327",
+          "rank": "4976/5327",
           "percentile": 93.4
         },
         {
           "period": "近1年",
-          "return_pct": -13.46,
+          "return_pct": -15.3,
           "max_dd_pct": 47.4,
-          "rank": "3287/4901",
-          "percentile": 67.1
+          "rank": "3326/4906",
+          "percentile": 67.8
         }
       ],
-      "rank_percentile_ytd": 94.0,
+      "rank_percentile_ytd": 94.3,
       "max_drawdown_pct": 47.4,
       "alpha_analysis": {
-        "fund_annual_pct": -13.93,
-        "benchmark_annual_pct": 4.4,
-        "alpha_pct": -18.33,
+        "fund_annual_pct": -15.77,
+        "benchmark_annual_pct": 4.01,
+        "alpha_pct": -19.78,
         "benchmark": "沪深300",
         "period_years": 1.0,
         "note": ""
       },
-      "alpha_pct": -18.33,
+      "alpha_pct": -19.78,
       "holdings_analysis": {
         "status": "数据缺失",
         "top_holdings": []
@@ -205,7 +205,7 @@
         "score": -5,
         "reasons": [
           "今年以来同类排名 94%（落后同类）",
-          "α=-18.3pt，跑输沪深300较多"
+          "α=-19.8pt，跑输沪深300较多"
         ],
         "warnings": [
           "⚠️ 代码 025647 官方名称与持仓标注不符，请核实！官方：平安高端装备混合发起式C，持仓标注：平安高端装备混合C",
