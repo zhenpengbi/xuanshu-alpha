@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-11-17 08:46",
+  "updated_at": "2026-11-17 19:43",
   "triggered": false,
-  "avg_sell_score": 0.8,
+  "avg_sell_score": 1.8,
   "panic_threshold": 2.0,
   "scan_params": {
     "panic_scan": {
@@ -15,7 +15,7 @@
       "rsi_threshold": 40
     }
   },
-  "message": "当前无超跌机会（avg_sell_score=0.80 < 2.0，市场情绪平稳）",
+  "message": "当前无超跌机会（avg_sell_score=1.80 < 2.0，市场情绪平稳）",
   "recommendations": [],
   "undervalued": [
     {
