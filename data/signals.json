@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-20 19:00",
+  "updated_at": "2026-11-21 07:54",
   "signals": [
     {
       "code": "002963",
@@ -161,16 +161,16 @@
       "ma20": null,
       "macd_hist": null,
       "macd_trend": "",
-      "signal": "估值适中可试水",
-      "reason": "纳指100当前持仓为0(目标18%)，适中(score=50)",
+      "signal": "低估可建仓",
+      "reason": "纳指100当前持仓为0(目标18%)，适中偏低(score=35)",
       "buy_score": 0,
       "sell_score": 0,
       "asset_type": "pending",
       "signal_type": "pending_build",
-      "valuation_verdict": "适中",
-      "valuation_score": 50,
+      "valuation_verdict": "适中偏低",
+      "valuation_score": 35,
       "deviation_pt": -18.0,
-      "action_detail": "估值适中(score=50，适中)，纳指100目标仓位18%，可小额开始建仓"
+      "action_detail": "估值低位(score=35，适中偏低)，纳指100目标仓位18%，可开始分批建仓"
     },
     {
       "code": "007722",
