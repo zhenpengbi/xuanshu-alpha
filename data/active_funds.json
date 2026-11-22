@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-22 07:43",
+  "updated_at": "2026-11-22 18:24",
   "portfolio_updateTime": "2026-11-22",
   "funds": [
     {
@@ -12,7 +12,7 @@
       "company": "永赢基金管理有限公司",
       "inception_date": "2022-07-15",
       "name_mismatch": true,
-      "manager_tenure_days": 2088,
+      "manager_tenure_days": 2089,
       "performance_ranking": [
         {
           "period": "成立以来",
@@ -132,7 +132,7 @@
       "company": "平安基金管理有限公司",
       "inception_date": "2025-10-30",
       "name_mismatch": true,
-      "manager_tenure_days": 376,
+      "manager_tenure_days": 377,
       "performance_ranking": [
         {
           "period": "成立以来",
