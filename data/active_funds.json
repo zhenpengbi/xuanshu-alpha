@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-22 18:24",
-  "portfolio_updateTime": "2026-11-22",
+  "updated_at": "2026-11-23 08:32",
+  "portfolio_updateTime": "2026-11-23",
   "funds": [
     {
       "code": "015790",
@@ -95,7 +95,7 @@
       "rank_percentile_ytd": 97.3,
       "max_drawdown_pct": 57.59,
       "alpha_analysis": {
-        "fund_annual_pct": -3.44,
+        "fund_annual_pct": -2.64,
         "benchmark_annual_pct": "数据缺失",
         "alpha_pct": "数据缺失",
         "benchmark": "沪深300",
