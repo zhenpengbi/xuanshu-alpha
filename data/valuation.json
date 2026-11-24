@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-11-23",
+  "updated_at": "2026-11-24",
   "valuations": [
     {
       "category": "AI/科技",
       "index_name": "中证人工智能(930713)",
-      "current_pe": 30.51,
-      "pe_pct_5y": 13.9,
+      "current_pe": 30.8,
+      "pe_pct_5y": 14.6,
       "current_pb": null,
       "pb_pct_5y": null,
       "verdict": "低估",
@@ -15,8 +15,8 @@
     {
       "category": "有色金属",
       "index_name": "中证有色金属(930708)",
-      "current_pe": 11.51,
-      "pe_pct_5y": 0.6,
+      "current_pe": 11.18,
+      "pe_pct_5y": 0.2,
       "current_pb": null,
       "pb_pct_5y": null,
       "verdict": "低估",
@@ -26,8 +26,8 @@
     {
       "category": "光伏/新能源",
       "index_name": "中证新能源(931151)",
-      "current_pe": 29.58,
-      "pe_pct_5y": 66.8,
+      "current_pe": 29.74,
+      "pe_pct_5y": 67.9,
       "current_pb": null,
       "pb_pct_5y": null,
       "verdict": "适中",
@@ -38,7 +38,7 @@
       "category": "高端制造",
       "index_name": "中证高端装备(399377)",
       "current_pe": null,
-      "pe_pct_5y": 64.6,
+      "pe_pct_5y": 64.7,
       "current_pb": null,
       "pb_pct_5y": null,
       "verdict": "适中",
