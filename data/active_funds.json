@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-24 10:39",
-  "portfolio_updateTime": "2026-11-24",
+  "updated_at": "2026-11-25 09:30",
+  "portfolio_updateTime": "2026-11-25",
   "funds": [
     {
       "code": "015790",
@@ -12,21 +12,21 @@
       "company": "永赢基金管理有限公司",
       "inception_date": "2022-07-15",
       "name_mismatch": true,
-      "manager_tenure_days": 2090,
+      "manager_tenure_days": 2091,
       "performance_ranking": [
         {
           "period": "成立以来",
-          "return_pct": -21.77,
+          "return_pct": -20.11,
           "max_dd_pct": 57.59,
-          "rank": "4136/5727",
-          "percentile": 72.2
+          "rank": "4037/5723",
+          "percentile": 70.5
         },
         {
           "period": "今年以来",
-          "return_pct": -45.04,
+          "return_pct": -43.87,
           "max_dd_pct": 57.59,
-          "rank": "5552/5728",
-          "percentile": 96.9
+          "rank": "5527/5724",
+          "percentile": 96.6
         },
         {
           "period": "2025",
@@ -58,44 +58,44 @@
         },
         {
           "period": "近1月",
-          "return_pct": -14.54,
+          "return_pct": -12.73,
           "max_dd_pct": null,
-          "rank": "4420/5655",
-          "percentile": 78.2
+          "rank": "4092/5651",
+          "percentile": 72.4
         },
         {
           "period": "近3月",
-          "return_pct": -26.76,
+          "return_pct": -22.65,
           "max_dd_pct": 30.48,
-          "rank": "3705/5552",
-          "percentile": 66.7
+          "rank": "3374/5548",
+          "percentile": 60.8
         },
         {
           "period": "近6月",
-          "return_pct": -48.88,
+          "return_pct": -47.8,
           "max_dd_pct": 51.15,
-          "rank": "5015/5343",
-          "percentile": 93.9
+          "rank": "4973/5339",
+          "percentile": 93.1
         },
         {
           "period": "近1年",
-          "return_pct": -10.62,
+          "return_pct": -13.14,
           "max_dd_pct": 57.59,
-          "rank": "2460/4917",
-          "percentile": 50.0
+          "rank": "2745/4913",
+          "percentile": 55.9
         },
         {
           "period": "近3年",
-          "return_pct": -5.47,
+          "return_pct": -1.15,
           "max_dd_pct": 57.59,
-          "rank": "2740/3811",
-          "percentile": 71.9
+          "rank": "2574/3812",
+          "percentile": 67.5
         }
       ],
-      "rank_percentile_ytd": 96.9,
+      "rank_percentile_ytd": 96.6,
       "max_drawdown_pct": 57.59,
       "alpha_analysis": {
-        "fund_annual_pct": -1.27,
+        "fund_annual_pct": -0.55,
         "benchmark_annual_pct": "数据缺失",
         "alpha_pct": "数据缺失",
         "benchmark": "沪深300",
@@ -132,21 +132,21 @@
       "company": "平安基金管理有限公司",
       "inception_date": "2025-10-30",
       "name_mismatch": true,
-      "manager_tenure_days": 378,
+      "manager_tenure_days": 379,
       "performance_ranking": [
         {
           "period": "成立以来",
-          "return_pct": -25.35,
+          "return_pct": -24.44,
           "max_dd_pct": 53.16,
-          "rank": "4369/5727",
-          "percentile": 76.3
+          "rank": "4310/5723",
+          "percentile": 75.3
         },
         {
           "period": "今年以来",
-          "return_pct": -41.93,
+          "return_pct": -41.22,
           "max_dd_pct": 53.16,
-          "rank": "5454/5728",
-          "percentile": 95.2
+          "rank": "5438/5724",
+          "percentile": 95.0
         },
         {
           "period": "2025",
@@ -157,37 +157,37 @@
         },
         {
           "period": "近1月",
-          "return_pct": -16.14,
+          "return_pct": -15.12,
           "max_dd_pct": null,
-          "rank": "4731/5655",
-          "percentile": 83.7
+          "rank": "4573/5651",
+          "percentile": 80.9
         },
         {
           "period": "近3月",
-          "return_pct": -26.74,
+          "return_pct": -23.46,
           "max_dd_pct": 29.84,
-          "rank": "3701/5552",
-          "percentile": 66.7
+          "rank": "3510/5548",
+          "percentile": 63.3
         },
         {
           "period": "近6月",
-          "return_pct": -46.96,
+          "return_pct": -46.31,
           "max_dd_pct": 48.8,
-          "rank": "4896/5343",
-          "percentile": 91.6
+          "rank": "4876/5339",
+          "percentile": 91.3
         },
         {
           "period": "近1年",
-          "return_pct": -23.66,
+          "return_pct": -25.19,
           "max_dd_pct": 53.16,
-          "rank": "4010/4917",
-          "percentile": 81.6
+          "rank": "4091/4913",
+          "percentile": 83.3
         }
       ],
-      "rank_percentile_ytd": 95.2,
+      "rank_percentile_ytd": 95.0,
       "max_drawdown_pct": 53.16,
       "alpha_analysis": {
-        "fund_annual_pct": -25.09,
+        "fund_annual_pct": -24.11,
         "benchmark_annual_pct": "数据缺失",
         "alpha_pct": "数据缺失",
         "benchmark": "沪深300",
