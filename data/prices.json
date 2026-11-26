@@ -2,57 +2,57 @@
   {
     "code": "002963",
     "name": "易方达黄金ETF联接C",
-    "price": 2.4019,
-    "change_pct": -2.62,
-    "updated_at": "2026-11-25"
+    "price": 2.4271,
+    "change_pct": 1.05,
+    "updated_at": "2026-11-26"
   },
   {
     "code": "000307",
     "name": "易方达黄金ETF联接A",
-    "price": 2.4813,
-    "change_pct": -2.62,
-    "updated_at": "2026-11-25"
+    "price": 2.5073,
+    "change_pct": 1.05,
+    "updated_at": "2026-11-26"
   },
   {
     "code": "010990",
     "name": "南方有色金属ETF联接E",
-    "price": 1.2013,
-    "change_pct": -2.47,
-    "updated_at": "2026-11-25"
+    "price": 1.2214,
+    "change_pct": 1.67,
+    "updated_at": "2026-11-26"
   },
   {
     "code": "011840",
     "name": "天弘中证人工智能主题ETF联接C",
-    "price": 1.2648,
-    "change_pct": -3.8,
-    "updated_at": "2026-11-25"
+    "price": 1.2655,
+    "change_pct": 0.06,
+    "updated_at": "2026-11-26"
   },
   {
     "code": "012885",
     "name": "华夏中证光伏产业ETF联接A",
-    "price": 0.4084,
-    "change_pct": -2.83,
-    "updated_at": "2026-11-25"
+    "price": 0.4049,
+    "change_pct": -0.86,
+    "updated_at": "2026-11-26"
   },
   {
     "code": "015790",
     "name": "永赢高端装备智选混合C",
-    "price": 0.7476,
-    "change_pct": -6.42,
-    "updated_at": "2026-11-25"
+    "price": 0.7519,
+    "change_pct": 0.58,
+    "updated_at": "2026-11-26"
   },
   {
     "code": "025647",
     "name": "平安高端装备混合C",
-    "price": 0.7252,
-    "change_pct": -4.02,
-    "updated_at": "2026-11-25"
+    "price": 0.7232,
+    "change_pct": -0.28,
+    "updated_at": "2026-11-26"
   },
   {
     "code": "014881",
     "name": "天弘中证机器人ETF联接C",
-    "price": 0.9313,
-    "change_pct": -4.94,
-    "updated_at": "2026-11-25"
+    "price": 0.9128,
+    "change_pct": -1.99,
+    "updated_at": "2026-11-26"
   }
 ]
