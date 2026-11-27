@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-11-26",
+  "updated_at": "2026-11-27",
   "valuations": [
     {
       "category": "AI/科技",
       "index_name": "中证人工智能(930713)",
       "current_pe": 29.86,
-      "pe_pct_5y": 12.8,
+      "pe_pct_5y": 12.9,
       "current_pb": null,
       "pb_pct_5y": null,
       "verdict": "低估",
